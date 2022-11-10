@@ -14,14 +14,14 @@ const OurFriendsPage = () => {
               </h3>
               <img src={imageUrl} alt={title + ' logo'} />
               <p>TIME: </p>
+              <p>Adress:</p>
               <p>
-                Adress:
                 <a href={addressUrl || '#'}>
                   {address || '--------------------------------------'}
                 </a>
               </p>
+              <p>Email:</p>
               <p>
-                Email:
                 <a href={'mailto:' + (email || '--------------------------------------')}>
                   {email || '--------------------------------------'}
                 </a>
