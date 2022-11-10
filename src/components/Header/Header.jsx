@@ -1,7 +1,14 @@
-import React from 'react';
+import Logo from './Logo';
+import Navigation from './Navigation';
+import { HeaderBox } from './Header.styled';
 
 const Header = () => {
-  return <div>Header</div>;
+  return (
+    <HeaderBox>
+      <Logo />
+      <Navigation />
+    </HeaderBox>
+  );
 };
 
 export default Header;
