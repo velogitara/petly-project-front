@@ -22,7 +22,7 @@ export const theme = Object.freeze({
     desktop: '1280px',
   },
   shadows: {
-    primary: '7px 4px 14px rgba(49, 21, 4, 0.07)',
+    primary: '7px 4px 14px rgba(0, 0, 0, 0.11)',
     card: '7px 4px 14px rgba(49, 21, 4, 0.07)',
   },
 });
