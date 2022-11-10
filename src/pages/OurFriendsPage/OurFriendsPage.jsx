@@ -1,4 +1,5 @@
 import sponsors from './sponsors.json';
+
 const OurFriendsPage = () => {
   return (
     <div>
@@ -13,8 +14,8 @@ const OurFriendsPage = () => {
                 {title}
               </h3>
               <img src={imageUrl} alt={title + ' logo'} />
-              <p>TIME: </p>
-              <p>Adress:</p>
+              <p>TIME:</p>
+              <ul>{console.log(workDays === null)}</ul>;<p>Adress:</p>
               <p>
                 <a href={addressUrl || '#'}>
                   {address || '--------------------------------------'}
