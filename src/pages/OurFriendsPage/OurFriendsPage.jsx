@@ -16,7 +16,9 @@ const OurFriendsPage = () => {
               <p>TIME: </p>
               <p>
                 Adress:
-                <a href={addressUrl}>{address}</a>
+                <a href={addressUrl || '#'}>
+                  {address || '--------------------------------------'}
+                </a>
               </p>
               <p>
                 Email:
