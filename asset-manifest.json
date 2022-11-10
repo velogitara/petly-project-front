@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/petly-project-front/static/css/main.40122791.css",
-    "main.js": "/petly-project-front/static/js/main.38378a21.js",
+    "main.js": "/petly-project-front/static/js/main.1a52065a.js",
     "static/media/Manrope-VariableFont_wght.ttf": "/petly-project-front/static/media/Manrope-VariableFont_wght.cae461b0196986f4250c.ttf",
     "static/media/Poppins-Bold.ttf": "/petly-project-front/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "index.html": "/petly-project-front/index.html",
     "main.40122791.css.map": "/petly-project-front/static/css/main.40122791.css.map",
-    "main.38378a21.js.map": "/petly-project-front/static/js/main.38378a21.js.map"
+    "main.1a52065a.js.map": "/petly-project-front/static/js/main.1a52065a.js.map"
   },
   "entrypoints": [
     "static/css/main.40122791.css",
-    "static/js/main.38378a21.js"
+    "static/js/main.1a52065a.js"
   ]
 }
