@@ -4,6 +4,7 @@ export const theme = Object.freeze({
     secondary: '#111321',
     triadic: '#ffffff',
     accent: '#F59256',
+    hoverAccent: '#FF6101',
     translucent: '#11111199',
   },
   backgrounds: {
@@ -18,7 +19,9 @@ export const theme = Object.freeze({
   },
   screens: {
     mobile: '320px',
+    toTablet: '767px',
     tablet: '768px',
+    toDesktop: '1279px',
     desktop: '1280px',
   },
   shadows: {
