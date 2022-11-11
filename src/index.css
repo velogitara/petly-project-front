@@ -1,6 +1,4 @@
-html {
-  box-sizing: border-box;
-}
+@import '../node_modules/modern-normalize/modern-normalize.css';
 
 body {
   margin: 0;
@@ -39,4 +37,15 @@ ul {
 img {
   display: block;
   max-width: 100%;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url(../src/assets/fonts/Manrope-VariableFont_wght.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url(../src/assets/fonts/Poppins-Bold.ttf) format('ttf');
+  font-weight: 700;
 }
