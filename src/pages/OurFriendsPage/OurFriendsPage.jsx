@@ -15,7 +15,8 @@ const OurFriendsPage = () => {
               </h3>
               <img src={imageUrl} alt={title + ' logo'} />
               <p>TIME:</p>
-              <ul>{console.log(workDays === null)}</ul>;<p>Adress:</p>
+              <ul>{console.log(workDays === null)}</ul>
+              <p>Adress:</p>
               <p>
                 <a href={addressUrl || '#'}>
                   {address || '--------------------------------------'}
