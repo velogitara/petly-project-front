@@ -7,6 +7,7 @@ const OurFriendsPage = () => {
       <ul>
         {sponsors.map(el => {
           const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = el;
+          console.log(workDays ? workDays : '--------------------------------------');
           return (
             <li>
               <h3>
@@ -15,7 +16,15 @@ const OurFriendsPage = () => {
               </h3>
               <img src={imageUrl} alt={title + ' logo'} />
               <p>TIME:</p>
-              <ul>{console.log(workDays === null)}</ul>
+              <ul>
+                {workDays
+                  ? workDays.map(day => {
+                      if (day.isOpen) {
+                        return <li>{`${day.from}-${day.to}`}</li>;
+                      }
+                    })
+                  : '--------------------------------------'}
+              </ul>
               <p>Adress:</p>
               <p>
                 <a href={addressUrl || '#'}>
