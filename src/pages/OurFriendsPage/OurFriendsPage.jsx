@@ -5,11 +5,10 @@ const OurFriendsPage = () => {
     <div>
       <h2>OurFriendsPage</h2>
       <ul>
-        {sponsors.map(el => {
+        {sponsors.map((el, idx) => {
           const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = el;
-          console.log(workDays ? workDays : '--------------------------------------');
           return (
-            <li>
+            <li key={idx}>
               <h3>
                 <a href={url}></a>
                 {title}
@@ -18,10 +17,8 @@ const OurFriendsPage = () => {
               <p>TIME:</p>
               <ul>
                 {workDays
-                  ? workDays.map(day => {
-                      if (day.isOpen) {
-                        return <li>{`${day.from}-${day.to}`}</li>;
-                      }
+                  ? [workDays.find(day => day.isOpen === true)].map((item, index) => {
+                      return <li key={index}>{`${item.from}-${item.to}`}</li>;
                     })
                   : '--------------------------------------'}
               </ul>
