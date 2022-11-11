@@ -1,17 +1,17 @@
-import EllipsisText from "react-ellipsis-text";
-import {Item, Title, Text, Image} from './NewsItem.styled';
-import img from '../../assets/news-item-gradient-line.png'
+import {Item, Title, Text, Date, ReadMore, Wrapper} from './NewsItem.styled';
 
 const NewsItem = ({title, url, description, date}) => {
   return <Item>
-    <Image src={img}></Image>
-    <Title text={title} length={40}/>
-    <Text text={description} length={150}/>
-    <div>
-      <span>{date}</span>
-      <a href={url} target="_blank">Read more</a>
-    </div>
+    {/*<Title>{title}</Title>*/}
+    {/*<Text>{description}</Text>*/}
+    <Title text={title} length={35}/>
+    <Text text={description} length={250}/>
+    <Wrapper>
+      <Date>{date}</Date>
+      <ReadMore href={url} target="_blank">Read more</ReadMore>
+    </Wrapper>
   </Item>
 }
-
+// length={35}
+// length={250}
 export default NewsItem;
