@@ -2,12 +2,6 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 export const NavigationLink = styled(NavLink)`
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 27px;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  color: inherit;
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.palette.accent};
@@ -16,8 +10,11 @@ export const NavigationLink = styled(NavLink)`
   &:not(:last-child) {
     margin-right: 80px;
   }
-  &.current {
+  &.active {
     color: ${({ theme }) => theme.palette.accent};
     text-decoration-line: underline;
   }
+
+	text-decoration: none;
+  color: inherit;
 `;

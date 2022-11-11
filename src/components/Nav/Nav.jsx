@@ -2,7 +2,7 @@ import { NavigationLink } from './Nav.styled';
 
 const Nav = () => {
   return (
-    <div>
+    <nav>
       <NavigationLink to="news" className={'link'}>
         News
       </NavigationLink>
@@ -12,7 +12,7 @@ const Nav = () => {
       <NavigationLink to="friends" className={'link'}>
         Our friend
       </NavigationLink>
-    </div>
+    </nav>
   );
 };
 

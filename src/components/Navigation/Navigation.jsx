@@ -1,7 +1,7 @@
 // import { useSelector } from 'react-redux';
-import Nav from './Nav/Nav';
-import UserNav from './UserNav';
-import AuthNav from './AuthNav';
+import Nav from '../Nav';
+import UserNav from '../UserNav';
+import AuthNav from '../AuthNav';
 import { NavBox } from './Navigation.styled';
 
 const Navigation = () => {
