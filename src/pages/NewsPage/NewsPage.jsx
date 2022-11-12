@@ -1,4 +1,4 @@
-import NewsList from '../../components/NewsList';
+import NewsList from 'components/NewsList';
 import NewsFilter from '../../components/NewsFilter/NewsFilter';
 import { Container } from '../../helpers';
 import NewsTitle from '../../components/NewsTitle/NewsTitle';

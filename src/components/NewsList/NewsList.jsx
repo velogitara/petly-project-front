@@ -1,8 +1,8 @@
+import { useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
 import news from "../../assets/data/news.json"
 import NewsItem from '../NewsItem/NewsItem';
-import { nanoid } from '@reduxjs/toolkit';
 import List from './NewsList.styled';
-import { useSelector } from 'react-redux';
 
 const NewsList = () => {
   const filterValueFromStore = useSelector(state => state.filter.value);
