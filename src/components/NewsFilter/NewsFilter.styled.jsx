@@ -1,15 +1,6 @@
 import styled from '@emotion/styled';
 import { theme } from '../../helpers';
 
-const Icon = styled.svg`
-  display: block;
-  fill: black;
-
-  width: 20px;
-  height: 20px;
-  //background-color: aqua;
-`
-
 
 const Filter = styled.input`
   box-shadow: ${theme.shadows.card};
@@ -41,5 +32,5 @@ const Filter = styled.input`
 `
 
 export{
-  Filter, Icon
+  Filter
 }
