@@ -1,8 +1,8 @@
 import React from 'react';
 import { InputForm } from './Input.module';
 
-const Input = ({ placeholder, styled }) => {
-  return <InputForm className={styled} placeholder={placeholder} type="text" />;
+const Input = ({ placeholder, styled, type, value }) => {
+  return <InputForm className={styled} placeholder={placeholder} type={type} value={value} />;
 };
 
 export default Input;
