@@ -25,7 +25,7 @@ const NewsList = () => {
     }
 
     if (filterValueFromStore !== "") {
-      if (item.title.toLowerCase().includes(filterValueFromStore) || item.description.toLowerCase().includes(filterValueFromStore)) {
+      if (item.title.toLowerCase().includes(filterValueFromStore.trim()) || item.description.toLowerCase().includes(filterValueFromStore.trim())) {
         return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
       }
     } else {

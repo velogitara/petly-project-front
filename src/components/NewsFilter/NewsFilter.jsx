@@ -1,19 +1,12 @@
-import {Filter} from './NewsFilter.styled';
-import { setFilter } from '../../redux/Filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { setFilter } from 'redux/Filter';
+import InputSearch from 'components/InputSearch';
 
 const NewsFilter = () => {
   const filterValue = useSelector(state => state.filter.value);
   const dispatch = useDispatch();
 
-  return <>
-    <Filter
-    type="text"
-    placeholder="Search"
-    value={filterValue}
-    onChange={e => dispatch(setFilter(e.target.value.toLocaleLowerCase()))} />
-    </>
+  return <InputSearch value={filterValue} onChange={e => dispatch(setFilter(e.target.value.toLocaleLowerCase()))} />  
 }
 
 export default NewsFilter;

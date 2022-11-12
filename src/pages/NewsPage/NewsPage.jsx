@@ -1,12 +1,12 @@
 import NewsList from 'components/NewsList';
-import NewsFilter from '../../components/NewsFilter/NewsFilter';
+import NewsFilter from 'components/NewsFilter';
 import { Container } from '../../helpers';
-import NewsTitle from '../../components/NewsTitle/NewsTitle';
+import TitlePage from 'components/TitlePage';
 
 const NewsPage = () => {
 
   return <Container>
-    <NewsTitle text={"News"}/>
+    <TitlePage title={"News"}/>
     <NewsFilter/>
     <NewsList/>
   </Container>
