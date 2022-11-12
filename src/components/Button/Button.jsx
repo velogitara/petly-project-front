@@ -1,8 +1,12 @@
 import React from 'react';
 import { Btn } from './Button.styled';
 
-const Button = ({ title, styled }) => {
-  return <Btn className={styled}>{title}</Btn>;
+const Button = ({ title, styled, type }) => {
+  return (
+    <Btn className={styled} type={type}>
+      {title}
+    </Btn>
+  );
 };
 
 export default Button;
