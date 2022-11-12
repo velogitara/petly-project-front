@@ -28,4 +28,8 @@ export const theme = Object.freeze({
     primary: '7px 4px 14px rgba(0, 0, 0, 0.11)',
     card: '7px 4px 14px rgba(49, 21, 4, 0.07)',
   },
+  animations: {
+    transform: 'scale(1.1)',
+    transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+  },
 });
