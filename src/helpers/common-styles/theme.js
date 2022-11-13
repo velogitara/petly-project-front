@@ -6,6 +6,7 @@ export const theme = Object.freeze({
     accent: '#F59256',
     hoverAccent: '#FF6101',
     translucent: '#11111199',
+    link: '#3091EB',
   },
   backgrounds: {
     primary: '#FDF7F2',
