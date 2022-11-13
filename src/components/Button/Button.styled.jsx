@@ -98,39 +98,64 @@ export const Btn = styled.button`
   /* ================formAuth==================== */
 
   &.formAuth {
-    padding: 8.5px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 280px;
+    height: 44px;
     font-size: 20px;
-    background-color: ${({ theme }) => theme.palette.triadic};
-    border: 2px solid ${({ theme }) => theme.palette.accent};
     letter-spacing: 0.4em;
-    &:hover {
-      background: ${({ theme }) => theme.palette.accent};
-      color: ${({ theme }) => theme.palette.triadic};
-    }
+
     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
       width: 448px;
+      height: 48px;
     }
     @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
       width: 458px;
+    }
+    &.on {
+      background-color: ${({ theme }) => theme.palette.accent};
+      color: ${({ theme }) => theme.palette.triadic};
+
+      &:hover {
+        background: ${({ theme }) => theme.palette.hoverAccent};
+      }
+    }
+
+    &.back {
+      background-color: ${({ theme }) => theme.palette.triadic};
+      border: 2px solid ${({ theme }) => theme.palette.accent};
+      &:hover {
+        color: ${({ theme }) => theme.palette.accent};
+      }
     }
   }
 
   /* ================formAddPet==================== */
 
   &.formAddPet {
-    background-color: ${({ theme }) => theme.palette.triadic};
-    border: 2px solid ${({ theme }) => theme.palette.accent};
     padding: 8.5px auto;
     width: 240px;
     font-size: 16px;
-    &:hover {
-      background: ${({ theme }) => theme.palette.accent};
-      color: ${({ theme }) => theme.palette.triadic};
-    }
     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
       width: 180px;
       font-size: 20px;
+    }
+    &.on {
+      background-color: ${({ theme }) => theme.palette.accent};
+      color: ${({ theme }) => theme.palette.triadic};
+
+      &:hover {
+        background: ${({ theme }) => theme.palette.hoverAccent};
+      }
+    }
+
+    &.back {
+      background-color: ${({ theme }) => theme.palette.triadic};
+      border: 2px solid ${({ theme }) => theme.palette.accent};
+      &:hover {
+        color: ${({ theme }) => theme.palette.accent};
+      }
     }
   }
 
