@@ -11,10 +11,10 @@ const userStateSlice = createSlice({
 
   extraReducers: builder => {
     builder.addMatcher(authApi.endpoints.signInUser.matchFulfilled, (state, { payload }) => {
-      state.userToken = payload.token;
+      state.userToken = payload.data.token;
     });
     builder.addMatcher(authApi.endpoints.signUpUser.matchFulfilled, (state, { payload }) => {
-      state.userToken = payload.token;
+      state.userToken = payload.data.token;
     });
     builder.addMatcher(authApi.endpoints.signOutUser.matchFulfilled, state => {
       state.userToken = initialState.userToken;
