@@ -1,11 +1,11 @@
 import React from 'react';
 import { Btn } from './Button.styled';
 
-const Button = ({ title, styled, type, margin, onSubmit, onChange }) => {
+const Button = ({ title, styled, type, margin, onSubmit, onClick }) => {
   return (
     <Btn
       className={styled}
-      onChange={onChange}
+      onClick={onClick}
       onSubmit={onSubmit}
       type={type}
       style={{ margin: margin }}
