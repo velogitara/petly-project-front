@@ -1,9 +1,12 @@
+import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
+import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import { Container } from 'helpers';
 
 const NoticesPage = () => {
   return (
     <Container>
-      <div>NoticesPage</div>
+      <NoticesCategoriesNav />
+      <NoticesCategoriesList />
     </Container>
   );
 };
