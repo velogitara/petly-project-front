@@ -20,7 +20,7 @@ const List = styled.ul`
 
 const BoxContent = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   text-align: start;
 `;
