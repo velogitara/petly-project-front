@@ -12,10 +12,15 @@ const {
   InfoBox,
   InfoLinks,
   InfoAddress,
+  CardPic,
 } = StyledComponents;
 
 const OurFriendsPage = () => {
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+  const showWorkDays = e => {
+    console.log(e.target);
+  };
 
   return (
     <Container>
@@ -31,9 +36,9 @@ const OurFriendsPage = () => {
                 {title}
               </Name>
               <BoxContent>
-                <img src={imageUrl} alt={title + ' logo'} />
+                {imageUrl ? <CardPic src={imageUrl} alt={title + ' logo'} /> : false}
                 <div>
-                  <InfoBox>
+                  <InfoBox onClick={showWorkDays}>
                     <InfoTitle>
                       Time: <br />
                       {workDays

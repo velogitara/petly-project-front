@@ -12,6 +12,11 @@ const Card = styled.li`
   box-shadow: ${shadows.card};
 `;
 
+const CardPic = styled.img`
+  margin-right: 12px;
+  width: 110px;
+`;
+
 const List = styled.ul`
   list-style: none;
   margin: 0;
@@ -21,7 +26,7 @@ const List = styled.ul`
 const BoxContent = styled.div`
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: space-around;
   text-align: start;
 `;
 
@@ -41,15 +46,15 @@ const Name = styled.h3`
   color: ${palette.accent};
 `;
 
-const InfoBox = styled.div`
-  position: relative;
-`;
-
 const WorkDaysList = styled.ul`
   display: none;
   position: absolute;
   left: 0;
   bottom: 0;
+`;
+
+const InfoBox = styled.div`
+  position: relative;
 `;
 
 const InfoTitle = styled.p`
@@ -86,6 +91,7 @@ const StyledComponents = {
   InfoBox,
   InfoLinks,
   InfoAddress,
+  CardPic,
 };
 
 export default StyledComponents;
