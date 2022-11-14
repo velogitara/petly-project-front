@@ -18,10 +18,6 @@ const {
 const OurFriendsPage = () => {
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
-  const showWorkDays = e => {
-    console.log(e.target);
-  };
-
   return (
     <Container>
       <Title>Our friend</Title>
@@ -38,7 +34,7 @@ const OurFriendsPage = () => {
               <BoxContent>
                 {imageUrl ? <CardPic src={imageUrl} alt={title + ' logo'} /> : false}
                 <div>
-                  <InfoBox onClick={showWorkDays}>
+                  <InfoBox>
                     <InfoTitle>
                       Time: <br />
                       {workDays
