@@ -1,15 +1,24 @@
+import { useState } from 'react';
 import { Container } from 'helpers';
 import Logo from '../Logo';
 import Navigation from '../Navigation';
-import { HeaderBox } from './Header.styled';
+import icons from '../../assets/icons/icons.svg';
+import { HeaderBox, MenuButton } from './Header.styled';
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <header>
       <Container>
         <HeaderBox>
           <Logo />
-          <Navigation />
+          <Navigation onOpen={open} />
+          <MenuButton onClick={() => setOpen(!open)}>
+            <svg width="30" height="20">
+              <use href={`${icons}#icon-menu`}></use>
+            </svg>
+          </MenuButton>
         </HeaderBox>
       </Container>
     </header>
