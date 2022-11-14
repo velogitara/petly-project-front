@@ -26,7 +26,19 @@ const OurFriendsPage = () => {
                       })
                     : '--------------------------------------'}
                 </p>
-                {workDays ? <ul>{workDays.map((item, index) => false)}</ul> : false}
+                {workDays ? (
+                  <ul>
+                    {workDays.map((item, index) => {
+                      if (item.isOpen) {
+                        return (
+                          <li key={index}>{`${weekDays[index]} ${item.from} - ${item.to}`}</li>
+                        );
+                      }
+                    })}
+                  </ul>
+                ) : (
+                  false
+                )}
               </div>
               <p>Adress:</p>
               <p>
