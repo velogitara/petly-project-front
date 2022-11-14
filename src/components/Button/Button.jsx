@@ -1,5 +1,5 @@
 import React from 'react';
-import { Btn } from './Button.styled';
+import { Btn } from '../../helpers/common-styles/Button.styled';
 
 const Button = ({ title, styled, type, margin, onSubmit, onClick }) => {
   return (
@@ -25,11 +25,8 @@ export default Button;
 // В пропс "margin" прописуєте відступи потрібної кнопки
 
 // НАЗВИ КНОПОК
-// accaunt - кнопка в хедері
-// headerAuth-filter - кнопка в фільтрі, а також в хедері login i registration
-// learnMore - кнопка в картці тварини
 // add - кнопка кругла "додати"
 // formAuth on - кнопка "далі" в формі авторизації
-// formAuth back - кнопка "yfpfl" в формі авторизації
+// formAuth back - кнопка "назад" в формі авторизації
 // formAddPet - кнопка в формі "Add pet"
 // active - активна кнопка
