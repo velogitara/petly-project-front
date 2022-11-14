@@ -10,8 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SharedLayout = lazy(() => import('components/SharedLayout'));
 const HomePage = lazy(() => import('pages/HomePage'));
-// const LoginPage = lazy(() => import('pages/LoginPage'));
-// const RegisterPage = lazy(() => import('pages/RegisterPage'));
+const AuthPage = lazy(() => import('pages/AuthPage/'));
 // const UserPage = lazy(() => import('pages/UserPage'));
 // const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
@@ -56,8 +55,8 @@ const App = () => {
               {/* <Route path="friends" element={<OurFriendsPage />} /> */}
             </Route>
             <Route path="/" element={<PublicRoutes redirectTo="/" restricted />}>
-              {/* <Route path="login" element={<LoginPage />} /> */}
-              {/* <Route path="register" element={<RegisterPage />} /> */}
+              <Route path="login" element={<AuthPage />} />
+              <Route path="register" element={<AuthPage />} />
             </Route>
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
