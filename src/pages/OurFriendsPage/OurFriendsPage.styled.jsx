@@ -1,40 +1,38 @@
 import styled from '@emotion/styled';
-import { hover } from '@testing-library/user-event/dist/hover';
 import { theme } from 'helpers';
 
 const { backgrounds, shadows, fonts, screens, palette } = theme;
 
-const OurFriendsCard = styled.li`
+const Card = styled.li`
   background-color: ${backgrounds.secondary};
   text-align: center;
   border-radius: 40px;
   margin-bottom: 12px;
   padding: 12px 4px;
   box-shadow: ${shadows.card};
-  width: 480px;
 `;
 
-const OurFriendsList = styled.ul`
+const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
 `;
 
-const OurFriendsBoxContent = styled.div`
+const BoxContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: start;
 `;
 
-const OurFriendsTitle = styled.h2`
+const Title = styled.h2`
   font-family: ${fonts.primary},
   font-weight: 700;
   margin-bottom: 45px;
   font-size: 48px;
   line-height: 1.37;`;
 
-const OurFriendsName = styled.h3`
+const Name = styled.h3`
   font-family: ${fonts.primary};
   font-weight: 700;
   margin-bottom: 12px;
@@ -43,12 +41,30 @@ const OurFriendsName = styled.h3`
   color: ${palette.accent};
 `;
 
-const OurFriendsStyledComponents = {
-  OurFriendsCard,
-  OurFriendsTitle,
-  OurFriendsList,
-  OurFriendsBoxContent,
-  OurFriendsName,
+const WorkDaysList = styled.ul`
+  display: none;
+  position: absolute;
+`;
+
+const InfoTitle = styled.p`
+  font-family: ${fonts.primary};
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.37;
+  transition: color 250ms;
+  &:hover {
+    color: ${palette.accent};
+  }
+`;
+
+const StyledComponents = {
+  Card,
+  Title,
+  List,
+  BoxContent,
+  Name,
+  WorkDaysList,
+  InfoTitle,
 };
 
-export default OurFriendsStyledComponents;
+export default StyledComponents;

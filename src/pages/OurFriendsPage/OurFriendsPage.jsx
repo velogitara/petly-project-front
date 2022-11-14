@@ -1,29 +1,28 @@
 import sponsors from './sponsors.json';
 import { Container } from 'helpers';
-import OurFriendsStyledComponents from './OurFriendsPage.styled';
-const { OurFriendsCard, OurFriendsTitle, OurFriendsList, OurFriendsBoxContent, OurFriendsName } =
-  OurFriendsStyledComponents;
+import StyledComponents from './OurFriendsPage.styled';
+const { Card, Title, List, BoxContent, Name, WorkDaysList, InfoTitle } = StyledComponents;
 
 const OurFriendsPage = () => {
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
   return (
     <Container>
-      <OurFriendsTitle>Our friend</OurFriendsTitle>
-      <OurFriendsList>
+      <Title>Our friend</Title>
+      <List>
         {sponsors.map((el, idx) => {
           const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = el;
 
           return (
-            <OurFriendsCard key={idx}>
-              <OurFriendsName>
+            <Card key={idx}>
+              <Name>
                 <a href={url || '#'}></a>
                 {title}
-              </OurFriendsName>
-              <OurFriendsBoxContent>
+              </Name>
+              <BoxContent>
                 <img src={imageUrl} alt={title + ' logo'} />
                 <div>
-                  <p>TIME:</p>
+                  <InfoTitle>Time:</InfoTitle>
                   <div>
                     <p>
                       {workDays
@@ -33,7 +32,7 @@ const OurFriendsPage = () => {
                         : '--------------------------------------'}
                     </p>
                     {workDays ? (
-                      <ul>
+                      <WorkDaysList>
                         {workDays.map((item, index) => {
                           if (item.isOpen) {
                             return (
@@ -41,35 +40,35 @@ const OurFriendsPage = () => {
                             );
                           }
                         })}
-                      </ul>
+                      </WorkDaysList>
                     ) : (
                       false
                     )}
                   </div>
-                  <p>Adress:</p>
+                  <InfoTitle>Adress:</InfoTitle>
                   <p>
                     <a href={addressUrl || '#'}>
                       {address || '--------------------------------------'}
                     </a>
                   </p>
-                  <p>Email:</p>
-                  <p>
+                  <InfoTitle>Email:</InfoTitle>
+                  <InfoTitle>
                     <a href={email ? 'mailto:' + email : '#'}>
                       {email || '--------------------------------------'}
                     </a>
-                  </p>
-                  <p>Phone:</p>
+                  </InfoTitle>
+                  <InfoTitle>Phone:</InfoTitle>
                   <p>
                     <a href={phone ? 'tel:' + phone : '#'}>
                       {phone || '--------------------------------------'}
                     </a>
                   </p>
                 </div>
-              </OurFriendsBoxContent>
-            </OurFriendsCard>
+              </BoxContent>
+            </Card>
           );
         })}
-      </OurFriendsList>
+      </List>
     </Container>
   );
 };
