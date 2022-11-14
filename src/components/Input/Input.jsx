@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputForm } from './Input.module';
+import { InputForm } from '../../helpers/common-styles/Input.module';
 
 const Input = ({ placeholder, styled, value, margin, type }) => {
   return (
