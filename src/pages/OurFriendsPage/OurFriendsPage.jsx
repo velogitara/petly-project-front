@@ -1,27 +1,33 @@
 import sponsors from './sponsors.json';
 
 const OurFriendsPage = () => {
+  const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
   return (
     <div>
       <h2>OurFriendsPage</h2>
       <ul>
         {sponsors.map((el, idx) => {
           const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = el;
+
           return (
             <li key={idx}>
               <h3>
-                <a href={url}></a>
+                <a href={url || '#'}></a>
                 {title}
               </h3>
               <img src={imageUrl} alt={title + ' logo'} />
               <p>TIME:</p>
-              <ul>
-                {workDays
-                  ? [workDays.find(day => day.isOpen === true)].map((item, index) => {
-                      return <li key={index}>{`${item.from}-${item.to}`}</li>;
-                    })
-                  : '--------------------------------------'}
-              </ul>
+              <div>
+                <p>
+                  {workDays
+                    ? [workDays.find(day => day.isOpen === true)].map(time => {
+                        return `${time.from} - ${time.to}`;
+                      })
+                    : '--------------------------------------'}
+                </p>
+                {workDays ? <ul>{workDays.map((item, index) => false)}</ul> : false}
+              </div>
               <p>Adress:</p>
               <p>
                 <a href={addressUrl || '#'}>
