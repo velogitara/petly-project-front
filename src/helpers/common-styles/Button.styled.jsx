@@ -15,59 +15,6 @@ export const Btn = styled.button`
   font-family: ${({ theme }) => theme.fonts.primary};
   transition: ${({ theme }) => theme.animations.transition};
 
-  /* ================active==================== */
-
-  &.accaunt {
-    background: ${({ theme }) => theme.palette.triadic};
-    color: ${({ theme }) => theme.palette.primary};
-    border: 2px solid ${({ theme }) => theme.palette.accent};
-    padding: 8px 28px;
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    &:hover {
-      background: ${({ theme }) => theme.palette.accent};
-      color: ${({ theme }) => theme.palette.triadic};
-    }
-    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-      padding: 10px 28px;
-      font-size: 16px;
-    }
-  }
-
-  /* ================headerAuth-filter==================== */
-
-  &.headerAuth-filter {
-    background: ${({ theme }) => theme.palette.triadic};
-    color: ${({ theme }) => theme.palette.primary};
-    border: 2px solid ${({ theme }) => theme.palette.accent};
-    padding: 8px 28px;
-    font-size: 14px;
-    letter-spacing: 0.04em;
-    &:hover {
-      background: ${({ theme }) => theme.palette.accent};
-      color: ${({ theme }) => theme.palette.triadic};
-    }
-    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-      padding: 10px 28px;
-      font-size: 20px;
-    }
-  }
-
-  /* ================learnMore==================== */
-
-  &.learnMore {
-    background: ${({ theme }) => theme.palette.triadic};
-    color: ${({ theme }) => theme.palette.accent};
-    border: 2px solid ${({ theme }) => theme.palette.accent};
-    padding: 8px auto;
-    width: 248px;
-    font-size: 16px;
-    &:hover {
-      border-color: ${({ theme }) => theme.palette.hoverAccent};
-      color: ${({ theme }) => theme.palette.hoverAccent};
-    }
-  }
-
   /* ================add==================== */
 
   &.add {

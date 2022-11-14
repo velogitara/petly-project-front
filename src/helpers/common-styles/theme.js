@@ -31,6 +31,6 @@ export const theme = Object.freeze({
   },
   animations: {
     transform: 'scale(1.1)',
-    transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   },
 });

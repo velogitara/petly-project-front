@@ -1,22 +1,27 @@
 // import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Nav from '../Nav';
 import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
-import { NavBox } from './Navigation.styled';
+import { NavigationBox } from './Navigation.styled';
 
-const Navigation = () => {
+const Navigation = ({ onOpen }) => {
   // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
   return (
-    <NavBox>
-      <Nav />
+    <NavigationBox className={onOpen ? 'isOpen' : ''}>
       {/* {!isLoggedIn ?  */}
       <AuthNav />
       {/* : */}
       <UserNav />
       {/* } */}
-    </NavBox>
+      <Nav onOpen={onOpen} />
+    </NavigationBox>
   );
+};
+
+Navigation.propTypes = {
+  onOpen: PropTypes.func.isRequired,
 };
 
 export default Navigation;

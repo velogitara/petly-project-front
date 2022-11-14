@@ -1,0 +1,15 @@
+:root {
+  --color-primary: #111111;
+  --color-secondary: #111321;
+  --color-triadic: #ffffff;
+  --color-accent: #f59256;
+  --color-hoverAccent: #ff6101;
+  --color-translucent: #11111199;
+
+  --font-primary: 'Manrope', sans-serif;
+
+  --screen-tablet: 767px;
+  --screen-decktop: 1280px;
+
+  --animation-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

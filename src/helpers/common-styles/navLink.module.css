@@ -1,0 +1,109 @@
+/* accaunt - лінк в хедері */
+/* headerAuth - лінк регістрації/логінізації в хедері */
+/* filter - лінк фільтраціїї карток */
+/* learnMore - лінк в картці */
+
+@import './theme.css';
+
+/* ================base==================== */
+.styleLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-family: var(--font-primary);
+  transition: var(--animation-transition);
+}
+
+/* ================active==================== */
+
+.accaunt {
+  composes: styleLink;
+  background: var(--color-triadic);
+  color: var(--color-primary);
+  border: 2px solid var(--color-accent);
+  padding: 8px 28px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.accaunt:hover {
+  background: var(--color-accent);
+  color: var(--color-triadic);
+}
+
+@media screen and (min-width: 767px) {
+  .accaunt {
+    padding: 10px 28px;
+    font-size: 16px;
+  }
+}
+
+/* ================headerAuth==================== */
+
+.headerAuth {
+  composes: styleLink;
+  background: var(--color-triadic);
+  color: var(--color-primary);
+  border: 2px solid var(--color-accent);
+  padding: 8px 28px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.headerAuth:hover {
+  background: var(--color-accent);
+  color: var(--color-triadic);
+}
+
+@media screen and (min-width: 767px) {
+  .headerAuth {
+    padding: 10px 28px;
+    font-size: 20px;
+  }
+}
+
+/* ================filter==================== */
+.filter {
+  composes: styleLink;
+  background: var(--color-triadic);
+  color: var(--color-primary);
+  border: 2px solid var(--color-accent);
+  padding: 8px 28px;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.filter:hover {
+  background: var(--color-accent);
+  color: var(--color-triadic);
+}
+
+@media screen and (min-width: 767px) {
+  .filter {
+    padding: 10px 28px;
+    font-size: 20px;
+  }
+}
+
+/* ================learnMore==================== */
+
+.learnMore {
+  composes: styleLink;
+  background: var(--color-triadic);
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  padding: 8px auto;
+  width: 248px;
+  font-size: 16px;
+}
+
+.learnMore:hover {
+  border-color: var(--color-hoverAccent);
+  color: var(--color-hoverAccent);
+}
