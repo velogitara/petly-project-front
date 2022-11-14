@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getUserToken } from 'redux/userState';
+import { selectAuthToken } from 'redux/authState';
 
 const PublicRoutes = ({ redirectTo = '/', restricted = false }) => {
-  const isLogged = useSelector(getUserToken);
+  const isLogged = useSelector(selectAuthToken);
   const shouldRedirect = isLogged && restricted;
   return shouldRedirect ? <Navigate to={redirectTo} replace /> : <Outlet />;
 };

@@ -7,7 +7,7 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_BASE_URL}/auth/`,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().userState.userToken;
+      const token = getState().authState.authToken;
 
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
@@ -15,9 +15,9 @@ export const authApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User'],
+  tagTypes: ['Auth'],
   endpoints: builder => ({
-    signUpUser: builder.mutation({
+    signUp: builder.mutation({
       query: ({ name, email, password, phone }) => ({
         url: 'register',
         method: 'POST',
@@ -28,9 +28,9 @@ export const authApi = createApi({
           phone,
         },
       }),
-      providesTags: ['User'],
+      providesTags: ['Auth'],
     }),
-    signInUser: builder.mutation({
+    signIn: builder.mutation({
       query: ({ email, password }) => ({
         url: 'login',
         method: 'POST',
@@ -39,16 +39,16 @@ export const authApi = createApi({
           password,
         },
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
-    signOutUser: builder.mutation({
+    signOut: builder.mutation({
       query: () => ({
         url: 'logout',
         method: 'POST',
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Auth'],
     }),
   }),
 });
 
-export const { useSignUpUserMutation, useSignInUserMutation, useSignOutUserMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useSignOutMutation } = authApi;
