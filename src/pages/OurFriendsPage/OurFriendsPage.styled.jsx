@@ -41,9 +41,15 @@ const Name = styled.h3`
   color: ${palette.accent};
 `;
 
+const InfoBox = styled.div`
+  position: relative;
+`;
+
 const WorkDaysList = styled.ul`
   display: none;
   position: absolute;
+  left: 0;
+  bottom: 0;
 `;
 
 const InfoTitle = styled.p`
@@ -57,6 +63,18 @@ const InfoTitle = styled.p`
   }
 `;
 
+const InfoLinks = styled.a`
+  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+`;
+
+const InfoAddress = styled.a`
+  font-family: inherit;
+  text-decoration: underline;
+  color: inherit;
+`;
+
 const StyledComponents = {
   Card,
   Title,
@@ -65,6 +83,9 @@ const StyledComponents = {
   Name,
   WorkDaysList,
   InfoTitle,
+  InfoBox,
+  InfoLinks,
+  InfoAddress,
 };
 
 export default StyledComponents;

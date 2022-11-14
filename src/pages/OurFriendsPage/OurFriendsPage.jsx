@@ -1,7 +1,18 @@
 import sponsors from './sponsors.json';
 import { Container } from 'helpers';
 import StyledComponents from './OurFriendsPage.styled';
-const { Card, Title, List, BoxContent, Name, WorkDaysList, InfoTitle } = StyledComponents;
+const {
+  Card,
+  Title,
+  List,
+  BoxContent,
+  Name,
+  WorkDaysList,
+  InfoTitle,
+  InfoBox,
+  InfoLinks,
+  InfoAddress,
+} = StyledComponents;
 
 const OurFriendsPage = () => {
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
@@ -22,15 +33,15 @@ const OurFriendsPage = () => {
               <BoxContent>
                 <img src={imageUrl} alt={title + ' logo'} />
                 <div>
-                  <InfoTitle>Time:</InfoTitle>
-                  <div>
-                    <p>
+                  <InfoBox>
+                    <InfoTitle>
+                      Time: <br />
                       {workDays
                         ? [workDays.find(day => day.isOpen === true)].map(time => {
                             return `${time.from} - ${time.to}`;
                           })
                         : '--------------------------------------'}
-                    </p>
+                    </InfoTitle>
                     {workDays ? (
                       <WorkDaysList>
                         {workDays.map((item, index) => {
@@ -44,25 +55,29 @@ const OurFriendsPage = () => {
                     ) : (
                       false
                     )}
-                  </div>
-                  <InfoTitle>Adress:</InfoTitle>
-                  <p>
-                    <a href={addressUrl || '#'}>
-                      {address || '--------------------------------------'}
-                    </a>
-                  </p>
-                  <InfoTitle>Email:</InfoTitle>
+                  </InfoBox>
                   <InfoTitle>
-                    <a href={email ? 'mailto:' + email : '#'}>
-                      {email || '--------------------------------------'}
-                    </a>
+                    Adress: <br />
+                    {address ? (
+                      <InfoAddress href={addressUrl || '#'}>{address}</InfoAddress>
+                    ) : (
+                      '--------------------------------------'
+                    )}
                   </InfoTitle>
-                  <InfoTitle>Phone:</InfoTitle>
-                  <p>
-                    <a href={phone ? 'tel:' + phone : '#'}>
+
+                  <InfoTitle>
+                    Email: <br />
+                    <InfoLinks href={email ? 'mailto:' + email : '#'}>
+                      {email || '--------------------------------------'}
+                    </InfoLinks>
+                  </InfoTitle>
+
+                  <InfoTitle>
+                    Phone: <br />
+                    <InfoLinks href={phone ? 'tel:' + phone : '#'}>
                       {phone || '--------------------------------------'}
-                    </a>
-                  </p>
+                    </InfoLinks>
+                  </InfoTitle>
                 </div>
               </BoxContent>
             </Card>
