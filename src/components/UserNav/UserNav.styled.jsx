@@ -2,25 +2,37 @@ import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 export const UserLink = styled(NavLink)`
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-
-  height: 44px;
+  font-size: 14px;
+  line-height: 1.6;
+  height: 35px;
   padding: 0 28px;
+  gap: 12px;
   color: ${({ theme }) => theme.palette.triadic};
   background: ${({ theme }) => theme.palette.accent};
   border-radius: 40px;
-
+  fill: ${({ theme }) => theme.palette.triadic};
+  transition: ${({ theme }) => theme.animations.transition};
   &:hover,
   &:focus {
     opacity: 0.9;
-    transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: ${({ theme }) => theme.animations.transition};
   }
-
-  fill: ${({ theme }) => theme.palette.triadic};
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    display: flex;
+    font-size: 20px;
+    line-height: 1.35;
+    height: 44px;
+  }
 `;
 
 export const IconSvg = styled.svg`
-  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+    width: 28px;
+    height: 28px;
+  }
 `;

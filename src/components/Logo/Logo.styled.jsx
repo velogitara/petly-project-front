@@ -8,7 +8,10 @@ export const LogoText = styled.p`
   line-height: 48px;
   letter-spacing: 0.07em;
   color: ${({ theme }) => theme.palette.primary};
-  margin-right: 80px;
+  z-index: 10;
+  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+    margin-right: 80px;
+  }
 `;
 
 export const LogoAccent = styled.span`
