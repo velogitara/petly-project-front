@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authApi } from './userState/authSlice';
+import { authApi } from './authState/authSlice';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import { persistedUserReducer } from './userState';
+import { persistedAuthReducer } from './authState';
 
 export const store = configureStore({
   reducer: {
-    userState: persistedUserReducer,
+    authState: persistedAuthReducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: getDefaultMiddleware => [
