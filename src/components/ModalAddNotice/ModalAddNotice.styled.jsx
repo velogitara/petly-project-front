@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import { Field, Form, Formik } from 'formik';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -8,34 +7,29 @@ export const Overlay = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(1, 1, 1, 0.6);
+  overflow-y: scroll;
+  // justify-content: center;
+  // align-items: center;
+  background-color: rgba(17, 17, 17, 0.6);
   filter: blur(20);
+
+  z-index: 6;
 `;
 export const Modal = styled.div`
-
-  position: relative;
-  min-width: 280px;
-  margin-right: auto;
-  margin-left: auto;
-
-  padding: 40px 20px 40px 20px;
-  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  padding: 40px 20px 40px 20px;  
 
   border-radius: 40px;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
 
-  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    position:  absolute;
-    transform: translate(-50%, -50%);
-     top: 50%;
-    left: 50%;
-    padding: 40px 80px;
-    max-width: 608px;
-  }
-  // @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-  //   width: 458px;
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {   
+      padding: 40px 80px;
+      width: 608px;
+    }
   }
 `;
 export const Title = styled.h1`
@@ -52,5 +46,27 @@ export const Title = styled.h1`
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-weight: 600;
     font-size: 36px;
+
+    &.title {
+      margin-bottom: 40px;
+    }
   }
+`;
+
+export const ButtonClose = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  // border-radius: 40px;
+  border-radius: 50%;
+  backdrop-filter: blur(2px);
+  border: none;
+  background-color: ${({ theme }) => theme.backgrounds.primary};
+`;
+
+export const SvgClose = styled.svg`
+  width: 20px;
+  height: 20px;
 `;

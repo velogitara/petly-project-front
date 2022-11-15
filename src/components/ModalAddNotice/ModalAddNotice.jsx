@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import FormAddNotice from '../FormAddNotice/FormAddNotice';
+import { Modal } from '../ModalAddNotice/ModalAddNotice.styled';
+import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
+// import StepFirst from '../StepFirst/StepFirst';
 import { Overlay } from './ModalAddNotice.styled';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -26,7 +29,10 @@ function ModalAddNotice({ onClose }) {
   };
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
-      <FormAddNotice onClose={onClose} />
+      <Modal>
+        <ModalCloseButton onClose={onClose} />
+        <FormAddNotice onClose={onClose} />
+      </Modal>
     </Overlay>,
     modalRoot
   );
