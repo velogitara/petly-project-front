@@ -1,4 +1,5 @@
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
+// import { useSelector } from 'react-redux';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import { Container } from 'helpers';
 
