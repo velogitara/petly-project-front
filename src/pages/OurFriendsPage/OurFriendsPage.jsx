@@ -13,10 +13,24 @@ const {
   InfoLinks,
   InfoAddress,
   CardPic,
+  WorkDaysItem,
+  WorkDaysTime,
 } = StyledComponents;
 
 const OurFriendsPage = () => {
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+  const showWorkDays = e => {
+    const elementChidren = e.currentTarget.children;
+    if (!elementChidren[1]) return;
+
+    if (elementChidren[1].style.visibility === 'visible') {
+      elementChidren[1].style.visibility = 'hidden';
+      return;
+    }
+
+    elementChidren[1].style.visibility = 'visible';
+  };
 
   return (
     <Container>
@@ -34,21 +48,24 @@ const OurFriendsPage = () => {
               <BoxContent>
                 {imageUrl ? <CardPic src={imageUrl} alt={title + ' logo'} /> : false}
                 <div>
-                  <InfoBox>
+                  <InfoBox onClick={showWorkDays}>
                     <InfoTitle>
                       Time: <br />
                       {workDays
                         ? [workDays.find(day => day.isOpen === true)].map(time => {
                             return `${time.from} - ${time.to}`;
                           })
-                        : '--------------------------------------'}
+                        : '-----------------------------------'}
                     </InfoTitle>
                     {workDays ? (
                       <WorkDaysList>
                         {workDays.map((item, index) => {
                           if (item.isOpen) {
                             return (
-                              <li key={index}>{`${weekDays[index]} ${item.from} - ${item.to}`}</li>
+                              <WorkDaysItem key={index}>
+                                {`${weekDays[index]}`}
+                                <WorkDaysTime>{`${item.from} - ${item.to}`}</WorkDaysTime>
+                              </WorkDaysItem>
                             );
                           }
                         })}
@@ -62,21 +79,21 @@ const OurFriendsPage = () => {
                     {address ? (
                       <InfoAddress href={addressUrl || '#'}>{address}</InfoAddress>
                     ) : (
-                      '--------------------------------------'
+                      '-----------------------------------'
                     )}
                   </InfoTitle>
 
                   <InfoTitle>
                     Email: <br />
                     <InfoLinks href={email ? 'mailto:' + email : '#'}>
-                      {email || '--------------------------------------'}
+                      {email || '-----------------------------------'}
                     </InfoLinks>
                   </InfoTitle>
 
                   <InfoTitle>
                     Phone: <br />
                     <InfoLinks href={phone ? 'tel:' + phone : '#'}>
-                      {phone || '--------------------------------------'}
+                      {phone || '-----------------------------------'}
                     </InfoLinks>
                   </InfoTitle>
                 </div>

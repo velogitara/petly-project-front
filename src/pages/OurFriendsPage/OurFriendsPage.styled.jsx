@@ -47,10 +47,17 @@ const Name = styled.h3`
 `;
 
 const WorkDaysList = styled.ul`
-  display: none;
+  visibility: hidden;
   position: absolute;
   left: 0;
   bottom: 0;
+  transform: translate(0, 100%);
+
+  background-color: ${backgrounds.secondary};
+  border: 1px solid ${palette.accent};
+  border-radius: 8px;
+  box-shadow: ${shadows.card};
+  padding: 12px;
 `;
 
 const InfoBox = styled.div`
@@ -65,6 +72,7 @@ const InfoTitle = styled.p`
   transition: color 250ms;
   &:hover {
     color: ${palette.accent};
+    cursor: pointer;
   }
 `;
 
@@ -80,6 +88,20 @@ const InfoAddress = styled.a`
   color: inherit;
 `;
 
+const WorkDaysItem = styled.li`
+  font-family: ${fonts.primary};
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  &:not(:last-child) {
+    margin-bottom: 4px;
+  }
+`;
+
+const WorkDaysTime = styled.span`
+  margin-left: 12px;
+`;
+
 const StyledComponents = {
   Card,
   Title,
@@ -92,6 +114,8 @@ const StyledComponents = {
   InfoLinks,
   InfoAddress,
   CardPic,
+  WorkDaysItem,
+  WorkDaysTime,
 };
 
 export default StyledComponents;
