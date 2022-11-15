@@ -53,7 +53,7 @@ const OurFriendsPage = () => {
                       Time: <br />
                       {workDays
                         ? [workDays.find(day => day.isOpen === true)].map(time => {
-                            return `${time.from} - ${time.to}`;
+                            return `${time.from}- ${time.to}`;
                           })
                         : '-----------------------------------'}
                     </InfoTitle>
@@ -64,7 +64,7 @@ const OurFriendsPage = () => {
                             return (
                               <WorkDaysItem key={index}>
                                 {`${weekDays[index]}`}
-                                <WorkDaysTime>{`${item.from} - ${item.to}`}</WorkDaysTime>
+                                <WorkDaysTime>{`${item.from}- ${item.to}`}</WorkDaysTime>
                               </WorkDaysItem>
                             );
                           }
