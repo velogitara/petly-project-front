@@ -6,6 +6,7 @@ const Item = styled.li`
   display: block;
   font-size: 16px;
   height: 308px;
+  margin-top: 40px;
 
   ::before{
     content: "";
@@ -16,7 +17,7 @@ const Item = styled.li`
   }
 
   @media screen and (min-width: ${theme.screens.tablet}) {
-
+    margin-top: 60px;
     height: 288px;
 
     ::before{
@@ -40,57 +41,8 @@ const Title = styled(EllipsisText)`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 16px;
-
-  @media screen and (min-width: ${theme.screens.tablet}) {
-
-  }
-
-  @media screen and (min-width: ${theme.screens.desktop}) {
-
-
-  }
 `
 
-// const Title = styled.h3`
-//   //display: block;
-//   font-size: 24px;
-//   font-weight: 700;
-//   margin-bottom: 16px;
-//
-//
-//   width: 280px;
-//   height: 66px;
-//
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//
-//   @media screen and (min-width: 768px) {
-//
-//   }
-//
-//   @media screen and (min-width: 1280px) {
-//
-//
-//   }
-// `
-//
-// const Text = styled.p`
-//   width: 280px;
-//   height: 154px;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   margin-bottom: 20px;
-//
-//   @media screen and (min-width: 768px) {
-//     margin-bottom: 40px;
-//   }
-//
-//   @media screen and (min-width: 1280px) {
-//
-//
-//   }
-//
-// `
 const Text = styled(EllipsisText)`
   display: block;
   margin-bottom: 20px;
@@ -98,12 +50,6 @@ const Text = styled(EllipsisText)`
   @media screen and (min-width: ${theme.screens.tablet}) {
     margin-bottom: 40px;
   }
-
-  @media screen and (min-width: ${theme.screens.desktop}) {
-
-
-  }
-
 `
 
 const Date = styled.span`

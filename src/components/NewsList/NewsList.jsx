@@ -3,12 +3,15 @@ import { nanoid } from '@reduxjs/toolkit';
 import news from "../../assets/data/news.json"
 import NewsItem from '../NewsItem/NewsItem';
 import List from './NewsList.styled';
+// import { useNews } from '../../hooks';
 
 const NewsList = () => {
   const filterValueFromStore = useSelector(state => state.filter.value);
 
-  const newsForRender= news.map(item => {
+  // const news = useNews({page: 1});
+  // console.log(news)
 
+  const newsForRender= news.map(item => {
     let year = null;
     let month = null;
     let day = null;
@@ -33,7 +36,7 @@ const NewsList = () => {
     }
   })
 
-  return  <List  children={ newsForRender}></List>
+  return  <List  children={newsForRender}></List>
 }
 
 export default NewsList;
