@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputForm } from '../../helpers/common-styles/Input.module';
 
-const Input = ({ placeholder, styled, value, margin, type }) => {
+const Input = ({ placeholder, styled, value, margin, type, name }) => {
   return (
     <InputForm
       className={styled}
@@ -9,6 +9,7 @@ const Input = ({ placeholder, styled, value, margin, type }) => {
       value={value}
       style={{ margin: margin }}
       type={type}
+      name={name}
     />
   );
 };
