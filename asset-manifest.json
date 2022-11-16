@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/petly-project-front/static/css/main.e1597c9e.css",
-    "main.js": "/petly-project-front/static/js/main.addeed8a.js",
+    "main.js": "/petly-project-front/static/js/main.884c91e3.js",
     "static/js/727.50731b92.chunk.js": "/petly-project-front/static/js/727.50731b92.chunk.js",
     "static/js/680.7d646d66.chunk.js": "/petly-project-front/static/js/680.7d646d66.chunk.js",
-    "static/js/56.8ee4d7ae.chunk.js": "/petly-project-front/static/js/56.8ee4d7ae.chunk.js",
+    "static/js/56.c7058801.chunk.js": "/petly-project-front/static/js/56.c7058801.chunk.js",
     "static/js/839.96e43529.chunk.js": "/petly-project-front/static/js/839.96e43529.chunk.js",
     "static/js/225.035b00c2.chunk.js": "/petly-project-front/static/js/225.035b00c2.chunk.js",
     "static/media/Manrope-VariableFont_wght.ttf": "/petly-project-front/static/media/Manrope-VariableFont_wght.cae461b0196986f4250c.ttf",
@@ -15,15 +15,15 @@
     "static/media/auth-mob.svg": "/petly-project-front/static/media/auth-mob.21451365073f4b8aaf4710d06a728353.svg",
     "index.html": "/petly-project-front/index.html",
     "main.e1597c9e.css.map": "/petly-project-front/static/css/main.e1597c9e.css.map",
-    "main.addeed8a.js.map": "/petly-project-front/static/js/main.addeed8a.js.map",
+    "main.884c91e3.js.map": "/petly-project-front/static/js/main.884c91e3.js.map",
     "727.50731b92.chunk.js.map": "/petly-project-front/static/js/727.50731b92.chunk.js.map",
     "680.7d646d66.chunk.js.map": "/petly-project-front/static/js/680.7d646d66.chunk.js.map",
-    "56.8ee4d7ae.chunk.js.map": "/petly-project-front/static/js/56.8ee4d7ae.chunk.js.map",
+    "56.c7058801.chunk.js.map": "/petly-project-front/static/js/56.c7058801.chunk.js.map",
     "839.96e43529.chunk.js.map": "/petly-project-front/static/js/839.96e43529.chunk.js.map",
     "225.035b00c2.chunk.js.map": "/petly-project-front/static/js/225.035b00c2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e1597c9e.css",
-    "static/js/main.addeed8a.js"
+    "static/js/main.884c91e3.js"
   ]
 }
