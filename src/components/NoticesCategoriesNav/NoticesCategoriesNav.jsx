@@ -55,7 +55,7 @@ const NoticesCategoriesNav = () => {
         )}
       </NavLinksContainer>
       <AddButtonContainer>
-        <AddButtonLabel>add pet</AddButtonLabel>
+        <AddButtonLabel>add&nbsp;pet</AddButtonLabel>
         <AddButton>
           <AddButtonIcon>
             <use href={`${icons}#icon-plus`} />

@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  InputStyled,
-  BtnSearch,
-  InputContainer,
-} from '../../helpers/common-styles/InputSearch.module';
+import { InputStyled, BtnSearch, InputContainer } from './InputSearch.styled';
 import icons from '../../assets/icons/icons.svg';
 
 const InputSearch = ({ onChange, value }) => {

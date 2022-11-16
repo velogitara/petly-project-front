@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from '../../helpers/common-styles/TitlePage.module';
+import { Title } from './TitlePage.styled';
 
 const TitlePage = ({ title }) => {
   return <Title>{title}</Title>;

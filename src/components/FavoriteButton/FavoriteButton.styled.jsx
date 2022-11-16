@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
 
-export const FavButton = styled.button`
+export const FavButtonContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FavButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;

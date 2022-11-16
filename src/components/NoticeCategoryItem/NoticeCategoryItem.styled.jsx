@@ -22,7 +22,7 @@ export const ItemContainer = styled.li`
   }
 `;
 
-export const ItemImage = styled.img`
+export const ItemPicture = styled.picture`
   width: 100%;
   object-fit: cover;
 `;
@@ -84,6 +84,14 @@ export const InfoText = styled.p`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.375;
+
+  &:first-of-type {
+    min-width: 90px;
+
+    @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+      min-width: 87px;
+    }
+  }
 `;
 
 export const UserButtons = styled.div`
