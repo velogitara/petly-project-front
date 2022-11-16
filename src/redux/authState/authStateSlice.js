@@ -3,7 +3,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authApi } from './authSlice';
 
-const initialState = { authToken: null };
+const initialState = { authToken: null, authId: null };
 
 const authStateSlice = createSlice({
   name: 'authState',
@@ -12,12 +12,15 @@ const authStateSlice = createSlice({
   extraReducers: builder => {
     builder.addMatcher(authApi.endpoints.signIn.matchFulfilled, (state, { payload }) => {
       state.authToken = payload.data.token;
+      state.authId = payload.data.id;
     });
     builder.addMatcher(authApi.endpoints.signUp.matchFulfilled, (state, { payload }) => {
       state.authToken = payload.data.token;
+      state.authId = payload.data.id;
     });
     builder.addMatcher(authApi.endpoints.signOut.matchFulfilled, state => {
       state.authToken = initialState.authToken;
+      state.authId = initialState.authId;
     });
   },
 });
@@ -31,5 +34,6 @@ const authPersistConfig = {
 export const persistedAuthReducer = persistReducer(authPersistConfig, authStateSlice.reducer);
 
 export const selectAuthToken = state => state.authState.authToken;
+export const selectAuthId = state => state.authId;
 
 export const { setAuthToken, unsetAuthToken } = authStateSlice.actions;

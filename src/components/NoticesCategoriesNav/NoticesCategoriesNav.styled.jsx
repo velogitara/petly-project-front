@@ -17,13 +17,9 @@ export const NavContainer = styled.div`
 
 export const NavLinksContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-
-  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-    flex-direction: row;
-    align-items: center;
-  }
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 `;
 
 export const NavLinks = styled.div`
@@ -36,6 +32,7 @@ export const Link = styled(NavLink)`
   justify-content: center;
   align-items: center;
   padding: 8px 28px;
+  margin-bottom: 12px;
 
   font-size: 14px;
   font-weight: 500;
@@ -115,8 +112,8 @@ export const AddButton = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80px;
-  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
   padding: 0;
 
   color: ${({ theme }) => theme.palette.triadic};
@@ -124,12 +121,14 @@ export const AddButton = styled.button`
   background-color: ${({ theme }) => theme.palette.accent};
   border: none;
   border-radius: 50%;
+  box-shadow: ${({ theme }) => theme.shadows.card};
 
   transition: ${({ theme }) => theme.animations.transition};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    width: 44px;
-    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    box-shadow: none;
   }
 
   &:hover,

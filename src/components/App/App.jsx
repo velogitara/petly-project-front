@@ -39,8 +39,8 @@ const App = () => {
             <Route path="/" element={<PrivateRoutes />}>
               {/* <Route path="user" element={<UserPage />} /> */}
               <Route path="notices/" element={<NoticesPage />}>
-                {/* <Route path="favorites" exact element={<NoticesPage />} /> */}
-                {/* <Route path="own" exact element={<NoticesPage own />} /> */}
+                <Route path="favorites" exact element={<NoticesPage />} />
+                <Route path="own" exact element={<NoticesPage own />} />
               </Route>
             </Route>
             <Route path="/" element={<PublicRoutes />}>

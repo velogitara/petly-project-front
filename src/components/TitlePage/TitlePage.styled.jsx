@@ -5,7 +5,7 @@ export const Title = styled.h2`
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 1.4;
+  line-height: 1.375;
   text-align: center;
   color: ${({ theme }) => theme.palette.primary};
   margin: 54px auto 28px auto;
@@ -16,6 +16,6 @@ export const Title = styled.h2`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-    margin: 70px auto 40px auto;
+    margin: 61px auto 40px auto;
   }
 `;

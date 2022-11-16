@@ -83,7 +83,7 @@ export const noticesApi = createApi({
 export const {
   useListNoticesByCategoryQuery,
   useListNoticesByQueryQuery,
-  useLazyListUserNoticesQuery,
+  useListUserNoticesQuery,
   useGetNoticesByIdQuery,
   useAddNoticeMutation,
   useUpdateFavoritesMutation,

@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectAuthToken } from 'redux/authState';
-import { imageURLBuilder, ownerCheck } from 'helpers';
+// import { useSelector } from 'react-redux';
+// import { selectAuthToken } from 'redux/authState';
+import { imageURLBuilder, ownerCheck, ageHandle } from 'helpers';
 import { constants } from 'constants/constants';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
-import PopUp from 'components/PopUp';
-import ConfirmButtons from 'components/ConfirmButtons';
+import LearnMoreButton from 'components/LearnMoreButton';
 import {
   ItemContainer,
-  ItemImage,
+  ItemPicture,
   Info,
   InfoTitle,
   InfoDescription,
@@ -36,78 +34,87 @@ const NoticeCategoryItem = ({
   category,
   favorite,
   owner,
+  price,
 }) => {
-  const [favoriteState, setFavoriteState] = useState(favorite);
-  const [showNotLogged, setShowNotLogged] = useState(false);
-  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  // const isLogged = useSelector(selectAuthToken);
 
-  const isLogged = useSelector(selectAuthToken);
+  const categoryName = publicCategories.find(item => item[0] === category)[1];
 
-  const toggleFavorite = () => {
-    if (!isLogged) {
-      setShowNotLogged(true);
-      return;
-    }
-    setFavoriteState(favoriteState => !favoriteState);
-  };
+  const age = ageHandle(birthday);
+
+  const imageDummy = '';
 
   const removeNotice = ({ noticeId }) => {
     console.log(noticeId);
-    setShowDeleteConfirm(false);
   };
 
-  const categoryName = publicCategories.find(item => item[0] === category)[1];
+  const openModal = ({ noticeId }) => {
+    console.log(noticeId);
+  };
+
   return (
     <ItemContainer>
       <CategoryLabel>{categoryName}</CategoryLabel>
       <UserButtons>
-        <FavoriteButton
-          favorite={favoriteState}
-          type="button"
-          title={`${favorite ? 'Remove from' : 'Add to'} favorites`}
-          toggleFavorite={toggleFavorite}
-        />
+        <FavoriteButton favorite={favorite} />
         {ownerCheck({ userId, noticeOwner: owner }) && (
-          <DeleteButton
-            type="button"
-            title="Remove your notice"
-            translucent
-            onDelete={() => setShowDeleteConfirm(true)}
-          ></DeleteButton>
-        )}
-        {showDeleteConfirm && (
-          <PopUp message="Are you sure?" onClose={() => setShowDeleteConfirm(false)}>
-            <ConfirmButtons
-              onClickYes={() => removeNotice({ noticeId: _id })}
-              onClickNo={() => setShowDeleteConfirm(false)}
-            />
-          </PopUp>
-        )}
-        {showNotLogged && (
-          <PopUp message="You should be logged in" onClose={() => setShowNotLogged(false)} />
+          <DeleteButton translucent onRemove={() => removeNotice({ noticeId: _id })} />
         )}
       </UserButtons>
-      {/* TODO: refactor image to picture with sizes */}
-      <ItemImage src={imageURL ? imageURLBuilder(imageURL?.mobile) : ''} alt={title} />
+      <ItemPicture>
+        <source
+          srcSet={`${imageURL ? imageURLBuilder(imageURL?.mobile) : ''} 280w, ${
+            imageURL ? imageURLBuilder(imageURL?.mobileRetina) : ''
+          } 560w`}
+          media="(max-width: 767px)"
+          sizes="280px"
+        />
+        <source
+          srcSet={`${imageURL ? imageURLBuilder(imageURL?.desktop) : ''} 288w, ${
+            imageURL ? imageURLBuilder(imageURL?.mobileRetina) : ''
+          } 576w`}
+          media="(min-width: 1280px)"
+          sizes="288px"
+        />
+        <source
+          srcSet={`${imageURL ? imageURLBuilder(imageURL?.tablet) : ''} 336w, ${
+            imageURL ? imageURLBuilder(imageURL?.tabletRetina) : ''
+          } 672w`}
+          media="(min-width: 768px)"
+          sizes="336px"
+        />
+        <img
+          src={imageURL ? imageURLBuilder(imageURL?.tablet) : imageDummy}
+          loading="lazy"
+          alt={title}
+        />
+      </ItemPicture>
       <Info>
         <InfoTitle>{title}</InfoTitle>
         <InfoDescription>
-          {/* TODO: make proper layout of Info */}
           <InfoDescriptionItem>
-            <InfoText>Breed: {breed}</InfoText>
+            <InfoText>Breed:</InfoText>
+            <InfoText>{breed}</InfoText>
           </InfoDescriptionItem>
           <InfoDescriptionItem>
-            <InfoText>Place: {location}</InfoText>
+            <InfoText>Place:</InfoText>
+            <InfoText>{location}</InfoText>
           </InfoDescriptionItem>
-          {/* TODO: write function to calculate age */}
-          {birthday && (
+          {age && (
             <InfoDescriptionItem>
-              <InfoText>Age: {birthday}</InfoText>
+              <InfoText>Age:</InfoText>
+              <InfoText>{age}</InfoText>
+            </InfoDescriptionItem>
+          )}
+          {price && (
+            <InfoDescriptionItem>
+              <InfoText>Price:</InfoText>
+              <InfoText>{`${price}$`}</InfoText>
             </InfoDescriptionItem>
           )}
         </InfoDescription>
       </Info>
-      learn more
+      <LearnMoreButton onPress={() => openModal({ noticeId: _id })} />
       {/* TODO: insert button learn more */}
     </ItemContainer>
   );
@@ -123,6 +130,7 @@ NoticeCategoryItem.propTypes = {
   category: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
   owner: PropTypes.string.isRequired,
+  price: PropTypes.number,
 };
 
 export default NoticeCategoryItem;
