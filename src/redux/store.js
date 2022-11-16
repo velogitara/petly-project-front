@@ -3,12 +3,15 @@ import { authApi } from './authState/authSlice';
 import { noticesApi } from './notices';
 import { newsApi } from './news';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+// import { persistedUserReducer } from './userState';
+import { filterSlice } from './filter/filterSlice';
 import { persistedAuthReducer } from './authState';
 
 export const store = configureStore({
   reducer: {
     authState: persistedAuthReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [filterSlice.name]: filterSlice.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
   },
