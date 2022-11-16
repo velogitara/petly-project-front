@@ -20,6 +20,7 @@ export const NavLinksContainer = styled.div`
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: -12px;
 `;
 
 export const NavLinks = styled.div`

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { constants } from 'constants/constants';
 
 import { PopUpContainer, Message, CloseButton, CloseIcon } from './PopUp.styled';
@@ -6,6 +7,18 @@ import { PopUpContainer, Message, CloseButton, CloseIcon } from './PopUp.styled'
 const { icons } = constants;
 
 const PopUp = ({ message = '', onClose, children }) => {
+  useEffect(() => {
+    const handleEscKeyDown = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleEscKeyDown);
+    };
+  }, [onClose]);
   return (
     <PopUpContainer>
       <CloseButton type="button" title="Close" onClick={onClose}>
