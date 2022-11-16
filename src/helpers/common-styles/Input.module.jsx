@@ -25,7 +25,7 @@ export const InputForm = styled.input`
 
   &.inputAdd {
     padding: 11px 14px;
-    width: 240px;
+    width: 100%;
     font-size: 14px;
     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
       padding: 11px 16px;
