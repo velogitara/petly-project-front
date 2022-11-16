@@ -31,9 +31,9 @@ const NewsList = () => {
       if (item.title.toLowerCase().includes(filterValueFromStore.trim()) || item.description.toLowerCase().includes(filterValueFromStore.trim())) {
         return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
       }
-    } else {
-      return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
     }
+
+    return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
   })
 
   return  <List  children={newsForRender}></List>
