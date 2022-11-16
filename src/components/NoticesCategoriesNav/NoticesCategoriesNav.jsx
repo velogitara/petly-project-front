@@ -22,8 +22,6 @@ const { icons } = constants;
 const {
   categories: { publicCategories, privateCategories },
 } = constants;
-const publicLinks = Object.values(publicCategories);
-const privateLinks = Object.values(privateCategories);
 
 const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
@@ -33,7 +31,7 @@ const NoticesCategoriesNav = () => {
   return (
     <NavContainer>
       <NavLinksContainer>
-        {publicLinks.map(([category, name], index) => (
+        {publicCategories.map(([category, name], index) => (
           <Link
             className={categoryName === category ? 'active' : ''}
             to={`/notices/${category}`}
@@ -44,7 +42,7 @@ const NoticesCategoriesNav = () => {
         ))}
         {isLogged && (
           <NavLinks>
-            {privateLinks.map(([category, name], index) => (
+            {privateCategories.map(([category, name], index) => (
               <Link
                 className={categoryName === category ? 'active' : ''}
                 to={`/notices/${category}`}

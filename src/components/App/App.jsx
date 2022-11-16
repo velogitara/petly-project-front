@@ -40,13 +40,14 @@ const App = () => {
             <Route path="/" element={<PrivateRoutes />}>
               {/* <Route path="user" element={<UserPage />} /> */}
               <Route path="notices/" element={<NoticesPage />}>
-                {/* <Route path="favorites" element={<NoticesCategoryList favorites />} /> */}
-                {/* <Route path="own" element={<NoticesCategoryList own />} /> */}
+                {/* <Route path="favorites" exact element={<NoticesPage />} /> */}
+                {/* <Route path="own" exact element={<NoticesPage own />} /> */}
               </Route>
             </Route>
             <Route path="/" element={<PublicRoutes />}>
               <Route index element={<HomePage />} />
-               <Route path="news" element={<NewsPage />} />
+
+              <Route path="news" element={<NewsPage />} />
               <Route path="notices/:categoryName" element={<NoticesPage />}>
                 {/* <Route path="sell" element={<NoticesCategoryList sell />} /> */}
                 {/* <Route path="lost" element={<NoticesCategoryList lost />} /> */}
