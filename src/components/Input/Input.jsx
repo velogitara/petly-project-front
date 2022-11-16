@@ -1,29 +1,24 @@
 import React from 'react';
-import { InputForm } from './Input.module';
+import { InputForm } from '../../helpers/common-styles/Input.module';
 
-const Input = (
-  {
-    placeholder,
-    styled,
-    value,
-    type, // name,  // field,  // form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
-    // ...props
-  } // <div>
-) => (
-  <InputForm
-    className={styled}
-    placeholder={placeholder}
-    type={type}
-    defaultValue={value}
-    // {...field}
-    // {...props}
-  />
-  /* {touched[field.name] && errors[field.name] && <div className="error">{errors[field.name]}</div>}
-  </div> */
-);
+const Input = ({ placeholder, styled, value, margin, type }) => {
+  return (
+    <InputForm
+      className={styled}
+      placeholder={placeholder}
+      value={value}
+      style={{ margin: margin }}
+      type={type}
+    />
+  );
+};
+
 export default Input;
 
-// <Input styled="inputAdd" placeholder="Email" />
+// <Input styled="inputAuth" placeholder="Email" margin="0 0 16px 0" />
+// В пропс "placeholder" прописуєте текст потрібного inputa
+// В пропс "margin" прописуєте відступи потрібного inputa
+// В пропс "value" прописуєте значення потрібного інпута
 
 // В пропс "styled" прописуєте назву потрібного інпута
 // В пропс "placeholder" прописуєте текст потрібного інпута

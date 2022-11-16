@@ -6,12 +6,14 @@ export const theme = Object.freeze({
     accent: '#F59256',
     hoverAccent: '#FF6101',
     translucent: '#11111199',
+    link: '#3091EB',
   },
   backgrounds: {
     primary: '#FDF7F2',
     secondary: '#FFFFFF',
     gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
     backdrop: 'rgba(17, 17, 17, 0.6)',
+    whiteTranslucent: 'rgba(255, 255, 255, 0.6);',
   },
   fonts: {
     primary: "'Manrope', sans-serif",
@@ -29,7 +31,7 @@ export const theme = Object.freeze({
     card: '7px 4px 14px rgba(49, 21, 4, 0.07)',
   },
   animations: {
-    transform: 'scale(1.1)',
-    transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    transform: 'scale(1.05)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   },
 });

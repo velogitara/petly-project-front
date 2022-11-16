@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 export const InputForm = styled.input`
+  display: block;
   background: ${({ theme }) => theme.backgrounds.primary};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  // ${({ theme }) => theme.palette.accent};
+  border: 1px solid ${({ theme }) => theme.palette.accent};
   border-radius: 40px;
   font-family: ${({ theme }) => theme.fonts.primary};
   line-height: 1.4;

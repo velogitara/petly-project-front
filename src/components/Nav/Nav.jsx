@@ -1,19 +1,26 @@
-import { NavigationLink } from './Nav.styled';
+import PropTypes from 'prop-types';
+import { NavContainer, NavBox, LinkNav } from './Nav.styled';
 
-const Nav = () => {
+const Nav = ({ onOpen }) => {
   return (
-    <nav>
-      <NavigationLink to="news" className={'link'}>
+    <NavContainer className={onOpen ? 'isOpen' : ''}>
+			<NavBox>
+				<LinkNav to="news" className={'link'}>
         News
-      </NavigationLink>
-      <NavigationLink to="notices" className={'link'}>
+      </LinkNav>
+      <LinkNav to="notices/for-free" className={'link'}>
         Find pet
-      </NavigationLink>
-      <NavigationLink to="friends" className={'link'}>
+      </LinkNav>
+      <LinkNav to="friends" className={'link'}>
         Our friend
-      </NavigationLink>
-    </nav>
+      </LinkNav>
+			</NavBox>
+    </NavContainer>
   );
+};
+
+Nav.propTypes = {
+  onOpen: PropTypes.func.isRequired,
 };
 
 export default Nav;
