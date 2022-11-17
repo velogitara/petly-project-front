@@ -14,6 +14,8 @@ const Item = styled.li`
     width: 200px;
     height: 4px;
     background-image: ${theme.backgrounds.gradient};
+    border-radius: 40px;
+    margin-bottom: 4px;
   }
 
   @media screen and (min-width: ${theme.screens.tablet}) {
