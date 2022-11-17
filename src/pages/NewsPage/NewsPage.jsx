@@ -17,7 +17,12 @@ const NewsPage = () => {
   useEffect(() => {
     if(news?.length > 0 && allNews.length === 0) {
       setAllNews(news)
-    }
+    };
+
+    window.scrollTo({
+        top: document.body.offsetHeight,
+        behavior: 'smooth',
+    })
   }, [news, allNews.length]);
 
   function onLoadMoreBtnClick() {
