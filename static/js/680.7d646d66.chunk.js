@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpetly_project_front=self.webpackChunkpetly_project_front||[]).push([[680],{680:function(e,t,n){n.r(t);var r=n(3329);t.default=function(){return(0,r.jsx)("div",{children:"HomePage"})}}}]);
-//# sourceMappingURL=680.7d646d66.chunk.js.map
