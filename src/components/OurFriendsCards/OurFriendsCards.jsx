@@ -28,7 +28,9 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
         return (
           <Card key={idx}>
             <Name>
-              <NameLink href={url || '#'}>{title}</NameLink>
+              <NameLink href={url || '#'} target="_blank">
+                {title}
+              </NameLink>
             </Name>
             <BoxContent>
               {imageUrl ? <CardPic src={imageUrl} alt={title + ' logo'} /> : false}
@@ -62,7 +64,9 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
                 <InfoTitle>
                   Adress: <br />
                   {address ? (
-                    <InfoAddress href={addressUrl || '#'}>{address}</InfoAddress>
+                    <InfoAddress href={addressUrl || '#'} target="_blank">
+                      {address}
+                    </InfoAddress>
                   ) : (
                     '-----------------------------------'
                   )}
@@ -70,14 +74,14 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
 
                 <InfoTitle>
                   Email: <br />
-                  <InfoLinks href={email ? 'mailto:' + email : '#'}>
+                  <InfoLinks href={email ? 'mailto:' + email : '#'} target="_blank">
                     {email || '-----------------------------------'}
                   </InfoLinks>
                 </InfoTitle>
 
                 <InfoTitle>
                   Phone: <br />
-                  <InfoLinks href={phone ? 'tel:' + phone : '#'}>
+                  <InfoLinks href={phone ? 'tel:' + phone : '#'} target="_blank">
                     {phone || '-----------------------------------'}
                   </InfoLinks>
                 </InfoTitle>
