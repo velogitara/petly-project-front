@@ -33,7 +33,6 @@ const NewsPage = () => {
     <NewsList news={allNews}/>
     {news.length > 0 && <Button title="Load more" margin="40px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
   </Container>
-
 };
 
 export default NewsPage;
