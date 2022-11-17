@@ -7,7 +7,6 @@ const useNews = ({page= 1}) => {
       refetchOnMountOrArgChange: true,
     }
   );
-
   return data?.data?.news ?? [];
 };
 
