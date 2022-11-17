@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { selectAuthToken } from 'redux/authState';
+import { selectAuthId } from 'redux/authState';
 import { useParams } from 'react-router-dom';
 import AddPetButton from 'components/AddPetButton';
 import ModalAddNotice from 'components/ModalAddNotice';
@@ -16,11 +16,8 @@ const {
 const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
 
-  const isLogged = useSelector(selectAuthToken);
-
-  const addNotice = () => {
-    console.log('Modal opened');
-  };
+  const authId = useSelector(selectAuthId);
+  // const authId = '636e250a3fc8cdfd9b8f0cba';
 
   return (
     <NavContainer>
@@ -34,7 +31,7 @@ const NoticesCategoriesNav = () => {
             {name}
           </Link>
         ))}
-        {isLogged && (
+        {authId && (
           <NavLinks>
             {privateCategories.map(([category, name], index) => (
               <Link
@@ -48,7 +45,7 @@ const NoticesCategoriesNav = () => {
           </NavLinks>
         )}
       </NavLinksContainer>
-      <AddPetButton onAdd={addNotice}>
+      <AddPetButton userId={authId}>
         <ModalAddNotice />
       </AddPetButton>
     </NavContainer>

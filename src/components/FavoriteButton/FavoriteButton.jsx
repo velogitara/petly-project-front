@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAuthToken } from 'redux/authState';
+import { selectAuthId } from 'redux/authState';
 import PopUp from 'components/PopUp';
 import { constants } from 'constants/constants';
 import { FavButtonContainer, FavButton, FavIcon } from './FavoriteButton.styled';
@@ -11,10 +11,10 @@ const { icons } = constants;
 const FavoriteButton = ({ favorite }) => {
   const [favoriteState, setFavoriteState] = useState(favorite);
   const [showNotLogged, setShowNotLogged] = useState(false);
-  const isLogged = useSelector(selectAuthToken);
+  const userId = useSelector(selectAuthId);
 
   const toggleFavorite = () => {
-    if (!isLogged) {
+    if (!userId) {
       setShowNotLogged(true);
       return;
     }

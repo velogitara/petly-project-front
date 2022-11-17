@@ -6,11 +6,12 @@ export const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 28px;
   margin-bottom: 30px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     position: static;
-    overflow: hidden;
+    margin-top: 40px;
     margin-bottom: 60px;
   }
 `;

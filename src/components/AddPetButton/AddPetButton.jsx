@@ -12,7 +12,7 @@ import { constants } from 'constants/constants';
 
 const { icons } = constants;
 
-const AddPetButton = ({ user, children }) => {
+const AddPetButton = ({ user, userId = '', children }) => {
   const [showModal, setShowModal] = useState(false);
 
   const label = 'Add pet';
@@ -34,7 +34,8 @@ const AddPetButton = ({ user, children }) => {
 
 AddPetButton.propTypes = {
   user: PropTypes.bool,
-  children: PropTypes.node,
+  userId: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default AddPetButton;
