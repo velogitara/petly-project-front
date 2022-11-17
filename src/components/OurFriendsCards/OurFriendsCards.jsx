@@ -54,7 +54,8 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
                               <WorkDaysTime>{`${item.from}- ${item.to}`}</WorkDaysTime>
                             </WorkDaysItem>
                           );
-                        } else return;
+                        }
+                        return item;
                       })}
                     </WorkDaysList>
                   ) : (
