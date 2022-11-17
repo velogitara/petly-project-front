@@ -7,8 +7,7 @@ import List from './NewsList.styled';
 const NewsList = ({news}) => {
   const filterValueFromStore = useSelector(state => state.filter.value);
 
-
- const newsForRender = news.map(item => {
+  const newsForRender = news.map(item => {
     const date = item.createdAt.slice(0, 10).split('-');
     const year = date[0];
     const month = date[1];

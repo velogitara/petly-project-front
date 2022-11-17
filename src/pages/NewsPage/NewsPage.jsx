@@ -4,13 +4,15 @@ import { Container } from '../../helpers';
 import TitlePage from 'components/TitlePage';
 import Button from '../../components/Button';
 import { useNews } from '../../hooks';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const NewsPage = () => {
+  const query = useSelector(state => state.filter.value).trim();
 
-  const [page, setPage] = useState(1);
+  let page = useRef(1);
   const [allNews, setAllNews] = useState([]);
-  const news = useNews({page});
+  const news = useNews({page: page.current});
 
   useEffect(() => {
     if(news?.length > 0 && allNews.length === 0) {
@@ -19,7 +21,7 @@ const NewsPage = () => {
   }, [news, allNews.length]);
 
   function onLoadMoreBtnClick() {
-    setPage(page + 1);
+    page.current = page.current + 1;
     setAllNews(prevState => {
       return [...prevState, ...news];
     })
