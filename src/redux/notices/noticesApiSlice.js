@@ -27,16 +27,16 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notices'],
     }),
     listNoticesByQuery: builder.query({
-      query: ({ category, searchQuery }) => ({
-        url: `/${category}?query=${searchQuery}`,
+      query: ({ category, searchQuery = '', page = 1, limit = 8 }) => ({
+        url: `/?category=${category}&query=${searchQuery}&page=${page}&limit=${limit}`,
         method: 'GET',
       }),
       providesTags: ['Notices'],
       invalidatesTags: ['Notices'],
     }),
     listUserNotices: builder.query({
-      query: ({ page = 1, limit = 8, favorite }) => ({
-        url: `/user?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}`,
+      query: ({ page = 1, limit = 8, favorite = false }) => ({
+        url: `/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}`,
         method: 'GET',
       }),
       invalidatesTags: ['Notices'],
