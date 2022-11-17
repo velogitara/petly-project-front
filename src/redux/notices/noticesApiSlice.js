@@ -28,7 +28,7 @@ export const noticesApi = createApi({
     }),
     listNoticesByQuery: builder.query({
       query: ({ category, searchQuery }) => ({
-        url: `/categories/${category}?query=${searchQuery}`,
+        url: `/${category}?query=${searchQuery}`,
         method: 'GET',
       }),
       providesTags: ['Notices'],
@@ -83,7 +83,7 @@ export const noticesApi = createApi({
 export const {
   useListNoticesByCategoryQuery,
   useListNoticesByQueryQuery,
-  useLazyListUserNoticesQuery,
+  useListUserNoticesQuery,
   useGetNoticesByIdQuery,
   useAddNoticeMutation,
   useUpdateFavoritesMutation,

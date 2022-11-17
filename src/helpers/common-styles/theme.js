@@ -13,6 +13,7 @@ export const theme = Object.freeze({
     secondary: '#FFFFFF',
     gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
     backdrop: 'rgba(17, 17, 17, 0.6)',
+    whiteTranslucent: 'rgba(255, 255, 255, 0.6);',
   },
   fonts: {
     primary: "'Manrope', sans-serif",
@@ -30,7 +31,7 @@ export const theme = Object.freeze({
     card: '7px 4px 14px rgba(49, 21, 4, 0.07)',
   },
   animations: {
-    transform: 'scale(1.1)',
+    transform: 'scale(1.05)',
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   },
 });

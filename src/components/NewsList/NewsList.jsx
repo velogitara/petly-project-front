@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import news from "../../assets/data/news.json"
+import news from '../../assets/data/news.json';
 import NewsItem from '../NewsItem/NewsItem';
 import List from './NewsList.styled';
 // import { useNews } from '../../hooks';
@@ -11,7 +11,7 @@ const NewsList = () => {
   // const news = useNews({page: 1});
   // console.log(news)
 
-  const newsForRender= news.map(item => {
+  const newsForRender = news.map(item => {
     let year = null;
     let month = null;
     let day = null;
@@ -27,16 +27,27 @@ const NewsList = () => {
       day = date.getDate();
     }
 
-    if (filterValueFromStore !== "") {
-      if (item.title.toLowerCase().includes(filterValueFromStore.trim()) || item.description.toLowerCase().includes(filterValueFromStore.trim())) {
-        return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
+    if (filterValueFromStore !== '') {
+      if (
+        item.title.toLowerCase().includes(filterValueFromStore.trim()) ||
+        item.description.toLowerCase().includes(filterValueFromStore.trim())
+      ) {
+        return (
+          <NewsItem
+            key={nanoid()}
+            title={item.title}
+            url={item.url}
+            description={item.description}
+            date={`${day}/${month}/${year}`}
+          />
+        );
       }
     }
 
     return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
   })
 
-  return  <List  children={newsForRender}></List>
-}
+  return <List children={newsForRender}></List>;
+};
 
 export default NewsList;
