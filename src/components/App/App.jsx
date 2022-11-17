@@ -9,13 +9,12 @@ import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SharedLayout = lazy(() => import('components/SharedLayout'));
-const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const HomePage = lazy(() => import('pages/HomePage/'));
 const AuthPage = lazy(() => import('pages/AuthPage/'));
 // const UserPage = lazy(() => import('pages/UserPage'));
-// const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
-const NewsPage = lazy(() => import('../../pages/NewsPage/NewsPage'));
-// const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
+const NewsPage = lazy(() => import('pages/NewsPage/'));
+const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 
 const App = () => {
   // const isLogged = useSelector(selectAuthToken);
@@ -54,7 +53,7 @@ const App = () => {
                 {/* <Route path="found" element={<NoticesCategoryList found />} /> */}
                 {/* <Route path="for-free" element={<NoticesCategoryList for-free />} /> */}
               </Route>
-              {/* <Route path="friends" element={<OurFriendsPage />} /> */}
+              <Route path="friends" element={<OurFriendsPage />} />
             </Route>
             <Route path="/" element={<PublicRoutes redirectTo="/" restricted />}>
               <Route path="login" element={<AuthPage />} />
