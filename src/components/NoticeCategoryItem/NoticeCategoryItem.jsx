@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-// import { useSelector } from 'react-redux';
-// import { selectAuthToken } from 'redux/authState';
 import { imageURLBuilder, ownerCheck, ageHandle } from 'helpers';
 import { constants } from 'constants/constants';
 import FavoriteButton from 'components/FavoriteButton';
@@ -22,8 +20,6 @@ const {
   categories: { publicCategories },
 } = constants;
 
-const userId = '636e250a3fc8cdfd9b8f0cba'; // hardcode to remove
-
 const NoticeCategoryItem = ({
   _id,
   imageURL,
@@ -35,9 +31,8 @@ const NoticeCategoryItem = ({
   favorite,
   owner,
   price,
+  authId,
 }) => {
-  // const isLogged = useSelector(selectAuthToken);
-
   const categoryName = publicCategories.find(item => item[0] === category)[1];
 
   const age = ageHandle(birthday);
@@ -48,16 +43,12 @@ const NoticeCategoryItem = ({
     console.log(noticeId);
   };
 
-  const openModal = ({ noticeId }) => {
-    console.log(noticeId);
-  };
-
   return (
     <ItemContainer>
       <CategoryLabel>{categoryName}</CategoryLabel>
       <UserButtons>
         <FavoriteButton favorite={favorite} />
-        {ownerCheck({ userId, noticeOwner: owner }) && (
+        {ownerCheck({ userId: authId, noticeOwner: owner }) && (
           <DeleteButton translucent onRemove={() => removeNotice({ noticeId: _id })} />
         )}
       </UserButtons>
@@ -114,8 +105,7 @@ const NoticeCategoryItem = ({
           )}
         </InfoDescription>
       </Info>
-      <LearnMoreButton onPress={() => openModal({ noticeId: _id })} />
-      {/* TODO: insert button learn more */}
+      <LearnMoreButton noticeId={_id}>{/* <ModalNotice /> */}</LearnMoreButton>
     </ItemContainer>
   );
 };

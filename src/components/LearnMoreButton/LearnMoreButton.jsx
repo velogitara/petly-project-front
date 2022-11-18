@@ -1,16 +1,32 @@
 import PropTypes from 'prop-types';
+import { cloneElement } from 'react';
+import { useState } from 'react';
 import { LearnButton } from './LearnMoreButton.styled';
 
-const LearnMoreButton = ({ onPress }) => {
+const LearnMoreButton = ({ noticeId, children }) => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
-    <LearnButton type="button" title="Learn more" onClick={onPress}>
-      learn more
-    </LearnButton>
+    <>
+      <LearnButton type="button" title="Learn more" onClick={() => setShowModal(true)}>
+        learn more
+      </LearnButton>
+      {showModal && (
+        <>
+          {children ? (
+            cloneElement(children, { onClose: () => setShowModal(false) })
+          ) : (
+            <p>{noticeId}</p>
+          )}
+        </>
+      )}
+    </>
   );
 };
 
 LearnMoreButton.propTypes = {
-  onPress: PropTypes.func.isRequired,
+  noticeId: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };
 
 export default LearnMoreButton;

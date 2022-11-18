@@ -1,23 +1,13 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { selectAuthToken } from 'redux/authState';
+import { selectAuthId } from 'redux/authState';
 import { useParams } from 'react-router-dom';
+import AddPetButton from 'components/AddPetButton';
+import ModalAddNotice from 'components/ModalAddNotice';
 
 import { constants } from 'constants/constants';
 
-import {
-  AddButton,
-  AddButtonContainer,
-  AddButtonIcon,
-  AddButtonLabel,
-  NavContainer,
-  NavLinksContainer,
-  NavLinks,
-  Link,
-  AddButtonSpan,
-} from './NoticesCategoriesNav.styled';
-
-const { icons } = constants;
+import { NavContainer, NavLinksContainer, NavLinks, Link } from './NoticesCategoriesNav.styled';
 
 const {
   categories: { publicCategories, privateCategories },
@@ -26,7 +16,8 @@ const {
 const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
 
-  const isLogged = useSelector(selectAuthToken);
+  const authId = useSelector(selectAuthId);
+  // const authId = '636e250a3fc8cdfd9b8f0cba';
 
   return (
     <NavContainer>
@@ -40,7 +31,7 @@ const NoticesCategoriesNav = () => {
             {name}
           </Link>
         ))}
-        {isLogged && (
+        {authId && (
           <NavLinks>
             {privateCategories.map(([category, name], index) => (
               <Link
@@ -54,15 +45,9 @@ const NoticesCategoriesNav = () => {
           </NavLinks>
         )}
       </NavLinksContainer>
-      <AddButtonContainer>
-        <AddButtonLabel>add&nbsp;pet</AddButtonLabel>
-        <AddButton>
-          <AddButtonIcon>
-            <use href={`${icons}#icon-plus`} />
-          </AddButtonIcon>
-          <AddButtonSpan>add pet</AddButtonSpan>
-        </AddButton>
-      </AddButtonContainer>
+      <AddPetButton userId={authId}>
+        <ModalAddNotice />
+      </AddPetButton>
     </NavContainer>
   );
 };
