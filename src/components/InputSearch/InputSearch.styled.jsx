@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.form`
   position: relative;
 `;
 
