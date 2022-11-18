@@ -33,13 +33,13 @@ const App = () => {
         pauseOnHover
         theme="colored"
       />
-      <Suspense fallback={'<p>loading...</p>'}>
+      <Suspense fallback={<p>loading...</p>}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<PrivateRoutes />}>
               {/* <Route path="user" element={<UserPage />} /> */}
               <Route path="notices/" element={<NoticesPage />}>
-                <Route path="favorites" exact element={<NoticesPage />} />
+                <Route path="favorite" exact element={<NoticesPage />} />
                 <Route path="own" exact element={<NoticesPage own />} />
               </Route>
             </Route>

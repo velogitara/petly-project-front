@@ -5,6 +5,7 @@ export const LearnButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px 79px;
+  margin-top: auto;
 
   font-size: inherit;
   font-weight: inherit;

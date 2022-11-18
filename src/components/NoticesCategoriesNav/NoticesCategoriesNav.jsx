@@ -17,7 +17,7 @@ const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
 
   const authId = useSelector(selectAuthId);
-  // const authId = '636e250a3fc8cdfd9b8f0cba';
+  // const authId = '637021587475d007fb85d3d4';
 
   return (
     <NavContainer>

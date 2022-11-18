@@ -2,24 +2,36 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAuthId } from 'redux/authState';
+import { useUpdateFavoritesMutation } from 'redux/notices';
+import { toast } from 'react-toastify';
 import PopUp from 'components/PopUp';
 import { constants } from 'constants/constants';
 import { FavButtonContainer, FavButton, FavIcon } from './FavoriteButton.styled';
 
 const { icons } = constants;
 
-const FavoriteButton = ({ favorite }) => {
+const FavoriteButton = ({ noticeId, favorite }) => {
   const [favoriteState, setFavoriteState] = useState(favorite);
   const [showNotLogged, setShowNotLogged] = useState(false);
-  const userId = useSelector(selectAuthId);
+  const [updateFavorites, { isSuccess, isError }] = useUpdateFavoritesMutation();
+
+  const authId = useSelector(selectAuthId);
+  // const authId = '637021587475d007fb85d3d4';
 
   const toggleFavorite = () => {
-    if (!userId) {
+    if (!authId) {
       setShowNotLogged(true);
       return;
     }
-    setFavoriteState(favoriteState => !favoriteState);
-    console.log('Favorite updated');
+    updateFavorites({ noticeId, favorite: !favoriteState });
+    if (isError) {
+      toast.error('Something went wrong :(, please try again.');
+      return;
+    }
+    if (isSuccess) {
+      toast.success(`Successfully ${!favoriteState ? 'removed from' : 'added to'} your Favorites.`);
+      setFavoriteState(favoriteState => !favoriteState);
+    }
   };
 
   return (
@@ -34,14 +46,13 @@ const FavoriteButton = ({ favorite }) => {
           <use href={`${icons}#icon-heart-outlined`} />
         </FavIcon>
       </FavButton>
-      {showNotLogged && (
-        <PopUp message="You should be logged in" onClose={() => setShowNotLogged(false)} />
-      )}
+      {showNotLogged && <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)} />}
     </FavButtonContainer>
   );
 };
 
 FavoriteButton.propTypes = {
+  noticeId: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
 };
 

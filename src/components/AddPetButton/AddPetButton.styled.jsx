@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const AddButtonContainer = styled.div`
-  ${({ user }) => (user === true ? '' : 'position: absolute; right: 0; bottom: -188px;')};
+  ${({ user }) => (user === true ? 'relative' : 'position: absolute; right: 0; bottom: -188px;')};
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -9,7 +9,8 @@ export const AddButtonContainer = styled.div`
   z-index: 10;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    position: static;
+    position: relative;
+    top: 0;
     z-index: 1;
   }
 `;

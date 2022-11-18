@@ -1,21 +1,19 @@
 import { useParams } from 'react-router-dom';
-// import { useLocation } from 'react-router-dom';
-import { useNoticesByCategory } from 'hooks';
+import { useNotices } from 'hooks';
 import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
 
 import { CategoriesList } from './NoticesCategoriesList.styled';
-// import { useSelector } from 'react-redux';
-// import { selectAuthId } from 'redux/authState';
+import { useSelector } from 'react-redux';
+import { selectAuthId } from 'redux/authState';
 
 const NoticesCategoriesList = () => {
-  // const location = useLocation().pathname;
   const { categoryName } = useParams();
 
-  const authId = '636e250a3fc8cdfd9b8f0cba'; // hardcode to remove
-  // const authId = useSelector(selectAuthId);
+  // const authId = '637021587475d007fb85d3d4'; // hardcode to remove
+  const authId = useSelector(selectAuthId);
 
-  const notices = useNoticesByCategory({ category: categoryName });
+  const notices = useNotices({ category: categoryName });
 
   return (
     <CategoriesList>
@@ -34,7 +32,6 @@ const NoticesCategoriesList = () => {
               favorite={favoriteCheck({ userId: authId, favorite })}
               owner={owner._id}
               price={price}
-              authId={authId}
             />
           )
         )}
