@@ -4,7 +4,7 @@ import NewsItem from '../NewsItem/NewsItem';
 import List from './NewsList.styled';
 
 
-const NewsList = ({news}) => {
+const NewsList = ({news = []}) => {
   const filterValueFromStore = useSelector(state => state.filter.value);
 
   const newsForRender = news.map(item => {

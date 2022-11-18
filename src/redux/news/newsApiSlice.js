@@ -25,6 +25,7 @@ export const newsApi = createApi({
       }),
       providesTags: ['News'],
       invalidatesTags: ['News'],
+      transformResponse: (res) => res.data
     }),
     addNews: builder.mutation({
       query: payload => ({
@@ -36,4 +37,4 @@ export const newsApi = createApi({
   }),
 });
 
-export const { useListNewsQuery} = newsApi;
+export const { useListNewsQuery } = newsApi;

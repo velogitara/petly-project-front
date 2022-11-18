@@ -8,37 +8,47 @@ import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 // import { setFilter } from 'redux/filter';
+import { useListNewsQuery } from 'redux/news';
 
 const NewsPage = () => {
   // const dispatch = useDispatch();
-  const query = useSelector(state => state.filter.value).trim();
-
-  let page = useRef(1);
+  const [query, setQuery] = useState('');
+  const filter = useSelector((state) => state.filter.value);
   const [allNews, setAllNews] = useState([]);
-  const news = useNews({page: page.current, query});
+  let [page, setPage] = useState(1);
+  const { data, isLoading, ...rest } = useListNewsQuery({ page, query });
+  // const news = useNews({page: page.current, query:''});
+
 
   useEffect(() => {
-    if(news?.length > 0 && allNews.length === 0) {
-      setAllNews(news)
-    };
+    if (page > 1 && data?.news.length) {
+      setAllNews((prevState) => ([...prevState, ...data.news]))
+    }
+  }, [page]);
 
+  useEffect(() => {
     window.scrollTo({
       top: document.body.offsetHeight,
       behavior: 'smooth',
     })
-  }, [news, allNews.length]);
+  }, [data?.news]);
+
+
 
   function onLoadMoreBtnClick() {
-    page.current = page.current + 1;
-    setAllNews(prevState => {
-      return [...prevState, ...news];
-    })
+    setPage((prev) => prev + 1)
   }
 
-  function onSubmit(e) {
+  function onSubmit(e, val) {
     e.preventDefault();
-    page.current = 1;
+    // let val = e;
+    console.log({val});
+    setQuery(filter);
+    setPage(1);
     setAllNews([]);
+
+    //
+    // setAllNews([]);
     // dispatch(setFilter(value));
 
   }
@@ -46,8 +56,9 @@ const NewsPage = () => {
   return <Container>
     <TitlePage title={"News"}/>
     <NewsFilter onSubmit={e => onSubmit(e)}/>
-    <NewsList news={allNews}/>
-    {news.length > 0 && <Button title="Load more" margin="40px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
+    {/*{isLoading && <div>'loading...'</div>}*/}
+    {isLoading ? 'loading...': <NewsList news={[...allNews, ...data?.news]}/>}
+    {data?.news && <Button title="Load more" margin="40px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
   </Container>
 };
 

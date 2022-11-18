@@ -4,9 +4,9 @@ import icons from '../../assets/icons/icons.svg';
 
 const InputSearch = ({ onChange, value, onSubmit }) => {
   return (
-    <InputContainer onSubmit={onSubmit}>
-      <InputStyled onChange={onChange} value={value} placeholder="Search" type="text" />
-      <BtnSearch >
+    <InputContainer>
+      <InputStyled name="query" onChange={onChange} placeholder="Search" type="text" />
+      <BtnSearch onClick={(e) => onSubmit(e, value)} >
         <svg width={17.5} height={17.5}>
           <use href={`${icons}#icon-search`}></use>
         </svg>
