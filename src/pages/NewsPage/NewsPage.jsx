@@ -5,10 +5,10 @@ import TitlePage from 'components/TitlePage';
 import Button from '../../components/Button';
 import { useNews } from '../../hooks';
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 const NewsPage = () => {
-  const query = useSelector(state => state.filter.value).trim();
+  // const query = useSelector(state => state.filter.value).trim();
 
   let page = useRef(1);
   const [allNews, setAllNews] = useState([]);

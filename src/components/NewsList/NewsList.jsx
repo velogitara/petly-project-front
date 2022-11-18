@@ -29,9 +29,9 @@ const NewsList = ({news}) => {
         );
       }
     }
-    else {
+    // else {
       return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
-    }
+    // }
 
   })
 
