@@ -6,13 +6,16 @@ import Button from '../../components/Button';
 import { useNews } from '../../hooks';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+// import { setFilter } from 'redux/filter';
 
 const NewsPage = () => {
+  // const dispatch = useDispatch();
   const query = useSelector(state => state.filter.value).trim();
 
   let page = useRef(1);
   const [allNews, setAllNews] = useState([]);
-  const news = useNews({page: page.current});
+  const news = useNews({page: page.current, query});
 
   useEffect(() => {
     if(news?.length > 0 && allNews.length === 0) {
@@ -20,8 +23,8 @@ const NewsPage = () => {
     };
 
     window.scrollTo({
-        top: document.body.offsetHeight,
-        behavior: 'smooth',
+      top: document.body.offsetHeight,
+      behavior: 'smooth',
     })
   }, [news, allNews.length]);
 
@@ -32,9 +35,17 @@ const NewsPage = () => {
     })
   }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    page.current = 1;
+    setAllNews([]);
+    // dispatch(setFilter(value));
+
+  }
+
   return <Container>
     <TitlePage title={"News"}/>
-    <NewsFilter/>
+    <NewsFilter onSubmit={e => onSubmit(e)}/>
     <NewsList news={allNews}/>
     {news.length > 0 && <Button title="Load more" margin="40px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
   </Container>
