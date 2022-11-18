@@ -2,11 +2,11 @@ import React from 'react';
 import { InputStyled, BtnSearch, InputContainer } from './InputSearch.styled';
 import icons from '../../assets/icons/icons.svg';
 
-const InputSearch = ({ onChange, value }) => {
+const InputSearch = ({ onChange, value, onSubmit }) => {
   return (
-    <InputContainer>
+    <InputContainer onSubmit={onSubmit}>
       <InputStyled onChange={onChange} value={value} placeholder="Search" type="text" />
-      <BtnSearch>
+      <BtnSearch >
         <svg width={17.5} height={17.5}>
           <use href={`${icons}#icon-search`}></use>
         </svg>

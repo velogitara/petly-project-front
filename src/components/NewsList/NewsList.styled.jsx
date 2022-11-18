@@ -8,14 +8,12 @@ const List = styled.ul`
 
   @media screen and (min-width: ${theme.screens.tablet}) {
     grid-template-columns: repeat(2, 335px);
-    grid-column-gap: 60px;
+    grid-column-gap: 30px;
     grid-row-gap: 30px;
   }
 
   @media screen and (min-width: ${theme.screens.desktop}) {
     grid-template-columns: repeat(3, 391px);
-    grid-column-gap: 60px;
-    grid-row-gap: 30px;
   }
 `
 
