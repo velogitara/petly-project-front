@@ -34,6 +34,6 @@ const authPersistConfig = {
 export const persistedAuthReducer = persistReducer(authPersistConfig, authStateSlice.reducer);
 
 export const selectAuthToken = state => state.authState.authToken;
-export const selectAuthId = state => state.authId;
+export const selectAuthId = state => state.authState.authId;
 
 export const { setAuthToken, unsetAuthToken } = authStateSlice.actions;
