@@ -4,6 +4,7 @@ import { constants } from 'constants/constants';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
+
 import {
   ItemContainer,
   ItemPicture,
@@ -38,16 +39,12 @@ const NoticeCategoryItem = ({
 
   const imageDummy = '';
 
-  const removeNotice = ({ noticeId }) => {
-    console.log(noticeId);
-  };
-
   return (
     <ItemContainer>
       <CategoryLabel>{categoryName}</CategoryLabel>
       <UserButtons>
         <FavoriteButton noticeId={_id} favorite={favorite} />
-        <DeleteButton translucent onRemove={() => removeNotice({ noticeId: _id })} owner={owner} />
+        <DeleteButton translucent noticeId={_id} owner={owner} />
       </UserButtons>
       <ItemPicture>
         <source

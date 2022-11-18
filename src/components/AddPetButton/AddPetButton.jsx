@@ -18,6 +18,7 @@ const { icons } = constants;
 const AddPetButton = ({ user, userId = '', children }) => {
   const [showModal, setShowModal] = useState(false);
   const [showNotLogged, setShowNotLogged] = useState(false);
+
   const authId = useSelector(selectAuthId);
   // const authId = '637021587475d007fb85d3d4';
 

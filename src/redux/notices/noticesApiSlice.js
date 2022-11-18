@@ -42,7 +42,7 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notices'],
     }),
     getNoticesById: builder.query({
-      query: noticeId => ({
+      query: ({ noticeId }) => ({
         url: `/${noticeId}`,
         method: 'GET',
       }),
@@ -61,7 +61,7 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notices'],
     }),
     updateFavorites: builder.mutation({
-      query: (noticeId, favorite) => ({
+      query: ({ noticeId, favorite }) => ({
         url: `/favorites/${noticeId}`,
         method: 'POST',
         body: {
@@ -71,8 +71,8 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notices'],
     }),
     removeNotice: builder.mutation({
-      query: noticetId => ({
-        url: `/${noticetId}`,
+      query: ({ noticeId }) => ({
+        url: `/${noticeId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Notices', 'Notice'],
