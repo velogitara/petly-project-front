@@ -20,7 +20,7 @@ export const Modal = styled.div`
   padding-left: 20px;
   padding-top: 32px;
   padding-bottom: 32px;
-  background-color: #ffffff;
+ background-color: ${({ theme }) => theme.backgrounds.secondary};
    border-radius: 40px;
 
    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -35,7 +35,7 @@ export const ButtonClose = styled.button`
   height: 40px;
   border-radius: 50%;
   border: none;
-  background-color: #fdf7f2;
+    background-color: ${({ theme }) => theme.backgrounds.primary};
 `;
 export const ModalInfo = styled.div`
   display: flex;
@@ -49,6 +49,11 @@ export const ImgPet = styled.img`
   background-color: red;
   object-fit: cover;
   border-radius: 0px 0px 40px 40px;
+
+   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 288px;
+    height: 328px;
+  }
 `;
 export const ImgLabel = styled.p`
   position: absolute;
@@ -97,34 +102,31 @@ export const CommentsSpan = styled.span`
 export const BtnContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+   font-family: ${({ theme }) => theme.fonts.primar};
+  font-size: 16px;
 `;
-export const AddToFaforite = styled.div`
+export const AddToFaforite = styled.a`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 160px;
   height: 40px;
-  background: #ffffff;
-  border: 2px solid #f59256;
+   background-color: ${({ theme }) => theme.backgrounds.secondary};
+  border: 2px solid ${({ theme }) => theme.palette.accent};
   border-radius: 40px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
 `;
-export const Contact = styled.div`
+export const Contact = styled.a`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 240px;
   height: 40px;
-  background: #ffffff;
-  border: 2px solid #f59256;
+  border: 2px solid ${({ theme }) => theme.palette.accent};
   border-radius: 40px;
-  font-family: 'Manrope', sans-serif;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #f59256;
+  color: ${({ theme }) => theme.palette.triadic};
+  background-color: ${({ theme }) => theme.palette.accent};
   margin-right: 20px;
   margin-left: 12px;
 
