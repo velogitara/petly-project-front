@@ -12,14 +12,12 @@ const authStateSlice = createSlice({
     setAuthId(state, action) {
       state.authId = action.payload;
     },
-    unsetAuthId(state, action) {
-      state.authId = initialState.authId;
-    },
     setAuthToken(state, action) {
       state.authToken = action.payload;
     },
-    unSetAuthToken(state, action) {
+    unSetAuthState(state, action) {
       state.authToken = initialState.authToken;
+      state.authId = initialState.authId;
     },
   },
 
@@ -47,7 +45,7 @@ const authPersistConfig = {
 
 export const persistedAuthReducer = persistReducer(authPersistConfig, authStateSlice.reducer);
 
-export const selectAuthToken = state => state.authState.authToken;
+export const selectAuthToken = state => (state.authState.authToken ? true : false);
 export const selectAuthId = state => state.authState.authId;
 
-export const { setAuthToken, unsetAuthToken, setAuthId, unsetAuthId } = authStateSlice.actions;
+export const { setAuthToken, setAuthId, unsetAuthState } = authStateSlice.actions;
