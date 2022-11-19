@@ -10,7 +10,7 @@ import { ContainerWithPadding } from './NewsPage.styled';
 const NewsPage = () => {
   const [query, setQuery] = useState('');
   const [allNews, setAllNews] = useState([]);
-  let [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);
   const { data, isLoading } = useNews({ page, query });
   
   useEffect(() => {
@@ -25,7 +25,7 @@ const NewsPage = () => {
   // }, [data]);
 
   function onLoadMoreBtnClick() {
-    setPage((prev) => prev + 1);
+    setPage((prevState) => prevState + 1);
   }
 
   function onSubmit(e) {
@@ -34,7 +34,7 @@ const NewsPage = () => {
     setQuery(searchedValue);
     setPage(1);
     setAllNews([]);
-    document.getElementById("searchForm").reset();
+    // document.getElementById("searchForm").reset();
   }
 
   return <ContainerWithPadding>
