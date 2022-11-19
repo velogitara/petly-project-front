@@ -4,9 +4,10 @@ import styled from '@emotion/styled';
 export const NavContainer = styled.div`
 @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) and (max-width: ${({theme,}) => theme.screens.toDesktop}) {
     padding: 160px 0;
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: -101%;
+    /* left: -101%; */
+		left: 0;
     width: 100%;
     min-height: 100vh;
     text-align: center;
@@ -14,10 +15,10 @@ export const NavContainer = styled.div`
     background-color: ${({ theme }) => theme.backgrounds.primary};
     transition: ${({ theme }) => theme.animations.transition};
     z-index: 9;
-    &.isOpen {
+    /* &.isOpen {
       left: 0;
       transition: ${({ theme }) => theme.animations.transition};
-    }
+    } */
   }
 `;
 

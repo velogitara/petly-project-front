@@ -1,25 +1,25 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectAuthToken } from 'redux/authState';
-import Nav from '../Nav';
 import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
-import { NavigationBox } from './Navigation.styled';
+import Nav from '../Nav';
+import { NavigationBox } from '../Navigation/Navigation.styled';
 
-const Navigation = ({ onWidth }) => {
+const Menu = ({ onWidth }) => {
   const isLogged = useSelector(selectAuthToken);
 
   return (
     <NavigationBox>
-      {/* <UserNav /> <AuthNav /> */}
-      {isLogged ? <UserNav /> : <AuthNav />}
-      {onWidth >= 1280 && <Nav />}
+      {onWidth < 768 && <>{isLogged ? <UserNav /> : <AuthNav />}</>}
+      <Nav />
     </NavigationBox>
   );
 };
 
-Navigation.propTypes = {
+Menu.propTypes = {
   onWidth: PropTypes.number.isRequired,
 };
 
-export default Navigation;
+export default Menu;
