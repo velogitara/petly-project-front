@@ -14,7 +14,7 @@ const { icons } = constants;
 
 const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [removeNotice, { isSuccess }] = useRemoveNoticeMutation();
+  const [removeNotice] = useRemoveNoticeMutation();
 
   const authId = useSelector(selectAuthId);
 
@@ -24,15 +24,15 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
     if (noticeId && check) {
       try {
         await removeNotice({ noticeId }).then(response => {
-          if (response.status !== 200) {
+          if (response.error) {
             toast.error(response.error.data.message);
           }
-          if (isSuccess) {
-            toast.success(response?.body?.message);
+          if (response.data) {
+            toast.success(response?.data?.message ?? 'Success');
           }
         });
       } catch (error) {
-        console.log(error.message);
+        console.log(error);
       }
     }
     if (petId && check) {

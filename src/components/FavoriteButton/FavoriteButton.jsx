@@ -13,7 +13,7 @@ const { icons } = constants;
 const FavoriteButton = ({ noticeId, favorite }) => {
   const [favoriteState, setFavoriteState] = useState(favorite);
   const [showNotLogged, setShowNotLogged] = useState(false);
-  const [updateFavorites, { isSuccess }] = useUpdateFavoritesMutation();
+  const [updateFavorites] = useUpdateFavoritesMutation();
 
   const authId = useSelector(selectAuthId);
 
@@ -24,16 +24,16 @@ const FavoriteButton = ({ noticeId, favorite }) => {
     }
     try {
       updateFavorites({ noticeId, favorite: !favoriteState }).then(response => {
-        if (response.status !== 200) {
+        if (response.error) {
           toast.error(response.error.data.message);
         }
-        if (isSuccess) {
-          toast.success(response?.body?.message);
+        if (response.data) {
+          toast.success(response?.data?.message ?? 'Success');
           setFavoriteState(favoriteState => !favoriteState);
         }
       });
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   };
 

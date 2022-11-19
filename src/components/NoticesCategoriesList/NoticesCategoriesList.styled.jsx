@@ -12,3 +12,19 @@ export const CategoriesList = styled.ul`
     grid-template-columns: repeat(4, 1fr);
   }
 `;
+
+export const Message = styled.p`
+  min-height: 50vh;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: ${({ theme }) => theme.palette.translucent};
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    font-size: 30px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+    font-size: 40px;
+  }
+`;

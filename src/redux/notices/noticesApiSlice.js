@@ -31,7 +31,6 @@ export const noticesApi = createApi({
         url: `/?category=${category}&query=${searchQuery}&page=${page}&limit=${limit}`,
         method: 'GET',
       }),
-      providesTags: ['Notices'],
       invalidatesTags: ['Notices'],
     }),
     listUserNotices: builder.query({
