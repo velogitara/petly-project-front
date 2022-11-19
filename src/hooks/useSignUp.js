@@ -7,7 +7,7 @@ const useSignUp = async ({ name, email, password, phone }) => {
   try {
     await signUp({ name, email, password, phone }).then(response => {
       if (response?.status !== 201) {
-        toast.error(response?.body?.data?.message);
+        toast.error(response.error.data.message);
       }
       toast.success('Successfuly registered.');
     });

@@ -1,25 +1,40 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAuthId } from 'redux/authState';
+import { selectAuthToken } from 'redux/authState';
+import { useUpdateFavoritesMutation } from 'redux/notices';
+import { toast } from 'react-toastify';
 import PopUp from 'components/PopUp';
 import { constants } from 'constants/constants';
 import { FavButtonContainer, FavButton, FavIcon } from './FavoriteButton.styled';
 
 const { icons } = constants;
 
-const FavoriteButton = ({ favorite }) => {
+const FavoriteButton = ({ noticeId, favorite }) => {
   const [favoriteState, setFavoriteState] = useState(favorite);
   const [showNotLogged, setShowNotLogged] = useState(false);
-  const userId = useSelector(selectAuthId);
+  const [updateFavorites] = useUpdateFavoritesMutation();
+
+  const isLogged = useSelector(selectAuthToken);
 
   const toggleFavorite = () => {
-    if (!userId) {
+    if (!isLogged) {
       setShowNotLogged(true);
       return;
     }
-    setFavoriteState(favoriteState => !favoriteState);
-    console.log('Favorite updated');
+    try {
+      updateFavorites({ noticeId, favorite: !favoriteState }).then(response => {
+        if (response.error) {
+          toast.error(response.error.data.message);
+        }
+        if (response.data) {
+          toast.success(response?.data?.message ?? 'Success');
+          setFavoriteState(favoriteState => !favoriteState);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -34,14 +49,13 @@ const FavoriteButton = ({ favorite }) => {
           <use href={`${icons}#icon-heart-outlined`} />
         </FavIcon>
       </FavButton>
-      {showNotLogged && (
-        <PopUp message="You should be logged in" onClose={() => setShowNotLogged(false)} />
-      )}
+      {showNotLogged && <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)} />}
     </FavButtonContainer>
   );
 };
 
 FavoriteButton.propTypes = {
+  noticeId: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
 };
 

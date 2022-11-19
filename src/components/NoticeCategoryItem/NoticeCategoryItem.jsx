@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import { imageURLBuilder, ownerCheck, ageHandle } from 'helpers';
+import { imageURLBuilder, ageHandle } from 'helpers';
 import { constants } from 'constants/constants';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
+
 import {
   ItemContainer,
   ItemPicture,
@@ -31,26 +32,19 @@ const NoticeCategoryItem = ({
   favorite,
   owner,
   price,
-  authId,
 }) => {
-  const categoryName = publicCategories.find(item => item[0] === category)[1];
+  const categoryName = publicCategories.find(([item]) => item === category)[1];
 
   const age = ageHandle(birthday);
 
   const imageDummy = '';
 
-  const removeNotice = ({ noticeId }) => {
-    console.log(noticeId);
-  };
-
   return (
     <ItemContainer>
       <CategoryLabel>{categoryName}</CategoryLabel>
       <UserButtons>
-        <FavoriteButton favorite={favorite} />
-        {ownerCheck({ userId: authId, noticeOwner: owner }) && (
-          <DeleteButton translucent onRemove={() => removeNotice({ noticeId: _id })} />
-        )}
+        <FavoriteButton noticeId={_id} favorite={favorite} />
+        <DeleteButton translucent noticeId={_id} owner={owner} />
       </UserButtons>
       <ItemPicture>
         <source
@@ -97,7 +91,7 @@ const NoticeCategoryItem = ({
               <InfoText>{age}</InfoText>
             </InfoDescriptionItem>
           )}
-          {price && (
+          {price && categoryName === 'sell' && (
             <InfoDescriptionItem>
               <InfoText>Price:</InfoText>
               <InfoText>{`${price}$`}</InfoText>
