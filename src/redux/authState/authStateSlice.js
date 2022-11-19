@@ -8,6 +8,20 @@ const initialState = { authToken: null, authId: null };
 const authStateSlice = createSlice({
   name: 'authState',
   initialState,
+  reducers: {
+    setAuthId(state, action) {
+      state.authId = action.payload;
+    },
+    unsetAuthId(state, action) {
+      state.authId = initialState.authId;
+    },
+    setAuthToken(state, action) {
+      state.authToken = action.payload;
+    },
+    unSetAuthToken(state, action) {
+      state.authToken = initialState.authToken;
+    },
+  },
 
   extraReducers: builder => {
     builder.addMatcher(authApi.endpoints.signIn.matchFulfilled, (state, { payload }) => {
