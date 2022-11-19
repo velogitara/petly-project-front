@@ -33,7 +33,7 @@ const NoticeCategoryItem = ({
   owner,
   price,
 }) => {
-  const categoryName = publicCategories.find(item => item[0] === category)[1];
+  const categoryName = publicCategories.find(([item]) => item === category)[1];
 
   const age = ageHandle(birthday);
 
