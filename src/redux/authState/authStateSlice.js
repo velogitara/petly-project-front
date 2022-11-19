@@ -15,7 +15,7 @@ const authStateSlice = createSlice({
     setAuthToken(state, action) {
       state.authToken = action.payload;
     },
-    unSetAuthState(state, action) {
+    unsetAuthState(state) {
       state.authToken = initialState.authToken;
       state.authId = initialState.authId;
     },
