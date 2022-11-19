@@ -45,9 +45,13 @@ export const ModalInfo = styled.div`
 export const ModalInfoImg = styled.div`
   position: relative;
 `;
-export const ImgPet = styled.img`
+export const ImgPet = styled.picture`
+  width: 240px;
+  height: 240px;
   background-color: red;
   object-fit: cover;
+
+  border: none;
   border-radius: 0px 0px 40px 40px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {

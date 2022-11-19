@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useGetNoticeById } from 'hooks';
+import { dateHandle, imageURLBuilder } from 'helpers';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
-import { ownerCheck } from 'helpers';
 import {
   Backdrop,
   Modal,
@@ -25,8 +26,13 @@ import {
 } from './ModalNotice.styled';
 
 const modalRoot = document.querySelector('#modal-root');
+const imageDummy = '';
 
-const ModalNotice = ({ onClose, _id, favorite, owner }) => {
+const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
+  const notice = useGetNoticeById({ noticeId });
+
+  const birthDate = notice?.birthday ? new Date(dateHandle(notice?.birthday, 'parse')) : null;
+
   useEffect(() => {
     const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
@@ -45,11 +51,6 @@ const ModalNotice = ({ onClose, _id, favorite, owner }) => {
       onClose();
     }
   };
-  const userId = '636e250a3fc8cdfd9b8f0cba'; // hardcode to remove
-
-  const removeNotice = ({ noticeId }) => {
-    console.log(noticeId);
-  };
 
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
@@ -57,27 +58,56 @@ const ModalNotice = ({ onClose, _id, favorite, owner }) => {
         <ModalCloseButton onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
-            <ImgPet src="" alt="" width="240" height="240" />
-            <ImgLabel>In good hands</ImgLabel>
+            <ImgPet>
+              <source
+                srcSet={`${
+                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profileMobile) : ''
+                } 240w, ${
+                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profileMobileRetina) : ''
+                } 480w`}
+                media="(max-width: 767px)"
+                sizes="240px"
+              />
+              <source
+                srcSet={`${
+                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profile) : ''
+                } 288w, ${
+                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profileRetina) : ''
+                } 576w`}
+                media="(min-width: 768px)"
+                sizes="288px"
+              />
+              <img
+                src={notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profile) : imageDummy}
+                loading="lazy"
+                alt={notice?.title}
+              />
+            </ImgPet>
+            <ImgLabel>{category}</ImgLabel>
           </ModalInfoImg>
 
           <InfoPet>
-            <InfoPetTitle>Сute dog looking for a home</InfoPetTitle>
+            <InfoPetTitle>{notice?.title}</InfoPetTitle>
             <InfoPetList>
               <InfoPetItem>
-                Name: <InfoPetSpan>Rich</InfoPetSpan>
+                Name: <InfoPetSpan>{notice?.name}</InfoPetSpan>
+              </InfoPetItem>
+              {birthDate && (
+                <InfoPetItem>
+                  Birthday:{' '}
+                  <InfoPetSpan>{`${birthDate.getDay()}.${
+                    birthDate.getMonth() + 1
+                  }.${birthDate.getFullYear()}`}</InfoPetSpan>
+                </InfoPetItem>
+              )}
+              <InfoPetItem>
+                Breed: <InfoPetSpan>{notice?.breed}</InfoPetSpan>
               </InfoPetItem>
               <InfoPetItem>
-                Birthday: <InfoPetSpan>Rich</InfoPetSpan>
+                Place: <InfoPetSpan>{notice?.location}</InfoPetSpan>
               </InfoPetItem>
               <InfoPetItem>
-                Breed: <InfoPetSpan>Rich</InfoPetSpan>
-              </InfoPetItem>
-              <InfoPetItem>
-                Place: <InfoPetSpan>Rich</InfoPetSpan>
-              </InfoPetItem>
-              <InfoPetItem>
-                The sex: <InfoPetSpan>Rich</InfoPetSpan>
+                The sex: <InfoPetSpan>{notice?.sex}</InfoPetSpan>
               </InfoPetItem>
               <InfoPetItem>
                 Email: <InfoPetSpan>Rich</InfoPetSpan>
@@ -85,19 +115,22 @@ const ModalNotice = ({ onClose, _id, favorite, owner }) => {
               <InfoPetItem>
                 Phone: <InfoPetSpan>Rich</InfoPetSpan>
               </InfoPetItem>
+              {notice?.category === 'sell' && (
+                <InfoPetItem>
+                  Sell: <InfoPetSpan>{notice?.price}$</InfoPetSpan>
+                </InfoPetItem>
+              )}
             </InfoPetList>
           </InfoPet>
         </ModalInfo>
         <Comments>
-          <CommentsSpan>Comments:</CommentsSpan>
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-          ipsum dolor sit amet, consectetur Lorem
+          <CommentsSpan>Comments: </CommentsSpan>
+          {notice?.comments}
         </Comments>
         <BtnContainer>
-          <FavoriteButton favorite={favorite} />
-          {ownerCheck({ userId, noticeOwner: owner }) && (
-            <DeleteButton translucent onRemove={() => removeNotice({ noticeId: _id })} />
-          )}
+          <FavoriteButton favorite={favorite} noticeId={noticeId} />
+
+          <DeleteButton translucent noticeId={noticeId} owner={owner} />
 
           <AddToFaforite>Add to</AddToFaforite>
           <Contact href="tel:123456789">Contact</Contact>
@@ -111,6 +144,8 @@ const ModalNotice = ({ onClose, _id, favorite, owner }) => {
 ModalNotice.propTypes = {
   onClose: PropTypes.func.isRequired,
   favorite: PropTypes.bool.isRequired,
+  noticeId: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired,
 };
 
 export default ModalNotice;
