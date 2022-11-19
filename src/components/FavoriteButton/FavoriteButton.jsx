@@ -16,7 +16,6 @@ const FavoriteButton = ({ noticeId, favorite }) => {
   const [updateFavorites, { isSuccess }] = useUpdateFavoritesMutation();
 
   const authId = useSelector(selectAuthId);
-  // const authId = '637021587475d007fb85d3d4';
 
   const toggleFavorite = () => {
     if (!authId) {

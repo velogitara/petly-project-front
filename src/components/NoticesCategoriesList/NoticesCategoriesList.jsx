@@ -8,10 +8,9 @@ import { useSelector } from 'react-redux';
 import { selectAuthId } from 'redux/authState';
 
 const NoticesCategoriesList = () => {
-  const { categoryName } = useParams();
-
-  // const authId = '637021587475d007fb85d3d4'; // hardcode to remove
   const authId = useSelector(selectAuthId);
+
+  const { categoryName } = useParams();
 
   const notices = useNotices({ category: categoryName });
 

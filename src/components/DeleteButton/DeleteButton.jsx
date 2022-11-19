@@ -17,7 +17,6 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
   const [removeNotice, { isSuccess }] = useRemoveNoticeMutation();
 
   const authId = useSelector(selectAuthId);
-  // const authId = '637021587475d007fb85d3d4';
 
   const check = ownerCheck({ userId: authId, owner });
 
