@@ -5,8 +5,8 @@ import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
 
 import { CategoriesList } from './NoticesCategoriesList.styled';
-import { useSelector } from 'react-redux';
-import { selectAuthId } from 'redux/authState';
+// import { useSelector } from 'react-redux';
+// import { selectAuthId } from 'redux/authState';
 
 const NoticesCategoriesList = () => {
   // const location = useLocation().pathname;
