@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAuthId } from 'redux/authState';
+import { selectAuthToken } from 'redux/authState';
 import { useUpdateFavoritesMutation } from 'redux/notices';
 import { toast } from 'react-toastify';
 import PopUp from 'components/PopUp';
@@ -15,10 +15,10 @@ const FavoriteButton = ({ noticeId, favorite }) => {
   const [showNotLogged, setShowNotLogged] = useState(false);
   const [updateFavorites] = useUpdateFavoritesMutation();
 
-  const authId = useSelector(selectAuthId);
+  const isLogged = useSelector(selectAuthToken);
 
   const toggleFavorite = () => {
-    if (!authId) {
+    if (!isLogged) {
       setShowNotLogged(true);
       return;
     }

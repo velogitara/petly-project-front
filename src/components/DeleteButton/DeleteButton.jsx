@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAuthId } from 'redux/authState';
+import { selectAuthId, selectAuthToken } from 'redux/authState';
 import { useRemoveNoticeMutation } from 'redux/notices';
 import PopUp from 'components/PopUp';
 import ConfirmButtons from 'components/ConfirmButtons';
@@ -16,9 +16,10 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [removeNotice] = useRemoveNoticeMutation();
 
+  const isLogged = useSelector(selectAuthToken);
   const authId = useSelector(selectAuthId);
 
-  const check = ownerCheck({ userId: authId, owner });
+  const check = ownerCheck({ userId: isLogged && authId ? authId : null, owner });
 
   const removeItem = async ({ noticeId, petId }) => {
     if (noticeId && check) {
@@ -40,7 +41,7 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
     }
     setShowDeleteConfirm(false);
   };
-  if (!authId || !check) {
+  if (!isLogged || !check) {
     return <></>;
   }
 

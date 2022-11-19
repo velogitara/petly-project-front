@@ -3,10 +3,11 @@ import { useNotices } from 'hooks';
 import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
 import { useSelector } from 'react-redux';
-import { selectAuthId } from 'redux/authState';
+import { selectAuthId, selectAuthToken } from 'redux/authState';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
+  const isLogged = useSelector(selectAuthToken);
   const authId = useSelector(selectAuthId);
 
   const categoryName = useLocation().pathname.replace('/notices/', '');
@@ -42,7 +43,7 @@ const NoticesCategoriesList = () => {
                 location={location}
                 key={_id}
                 category={category}
-                favorite={favoriteCheck({ userId: authId, favorite })}
+                favorite={favoriteCheck({ userId: isLogged && authId ? authId : null, favorite })}
                 owner={owner?._id ?? owner}
                 price={price}
               />

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { cloneElement } from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAuthId } from 'redux/authState';
+import { selectAuthToken } from 'redux/authState';
 import PopUp from 'components/PopUp';
 import {
   AddButtonContainer,
@@ -15,12 +15,11 @@ import { constants } from 'constants/constants';
 
 const { icons } = constants;
 
-const AddPetButton = ({ user, userId = '', children }) => {
+const AddPetButton = ({ user, children }) => {
   const [showModal, setShowModal] = useState(false);
   const [showNotLogged, setShowNotLogged] = useState(false);
 
-  const authId = useSelector(selectAuthId);
-  // const authId = '637021587475d007fb85d3d4';
+  const isLogged = useSelector(selectAuthToken);
 
   const label = 'Add pet';
 
@@ -32,7 +31,7 @@ const AddPetButton = ({ user, userId = '', children }) => {
           user={user}
           type="button"
           title={label}
-          onClick={!authId ? () => setShowNotLogged(true) : () => setShowModal(true)}
+          onClick={!isLogged ? () => setShowNotLogged(true) : () => setShowModal(true)}
         >
           <AddButtonIcon user={user}>
             <use href={`${icons}#icon-plus`} />
@@ -52,7 +51,6 @@ const AddPetButton = ({ user, userId = '', children }) => {
 
 AddPetButton.propTypes = {
   user: PropTypes.bool,
-  userId: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
