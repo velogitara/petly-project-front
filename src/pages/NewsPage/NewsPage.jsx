@@ -1,54 +1,48 @@
 import NewsList from 'components/NewsList';
-import NewsFilter from 'components/NewsFilter';
-import { Container } from '../../helpers';
 import TitlePage from 'components/TitlePage';
 import Button from '../../components/Button';
+import InputSearch from 'components/InputSearch';
 import { useNews } from '../../hooks';
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { setFilter } from 'redux/filter';
+import { useEffect, useState } from 'react';
+import { ContainerWithPadding } from './NewsPage.styled';
+
 
 const NewsPage = () => {
-  // const dispatch = useDispatch();
-  const query = useSelector(state => state.filter.value).trim();
-
-  let page = useRef(1);
+  const [query, setQuery] = useState('');
   const [allNews, setAllNews] = useState([]);
-  const news = useNews({page: page.current, query});
-
+  const [page, setPage] = useState(1);
+  const { data, isLoading } = useNews({ page, query });
+  
   useEffect(() => {
-    if(news?.length > 0 && allNews.length === 0) {
-      setAllNews(news)
-    };
+    setAllNews((prevState) => ([...prevState, ...data]));  
+  }, [data]);
 
-    window.scrollTo({
-      top: document.body.offsetHeight,
-      behavior: 'smooth',
-    })
-  }, [news, allNews.length]);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: document.body.offsetHeight,
+  //     behavior: 'smooth',
+  //   })
+  // }, [data]);
 
   function onLoadMoreBtnClick() {
-    page.current = page.current + 1;
-    setAllNews(prevState => {
-      return [...prevState, ...news];
-    })
+    setPage((prevState) => prevState + 1);
   }
 
   function onSubmit(e) {
     e.preventDefault();
-    page.current = 1;
+    const searchedValue = e.currentTarget.parentElement.elements['search'].value;
+    setQuery(searchedValue);
+    setPage(1);
     setAllNews([]);
-    // dispatch(setFilter(value));
-
+    // document.getElementById("searchForm").reset();
   }
 
-  return <Container>
-    <TitlePage title={"News"}/>
-    <NewsFilter onSubmit={e => onSubmit(e)}/>
-    <NewsList news={allNews}/>
-    {news.length > 0 && <Button title="Load more" margin="40px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
-  </Container>
+  return <ContainerWithPadding>
+    <TitlePage title={"News"} />
+    <InputSearch onSubmit={e => onSubmit(e)}/>
+    {isLoading ? 'loading...': <NewsList news={allNews}/>}
+    {data.length > 0 && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
+  </ContainerWithPadding>
 };
 
 export default NewsPage;

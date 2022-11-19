@@ -1,37 +1,18 @@
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { nanoid } from '@reduxjs/toolkit';
 import NewsItem from '../NewsItem/NewsItem';
 import List from './NewsList.styled';
 
 
-const NewsList = ({news}) => {
-  const filterValueFromStore = useSelector(state => state.filter.value);
-
+const NewsList = ({ news = [] }) => {
   const newsForRender = news.map(item => {
+
     const date = item.createdAt.slice(0, 10).split('-');
     const year = date[0];
     const month = date[1];
     const day = date[2];
 
-    if (filterValueFromStore !== '') {
-      if (
-        item.title.toLowerCase().includes(filterValueFromStore.trim()) ||
-        item.description.toLowerCase().includes(filterValueFromStore.trim())
-      ) {
-        return (
-          <NewsItem
-            key={nanoid()}
-            title={item.title}
-            url={item.url}
-            description={item.description}
-            date={`${day}/${month}/${year}`}
-          />
-        );
-      }
-    }
-    // else {
-      return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
-    // }
+    return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
 
   })
 
@@ -39,3 +20,13 @@ const NewsList = ({news}) => {
 };
 
 export default NewsList;
+
+NewsList.propTypes = {
+  news: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+  })),
+}
