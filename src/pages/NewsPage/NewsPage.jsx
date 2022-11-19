@@ -1,11 +1,12 @@
 import NewsList from 'components/NewsList';
 import NewsFilter from 'components/NewsFilter';
-import { Container } from '../../helpers';
 import TitlePage from 'components/TitlePage';
 import Button from '../../components/Button';
 import { useNews } from '../../hooks';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { ContainerWithPadding } from './NewsPage.styled';
+
 
 const NewsPage = () => {
   const filter = useSelector((state) => state.filter.value);
@@ -36,12 +37,12 @@ const NewsPage = () => {
     setAllNews([]);
   }
 
-  return <Container>
+  return <ContainerWithPadding>
     <TitlePage title={"News"}/>
     <NewsFilter onSubmit={e => onSubmit(e)}/>
     {isLoading ? 'loading...': <NewsList news={allNews}/>}
-    {data.length > 0 && <Button title="Load more" margin="40px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
-  </Container>
+    {data.length > 0 && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
+  </ContainerWithPadding>
 };
 
 export default NewsPage;
