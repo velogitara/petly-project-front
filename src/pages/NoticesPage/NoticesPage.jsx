@@ -1,19 +1,17 @@
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
-import ModalNotice from 'components/ModalNotice/ModalNotice';
 import TitlePage from 'components/TitlePage';
 import InputSearch from 'components/InputSearch';
-import { Container } from 'helpers';
+import { NoticesContainer } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
-    <Container>
+    <NoticesContainer>
       <TitlePage title="Find your favorite pet"></TitlePage>
       <InputSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
-      <ModalNotice />
-    </Container>
+    </NoticesContainer>
   );
 };
 

@@ -17,14 +17,22 @@ export const ItemContainer = styled.li`
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 336px;
   }
-  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     width: 288px;
   }
 `;
 
 export const ItemPicture = styled.picture`
-  width: 100%;
+  width: 280px;
+  height: 288px;
   object-fit: cover;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 336px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+    width: 288px;
+  }
 `;
 
 export const CategoryLabel = styled.p`
@@ -52,9 +60,8 @@ export const Info = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 20px 0 20px;
+  padding: 20px 20px 50px 20px;
   width: 100%;
-  margin-bottom: 50px;
 `;
 
 export const InfoDescription = styled.ul`

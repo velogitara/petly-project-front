@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { cloneElement } from 'react';
 import { useState } from 'react';
 import { LearnButton } from './LearnMoreButton.styled';
-import ModalNotice from 'components/ModalNotice';
 
 const LearnMoreButton = ({ noticeId, children }) => {
   const [showModal, setShowModal] = useState(false);
