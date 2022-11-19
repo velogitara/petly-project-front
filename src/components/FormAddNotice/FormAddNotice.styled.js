@@ -15,29 +15,27 @@ export const Input = styled.input`
   padding: 11px 14px;
   width: 100%;
   font-size: 14px;
-  
-    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-      padding: 11px 16px;
-      width: 100%;
-      font-size: 16px;
 
-      &.comment{
-        padding: 16px  0px 70px 18px;
-        margin: 0;
-        // height: 113px;
-      
-      }
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    padding: 11px 16px;
+    width: 100%;
+    font-size: 16px;
+
+    &.comment {
+      padding: 16px 0px 70px 18px;
+      margin: 0;
+      // height: 113px;
     }
   }
-    &::placeholder {
+  &::placeholder {
     font-size: 14px;
     line-height: 1.35;
 
-    color:  rgba(27, 27, 27, 0.6);
+    color: rgba(27, 27, 27, 0.6);
 
-     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-       font-size: 16px;
-       line-height: 1.63;
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+      font-size: 16px;
+      line-height: 1.63;
     }
   }
 `;
@@ -45,12 +43,12 @@ export const Button = styled.button`
   font-family: ${({ theme }) => theme.fonts.primary};
   font-size: 16px;
   line-height: 1.4;
-  color:${({ theme }) => theme.palette.primery}
-  
+  color: ${({ theme }) => theme.palette.primary};
+
   transition: ${({ theme }) => theme.animations.transition};
   width: 240px;
   height: 40px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   // padding: 6.8px 0;
@@ -58,37 +56,36 @@ export const Button = styled.button`
   border: 2px solid transparent;
   border-radius: 40px;
   cursor: pointer;
-  
-   &.formAddPet {
+
+  &.formAddPet {
     background-color: ${({ theme }) => theme.palette.triadic};
     border: 2px solid ${({ theme }) => theme.palette.accent};
-   }
-   &.activeDone,
-   &.activeNext {
-     margin: 40px 0 12px 0;
+  }
+  &.activeDone,
+  &.activeNext {
+    margin: 40px 0 12px 0;
     background: ${({ theme }) => theme.palette.accent};
     color: ${({ theme }) => theme.palette.triadic};
-    }
- 
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 180px;
     height: 44px;
     font-size: 20px;
     line-height: 1.35;
     padding: 9px 0;
-  
 
-      &.formAddPet {       
+    &.formAddPet {
       margin-left: 34px;
-      }
+    }
 
-       &.activeDone,       
-       &.activeNext {
-        position: absolute;
-        bottom: 40px;
-        right: 114px;
-          margin: 0;
-       }
+    &.activeDone,
+    &.activeNext {
+      position: absolute;
+      bottom: 40px;
+      right: 114px;
+      margin: 0;
+    }
   }
 `;
 
@@ -262,23 +259,24 @@ export const IconFemale = styled.svg`
 `;
 
 export const CategoryItem = styled.li`
-
   display: inline-block;
   margin: 0 0 12px 0;
 
-   &:nth-of-type(1) {
-   margin:  0 8px 12px 0;  }
-  
-  &: nth-of-type(4) {
+  &:nth-of-type(1) {
+    margin: 0 8px 12px 0;
+  }
+
+  &:nth-of-type(4) {
     margin-bottom: 0;
   }
-    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-        margin: 0;
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    margin: 0;
 
-    &:nth-of-type(-n+3) {
-    margin-right: 12px;
-  }
-   &:nth-of-type(-n+1) {
-    margin-bottom: 16px;
+    &:nth-of-type(-n + 3) {
+      margin-right: 12px;
+    }
+    &:nth-of-type(-n + 1) {
+      margin-bottom: 16px;
+    }
   }
 `;

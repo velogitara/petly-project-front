@@ -1,15 +1,17 @@
-import { Field, Formik, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 import { useState } from 'react';
 // import PropTypes from 'prop-types';
 // import Input from 'components/Input';
+import { Input } from './AuthRegisterForm.styled';
 import Button from 'components/Button';
-
 import { Form, InputWrapper } from '../AuthForm/AuthForm.styled';
+import { useSignUpMutation } from '../../redux/authState/authSlice';
 
 const AuthFormRegister = () => {
   const [part, setPart] = useState(1);
+  const [signUp] = useSignUpMutation();
 
   const validationSchema = yup.object().shape({
     email: yup.string().email().required('Required'),
@@ -17,19 +19,18 @@ const AuthFormRegister = () => {
       .string()
       .min(7, 'Must be 7 or more characters')
       .max(32, 'Must be 32 or less characters')
-      .matches(/^[\s]+$/, ''),
-    //   .required('Required'),
+      // .matches(/^[\s]+$/, '')
+      .required('Required'),
     name: yup
       .string()
-      .min(2, 'Must be 2 or more letter')
-      .max(16, 'Must be 16 or less letter')
+      // .min(2, 'Must be 2 or more letter')
+      // .max(16, 'Must be 16 or less letter')
       .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
-    location: yup.string().matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
-    mobilePhone: yup
-      .number()
-      .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point"),
+    location: yup.string(),
+    mobilePhone: yup.number(),
+    // .typeError("That doesn't look like a phone number")
+    // .positive("A phone number can't start with a minus")
+    // .integer("A phone number can't include a decimal point"),
     //   .matches(
     //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
     //   ),
@@ -49,7 +50,7 @@ const AuthFormRegister = () => {
         // setSubmitting(false);
         const data = values;
         console.log(values);
-        return data;
+        signUp(data);
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (
@@ -59,7 +60,7 @@ const AuthFormRegister = () => {
               <>
                 <InputWrapper>
                   <div>
-                    <Field
+                    <Input
                       styled="inputAuth"
                       name="email"
                       // defaultValue={values.email}
@@ -71,7 +72,7 @@ const AuthFormRegister = () => {
                     />
                     <ErrorMessage name="email">{msg => <div>{msg}</div>}</ErrorMessage>
                   </div>
-                  <Field
+                  <Input
                     styled="inputAuth"
                     name="password"
                     // defaultValue={values.password}
@@ -81,7 +82,8 @@ const AuthFormRegister = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <Field
+                  <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
+                  <Input
                     styled="inputAuth"
                     name="confirmPassword"
                     // defaultValue={values.confirmPassword}
@@ -91,6 +93,7 @@ const AuthFormRegister = () => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
+                  <ErrorMessage name="confirmPassword">{msg => <div>{msg}</div>}</ErrorMessage>
                 </InputWrapper>
                 <Button
                   type="button"
@@ -99,34 +102,36 @@ const AuthFormRegister = () => {
                   onClick={() => {
                     setPart(2);
                   }}
-                  disabled={true}
                 />
               </>
             )}
             {part === 2 && (
               <>
                 <InputWrapper>
-                  <Field
+                  <Input
                     styled="inputAuth"
                     name="name"
                     placeholder="Name"
+                    // defaultValue={values.name}
                     value={values.name}
                     type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <Field
+                  <Input
                     styled="inputAuth"
                     name="location"
+                    // defaultValue={values.location}
                     value={values.location}
                     placeholder="City, region"
                     type="text"
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  <Field
+                  <Input
                     styled="inputAuth"
                     name="mobilePhone"
+                    // defaultValue={values.location}
                     value={values.mobilePhone}
                     placeholder="Mobile phone"
                     type="tel"
