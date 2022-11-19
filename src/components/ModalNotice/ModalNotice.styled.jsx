@@ -11,7 +11,7 @@ export const Backdrop = styled.div`
   z-index: 150;
 `;
 export const Modal = styled.div`
- position: absolute;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: scale(1) translate(-50%, -50%);
@@ -20,23 +20,23 @@ export const Modal = styled.div`
   padding-left: 20px;
   padding-top: 32px;
   padding-bottom: 32px;
- background-color: ${({ theme }) => theme.backgrounds.secondary};
-   border-radius: 40px;
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
+  border-radius: 40px;
 
-   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 704px;
   }
 `;
-export const ButtonClose = styled.button`
-  position: absolute;
-  top: 12px;
-  right: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-    background-color: ${({ theme }) => theme.backgrounds.primary};
-`;
+// export const ButtonClose = styled.button`
+//   position: absolute;
+//   top: 12px;
+//   right: 20px;
+//   width: 40px;
+//   height: 40px;
+//   border-radius: 50%;
+//   border: none;
+//   background-color: ${({ theme }) => theme.backgrounds.primary};
+// `;
 export const ModalInfo = styled.div`
   display: flex;
   padding-bottom: 28px;
@@ -50,7 +50,7 @@ export const ImgPet = styled.img`
   object-fit: cover;
   border-radius: 0px 0px 40px 40px;
 
-   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 288px;
     height: 328px;
   }
@@ -102,7 +102,7 @@ export const CommentsSpan = styled.span`
 export const BtnContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-   font-family: ${({ theme }) => theme.fonts.primar};
+  font-family: ${({ theme }) => theme.fonts.primar};
   font-size: 16px;
 `;
 export const AddToFaforite = styled.a`
@@ -112,7 +112,7 @@ export const AddToFaforite = styled.a`
   justify-content: center;
   width: 160px;
   height: 40px;
-   background-color: ${({ theme }) => theme.backgrounds.secondary};
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
   border: 2px solid ${({ theme }) => theme.palette.accent};
   border-radius: 40px;
 `;
@@ -130,7 +130,7 @@ export const Contact = styled.a`
   margin-right: 20px;
   margin-left: 12px;
 
-   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 160px;
   }
 `;

@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import { ownerCheck } from 'helpers';
-
 import {
   Backdrop,
   Modal,
-  ButtonClose,
   ModalInfo,
   ModalInfoImg,
   ImgPet,
@@ -28,33 +28,33 @@ const modalRoot = document.querySelector('#modal-root');
 
 const ModalNotice = ({ onClose, _id, favorite, owner }) => {
   useEffect(() => {
-    const hendleKeyDown = e => {
+    const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', hendleKeyDown);
+    window.addEventListener('keydown', handleEscKeyDown);
     return () => {
-      window.removeEventListener('keydown', hendleKeyDown);
+      window.removeEventListener('keydown', handleEscKeyDown);
     };
   }, [onClose]);
-
-  const userId = '636e250a3fc8cdfd9b8f0cba'; // hardcode to remove
-
-  const removeNotice = ({ noticeId }) => {
-    console.log(noticeId);
-  };
 
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       onClose();
     }
   };
+  const userId = '636e250a3fc8cdfd9b8f0cba'; // hardcode to remove
+
+  const removeNotice = ({ noticeId }) => {
+    console.log(noticeId);
+  };
+
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <ButtonClose onClose={onClose}></ButtonClose>
+        <ModalCloseButton onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
             <ImgPet src="" alt="" width="240" height="240" />
@@ -106,6 +106,11 @@ const ModalNotice = ({ onClose, _id, favorite, owner }) => {
     </Backdrop>,
     modalRoot
   );
+};
+
+ModalNotice.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  favorite: PropTypes.bool.isRequired,
 };
 
 export default ModalNotice;
