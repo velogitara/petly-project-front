@@ -1,5 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 
 import { useState } from 'react';
 // import PropTypes from 'prop-types';
@@ -13,28 +13,36 @@ const AuthFormRegister = () => {
   const [part, setPart] = useState(1);
   const [signUp] = useSignUpMutation();
 
-  const validationSchema = yup.object().shape({
-    email: yup.string().email().required('Required'),
-    password: yup
-      .string()
-      .min(7, 'Must be 7 or more characters')
-      .max(32, 'Must be 32 or less characters')
-      // .matches(/^[\s]+$/, '')
-      .required('Required'),
-    name: yup
-      .string()
-      // .min(2, 'Must be 2 or more letter')
-      // .max(16, 'Must be 16 or less letter')
-      .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
-    location: yup.string(),
-    mobilePhone: yup.number(),
-    // .typeError("That doesn't look like a phone number")
-    // .positive("A phone number can't start with a minus")
-    // .integer("A phone number can't include a decimal point"),
-    //   .matches(
-    //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
-    //   ),
-  });
+  // const state = useSelector(state => state);
+
+  // const handleSubmit = async (values, actions) => {
+  //   await signUp(values);
+  //   actions.setSubmitting(false);
+  //   actions.resetForm();
+  // };
+
+  // const validationSchema = yup.object().shape({
+  //   email: yup.string().email().required('Required'),
+  //   password: yup
+  //     .string()
+  //     .min(7, 'Must be 7 or more characters')
+  //     .max(32, 'Must be 32 or less characters')
+  //     // .matches(/^[\s]+$/, '')
+  //     .required('Required'),
+  //   name: yup
+  //     .string()
+  //     // .min(2, 'Must be 2 or more letter')
+  //     // .max(16, 'Must be 16 or less letter')
+  //     .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
+  //   location: yup.string(),
+  //   mobilePhone: yup.number(),
+  //   // .typeError("That doesn't look like a phone number")
+  //   // .positive("A phone number can't start with a minus")
+  //   // .integer("A phone number can't include a decimal point"),
+  //   //   .matches(
+  //   //     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  //   //   ),
+  // });
   return (
     <Formik
       initialValues={{
@@ -43,17 +51,16 @@ const AuthFormRegister = () => {
         confirmPassword: '',
         name: '',
         location: '',
-        mobilePhone: '',
+        phone: '',
       }}
-      validationSchema={validationSchema}
-      onSubmit={values => {
-        // setSubmitting(false);
-        const data = values;
-        console.log(values);
-        signUp(data);
+      // validationSchema={validationSchema}
+      onSubmit={async values => {
+        const data = { ...values };
+        console.log(data);
+        await signUp(data);
       }}
     >
-      {({ values, handleChange, handleBlur, handleSubmit }) => (
+      {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
         <>
           <Form onSubmit={handleSubmit}>
             {part === 1 && (
@@ -130,9 +137,9 @@ const AuthFormRegister = () => {
                   />
                   <Input
                     styled="inputAuth"
-                    name="mobilePhone"
+                    name="phone"
                     // defaultValue={values.location}
-                    value={values.mobilePhone}
+                    value={values.phone}
                     placeholder="Mobile phone"
                     type="tel"
                     onChange={handleChange}
@@ -140,7 +147,12 @@ const AuthFormRegister = () => {
                   />
                 </InputWrapper>
                 <InputWrapper>
-                  <Button styled="formAuth on" title="Register" type="submit" />
+                  <Button
+                    styled="formAuth on"
+                    title="Register"
+                    type="submit"
+                    disabled={isSubmitting}
+                  />
                   <Button
                     styled="formAuth back"
                     title="Back"

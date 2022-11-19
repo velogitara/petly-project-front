@@ -3,6 +3,7 @@
 
 import AuthFormRegister from '../AuthRegisterForm';
 import AuthFormLogin from 'components/AuthFormLogin';
+
 // import { useState } from 'react';
 // import PropTypes from 'prop-types';
 // import Input from 'components/Input';
@@ -11,7 +12,13 @@ import AuthFormLogin from 'components/AuthFormLogin';
 // import { Form, InputWrapper } from './AuthForm.styled';
 
 const AuthForm = ({ location }) => {
-  console.log(location);
+  // const handleRegistration = async values => {
+  //   try {
+  //     await signUp(values);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   //   const [part, setPart] = useState(1);
   //   const button = location === '/login' ? 'Login' : 'Register';
   //   const ValidationSchema = Yup.object().shape({});

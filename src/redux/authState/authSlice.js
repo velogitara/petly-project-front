@@ -19,7 +19,7 @@ export const authApi = createApi({
   tagTypes: ['Auth'],
   endpoints: builder => ({
     signUp: builder.mutation({
-      query: ({ name, email, password, phone }) => ({
+      query: ({ name, email, password, phone, location }) => ({
         url: 'register',
         method: 'POST',
         body: {
@@ -27,6 +27,7 @@ export const authApi = createApi({
           email,
           password,
           phone,
+          location,
         },
       }),
       providesTags: ['Auth'],
