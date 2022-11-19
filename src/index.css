@@ -49,3 +49,18 @@ img {
   src: url(../src/assets/fonts/Poppins-Bold.ttf) format('ttf');
   font-weight: 700;
 }
+
+/* Custom scroll */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #f59356a9;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #f59256;
+  border-radius: 5px;
+}
