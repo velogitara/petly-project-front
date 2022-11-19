@@ -9,7 +9,7 @@ import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SharedLayout = lazy(() => import('components/SharedLayout'));
-const HomePage = lazy(() => import('pages/HomePage/'));
+// const HomePage = lazy(() => import('pages/HomePage/'));
 const AuthPage = lazy(() => import('pages/AuthPage/'));
 // const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
@@ -44,7 +44,7 @@ const App = () => {
               </Route>
             </Route>
             <Route path="/" element={<PublicRoutes />}>
-              <Route index element={<HomePage />} />
+              {/* <Route index element={<HomePage />} /> */}
 
               <Route path="news" element={<NewsPage />} />
               <Route path="notices/:categoryName" element={<NoticesPage />}></Route>

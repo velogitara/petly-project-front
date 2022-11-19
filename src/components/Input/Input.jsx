@@ -1,12 +1,13 @@
 import React from 'react';
 import { InputForm } from './Input.styled';
 
-const Input = ({ placeholder, styled, value, margin, type, name }) => {
+const Input = ({ placeholder, styled, value, margin, type, name, defaultValue }) => {
   return (
     <InputForm
       className={styled}
       placeholder={placeholder}
       value={value}
+      defaultValue={defaultValue}
       style={{ margin: margin }}
       type={type}
       name={name}

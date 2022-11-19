@@ -1,5 +1,5 @@
 // import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Nav from '../Nav';
 import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
@@ -15,13 +15,13 @@ const Navigation = ({ onOpen }) => {
       {/* : */}
       <UserNav />
       {/* } */}
-      <Nav onOpen={onOpen} />
+      <Nav /*onOpen={onOpen}*/ />
     </NavigationBox>
   );
 };
 
-Navigation.propTypes = {
-  onOpen: PropTypes.func.isRequired,
-};
+// Navigation.propTypes = {
+//   onOpen: PropTypes.func.isRequired,
+// };
 
 export default Navigation;
