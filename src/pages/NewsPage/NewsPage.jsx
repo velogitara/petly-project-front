@@ -25,8 +25,6 @@ const NewsPage = () => {
   //   })
   // }, [data]);
 
-
-
   function onLoadMoreBtnClick() {
     setPage((prev) => prev + 1);
   }
