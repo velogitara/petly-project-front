@@ -11,17 +11,21 @@ export const Backdrop = styled.div`
   z-index: 150;
 `;
 export const Modal = styled.div`
-  position: absolute;
+ position: absolute;
   top: 50%;
   left: 50%;
   transform: scale(1) translate(-50%, -50%);
-  width: 704px;
+  width: 280px;
   height: fit-content;
   padding-left: 20px;
   padding-top: 32px;
   padding-bottom: 32px;
   background-color: #ffffff;
-  border-radius: 40px;
+   border-radius: 40px;
+
+   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 704px;
+  }
 `;
 export const ButtonClose = styled.button`
   position: absolute;
@@ -112,7 +116,7 @@ export const Contact = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 160px;
+  width: 240px;
   height: 40px;
   background: #ffffff;
   border: 2px solid #f59256;
@@ -123,4 +127,8 @@ export const Contact = styled.div`
   background-color: #f59256;
   margin-right: 20px;
   margin-left: 12px;
+
+   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 160px;
+  }
 `;
