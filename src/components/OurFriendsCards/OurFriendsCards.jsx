@@ -17,13 +17,15 @@ const {
   NameLink,
 } = StyledComponents;
 
-const OurFriendsCards = ({ showWorkdays, sponsors }) => {
+const OurFriendsCards = ({ showWorkdays, friends }) => {
   const weekDays = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
 
   return (
     <List>
-      {sponsors.map((el, idx) => {
+      {friends.map((el, idx) => {
         const { title, url, addressUrl, imageUrl, address, workDays, phone, email } = el;
+
+        const isWorkDays = workDays && workDays.length > 0;
 
         return (
           <Card key={idx}>
@@ -38,13 +40,14 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
                 <InfoBox onClick={showWorkdays}>
                   <InfoTitle>
                     Time: <br />
-                    {workDays
+                    {isWorkDays
                       ? [workDays.find(day => day.isOpen === true)].map(time => {
                           return `${time.from}- ${time.to}`;
                         })
                       : '-----------------------------------'}
                   </InfoTitle>
-                  {workDays ? (
+
+                  {isWorkDays ? (
                     <WorkDaysList>
                       {workDays.map((item, index) => {
                         if (item.isOpen) {
@@ -62,6 +65,7 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
                     false
                   )}
                 </InfoBox>
+
                 <InfoTitle>
                   Adress: <br />
                   {address ? (
@@ -97,7 +101,7 @@ const OurFriendsCards = ({ showWorkdays, sponsors }) => {
 
 OurFriendsCards.propTypes = {
   showWorkdays: PropTypes.func.isRequired,
-  sponsors: PropTypes.arrayOf(
+  friends: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       url: PropTypes.string,
