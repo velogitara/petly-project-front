@@ -19,7 +19,7 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
 
   useEffect(() => {
     setValue(text);
-  }, []);
+  }, [text]);
 
   const onEditButtonClick = () => {
     setIsInEditMode(true);
@@ -31,7 +31,7 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
     const user = { [id]: value };
     // const formData = new FormData();
     // formData.append('data', { ...user });
-    updateUserInfo({ data: user });
+    updateUserInfo({ data: user, file: null });
   };
 
   const handleInputChange = e => {

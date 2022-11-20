@@ -23,6 +23,7 @@ export const PetContainer = styled.div`
     align-items: flex-start;
     border-radius: 40px;
     position: relative;
+    justify-content: start;
   }
 `;
 

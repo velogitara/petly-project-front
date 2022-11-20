@@ -15,7 +15,35 @@ const sizes = {
 const screens = { mobile: 'mobile', tablet: 'tablet', desktop: 'desktop' };
 
 const UserPage = () => {
-  const { user, pets, isLoading } = useGetCurrentUser();
+  const { user, isLoading } = useGetCurrentUser();
+
+  const pets = [
+    {
+      _id: '637a6769dd0464a181a70aa0',
+      name: 'Bob',
+      birthday: '2022-03-01T00:00:00.000Z',
+      breed: 'labrador',
+      imageURL: null,
+      comments: 'my lovely dog',
+      owner: '6371376655714f3cabcd9df2',
+    },
+    {
+      _id: '637a6769dd0464a181a70aa4',
+      name: 'Bob',
+      birthday: '+020010-03-05T00:00:00.000Z',
+      breed: 'labrador',
+      imageURL: {
+        mobile: 'pets/637a6769dd0464a181a70aa0-240x240.jpg',
+        mobile_retina: 'pets/637a6769dd0464a181a70aa0-240x240@2x.jpg',
+        tablet: 'pets/637a6769dd0464a181a70aa0-161x161.jpg',
+        tablet_retina: 'pets/637a6769dd0464a181a70aa0-161x161@2x.jpg',
+        profile: 'pets/637a6769dd0464a181a70aa0-288x328.jpg',
+        profile_retina: 'pets/637a6769dd0464a181a70aa0-288x328@2x.jpg',
+      },
+      comments: 'my lovely dog',
+      owner: '6371376655714f3cabcd9df2',
+    },
+  ];
 
   const updateMedia = () => {
     if (window.innerWidth >= sizes.desktop) {
