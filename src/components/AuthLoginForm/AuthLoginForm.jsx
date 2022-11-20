@@ -3,7 +3,7 @@ import { Field, Formik } from 'formik';
 
 // import PropTypes from 'prop-types';
 // import Input from 'components/Input';
-import Button from 'components/Button';
+// import Button from 'components/Button';
 
 import { Form, InputWrapper } from '../AuthForm/AuthForm.styled';
 import { useSignInMutation } from '../../redux/authState/authSlice';
@@ -11,7 +11,6 @@ import { useSignInMutation } from '../../redux/authState/authSlice';
 const AuthLoginForm = () => {
   //   const ValidationSchema = Yup.object().shape({});
   const [signIn, result] = useSignInMutation();
-  console.log(result);
 
   return (
     <Formik
@@ -22,7 +21,6 @@ const AuthLoginForm = () => {
       //   validationSchema={ValidationSchema}
       onSubmit={async values => {
         const data = { ...values };
-        console.log(data);
         await signIn(data);
       }}
     >
@@ -49,7 +47,9 @@ const AuthLoginForm = () => {
                 onBlur={handleBlur}
               />
             </InputWrapper>
-            <Button type="submit" styled="formAuth on" title="Login" disabled={result.isLoading} />
+            <button type="submit" styled="formAuth on" title="Login" disabled={result.isLoading}>
+              Login
+            </button>
           </Form>
         </>
       )}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Btn } from '../../helpers/common-styles/Button.styled';
 
-const Button = ({ title, styled, type, margin, onSubmit, onClick, disabled }) => {
+const Button = ({ title, styled, type, margin, onSubmit, onClick }) => {
   return (
     <Btn
       className={styled}
@@ -9,7 +9,6 @@ const Button = ({ title, styled, type, margin, onSubmit, onClick, disabled }) =>
       onSubmit={onSubmit}
       type={type}
       style={{ margin: margin }}
-      disabled={disabled}
     >
       {title}
     </Btn>
