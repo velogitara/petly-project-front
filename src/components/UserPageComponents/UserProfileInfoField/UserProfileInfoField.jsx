@@ -29,9 +29,10 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
   const handleFormSubmit = e => {
     e.preventDefault();
     const user = { [id]: value };
-    // const formData = new FormData();
-    // formData.append('data', { ...user });
-    updateUserInfo({ data: user, file: null });
+    const parsedData = JSON.stringify(user);
+    const fd = new FormData();
+    fd.append('data', parsedData);
+    updateUserInfo(fd);
   };
 
   const handleInputChange = e => {

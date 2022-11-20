@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
-import DeleteButton from '../../DeleteButton';
-// import { css } from '@emotion/react';
+import DeleteButton from 'components/DeleteButton';
 
 export const PetContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   padding: 20px;
   border-radius: 20px;
@@ -23,7 +22,6 @@ export const PetContainer = styled.div`
     align-items: flex-start;
     border-radius: 40px;
     position: relative;
-    justify-content: start;
   }
 `;
 
