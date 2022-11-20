@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { selectAuthToken } from 'redux/authState';
 import { useParams } from 'react-router-dom';
-
 import { constants } from 'constants/constants';
 
 import {

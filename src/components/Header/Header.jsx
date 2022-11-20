@@ -4,6 +4,7 @@ import Logo from '../Logo';
 import Navigation from '../Navigation';
 import icons from '../../assets/icons/icons.svg';
 import { HeaderBox, MenuButton } from './Header.styled';
+import AddPetView from '../AddPetView/AddPetView';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,7 @@ const Header = () => {
               <use href={`${icons}#icon-menu`}></use>
             </svg>
           </MenuButton>
+          <AddPetView />
         </HeaderBox>
       </Container>
     </header>
