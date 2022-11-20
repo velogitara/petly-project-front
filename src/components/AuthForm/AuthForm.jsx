@@ -12,21 +12,26 @@ import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
 const AuthForm = ({ location }) => {
   const [part, setPart] = useState(1);
   const [matchError, setMatchError] = useState(null);
-  const button = location === '/login' ? 'Login' : 'Register';
   const [signIn, result] = useSignInMutation();
   const [signUp, res] = useSignUpMutation();
+
+  const button = location === '/login' ? 'Login' : 'Register';
   console.log(result)
   console.log(res)
 
   const passwordRegEx = /^\S*$/;
-  const nameRegEx = /[a-zA-Z]+/;
-  const locationRegEx = /^(\w+(,)\s*)+\w+$/;
-  const phoneRegEx = /^\+\d{3}\d{2}\d{3}\d{2}\d{2}$/;
+  const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
+  const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
+  const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
 
-  const checkPassword = (values) => {
-    if (values.password !== values.confirmPassword) {
-      setMatchError('Passwords must be the same')
-    } else { setPart(2);  setMatchError(null)}
+  const checkFields = (values) => {
+    if (values.email && values.password) {
+      if (values.password !== values.confirmPassword) {
+        setMatchError('Passwords must be the same')
+      } else { setPart(2);  setMatchError(null)}     
+    } else {
+      setMatchError('All fields are required')
+    }
   }
 
   const loginSchema = yup.object().shape({
@@ -39,7 +44,7 @@ const AuthForm = ({ location }) => {
     confirmPassword: yup.string().required('Required'),
     name: yup.string().matches(nameRegEx, 'Must contain only letters, at least 2 letters, not more then 70 letters').min(2, 'Too Short!').max(70, 'Too Long!').required('Required'),
     location: yup.string().matches(locationRegEx, 'Type in format "City, State"'),
-    mobilePhone: yup.string().matches(phoneRegEx, 'Must be in format "+380991234500"'),
+    mobilePhone: yup.string().matches(phoneRegEx, 'Must be in format "+380991234500"').required('Required'),
 });
   return (
     <Formik
@@ -135,7 +140,7 @@ const AuthForm = ({ location }) => {
                 styled="formAuth back"
                 title="Next"
                 onClick={() => {
-                  checkPassword(values)
+                  checkFields(values)
                 }}
               />
             </>
