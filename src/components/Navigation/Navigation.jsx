@@ -1,27 +1,25 @@
-// import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { selectAuthToken } from 'redux/authState';
 import Nav from '../Nav';
 import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
 import { NavigationBox } from './Navigation.styled';
 
-const Navigation = ({ onOpen }) => {
-  // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+const Navigation = ({ onWidth }) => {
+  const isLogged = useSelector(selectAuthToken);
 
   return (
-    <NavigationBox className={onOpen ? 'isOpen' : ''}>
-      {/* {!isLoggedIn ?  */}
-      <AuthNav />
-      {/* : */}
-      <UserNav />
-      {/* } */}
-      <Nav /*onOpen={onOpen}*/ />
+    <NavigationBox>
+      {/* <UserNav /> <AuthNav /> */}
+      {isLogged ? <UserNav /> : <AuthNav />}
+      {onWidth >= 1280 && <Nav />}
     </NavigationBox>
   );
 };
 
-// Navigation.propTypes = {
-//   onOpen: PropTypes.func.isRequired,
-// };
+Navigation.propTypes = {
+  onWidth: PropTypes.number.isRequired,
+};
 
 export default Navigation;

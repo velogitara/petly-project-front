@@ -7,9 +7,9 @@ const useSignOut = async () => {
   try {
     await signOut().then(response => {
       if (response?.status !== 204) {
-        toast.error(response?.body?.data?.message);
+        toast.error(response.error.data.message);
       }
-      toast.success('Successfuly logged out.');
+      toast.success('Successfully logged out.');
     });
   } catch (error) {
     console.log(error);

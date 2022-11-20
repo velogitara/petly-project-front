@@ -11,7 +11,7 @@ import { useSignUpMutation } from '../../redux/authState/authSlice';
 
 const AuthFormRegister = () => {
   const [part, setPart] = useState(1);
-  const [signUp] = useSignUpMutation();
+  const [signUp, result] = useSignUpMutation();
 
   // const state = useSelector(state => state);
 
@@ -151,7 +151,7 @@ const AuthFormRegister = () => {
                     styled="formAuth on"
                     title="Register"
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={result.isLoading}
                   />
                   <Button
                     styled="formAuth back"

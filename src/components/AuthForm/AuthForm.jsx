@@ -1,8 +1,8 @@
 // import { Field, Formik } from 'formik';
 // import * as Yup from 'yup';
 
-import AuthFormRegister from '../AuthRegisterForm';
-import AuthFormLogin from 'components/AuthFormLogin';
+import AuthRegisterForm from '../AuthRegisterForm';
+import AuthLoginForm from 'components/AuthLoginForm';
 
 // import { useState } from 'react';
 // import PropTypes from 'prop-types';
@@ -25,8 +25,8 @@ const AuthForm = ({ location }) => {
 
   return (
     <>
-      {location === '/login' && <AuthFormLogin />}
-      {location === '/register' && <AuthFormRegister />}
+      {location === '/login' && <AuthLoginForm />}
+      {location === '/register' && <AuthRegisterForm />}
     </>
   );
 };

@@ -1,9 +1,8 @@
-// import PropTypes from 'prop-types';
 import { NavContainer, NavBox, LinkNav } from './Nav.styled';
 
-const Nav = ({ onOpen }) => {
+const Nav = () => {
   return (
-    <NavContainer className={onOpen ? 'isOpen' : ''}>
+    <NavContainer>
       <NavBox>
         <LinkNav to="news" className={'link'}>
           News
@@ -12,15 +11,11 @@ const Nav = ({ onOpen }) => {
           Find pet
         </LinkNav>
         <LinkNav to="friends" className={'link'}>
-          Our friend
+          Our friends
         </LinkNav>
       </NavBox>
     </NavContainer>
   );
 };
-
-// Nav.propTypes = {
-//   onOpen: PropTypes.func.isRequired,
-// };
 
 export default Nav;

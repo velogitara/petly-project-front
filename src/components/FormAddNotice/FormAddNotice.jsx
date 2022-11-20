@@ -41,7 +41,7 @@ const categories = [
 // ];
 function FormAddNotice({ onClose }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
-  const [formData, setFormData] = useState({});
+  // const [formData, setFormData] = useState({});
 
   const ValidationSchema = yup.object().shape({
     titleOfAd: yup.string().required(),
@@ -68,7 +68,7 @@ function FormAddNotice({ onClose }) {
       }}
       validationSchema={ValidationSchema}
       onSubmit={values => {
-        const preData = { ...formData, ...values };
+        const preData = { ...values };
         // preData.theSex = preData.theSex.toLowerCase();
         console.log(preData);
         // setFormData(data);

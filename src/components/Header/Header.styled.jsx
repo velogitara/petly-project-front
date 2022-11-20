@@ -20,7 +20,7 @@ export const MenuButton = styled.button`
   outline: none;
   cursor: pointer;
   z-index: 10;
-  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+  /* @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     display: none;
-  }
+  } */
 `;

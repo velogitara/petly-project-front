@@ -7,21 +7,22 @@ export const NavigationBox = styled.nav`
   line-height: 1.38;
   letter-spacing: 0.04em;
   @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
-    position: absolute;
+    /* position: fixed; */
     top: 0;
-    left: -101%;
+    /* left: -101%; */
+    left: 0;
     width: 100%;
     min-height: 100vh;
-    padding: 100px 0px;
+    padding: 25px 0px;
     text-align: center;
     overflow: auto;
     background-color: ${({ theme }) => theme.backgrounds.primary};
     transition: ${({ theme }) => theme.animations.transition};
     z-index: 9;
-    &.isOpen {
+    /* &.isOpen {
       left: 0;
       transition: ${({ theme }) => theme.animations.transition};
-    }
+    } */
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     display: inline-flex;
