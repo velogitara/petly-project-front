@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
-import { Field } from 'formik';
 
-export const InputForm = styled(Field)`
+export const InputForm = styled.input`
   display: block;
   background: ${({ theme }) => theme.backgrounds.primary};
   border: 1px solid ${({ theme }) => theme.palette.accent};
