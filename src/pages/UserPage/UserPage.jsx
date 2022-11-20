@@ -30,7 +30,7 @@ const UserPage = () => {
     {
       _id: '637a6769dd0464a181a70aa4',
       name: 'Bob',
-      birthday: '+020010-03-05T00:00:00.000Z',
+      birthday: '2022-03-01T00:00:00.000Z',
       breed: 'labrador',
       imageURL: {
         mobile: 'pets/637a6769dd0464a181a70aa0-240x240.jpg',

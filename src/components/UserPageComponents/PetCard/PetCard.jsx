@@ -6,7 +6,7 @@ import {
   PetDelete,
   PetDeleteButton,
 } from './PetCard.styled';
-import { dateHandle } from 'helpers';
+import { parseBirthday } from 'helpers';
 
 const PetCard = ({ _id, name, birthday, breed, imageURL, comments, owner }) => {
   const onPetRemove = () => {};
@@ -21,7 +21,7 @@ const PetCard = ({ _id, name, birthday, breed, imageURL, comments, owner }) => {
           <PetField className="delete">Name: {name}</PetField>
           <PetDeleteButton petId={_id} owner={owner} />
         </PetDelete>
-        <PetField>Date of birth: {birthday ? birthday : '00.00.0000'}</PetField>
+        <PetField>Date of birth: {birthday ? parseBirthday(birthday) : '00.00.0000'}</PetField>
         <PetField>Breed: {breed}</PetField>
         <PetField>Comments: {comments}</PetField>
       </PetInfo>
