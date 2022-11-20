@@ -23,7 +23,7 @@ export const userApi = createApi({
       providesTags: ['User'],
     }),
     updateUserInfo: builder.mutation({
-      query: ({ file = null, data = '' }) => ({
+      query: ({ file = null, data = {} }) => ({
         url: `/updateUserInfo`,
         method: 'PATCH',
         file: file,
@@ -33,6 +33,16 @@ export const userApi = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    // updateUserInfo: builder.mutation({
+    //   query: data => ({
+    //     url: `/updateUserInfo`,
+    //     method: 'PATCH',
+    //     body: {
+    //       data,
+    //     },
+    //   }),
+    //   invalidatesTags: ['User'],
+    // }),
     addPet: builder.mutation({
       query: ({ file = null, data }) => ({
         url: `/addPet`,

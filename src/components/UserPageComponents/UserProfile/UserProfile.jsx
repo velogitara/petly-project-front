@@ -10,8 +10,8 @@ const UserProfile = ({ user }) => {
 
   const { name, email, birthday, phone, location } = user;
 
-  const onFieldEddited = () => {
-    setIsEditing(true);
+  const onFieldEddited = value => {
+    setIsEditing(value);
   };
 
   return (

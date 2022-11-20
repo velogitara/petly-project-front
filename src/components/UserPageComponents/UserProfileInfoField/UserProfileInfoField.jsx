@@ -23,17 +23,24 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
 
   const onEditButtonClick = () => {
     setIsInEditMode(true);
-    onFieldEddited();
+    onFieldEddited(true);
   };
 
   const handleFormSubmit = e => {
     e.preventDefault();
     const user = { [id]: value };
     const parsedData = JSON.stringify(user);
+
+    updateUserInfo({ data: parsedData });
+
+    onFieldEddited(false);
+    setIsInEditMode(false);
+
+    // const parsedData = JSON.stringify(user);
     // const fd = new FormData();
     // fd.append('data', parsedData);
 
-    updateUserInfo({ data: parsedData });
+    // updateUserInfo(fd);
   };
 
   const handleInputChange = e => {

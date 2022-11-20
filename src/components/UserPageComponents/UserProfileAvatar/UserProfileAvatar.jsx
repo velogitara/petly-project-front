@@ -15,13 +15,11 @@ const UserProfileAvatar = ({ isEditing, onFieldEddited }) => {
   const handleInputChange = e => {
     e.preventDefault();
     const file = e.target.files[0];
-    console.log(file);
-
-    // const user = { [id]: value };
-    // // const formData = new FormData();
-    // // formData.append('data', { ...user });
-    // const parsedData = JSON.stringify(user);
     updateUserInfo({ file });
+    // const file = e.target.files[0];
+    // const fd = new FormData();
+    // fd.append('image', file);
+    // updateUserInfo(fd);
   };
 
   return (
