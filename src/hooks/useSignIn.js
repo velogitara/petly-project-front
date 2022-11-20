@@ -7,7 +7,7 @@ const useSignIn = async ({ email, password }) => {
   try {
     await signIn({ email, password }).then(response => {
       if (response?.status !== 200) {
-        toast.error(response?.body?.data?.message);
+        toast.error(response.error.data.message);
       }
       toast.success('Successfuly logged in.');
     });

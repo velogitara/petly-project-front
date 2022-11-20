@@ -39,7 +39,7 @@ export const CloseButton = styled.button`
   width: 20px;
   height: 20px;
   margin-left: auto;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 
   color: ${({ theme }) => theme.palette.triadic};
   background: transparent;

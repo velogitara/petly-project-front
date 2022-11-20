@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
 
-export const DelButton = styled.button`
+export const DelButtonContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const DelButton = styled.button`
   padding: 0;
   display: flex;
   justify-content: center;

@@ -1,14 +1,17 @@
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
-// import { useSelector } from 'react-redux';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
-import { Container } from 'helpers';
+import TitlePage from 'components/TitlePage';
+import InputSearch from 'components/InputSearch';
+import { NoticesContainer } from './NoticesPage.styled';
 
 const NoticesPage = () => {
   return (
-    <Container>
+    <NoticesContainer>
+      <TitlePage title="Find your favorite pet"></TitlePage>
+      <InputSearch />
       <NoticesCategoriesNav />
       <NoticesCategoriesList />
-    </Container>
+    </NoticesContainer>
   );
 };
 

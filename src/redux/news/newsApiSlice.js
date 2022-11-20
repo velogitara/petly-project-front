@@ -19,12 +19,13 @@ export const newsApi = createApi({
   tagTypes: ['News'],
   endpoints: builder => ({
     listNews: builder.query({
-      query: ({ page = 1, limit = 6 }) => ({
-        url: `/?page=${page}&limit=${limit}`,
+      query: ({ page = 1, limit = 6, query = '' }) => ({
+        url: `/?page=${page}&limit=${limit}&query=${query}`,
         method: 'GET',
       }),
       providesTags: ['News'],
       invalidatesTags: ['News'],
+      transformResponse: (res) => res.data
     }),
     addNews: builder.mutation({
       query: payload => ({
@@ -36,4 +37,4 @@ export const newsApi = createApi({
   }),
 });
 
-export const { useListNewsQuery, useAddNewsMutation } = newsApi;
+export const { useListNewsQuery } = newsApi;

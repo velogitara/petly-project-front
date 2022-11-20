@@ -1,5 +1,5 @@
-const ownerCheck = ({ userId, noticeOwner }) => {
-  return userId === noticeOwner;
+const ownerCheck = ({ userId, owner }) => {
+  return userId === owner;
 };
 
 export { ownerCheck };

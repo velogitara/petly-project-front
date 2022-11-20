@@ -19,7 +19,7 @@ export const authApi = createApi({
   tagTypes: ['Auth'],
   endpoints: builder => ({
     signUp: builder.mutation({
-      query: ({ name, email, password, phone }) => ({
+      query: ({ name, email, password, phone, location }) => ({
         url: 'register',
         method: 'POST',
         body: {
@@ -27,6 +27,7 @@ export const authApi = createApi({
           email,
           password,
           phone,
+          location,
         },
       }),
       providesTags: ['Auth'],
@@ -45,11 +46,19 @@ export const authApi = createApi({
     signOut: builder.mutation({
       query: () => ({
         url: 'logout',
-        method: 'POST',
+        method: 'GET',
+      }),
+      invalidatesTags: ['Auth'],
+    }),
+    getCurrentUser: builder.query({
+      query: () => ({
+        url: 'current',
+        method: 'GET',
       }),
       invalidatesTags: ['Auth'],
     }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useSignOutMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useSignOutMutation, useGetCurrentUserQuery } =
+  authApi;
