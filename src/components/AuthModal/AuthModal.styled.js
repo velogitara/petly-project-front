@@ -7,6 +7,7 @@ export const Auth = styled.div`
   justify-content: center;
   align-items: center;
   row-gap: 40px;
+  perspective: 100px;
   transition: all 400ms linear;
   &:hover{
     transform: scale(1.01);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AuthForm from 'components/AuthForm';
+import AuthForm from '../AuthForm'
 
 import { Auth, Title, Message, AuthLink } from './AuthModal.styled';
 
@@ -17,7 +17,7 @@ const AuthModal = ({ location }) => {
   return (
     <Auth>
       <Title>{content.title}</Title>
-      <AuthForm location={location} />
+      <AuthForm location={location}/>
       <Message>
         {content.mes}
         <AuthLink to={content.linkTo}>{content.link}</AuthLink>
