@@ -3,6 +3,7 @@ import UserHeader from 'components/UserPageComponents/UserHeader';
 import PetGallery from 'components/UserPageComponents/PetGallery';
 import AddPet from 'components/UserPageComponents/AddPet';
 import { HeaderContainer, UserContainer, PetsContainer, Container } from './UserPage.styled';
+import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
 
 const sizes = {
@@ -14,6 +15,8 @@ const sizes = {
 const screens = { mobile: 'mobile', tablet: 'tablet', desktop: 'desktop' };
 
 const UserPage = () => {
+  const { user, pets, isLoading } = useGetCurrentUser();
+
   const updateMedia = () => {
     if (window.innerWidth >= sizes.desktop) {
       return screens.desktop;
@@ -36,30 +39,36 @@ const UserPage = () => {
   });
 
   return (
-    <Container>
-      <UserContainer>
-        {screen === screens.tablet ? (
-          <HeaderContainer>
-            <UserHeader text="My information:" className="user" />
-            <AddPet />
-          </HeaderContainer>
-        ) : (
-          <UserHeader text="My information:" className="user information" />
-        )}
-        <UserProfile />
-      </UserContainer>
-      <PetsContainer>
-        {screen !== screens.tablet ? (
-          <HeaderContainer>
-            <UserHeader text="My pets:" />
-            <AddPet />
-          </HeaderContainer>
-        ) : (
-          <UserHeader text="My pets:" className="pets" />
-        )}
-        <PetGallery screen={screen} />
-      </PetsContainer>
-    </Container>
+    <>
+      {isLoading ? (
+        'loading...'
+      ) : (
+        <Container>
+          <UserContainer>
+            {screen === screens.tablet ? (
+              <HeaderContainer>
+                <UserHeader text="My information:" className="user" />
+                <AddPet />
+              </HeaderContainer>
+            ) : (
+              <UserHeader text="My information:" className="user information" />
+            )}
+            <UserProfile user={user} />
+          </UserContainer>
+          <PetsContainer>
+            {screen !== screens.tablet ? (
+              <HeaderContainer>
+                <UserHeader text="My pets:" />
+                <AddPet />
+              </HeaderContainer>
+            ) : (
+              <UserHeader text="My pets:" className="pets" />
+            )}
+            <PetGallery pets={pets} />
+          </PetsContainer>
+        </Container>
+      )}
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import { /*LogoutLink,*/ SvgIcon, LogoutText } from './UserLogout.styled';
+import { LogoutButton, SvgIcon, LogoutText } from './UserLogout.styled';
 import icons from '../../../assets/icons/icons.svg';
 import { useSelector } from 'react-redux';
 import { selectAuthId } from 'redux/authState';
@@ -11,12 +11,12 @@ const UserCard = () => {
   const [logout] = useSignOutMutation(authId);
 
   return (
-    <button type="button" onClick={logout}>
+    <LogoutButton type="button" onClick={logout}>
       <SvgIcon>
         <use href={`${icons}#icon-logout`}></use>
       </SvgIcon>
       <LogoutText>Log Out</LogoutText>
-    </button>
+    </LogoutButton>
   );
 };
 

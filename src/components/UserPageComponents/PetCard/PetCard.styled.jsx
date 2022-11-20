@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import DeleteButton from 'components/DeleteButton';
+import DeleteButton from '../../DeleteButton';
 // import { css } from '@emotion/react';
 
 export const PetContainer = styled.div`

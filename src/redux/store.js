@@ -5,6 +5,7 @@ import { newsApi } from './news';
 import { friendsApi } from './friends';
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { persistedAuthReducer } from './authState';
+import { userApi } from './user';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     [noticesApi.reducerPath]: noticesApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [friendsApi.reducerPath]: friendsApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
@@ -24,6 +26,7 @@ export const store = configureStore({
     noticesApi.middleware,
     newsApi.middleware,
     friendsApi.middleware,
+    userApi.middleware,
   ],
 });
 
