@@ -80,17 +80,22 @@ export const InfoDescriptionItem = styled.li`
 `;
 
 export const InfoTitle = styled.h3`
+  margin-bottom: 20px;
+
   font-size: 28px;
   font-weight: 700;
   line-height: 1.357;
   letter-spacing: -0.01em;
-  margin-bottom: 20px;
+
+  color: ${({ theme }) => theme.palette.primary};
 `;
 
 export const InfoText = styled.p`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.375;
+
+  color: ${({ theme }) => theme.palette.primary};
 
   &:first-of-type {
     min-width: 90px;

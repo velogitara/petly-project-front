@@ -47,6 +47,11 @@ export const Link = styled(NavLink)`
 
   transition: ${({ theme }) => theme.animations.transition};
 
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
   &:not(:last-child) {
     margin-right: 12px;
   }

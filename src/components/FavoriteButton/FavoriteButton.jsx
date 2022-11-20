@@ -6,11 +6,11 @@ import { useUpdateFavoritesMutation } from 'redux/notices';
 import { toast } from 'react-toastify';
 import PopUp from 'components/PopUp';
 import { constants } from 'constants/constants';
-import { FavButtonContainer, FavButton, FavIcon } from './FavoriteButton.styled';
+import { FavButtonContainer, FavButton, FavIcon, FavLabel } from './FavoriteButton.styled';
 
 const { icons } = constants;
 
-const FavoriteButton = ({ noticeId, favorite }) => {
+const FavoriteButton = ({ noticeId, favorite, modal, label }) => {
   const [favoriteState, setFavoriteState] = useState(favorite);
   const [showNotLogged, setShowNotLogged] = useState(false);
   const [updateFavorites] = useUpdateFavoritesMutation();
@@ -38,14 +38,16 @@ const FavoriteButton = ({ noticeId, favorite }) => {
   };
 
   return (
-    <FavButtonContainer>
+    <FavButtonContainer modal={modal}>
       <FavButton
+        modal={modal}
         favorite={favoriteState}
         type="button"
         title={`${favoriteState ? 'Remove from' : 'Add to'} favorites`}
         onClick={toggleFavorite}
       >
-        <FavIcon aria-label="In Favorites">
+        {label && <FavLabel>{favoriteState ? 'Remove from' : 'Add to'}</FavLabel>}
+        <FavIcon modal={modal} aria-label="In Favorites">
           <use href={`${icons}#icon-heart-outlined`} />
         </FavIcon>
       </FavButton>
@@ -57,6 +59,8 @@ const FavoriteButton = ({ noticeId, favorite }) => {
 FavoriteButton.propTypes = {
   noticeId: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
+  modal: PropTypes.bool,
+  label: PropTypes.bool,
 };
 
 export default FavoriteButton;

@@ -7,9 +7,9 @@ export const LearnButton = styled.button`
   padding: 8px 79px;
   margin-top: auto;
 
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.366;
   text-transform: capitalize;
 
   background-color: ${({ theme }) => theme.palette.triadic};

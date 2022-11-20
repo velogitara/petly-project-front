@@ -21,6 +21,8 @@ const {
   categories: { publicCategories },
 } = constants;
 
+const imageDummy = '';
+
 const NoticeCategoryItem = ({
   _id,
   imageURL,
@@ -36,8 +38,6 @@ const NoticeCategoryItem = ({
   const categoryName = publicCategories.find(([item]) => item === category)[1];
 
   const age = ageHandle(birthday);
-
-  const imageDummy = '';
 
   return (
     <ItemContainer>
@@ -99,7 +99,7 @@ const NoticeCategoryItem = ({
           )}
         </InfoDescription>
       </Info>
-      <LearnMoreButton noticeId={_id}>{/* <ModalNotice /> */}</LearnMoreButton>
+      <LearnMoreButton noticeId={_id} favorite={favorite} owner={owner} category={categoryName} />
     </ItemContainer>
   );
 };
