@@ -16,6 +16,7 @@ const AuthForm = ({ location }) => {
   const [signIn, result] = useSignInMutation();
   const [signUp, res] = useSignUpMutation();
   console.log(result)
+  console.log(res)
 
   const passwordRegEx = /^\S*$/;
   const nameRegEx = /[a-zA-Z]+/;
@@ -51,11 +52,12 @@ const AuthForm = ({ location }) => {
         mobilePhone: '',
       }}
       validationSchema={location === '/login' ? loginSchema : registerSchema}
-      onSubmit={async values => {
+      onSubmit={async ({ email, password, name, location, mobilePhone: phone }) => {
+        const fields = { email, password, name, location, phone }
         let data = {}
-        for (const key in values){
-          if (values[key] !== '') {
-            data[key] = values[key]
+        for (const key in fields){
+          if (fields[key] !== '') {
+            data[key] = fields[key]
           }
         }
         console.log(data);
