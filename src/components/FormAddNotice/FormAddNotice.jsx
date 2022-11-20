@@ -41,7 +41,7 @@ const categories = [
 // ];
 function FormAddNotice({ onClose }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
-  const [formData, setFormData] = useState({});
+  // const [formData, setFormData] = useState({});
 
   const ValidationSchema = yup.object().shape({
     titleOfAd: yup.string().required(),
@@ -60,7 +60,7 @@ function FormAddNotice({ onClose }) {
         dateOfBirth: '',
         breed: '',
         category: '',
-        theSex: '',
+        theSex: ''.toLowerCase(),
         location: '',
         image: null,
         price: '',
@@ -68,9 +68,10 @@ function FormAddNotice({ onClose }) {
       }}
       validationSchema={ValidationSchema}
       onSubmit={values => {
-        const data = { ...formData, ...values };
-        console.log(data);
-        setFormData(data);
+        const preData = { ...values };
+        // preData.theSex = preData.theSex.toLowerCase();
+        console.log(preData);
+        // setFormData(data);
         onClose();
       }}
     >
@@ -180,7 +181,7 @@ function FormAddNotice({ onClose }) {
               </Label>
               <GenderBox role="group" aria-labelledby="my-radio-group">
                 <LabelIcon className={values.theSex === 'Male' ? 'active' : ''}>
-                  <Field className={style.radio} type="radio" name="theSex" value="Male" />
+                  <Field className={style.radio} type="radio" name="theSex" value="male" />
                   <IconBox>
                     <IconMale>
                       <use href={icons + '#icon-sex-male'} />
@@ -189,7 +190,7 @@ function FormAddNotice({ onClose }) {
                   <span> Male</span>
                 </LabelIcon>
                 <LabelIcon className={values.theSex === 'Female' ? 'active' : ''}>
-                  <Field className={style.radio} type="radio" name="theSex" value="Female" />
+                  <Field className={style.radio} type="radio" name="theSex" value="female" />
                   <IconBox>
                     <IconFemale>
                       <use className="box" href={icons + '#icon-sex-female'} />

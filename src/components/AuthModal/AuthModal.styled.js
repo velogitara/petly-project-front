@@ -7,6 +7,10 @@ export const Auth = styled.div`
   justify-content: center;
   align-items: center;
   row-gap: 40px;
+  transition: all 400ms linear;
+  &:hover{
+    transform: scale(1.01);
+  }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     padding: 60px 75px 40px;
     background-color: ${({ theme }) => theme.backgrounds.secondary};

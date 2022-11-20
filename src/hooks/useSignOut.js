@@ -9,7 +9,7 @@ const useSignOut = async () => {
       if (response?.status !== 204) {
         toast.error(response.error.data.message);
       }
-      toast.success('Successfuly logged out.');
+      toast.success('Successfully logged out.');
     });
   } catch (error) {
     console.log(error);

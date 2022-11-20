@@ -3,7 +3,7 @@ import { AuthNavBox, AuthLink } from './AuthNav.styled';
 
 const AuthNav = () => {
   const location = useLocation();
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   return (
     <AuthNavBox>
