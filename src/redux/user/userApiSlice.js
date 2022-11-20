@@ -23,11 +23,13 @@ export const userApi = createApi({
       providesTags: ['User'],
     }),
     updateUserInfo: builder.mutation({
-      query: fd => ({
+      query: ({ file = null, data = '' }) => ({
         url: `/updateUserInfo`,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         method: 'PATCH',
-        fd,
+        file: file,
+        body: {
+          data,
+        },
       }),
       invalidatesTags: ['User'],
     }),

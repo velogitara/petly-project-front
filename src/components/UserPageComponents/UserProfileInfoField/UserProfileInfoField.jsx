@@ -30,9 +30,10 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
     e.preventDefault();
     const user = { [id]: value };
     const parsedData = JSON.stringify(user);
-    const fd = new FormData();
-    fd.append('data', parsedData);
-    updateUserInfo(fd);
+    // const fd = new FormData();
+    // fd.append('data', parsedData);
+
+    updateUserInfo({ data: parsedData });
   };
 
   const handleInputChange = e => {
