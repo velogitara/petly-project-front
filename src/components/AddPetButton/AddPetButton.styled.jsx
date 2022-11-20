@@ -5,6 +5,7 @@ export const AddButtonContainer = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  align-self: flex-start;
 
   z-index: 1;
 

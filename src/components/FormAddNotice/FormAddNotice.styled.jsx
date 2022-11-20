@@ -2,45 +2,12 @@ import styled from '@emotion/styled';
 
 export const Form = styled.form`
   font-family: ${({ theme }) => theme.fonts.primary};
+  font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.palette.primary};
 `;
-export const Input = styled.input`
-  background: ${({ theme }) => theme.backgrounds.primary};
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  // ${({ theme }) => theme.palette.accent};
-  border-radius: 40px;
-  line-height: 1.4;
-  outline: none;
-  padding: 11px 14px;
-  width: 100%;
-  font-size: 14px;
-
-  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    padding: 11px 16px;
-    width: 100%;
-    font-size: 16px;
-
-    &.comment {
-      padding: 16px 0px 70px 18px;
-      margin: 0;
-      // height: 113px;
-    }
-  }
-  &::placeholder {
-    font-size: 14px;
-    line-height: 1.35;
-
-    color: rgba(27, 27, 27, 0.6);
-
-    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-      font-size: 16px;
-      line-height: 1.63;
-    }
-  }
-`;
 export const Button = styled.button`
-  font-family: ${({ theme }) => theme.fonts.primary};
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.4;
   color: ${({ theme }) => theme.palette.primary};
@@ -51,7 +18,6 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  // padding: 6.8px 0;
 
   border: 2px solid transparent;
   border-radius: 40px;
@@ -90,7 +56,8 @@ export const Button = styled.button`
 `;
 
 export const Text = styled.p`
-  font-size: 16px;
+  // font-size: 16px;
+  letter-spacing: -0.01em;
   line-height: 1.38;
   text-align: center;
 
@@ -163,6 +130,8 @@ export const Radio = styled.input`
 
 export const LabelRadio = styled.label`
   font-size: 14px;
+  letter-spacing: 0.04em;
+  line-height: 1.36;
   display: inline-block;
   border-radius: 40px;
   outline: 2px solid ${({ theme }) => theme.palette.accent};
@@ -260,14 +229,11 @@ export const IconFemale = styled.svg`
 
 export const CategoryItem = styled.li`
   display: inline-block;
-  margin: 0 0 12px 0;
-
   &:nth-of-type(1) {
     margin: 0 8px 12px 0;
   }
-
-  &:nth-of-type(4) {
-    margin-bottom: 0;
+  &:nth-of-type(3) {
+    margin-right: 8px;
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin: 0;
@@ -279,4 +245,44 @@ export const CategoryItem = styled.li`
       margin-bottom: 16px;
     }
   }
+`;
+export const Textarea = styled.input`
+  background: ${({ theme }) => theme.backgrounds.primary};
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  // ${({ theme }) => theme.palette.accent};
+  border-radius: 40px;
+  line-height: 1.35;
+  outline: none;
+  padding: 11px 14px;
+  width: 100%;
+  font-size: 14px;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    padding: 16px 0px 70px 18px;
+    width: 448px;
+    font-size: 18px;
+    margin: 0;
+  }
+  &::placeholder {
+    font-size: 14px;
+    line-height: 1.35;
+
+    color: rgba(27, 27, 27, 0.6);
+
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+      font-size: 16px;
+      line-height: 1.63;
+    }
+  }
+`;
+
+export const BoxFlex = styled.div`
+  display: flex;
+`;
+
+export const ErrorMessageInput = styled.div`
+  color: ${({ theme }) => theme.palette.accent};
+  margin-top: 8px;
+  text-align: center;
+  font-size: 16px;
 `;

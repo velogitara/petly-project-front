@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { cloneElement } from 'react';
 import { useState } from 'react';
 import { LearnButton } from './LearnMoreButton.styled';
+import ModalNotice from 'components/ModalNotice';
 
-const LearnMoreButton = ({ noticeId, children }) => {
+const LearnMoreButton = ({ noticeId, favorite, owner, category }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -12,13 +12,13 @@ const LearnMoreButton = ({ noticeId, children }) => {
         learn more
       </LearnButton>
       {showModal && (
-        <>
-          {children ? (
-            cloneElement(children, { onClose: () => setShowModal(false) })
-          ) : (
-            <p>{noticeId}</p>
-          )}
-        </>
+        <ModalNotice
+          noticeId={noticeId}
+          favorite={favorite}
+          owner={owner}
+          onClose={() => setShowModal(false)}
+          category={category}
+        />
       )}
     </>
   );
@@ -26,7 +26,9 @@ const LearnMoreButton = ({ noticeId, children }) => {
 
 LearnMoreButton.propTypes = {
   noticeId: PropTypes.string.isRequired,
-  children: PropTypes.node,
+  favorite: PropTypes.bool.isRequired,
+  owner: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default LearnMoreButton;
