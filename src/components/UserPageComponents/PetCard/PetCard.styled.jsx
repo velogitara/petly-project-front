@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import DeleteButton from 'components/DeleteButton';
-import { css } from '@emotion/react';
+// import { css } from '@emotion/react';
 
 export const PetContainer = styled.div`
   display: flex;
