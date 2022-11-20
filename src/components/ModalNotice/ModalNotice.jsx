@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useGetNoticeById } from 'hooks';
-import { dateHandle, imageURLBuilder } from 'helpers';
+import { imageURLBuilder } from 'helpers';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
@@ -11,17 +11,18 @@ import {
   Modal,
   ModalInfo,
   ModalInfoImg,
+  PicturePet,
   ImgPet,
   ImgLabel,
   InfoPet,
   InfoPetTitle,
   InfoPetList,
   InfoPetItem,
-  InfoPetSpan,
+  InfoPetText,
   Comments,
   CommentsSpan,
   BtnContainer,
-  AddToFaforite,
+  DeleteBtnContainer,
   Contact,
 } from './ModalNotice.styled';
 
@@ -30,8 +31,6 @@ const imageDummy = '';
 
 const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
   const notice = useGetNoticeById({ noticeId });
-
-  const birthDate = notice?.birthday ? new Date(dateHandle(notice?.birthday, 'parse')) : null;
 
   useEffect(() => {
     const handleEscKeyDown = e => {
@@ -52,72 +51,102 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
     }
   };
 
+  if (!notice) {
+    return <p>Loading...</p>;
+  }
+
+  const {
+    name,
+    imageURL,
+    title,
+    birthday,
+    breed,
+    location,
+    sex,
+    comments,
+    price,
+    owner: { email, phone },
+  } = notice;
+
+  const parseBirthday = () => {
+    if (!birthday) {
+      return null;
+    }
+
+    const [year, month, day] = birthday.slice(0, 10).split('-');
+    return `${day}.${month}.${year}`;
+  };
+
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
+        <DeleteBtnContainer>
+          <DeleteButton translucent noticeId={noticeId} owner={owner} />
+        </DeleteBtnContainer>
         <ModalCloseButton onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
-            <ImgPet>
+            <PicturePet>
               <source
-                srcSet={`${
-                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profileMobile) : ''
-                } 240w, ${
-                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profileMobileRetina) : ''
+                srcSet={`${imageURL ? imageURLBuilder(imageURL?.profileMobile) : ''} 240w, ${
+                  imageURL ? imageURLBuilder(imageURL?.profileMobileRetina) : ''
                 } 480w`}
                 media="(max-width: 767px)"
                 sizes="240px"
               />
               <source
-                srcSet={`${
-                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profile) : ''
-                } 288w, ${
-                  notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profileRetina) : ''
+                srcSet={`${imageURL ? imageURLBuilder(imageURL?.profile) : ''} 288w, ${
+                  imageURL ? imageURLBuilder(imageURL?.profileRetina) : ''
                 } 576w`}
                 media="(min-width: 768px)"
                 sizes="288px"
               />
-              <img
-                src={notice?.imageURL ? imageURLBuilder(notice?.imageURL?.profile) : imageDummy}
+              <ImgPet
+                src={imageURL ? imageURLBuilder(imageURL?.profile) : imageDummy}
                 loading="lazy"
                 alt={notice?.title}
               />
-            </ImgPet>
+            </PicturePet>
             <ImgLabel>{category}</ImgLabel>
           </ModalInfoImg>
 
           <InfoPet>
-            <InfoPetTitle>{notice?.title}</InfoPetTitle>
+            <InfoPetTitle>{title}</InfoPetTitle>
             <InfoPetList>
               <InfoPetItem>
-                Name: <InfoPetSpan>{notice?.name}</InfoPetSpan>
+                <InfoPetText>Name: </InfoPetText>
+                <InfoPetText>{name}</InfoPetText>
               </InfoPetItem>
-              {birthDate && (
+              {birthday && (
                 <InfoPetItem>
-                  Birthday:{' '}
-                  <InfoPetSpan>{`${birthDate.getDay()}.${
-                    birthDate.getMonth() + 1
-                  }.${birthDate.getFullYear()}`}</InfoPetSpan>
+                  <InfoPetText>Birthday: </InfoPetText>
+                  <InfoPetText>{parseBirthday(birthday)}</InfoPetText>
                 </InfoPetItem>
               )}
               <InfoPetItem>
-                Breed: <InfoPetSpan>{notice?.breed}</InfoPetSpan>
+                <InfoPetText>Breed: </InfoPetText>
+                <InfoPetText>{breed}</InfoPetText>
               </InfoPetItem>
               <InfoPetItem>
-                Place: <InfoPetSpan>{notice?.location}</InfoPetSpan>
+                <InfoPetText>Place: </InfoPetText>
+                <InfoPetText>{location}</InfoPetText>
               </InfoPetItem>
               <InfoPetItem>
-                The sex: <InfoPetSpan>{notice?.sex}</InfoPetSpan>
+                <InfoPetText>The sex: </InfoPetText>
+                <InfoPetText>{sex}</InfoPetText>
               </InfoPetItem>
               <InfoPetItem>
-                Email: <InfoPetSpan>Rich</InfoPetSpan>
+                <InfoPetText>Email: </InfoPetText>
+                <InfoPetText>{email}</InfoPetText>
               </InfoPetItem>
               <InfoPetItem>
-                Phone: <InfoPetSpan>Rich</InfoPetSpan>
+                <InfoPetText>Phone: </InfoPetText>
+                <InfoPetText>{phone}</InfoPetText>
               </InfoPetItem>
-              {notice?.category === 'sell' && (
+              {category === 'sell' && (
                 <InfoPetItem>
-                  Sell: <InfoPetSpan>{notice?.price}$</InfoPetSpan>
+                  <InfoPetText>Sell: </InfoPetText>
+                  <InfoPetText>{price}$</InfoPetText>
                 </InfoPetItem>
               )}
             </InfoPetList>
@@ -125,15 +154,11 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
         </ModalInfo>
         <Comments>
           <CommentsSpan>Comments: </CommentsSpan>
-          {notice?.comments}
+          {comments}
         </Comments>
         <BtnContainer>
-          <FavoriteButton favorite={favorite} noticeId={noticeId} />
-
-          <DeleteButton translucent noticeId={noticeId} owner={owner} />
-
-          <AddToFaforite>Add to</AddToFaforite>
-          <Contact href="tel:123456789">Contact</Contact>
+          <FavoriteButton favorite={favorite} noticeId={noticeId} modal label />
+          <Contact href={`tel:${phone}`}>Contact</Contact>
         </BtnContainer>
       </Modal>
     </Backdrop>,
