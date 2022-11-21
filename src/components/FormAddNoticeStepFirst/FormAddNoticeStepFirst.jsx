@@ -106,8 +106,8 @@ const FormAddNoticeStepFirst = ({
           <DatePickerField
             className={style.datepicker}
             onChange={setFieldValue}
-            name="birthdate"
-            value={values.birthdate}
+            name="birthday"
+            value={values.birthday}
           />
         </Label>
       </InputBox>

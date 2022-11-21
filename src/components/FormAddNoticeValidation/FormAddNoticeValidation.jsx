@@ -12,7 +12,7 @@ const ValidationSchema = Yup.object().shape({
     .min(2, 'Must be 2 or more letter')
     .max(16, 'Must be 16 or less letter')
     .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
-  birthdate: Yup.date().nullable(),
+  birthday: Yup.date().nullable(),
   breed: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(24, 'Must be 24 or less letter')
