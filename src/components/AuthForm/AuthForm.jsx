@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
-import { useSignInMutation } from '../../redux/authState/authSlice';
-import { useSignUpMutation } from '../../redux/authState/authSlice';
+import { useSignInMutation, useSignUpMutation } from '../../redux/authState/authSlice';
 
 import Button from 'components/Button';
 import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
@@ -12,40 +11,61 @@ import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
 const AuthForm = ({ url }) => {
   const [part, setPart] = useState(1);
   const [matchError, setMatchError] = useState(null);
-  const [signIn, result] = useSignInMutation();
-  const [signUp, res] = useSignUpMutation();
+  const [signIn /*result*/] = useSignInMutation();
+  const [signUp /*res*/] = useSignUpMutation();
 
   const button = url === '/login' ? 'Login' : 'Register';
-  console.log(result)
-  console.log(res)
+  // console.log(result);
+  // console.log(res);
 
   const passwordRegEx = /^\S*$/;
   const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
   const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
   const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
 
-  const checkFields = (values) => {
+  const checkFields = values => {
     if (values.email && values.password) {
       if (values.password !== values.confirmPassword) {
-        setMatchError('Passwords must be the same')
-      } else { setPart(2);  setMatchError(null)}     
+        setMatchError('Passwords must be the same');
+      } else {
+        setPart(2);
+        setMatchError(null);
+      }
     } else {
-      setMatchError('All fields are required')
+      setMatchError('All fields are required');
     }
-  }
+  };
 
   const loginSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Required'),
-    password: yup.string().matches(passwordRegEx, 'Password must contain letters or digits, without spaces').min(7, 'Must contain at least 7 symbols').max(70, 'Must contain at max 32 symbols!').required('Required'),
-});
+    password: yup
+      .string()
+      .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
+      .min(7, 'Must contain at least 7 symbols')
+      .max(70, 'Must contain at max 32 symbols!')
+      .required('Required'),
+  });
   const registerSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Required'),
-    password: yup.string().matches(passwordRegEx, 'Password must contain letters or digits, without spaces').min(7, 'Must contain at least 7 symbols').max(70, 'Must contain at max 32 symbols!').required('Required'),
+    password: yup
+      .string()
+      .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
+      .min(7, 'Must contain at least 7 symbols')
+      .max(70, 'Must contain at max 32 symbols!')
+      .required('Required'),
     confirmPassword: yup.string().required('Required'),
-    name: yup.string().matches(nameRegEx, 'Must contain only letters, at least 2 letters, not more then 70 letters').min(2, 'Too Short!').max(70, 'Too Long!').required('Required'),
+    name: yup
+      .string()
+      .matches(nameRegEx, 'Must contain only letters, at least 2 letters, not more then 70 letters')
+      .min(2, 'Too Short!')
+      .max(70, 'Too Long!')
+      .required('Required'),
     location: yup.string().matches(locationRegEx, 'Type in format "City, State"'),
-    mobilePhone: yup.string().matches(phoneRegEx, 'Must be in format "+380991234500"').required('Required'),
-});
+    mobilePhone: yup
+      .string()
+      .matches(phoneRegEx, 'Must be in format "+380991234500"')
+      .required('Required'),
+  });
   return (
     <Formik
       initialValues={{
@@ -58,19 +78,18 @@ const AuthForm = ({ url }) => {
       }}
       validationSchema={url === '/login' ? loginSchema : registerSchema}
       onSubmit={async ({ email, password, name, location, mobilePhone: phone }) => {
-        const fields = { email, password, name, location, phone }
-        let data = {}
-        for (const key in fields){
+        const fields = { email, password, name, location, phone };
+        let data = {};
+        for (const key in fields) {
           if (fields[key] !== '') {
-            data[key] = fields[key]
+            data[key] = fields[key];
           }
         }
-        console.log(data);
-        url === '/login'? await signIn(data): await signUp(data); 
-}}
+        // console.log(data);
+        url === '/login' ? await signIn(data) : await signUp(data);
+      }}
     >
-     {({ values, handleChange, handleBlur, handleSubmit }) => (
-
+      {({ values, handleChange, handleBlur, handleSubmit }) => (
         <StyledForm onSubmit={handleSubmit}>
           {url === '/login' && (
             <>
@@ -103,7 +122,6 @@ const AuthForm = ({ url }) => {
             <>
               <InputWrapper>
                 <InputForm
-
                   styled="inputAuth"
                   name="email"
                   value={values.email}
@@ -140,7 +158,7 @@ const AuthForm = ({ url }) => {
                 styled="formAuth back"
                 title="Next"
                 onClick={() => {
-                  checkFields(values)
+                  checkFields(values);
                 }}
               />
             </>
