@@ -12,7 +12,7 @@ const NewsPage = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const [showNextButton, setNextShowButton] = useState(true);
+  const [showNextButton, setNextShowButton] = useState(false);
   const [showPrevButton, setPrevShowButton] = useState(false);
   const { data, isLoading } = useNews({ page, query });
 
@@ -46,7 +46,7 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      setNextShowButton(true);
+      setNextShowButton(false);
       setPrevShowButton(false);
       document.getElementById("searchForm").reset();
     }
