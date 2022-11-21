@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { theme } from './theme';
 
 export const Btn = styled.button`
   /* ================base==================== */
@@ -112,4 +113,30 @@ export const Btn = styled.button`
     background: ${({ theme }) => theme.palette.accent};
     color: ${({ theme }) => theme.palette.triadic};
   }
+
+
+  &.news {
+    width: 180px;
+    height: 48px;
+    font-size: 20px;
+    background-color: ${({ theme }) => theme.palette.triadic};
+    border: 2px solid ${({ theme }) => theme.palette.accent};
+
+    &:hover {
+      background: ${({ theme }) => theme.palette.accent};
+      color: ${({ theme }) => theme.palette.triadic};
+    }
+
+    &:not(:last-child){
+      margin-bottom: 30px;
+      @media screen and (min-width: ${({ theme }) => theme.screens.tablet};
+        margin-bottom: 0;
+      }
+    }
+
+
+  }
+
+
+
 `;

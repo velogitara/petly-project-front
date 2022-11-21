@@ -5,23 +5,17 @@ import InputSearch from 'components/InputSearch';
 import SearchError from 'components/SearchError';
 import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
-import { ContainerWithPadding } from './NewsPage.styled'
+import { ContainerWithPadding, Wrapper } from './NewsPage.styled'
 
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
-  const [allNews, setAllNews] = useState([]);
+  // const [allNews, setAllNews] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const [showButton, setShowButton] = useState(false);
+  const [showNextButton, setNextShowButton] = useState(true);
+  const [showPrevButton, setPrevShowButton] = useState(false);
   const { data, isLoading } = useNews({ page, query });
-
-  useEffect(() => {
-   setAllNews((prevState) => ([...prevState, ...data]));
-
-
-  }, [data]);
-
 
   useEffect(() => {
     if (data.length === 0 && !isLoading && page === 1) {
@@ -31,23 +25,20 @@ const NewsPage = () => {
     }
 
     if (data.length === 6){
-      setShowButton(true);
+      setNextShowButton(true);
     } else {
-      setShowButton(false);
+      setNextShowButton(false);
+    }
+
+    if (page !== 1){
+      setPrevShowButton(true);
+    } else {
+      setPrevShowButton(false);
     }
   }, [page, data.length, isLoading]);
 
-
-
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: document.body.offsetHeight,
-  //     behavior: 'smooth',
-  //   })
-  // }, [data]);
-
-  function onLoadMoreBtnClick() {
-    setPage((prevState) => prevState + 1);
+  function onLoadMoreBtnClick(step) {
+      setPage((prevState) => prevState + step);
   }
 
   function onSubmit(e) {
@@ -56,8 +47,9 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      setAllNews([]);
-      setShowButton(false);
+      // setAllNews([]);
+      setNextShowButton(true);
+      setPrevShowButton(false);
       document.getElementById("searchForm").reset();
     }
   }
@@ -65,8 +57,12 @@ const NewsPage = () => {
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
     <InputSearch onSubmit={e => onSubmit(e)}/>
-    {error? <SearchError query={query}/> : <NewsList news={allNews}/>}
-    {showButton && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
+    {error? <SearchError query={query}/> : <NewsList news={data}/>}
+    <Wrapper>
+      {showPrevButton && <Button title="Prev" styled="news" onClick={e=>onLoadMoreBtnClick(-1)}></Button>}
+      {showNextButton && <Button title="Next" styled="news" onClick={e=>onLoadMoreBtnClick(1)}></Button>}
+    </Wrapper>
+    {/*{showButton && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}*/}
   </ContainerWithPadding>
 };
 
