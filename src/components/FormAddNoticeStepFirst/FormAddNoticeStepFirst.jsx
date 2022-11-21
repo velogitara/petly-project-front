@@ -31,10 +31,10 @@ import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
 import Input from 'components/Input';
 import style from '../FormAddNotice/FormAddNotice.module.css';
 const categories = [
-  { name: 'lost', id: '1' },
-  { name: 'found', id: '2' },
-  { name: 'In good hands', id: '3' },
-  { name: 'sell', id: '4' },
+  { name: 'lost', value: 'lost', id: '1' },
+  { name: 'found', value: 'found', id: '2' },
+  { name: 'In good hands', value: 'for-free', id: '3' },
+  { name: 'sell', value: 'sell', id: '4' },
 ];
 
 // const disabled = () => {
@@ -60,9 +60,9 @@ const FormAddNoticeStepFirst = ({
       <CategoryBox>
         {categories.map(category => (
           <CategoryItem key={category.id}>
-            <LabelRadio className={values.category === category.name ? 'active' : ''}>
+            <LabelRadio className={values.category === category.value ? 'active' : ''}>
               {category.name}
-              <Field className={style.radio} type="radio" name="category" value={category.name} />
+              <Field className={style.radio} type="radio" name="category" value={category.value} />
             </LabelRadio>
           </CategoryItem>
         ))}

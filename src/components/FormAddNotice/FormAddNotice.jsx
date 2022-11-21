@@ -39,7 +39,7 @@ function FormAddNotice({ onClose }) {
           data.birthday = '0000';
         }
         if (!data.breed) {
-          data.breed = 'outbred';
+          data.breed = 'outbreed';
         }
         if (!data.price) {
           data.price = 0;
