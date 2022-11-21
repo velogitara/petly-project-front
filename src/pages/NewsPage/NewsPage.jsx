@@ -7,7 +7,6 @@ import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
 import { ContainerWithPadding, Wrapper } from './NewsPage.styled'
 
-
 const NewsPage = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);

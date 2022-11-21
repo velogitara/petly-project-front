@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { theme } from './theme';
 
 export const Btn = styled.button`
   /* ================base==================== */
@@ -114,6 +113,7 @@ export const Btn = styled.button`
     color: ${({ theme }) => theme.palette.triadic};
   }
 
+  /* ================news==================== */
 
   &.news {
     width: 180px;
