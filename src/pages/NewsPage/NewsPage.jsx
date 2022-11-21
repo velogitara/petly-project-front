@@ -13,12 +13,17 @@ const NewsPage = () => {
   const [allNews, setAllNews] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const { data, isLoading } = useNews({ page, query });
   const [showButton, setShowButton] = useState(false);
+  const { data, isLoading } = useNews({ page, query });
 
   useEffect(() => {
    setAllNews((prevState) => ([...prevState, ...data]));
 
+
+  }, [data]);
+
+
+  useEffect(() => {
     if (data.length === 0 && !isLoading && page === 1) {
       setError('error');
     } else {
@@ -30,7 +35,7 @@ const NewsPage = () => {
     } else {
       setShowButton(false);
     }
-  }, [data, isLoading]);
+  }, [page, data.length, isLoading]);
 
 
 
