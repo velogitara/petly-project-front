@@ -24,18 +24,9 @@ export const Modal = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 704px;
     border-radius: 40px;
+    padding: 32px 20px;
   }
 `;
-// export const ButtonClose = styled.button`
-//   position: absolute;
-//   top: 12px;
-//   right: 20px;
-//   width: 40px;
-//   height: 40px;
-//   border-radius: 50%;
-//   border: none;
-//   background-color: ${({ theme }) => theme.backgrounds.primary};
-// `;
 
 export const DeleteBtnContainer = styled.div`
   position: absolute;
@@ -84,9 +75,8 @@ export const PicturePet = styled.picture`
 `;
 
 export const ImgPet = styled.img`
-  max-width: 100%;
+  max-width: 288px;
   height: 240px;
-
   object-fit: cover;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -111,21 +101,21 @@ export const ImgLabel = styled.p`
   height: 28px;
 `;
 export const InfoPet = styled.div`
-  margin-top: 28px;
+  
 `;
 export const InfoPetTitle = styled.h2`
   margin-bottom: 16px;
-
   font-size: 24px;
   line-height: 1.375;
   font-weight: 700;
-
   color: ${({ theme }) => theme.palette.primary};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 28px;
     line-height: 1.357;
     margin-bottom: 20px;
+    margin-right: 50px;
+     padding-right: 50px;
   }
 `;
 export const InfoPetList = styled.ul``;
@@ -193,10 +183,18 @@ export const Contact = styled.a`
   border-radius: 40px;
   color: ${({ theme }) => theme.palette.triadic};
   background-color: ${({ theme }) => theme.palette.accent};
-  margin-right: 20px;
-  margin-left: 12px;
+  margin: 0 0 12px 0;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 160px;
+   margin: 0 20px 0 12px;
+
+     &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.palette.triadic};
+    ${({ modal, theme }) => (modal ? `border-color: ${theme.palette.hoverAccent};` : '')}
+    transform: ${({ theme }) => theme.animations.transform};
+  
+    }
   }
 `;

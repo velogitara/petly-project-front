@@ -158,7 +158,7 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
         </Comments>
         <BtnContainer>
           <FavoriteButton favorite={favorite} noticeId={noticeId} modal label />
-          <Contact href={`tel:${phone}`}>Contact</Contact>
+          <Contact type="button" href={`tel:${phone}`}>Contact</Contact>
         </BtnContainer>
       </Modal>
     </Backdrop>,
