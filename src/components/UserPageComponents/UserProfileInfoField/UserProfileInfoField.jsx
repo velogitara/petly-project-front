@@ -15,7 +15,7 @@ import { useEffect, useState } from 'react';
 const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) => {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [value, setValue] = useState('');
-  const [updateUserInfo, { isLoading, isError }] = useUpdateUserInfoMutation();
+  const [updateUserInfo /* { isLoading, isError }*/] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     setValue(text);

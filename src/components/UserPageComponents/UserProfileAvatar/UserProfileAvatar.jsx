@@ -9,8 +9,8 @@ import {
 import { useUpdateUserInfoMutation } from 'redux/user';
 import icons from '../../../assets/icons/icons.svg';
 
-const UserProfileAvatar = ({ isEditing, onFieldEddited }) => {
-  const [updateUserInfo, { isLoading, isError }] = useUpdateUserInfoMutation();
+const UserProfileAvatar = ({ isEditing, onFieldEdited }) => {
+  const [updateUserInfo /* { isLoading, isError }*/] = useUpdateUserInfoMutation();
 
   const handleInputChange = e => {
     e.preventDefault();
