@@ -9,13 +9,13 @@ import { useSignUpMutation } from '../../redux/authState/authSlice';
 import Button from 'components/Button';
 import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
 
-const AuthForm = ({ location }) => {
+const AuthForm = ({ url }) => {
   const [part, setPart] = useState(1);
   const [matchError, setMatchError] = useState(null);
   const [signIn, result] = useSignInMutation();
   const [signUp, res] = useSignUpMutation();
 
-  const button = location === '/login' ? 'Login' : 'Register';
+  const button = url === '/login' ? 'Login' : 'Register';
   console.log(result)
   console.log(res)
 
@@ -56,7 +56,7 @@ const AuthForm = ({ location }) => {
         location: '',
         mobilePhone: '',
       }}
-      validationSchema={location === '/login' ? loginSchema : registerSchema}
+      validationSchema={url === '/login' ? loginSchema : registerSchema}
       onSubmit={async ({ email, password, name, location, mobilePhone: phone }) => {
         const fields = { email, password, name, location, phone }
         let data = {}
@@ -72,7 +72,7 @@ const AuthForm = ({ location }) => {
      {({ values, handleChange, handleBlur, handleSubmit }) => (
 
         <StyledForm onSubmit={handleSubmit}>
-          {location === '/login' && (
+          {url === '/login' && (
             <>
               <InputWrapper>
                 <InputForm
@@ -99,7 +99,7 @@ const AuthForm = ({ location }) => {
               <Button type="submit" styled="formAuth on" title={button} />
             </>
           )}
-          {location === '/register' && part === 1 && (
+          {url === '/register' && part === 1 && (
             <>
               <InputWrapper>
                 <InputForm
@@ -145,7 +145,7 @@ const AuthForm = ({ location }) => {
               />
             </>
           )}
-          {location === '/register' && part === 2 && (
+          {url === '/register' && part === 2 && (
             <>
               <InputWrapper>
                 <InputForm
@@ -196,6 +196,6 @@ const AuthForm = ({ location }) => {
   );
 };
 
-AuthForm.propTypes = { location: PropTypes.string.isRequired };
+AuthForm.propTypes = { url: PropTypes.string.isRequired };
 
 export default AuthForm;

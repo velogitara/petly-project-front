@@ -17,7 +17,7 @@ const AuthModal = ({ location }) => {
   return (
     <Auth>
       <Title>{content.title}</Title>
-      <AuthForm location={location}/>
+      <AuthForm url={location}/>
       <Message>
         {content.mes}
         <AuthLink to={content.linkTo}>{content.link}</AuthLink>
