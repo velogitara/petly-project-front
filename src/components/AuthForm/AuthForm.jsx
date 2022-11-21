@@ -66,7 +66,7 @@ const AuthForm = ({ url }) => {
           }
         }
         console.log(data);
-        location === '/login'? await signIn(data): await signUp(data); 
+        url === '/login'? await signIn(data): await signUp(data); 
 }}
     >
      {({ values, handleChange, handleBlur, handleSubmit }) => (
