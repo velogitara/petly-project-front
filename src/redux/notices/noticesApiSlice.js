@@ -49,34 +49,9 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notice'],
     }),
     addNotice: builder.mutation({
-      query: ({
-        file = null,
-        data,
-        name,
-        title,
-        category,
-        birthday,
-        breed,
-        sex,
-        location,
-        // price,
-        comments,
-      }) => ({
-        url: '/',
+      query: ({ payload }) => ({
         method: 'POST',
-
-        body: {
-          data,
-          name,
-          title,
-          category,
-          birthday,
-          breed,
-          sex,
-          location,
-          // price,
-          comments,
-        },
+        body: payload,
       }),
       invalidatesTags: ['Notices'],
     }),

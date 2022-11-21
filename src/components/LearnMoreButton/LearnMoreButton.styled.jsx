@@ -4,8 +4,9 @@ export const LearnButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 79px;
+  padding: 8px;
   margin-top: auto;
+  width: 248px;
 
   font-size: 16px;
   font-weight: 500;

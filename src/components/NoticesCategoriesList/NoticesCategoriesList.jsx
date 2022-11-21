@@ -12,12 +12,13 @@ const NoticesCategoriesList = () => {
 
   const categoryName = useLocation().pathname.replace('/notices/', '');
 
-  const notices = useNotices({ categoryName, page: 1, limit: 8 });
+  const { notices, isLoading } = useNotices({ categoryName, page: 1, limit: 8 });
 
   const isNotices = notices.length !== 0;
 
   return (
     <>
+      {isLoading && <Message>Loading...</Message>}
       {!isNotices && <Message>Looks like there are no Ads here, yet.</Message>}
       {isNotices && (
         <CategoriesList>
