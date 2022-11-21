@@ -55,8 +55,8 @@ const FormAddNoticeStepSecond = ({
           The sex<Span>*</Span>:
         </Label>
         <GenderBox>
-          <LabelIcon className={values.gender === 'male' ? 'active' : ''}>
-            <Field className={style.radio} type="radio" name="gender" value="male" />
+          <LabelIcon className={values.sex === 'male' ? 'active' : ''}>
+            <Field className={style.radio} type="radio" name="sex" value="male" />
             <IconBox>
               <IconMale>
                 <use href={icons + '#icon-sex-male'} />
@@ -64,8 +64,8 @@ const FormAddNoticeStepSecond = ({
             </IconBox>
             <span> Male</span>
           </LabelIcon>
-          <LabelIcon className={values.gender === 'female' ? 'active' : ''}>
-            <Field className={style.radio} type="radio" name="gender" value="female" />
+          <LabelIcon className={values.sex === 'female' ? 'active' : ''}>
+            <Field className={style.radio} type="radio" name="sex" value="female" />
             <IconBox>
               <IconFemale>
                 <use className="box" href={icons + '#icon-sex-female'} />
@@ -158,7 +158,7 @@ const FormAddNoticeStepSecond = ({
 
 FormAddNoticeStepSecond.propTypes = {
   values: PropTypes.shape({
-    gender: PropTypes.string.isRequired,
+    sex: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     // image: PropTypes.string.isRequired,

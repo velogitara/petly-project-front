@@ -40,24 +40,41 @@ function FormAddNotice({ onClose }) {
       initialValues={{
         title: '',
         name: '',
-        birthdate: null,
+        birthday: null,
         breed: '',
         category: '',
-        gender: '',
+        sex: '',
         location: '',
-        image: '',
+        image: null,
         price: '',
         comments: '',
       }}
       validationSchema={ValidationSchema}
       onSubmit={async values => {
-        const data = { ...values };
-        if (data.birthdate) {
-          data.birthdate = data.birthdate.toISOString();
-        }
+        const { image, ...data } = values;
         console.log(data);
+
+        if (data.birthday) {
+          data.birthday = data.birthday.toISOString();
+        }
+        if (!data.name) {
+          data.name = null;
+        }
+        if (!data.birthday) {
+          data.birthday = '0000';
+        }
+        if (!data.breed) {
+          data.breed = 'outbred';
+        }
+        if (!data.price) {
+          data.price = 0;
+        }
+        const payload = new FormData();
+        payload.append('image', image);
+        payload.append('data', JSON.stringify(data));
+        // const data = { ...values };
         onClose();
-        await addNotice(data);
+        await addNotice({ payload });
       }}
     >
       {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (

@@ -49,13 +49,9 @@ export const noticesApi = createApi({
       invalidatesTags: ['Notice'],
     }),
     addNotice: builder.mutation({
-      query: ({ file = null, data }) => ({
-        headers: { 'Content-Type': 'multipart/form-data' },
+      query: ({ payload }) => ({
         method: 'POST',
-        file,
-        body: {
-          data,
-        },
+        body: payload,
       }),
       invalidatesTags: ['Notices'],
     }),
