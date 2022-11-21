@@ -6,26 +6,25 @@ import {
   PetDelete,
   PetDeleteButton,
 } from './PetCard.styled';
+import DeleteButton from 'components/DeleteButton';
+import { parseBirthday } from 'helpers';
 
-const PetCard = () => {
+const PetCard = ({ _id, name, birthday, breed, imageURL, comments, owner }) => {
   const onPetRemove = () => {};
 
   return (
     <PetContainer>
       <PetImageContainer>
-        <img src="" alt="" />
+        <img src={imageURL ? imageURL.mobile : ''} alt={name} />
       </PetImageContainer>
       <PetInfo>
         <PetDelete>
-          <PetField className="delete">Name: Jack</PetField>
-          <PetDeleteButton onRemove={onPetRemove} />
+          <PetField className="delete">Name: {name}</PetField>
+          <DeleteButton petId={_id} owner={owner} />
         </PetDelete>
-        <PetField>Date of birth: 22.04.2018</PetField>
-        <PetField>Breed: 22.04.2018</PetField>
-        <PetField>
-          Comments: Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur
-          Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur
-        </PetField>
+        <PetField>Date of birth: {birthday ? parseBirthday(birthday) : '00.00.0000'}</PetField>
+        <PetField>Breed: {breed}</PetField>
+        <PetField>Comments: {comments}</PetField>
       </PetInfo>
     </PetContainer>
   );
