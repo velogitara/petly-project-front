@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { imageURLBuilder, ageHandle } from 'helpers';
-import { constants } from 'constants/constants';
+import { imageURLBuilder, ageHandle, categoryTitleHandler } from 'helpers';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
@@ -17,9 +16,7 @@ import {
   UserButtons,
 } from './NoticeCategoryItem.styled';
 
-const {
-  categories: { publicCategories },
-} = constants;
+const imageDummy = '';
 
 const NoticeCategoryItem = ({
   _id,
@@ -33,15 +30,13 @@ const NoticeCategoryItem = ({
   owner,
   price,
 }) => {
-  const categoryName = publicCategories.find(([item]) => item === category)[1];
+  const categoryTitle = categoryTitleHandler(category);
 
   const age = ageHandle(birthday);
 
-  const imageDummy = '';
-
   return (
     <ItemContainer>
-      <CategoryLabel>{categoryName}</CategoryLabel>
+      <CategoryLabel>{categoryTitle}</CategoryLabel>
       <UserButtons>
         <FavoriteButton noticeId={_id} favorite={favorite} />
         <DeleteButton translucent noticeId={_id} owner={owner} />
@@ -91,7 +86,7 @@ const NoticeCategoryItem = ({
               <InfoText>{age}</InfoText>
             </InfoDescriptionItem>
           )}
-          {price && categoryName === 'sell' && (
+          {price && categoryTitle === 'sell' && (
             <InfoDescriptionItem>
               <InfoText>Price:</InfoText>
               <InfoText>{`${price}$`}</InfoText>
@@ -99,7 +94,7 @@ const NoticeCategoryItem = ({
           )}
         </InfoDescription>
       </Info>
-      <LearnMoreButton noticeId={_id}>{/* <ModalNotice /> */}</LearnMoreButton>
+      <LearnMoreButton noticeId={_id} favorite={favorite} owner={owner} />
     </ItemContainer>
   );
 };

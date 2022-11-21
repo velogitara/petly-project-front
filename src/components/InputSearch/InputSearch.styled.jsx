@@ -33,8 +33,8 @@ export const BtnSearch = styled.button`
   border: none;
   cursor: pointer;
   transition: ${({ theme }) => theme.animations.transition};
-  &:hover {
-    transform: ${({ theme }) => theme.animations.transform};
+  &:hover svg {
+    fill: ${({ theme }) => theme.palette.accent};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     top: 12px;

@@ -20,15 +20,19 @@ const NewsItem = ({ title, url, description, date }) => {
     textLength = 315;
   }
 
-  return <Item>
-    <Title text={title} length={titleLength}/>
-    <Text text={description} length={textLength}/>
-    <Wrapper>
-      <Date>{date}</Date>
-      <ReadMore href={url} target="_blank">Read more</ReadMore>
-    </Wrapper>
-  </Item>
-}
+  return (
+    <Item>
+      <Title text={title} length={titleLength} />
+      <Text text={description} length={textLength} />
+      <Wrapper>
+        <Date>{date}</Date>
+        <ReadMore href={url} target="_blank">
+          Read more
+        </ReadMore>
+      </Wrapper>
+    </Item>
+  );
+};
 
 export default NewsItem;
 
@@ -36,5 +40,5 @@ NewsItem.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  date: PropTypes.string
-}
+  date: PropTypes.string,
+};

@@ -1,7 +1,7 @@
-import sponsors from './sponsors.json';
 import { Container } from 'helpers';
 import OurFriendsTitle from 'components/OurFriendsTitle';
 import OurFriendsCards from 'components/OurFriendsCards';
+import { useFriends } from 'hooks';
 
 const OurFriendsPage = () => {
   const showWorkDays = e => {
@@ -16,10 +16,12 @@ const OurFriendsPage = () => {
     elementChidren[1].style.visibility = 'visible';
   };
 
+  const friends = useFriends();
+
   return (
     <Container>
       <OurFriendsTitle />
-      <OurFriendsCards showWorkdays={showWorkDays} sponsors={sponsors} />
+      <OurFriendsCards showWorkdays={showWorkDays} friends={friends} />
     </Container>
   );
 };

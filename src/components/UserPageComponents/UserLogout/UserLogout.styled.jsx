@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
-export const LogoutLink = styled(Link)`
+export const LogoutButton = styled.button`
   text-decoration: none;
   display: flex;
   margin-left: auto;
   margin-top: 40px;
+  border: none;
+  background: none;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     position: absolute;
