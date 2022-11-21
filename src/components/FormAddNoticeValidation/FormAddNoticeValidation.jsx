@@ -22,9 +22,9 @@ const ValidationSchema = Yup.object().shape({
     .max(120, 'Must be 120 or less characters')
     .matches(/^[A-Za-zА\s]+$/)
     .required('Required'),
-  price: Yup.number('Price must be a number')
-    .positive('Price must be a positive number')
-    .integer('Price must be an integer'),
+  // price: Yup.number('Price must be a number')
+  //   .positive('Price must be a positive number')
+  //   .integer('Price must be an integer'),
   image: Yup.mixed()
     .test(
       'FILE_SIZE',

@@ -2,32 +2,6 @@ import React, { useState } from 'react';
 import { Formik } from 'formik';
 import { useAddNoticeMutation } from '../../redux/notices';
 
-// import {
-//   // Comment,
-//   Textarea,
-//   Button,
-//   Text,
-//   Form,
-//   CategoryBox,
-//   Label,
-//   ButtonBox,
-//   Span,
-//   InputBox,
-//   BoxLabel,
-//   LabelRadio,
-//   GenderBox,
-//   IconBox,
-//   IconMale,
-//   IconFemale,
-//   LabelIcon,
-//   InputFile,
-//   IconFile,
-//   Figure,
-//   CategoryItem,
-//   ErrorMessageInput,
-//   BoxFlex,
-// } from './FormAddNotice.styled';
-
 import ValidationSchema from 'components/FormAddNoticeValidation';
 import FormAddNoticeStepFirst from 'components/FormAddNoticeStepFirst';
 import FormAddNoticeStepSecond from 'components/FormAddNoticeStepSecond';
@@ -39,6 +13,7 @@ function FormAddNotice({ onClose }) {
     <Formik
       initialValues={{
         title: '',
+        // description: 'hello',
         name: '',
         birthday: null,
         breed: '',

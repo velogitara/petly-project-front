@@ -4,13 +4,13 @@ import {
   PetField,
   PetInfo,
   PetDelete,
-  PetDeleteButton,
+  // PetDeleteButton,
 } from './PetCard.styled';
 import DeleteButton from 'components/DeleteButton';
 import { parseBirthday } from 'helpers';
 
 const PetCard = ({ _id, name, birthday, breed, imageURL, comments, owner }) => {
-  const onPetRemove = () => {};
+  // const onPetRemove = () => {};
 
   return (
     <PetContainer>

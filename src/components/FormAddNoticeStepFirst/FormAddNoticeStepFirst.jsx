@@ -5,7 +5,7 @@ import {
   // Comment,
   // Textarea,
   Button,
-  Text,
+  // Text,
   Form,
   CategoryBox,
   Label,
@@ -57,7 +57,6 @@ const FormAddNoticeStepFirst = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Add pet</Title>
-      <Text>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</Text>
       <CategoryBox>
         {categories.map(category => (
           <CategoryItem key={category.id}>
@@ -156,7 +155,7 @@ FormAddNoticeStepFirst.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
-    // birthdate: PropTypes.string.isRequired,
+    // birthday: PropTypes.string.isRequired,
   }),
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,

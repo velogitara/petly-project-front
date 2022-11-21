@@ -7,16 +7,11 @@ const Card = styled.li`
   background-color: ${backgrounds.secondary};
   text-align: center;
   border-radius: 40px;
-  margin-bottom: 12px;
   padding: 12px 4px;
   box-shadow: ${shadows.card};
   @media (min-width: ${screens.tablet}) {
-    margin-bottom: 32px;
-    margin-right: 32px;
-    flex-basis: calc(100% / 2 - 32px);
     padding: 16px 17px;
   }
-
   @media (min-width: ${screens.desktop}) {
     flex-basis: calc(100% / 3 - 32px);
   } ;
@@ -36,14 +31,19 @@ const CardPic = styled.img`
 `;
 
 const List = styled.ul`
+  display: grid;
+  gap: 12px 0;
+  grid-template-columns: 100%;
   list-style: none;
   margin: 0;
   padding: 0;
   @media (min-width: ${screens.tablet}) {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: -32px;
-    margin-right: -32px;
+    grid-template-columns: repeat(2, calc(100% / 2));
+    gap: 32px;
+  }
+
+  @media (min-width: ${screens.desktop}) {
+    grid-template-columns: repeat(3, calc(100% / 3));
   } ;
 `;
 
