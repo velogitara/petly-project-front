@@ -10,7 +10,6 @@ import { ContainerWithPadding, Wrapper } from './NewsPage.styled'
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
-  // const [allNews, setAllNews] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
   const [showNextButton, setNextShowButton] = useState(true);
@@ -47,7 +46,6 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      // setAllNews([]);
       setNextShowButton(true);
       setPrevShowButton(false);
       document.getElementById("searchForm").reset();
@@ -62,7 +60,6 @@ const NewsPage = () => {
       {showPrevButton && <Button title="Prev" styled="news" onClick={e=>onLoadMoreBtnClick(-1)}></Button>}
       {showNextButton && <Button title="Next" styled="news" onClick={e=>onLoadMoreBtnClick(1)}></Button>}
     </Wrapper>
-    {/*{showButton && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}*/}
   </ContainerWithPadding>
 };
 
