@@ -21,7 +21,6 @@ export const PetContainer = styled.div`
     flex-direction: row;
     align-items: flex-start;
     border-radius: 40px;
-    position: relative;
   }
 `;
 
@@ -78,16 +77,16 @@ export const PetDelete = styled.div`
   margin-bottom: 12px;
 `;
 
-export const PetDeleteButton = styled(DeleteButton)`
-  && {
-    @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
-      width: 20px;
-      height: 20px;
-    }
+// export const PetDeleteButton = styled(DeleteButton)`
+//   && {
+//     @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
+//       width: 20px;
+//       height: 20px;
+//     }
 
-    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-      position: absolute;
-      right: 0;
-    }
-  }
-`;
+//     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+//       position: absolute;
+//       right: 0;
+//     }
+//   }
+// `;
