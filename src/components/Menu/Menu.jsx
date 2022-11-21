@@ -11,7 +11,7 @@ const Menu = ({ onWidth }) => {
   const isLogged = useSelector(selectAuthToken);
 
   return (
-    <NavigationBox>
+    <NavigationBox className="menu">
       {onWidth < 768 && <>{isLogged ? <UserNav /> : <AuthNav />}</>}
       <Nav />
     </NavigationBox>
