@@ -6,16 +6,12 @@ import List from './NewsList.styled';
 
 const NewsList = ({ news = [] }) => {
   const newsForRender = news.map(item => {
-
     const date = item.createdAt.slice(0, 10).split('-');
     const year = date[0];
     const month = date[1];
     const day = date[2];
-
     return <NewsItem key={nanoid()} title={item.title} url={item.url} description={item.description} date={`${day}/${month}/${year}`}/>
-
   })
-
   return <List children={newsForRender}></List>
 };
 
