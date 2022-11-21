@@ -5,3 +5,4 @@ export { favoriteCheck } from './functions/favoriteCheck';
 export { ownerCheck } from './functions/ownerCheck';
 export { dateHandle } from './functions/dateHandle';
 export { ageHandle } from './functions/ageHandler';
+export { parseBirthday } from './functions/parseBirthday';
