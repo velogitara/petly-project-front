@@ -129,7 +129,7 @@ export const Btn = styled.button`
 
     &:not(:last-child){
       margin-bottom: 30px;
-      @media screen and (min-width: ${({ theme }) => theme.screens.tablet};
+      @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
         margin-bottom: 0;
       }
     }
