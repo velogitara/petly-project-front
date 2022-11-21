@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useGetNoticeById } from 'hooks';
-import { imageURLBuilder } from 'helpers';
+import { imageURLBuilder, categoryTitleHandler } from 'helpers';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
@@ -29,8 +29,8 @@ import {
 const modalRoot = document.querySelector('#modal-root');
 const imageDummy = '';
 
-const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
-  const notice = useGetNoticeById({ noticeId });
+const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
+  const { notice, isSuccess } = useGetNoticeById({ noticeId });
 
   useEffect(() => {
     const handleEscKeyDown = e => {
@@ -51,11 +51,12 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
     }
   };
 
-  if (!notice) {
-    return <p>Loading...</p>;
+  if (!isSuccess) {
+    return 'Loading...';
   }
 
   const {
+    category,
     name,
     imageURL,
     title,
@@ -67,6 +68,8 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
     price,
     owner: { email, phone },
   } = notice;
+
+  const categoryTitle = categoryTitleHandler(category);
 
   const parseBirthday = () => {
     if (!birthday) {
@@ -80,9 +83,6 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <DeleteBtnContainer>
-          <DeleteButton translucent noticeId={noticeId} owner={owner} />
-        </DeleteBtnContainer>
         <ModalCloseButton onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
@@ -107,7 +107,10 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner, category }) => {
                 alt={notice?.title}
               />
             </PicturePet>
-            <ImgLabel>{category}</ImgLabel>
+            <ImgLabel>{categoryTitle}</ImgLabel>
+            <DeleteBtnContainer>
+              <DeleteButton translucent noticeId={noticeId} owner={owner} />
+            </DeleteBtnContainer>
           </ModalInfoImg>
 
           <InfoPet>

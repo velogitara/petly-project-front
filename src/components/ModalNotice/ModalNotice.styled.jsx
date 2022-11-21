@@ -39,8 +39,8 @@ export const Modal = styled.div`
 
 export const DeleteBtnContainer = styled.div`
   position: absolute;
-  top: 100px;
-  right: 24px;
+  top: 12px;
+  right: 0;
   z-index: 1;
 `;
 
@@ -174,7 +174,6 @@ export const BtnContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  font-family: ${({ theme }) => theme.fonts.primar};
   font-size: 16px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
