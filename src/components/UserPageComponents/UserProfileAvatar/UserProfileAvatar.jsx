@@ -12,14 +12,12 @@ import icons from '../../../assets/icons/icons.svg';
 const UserProfileAvatar = ({ isEditing, onFieldEddited }) => {
   const [updateUserInfo, { isLoading, isError }] = useUpdateUserInfoMutation();
 
-  const handleInputChange = e => {
+  const handleInputChange = async e => {
     e.preventDefault();
     const file = e.target.files[0];
-    updateUserInfo({ file });
-    // const file = e.target.files[0];
-    // const fd = new FormData();
-    // fd.append('image', file);
-    // updateUserInfo(fd);
+    const payload = new FormData();
+    payload.append('image', file);
+    await updateUserInfo({ payload });
   };
 
   return (

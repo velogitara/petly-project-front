@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import {
   InfoContainer,
   InfoForm,
@@ -8,14 +11,12 @@ import {
   SvgEdit,
 } from './UserProfileInfoField.styled';
 import { useUpdateUserInfoMutation } from 'redux/user';
-import PropTypes from 'prop-types';
 import icons from '../../../assets/icons/icons.svg';
-import { useEffect, useState } from 'react';
 
 const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) => {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [value, setValue] = useState('');
-  const [updateUserInfo, { isLoading, isError }] = useUpdateUserInfoMutation();
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     setValue(text);
@@ -26,21 +27,26 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
     onFieldEddited(true);
   };
 
-  const handleFormSubmit = e => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
     const user = { [id]: value };
-    const parsedData = JSON.stringify(user);
-
-    updateUserInfo({ data: parsedData });
 
     onFieldEddited(false);
     setIsInEditMode(false);
 
-    // const parsedData = JSON.stringify(user);
-    // const fd = new FormData();
-    // fd.append('data', parsedData);
+    const parsedData = JSON.stringify(user);
+    const payload = new FormData();
+    payload.append('data', parsedData);
 
-    // updateUserInfo(fd);
+    try {
+      await updateUserInfo({ payload }).then(response => {
+        if (response?.status !== 200) {
+          toast.error(response.error.data.message);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInputChange = e => {

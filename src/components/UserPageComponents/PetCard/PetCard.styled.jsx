@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import DeleteButton from 'components/DeleteButton';
 
 export const PetContainer = styled.div`
   display: flex;
@@ -47,7 +46,7 @@ export const PetImageContainer = styled.div`
 `;
 
 export const PetInfo = styled.div`
-  width: fit-content;
+  width: 100%;
 `;
 
 export const PetField = styled.p`
@@ -75,18 +74,5 @@ export const PetDelete = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 12px;
+  position: relative;
 `;
-
-// export const PetDeleteButton = styled(DeleteButton)`
-//   && {
-//     @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
-//       width: 20px;
-//       height: 20px;
-//     }
-
-//     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-//       position: absolute;
-//       right: 0;
-//     }
-//   }
-// `;

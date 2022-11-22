@@ -5,6 +5,20 @@ export const DelButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 44px;
+  height: 44px;
+
+  &.user {
+    @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
+      width: 20px;
+      height: 20px;
+    }
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
 `;
 
 export const DelButton = styled.button`
@@ -13,8 +27,8 @@ export const DelButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0;
-  width: 44px;
-  height: 44px;
+  width: 100%;
+  height: 100%;
 
   color: rgba(17, 17, 17, 0.6);
 
