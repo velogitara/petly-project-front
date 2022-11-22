@@ -6,7 +6,6 @@ export const NavContainer = styled.div`
     padding: 160px 0;
     position: fixed;
     top: 0;
-    /* left: -101%; */
 		left: 0;
     width: 100%;
     min-height: 100vh;
@@ -15,10 +14,6 @@ export const NavContainer = styled.div`
     background-color: ${({ theme }) => theme.backgrounds.primary};
     transition: ${({ theme }) => theme.animations.transition};
     z-index: 9;
-    /* &.isOpen {
-      left: 0;
-      transition: ${({ theme }) => theme.animations.transition};
-    } */
   }
 `;
 

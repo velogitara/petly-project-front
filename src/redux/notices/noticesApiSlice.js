@@ -53,7 +53,7 @@ export const noticesApi = createApi({
         method: 'POST',
         body: payload,
       }),
-      invalidatesTags: ['Notices'],
+      invalidatesTags: ['Notices', 'Notice'],
     }),
     updateFavorites: builder.mutation({
       query: ({ noticeId, favorite }) => ({

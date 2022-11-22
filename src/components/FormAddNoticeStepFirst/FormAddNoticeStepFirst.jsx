@@ -5,7 +5,7 @@ import {
   // Comment,
   // Textarea,
   Button,
-  Text,
+  // Text,
   Form,
   CategoryBox,
   Label,
@@ -31,10 +31,10 @@ import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
 import Input from 'components/Input';
 import style from '../FormAddNotice/FormAddNotice.module.css';
 const categories = [
-  { name: 'lost', id: '1' },
-  { name: 'found', id: '2' },
-  { name: 'In good hands', id: '3' },
-  { name: 'sell', id: '4' },
+  { name: 'lost', value: 'lost', id: '1' },
+  { name: 'found', value: 'found', id: '2' },
+  { name: 'In good hands', value: 'for-free', id: '3' },
+  { name: 'sell', value: 'sell', id: '4' },
 ];
 
 // const disabled = () => {
@@ -57,13 +57,12 @@ const FormAddNoticeStepFirst = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Add pet</Title>
-      <Text>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</Text>
       <CategoryBox>
         {categories.map(category => (
           <CategoryItem key={category.id}>
-            <LabelRadio className={values.category === category.name ? 'active' : ''}>
+            <LabelRadio className={values.category === category.value ? 'active' : ''}>
               {category.name}
-              <Field className={style.radio} type="radio" name="category" value={category.name} />
+              <Field className={style.radio} type="radio" name="category" value={category.value} />
             </LabelRadio>
           </CategoryItem>
         ))}
@@ -106,8 +105,8 @@ const FormAddNoticeStepFirst = ({
           <DatePickerField
             className={style.datepicker}
             onChange={setFieldValue}
-            name="birthdate"
-            value={values.birthdate}
+            name="birthday"
+            value={values.birthday}
           />
         </Label>
       </InputBox>
@@ -156,7 +155,7 @@ FormAddNoticeStepFirst.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
-    // birthdate: PropTypes.string.isRequired,
+    // birthday: PropTypes.string.isRequired,
   }),
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
