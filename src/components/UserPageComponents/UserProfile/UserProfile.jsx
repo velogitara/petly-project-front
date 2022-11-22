@@ -43,6 +43,7 @@ const UserProfile = ({ user }) => {
             label="Birthday"
             text={birthday ?? '00.00.0000'}
             isEditing={isEditing}
+            date
             onFieldEddited={onFieldEddited}
           />
           <UserProfileInfoField

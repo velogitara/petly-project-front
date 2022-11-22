@@ -10,10 +10,11 @@ import {
   SvgCheck,
   SvgEdit,
 } from './UserProfileInfoField.styled';
+import DatePickerField from 'components/DatePickerForm/DatePikerForm';
 import { useUpdateUserInfoMutation } from 'redux/user';
 import icons from '../../../assets/icons/icons.svg';
 
-const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) => {
+const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date = false }) => {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [value, setValue] = useState('');
   const [updateUserInfo] = useUpdateUserInfoMutation();
@@ -59,15 +60,24 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
       {isInEditMode ? (
         <InfoForm onSubmit={handleFormSubmit}>
           <InfoLabel htmlFor={label}>{label}</InfoLabel>
-          <InfoInput
-            type="text"
-            id={label}
-            name={label}
-            readOnly={!isInEditMode}
-            className={'edit'}
-            value={value}
-            onChange={handleInputChange}
-          />
+          {date ? (
+            <DatePickerField
+            // className={style.datepicker}
+            // onChange={setFieldValue}
+            // name="birthdate"
+            // value={values.birthdate}
+            />
+          ) : (
+            <InfoInput
+              type="text"
+              id={label}
+              name={label}
+              readOnly={!isInEditMode}
+              className={'edit'}
+              value={value}
+              onChange={handleInputChange}
+            />
+          )}
           <InfoButton type="submit">
             <SvgCheck>
               <use href={`${icons}#icon-check`}></use>
