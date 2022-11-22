@@ -6,8 +6,8 @@ const ValidationSchema = Yup.object().shape({
   title: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(48, 'Must be 48 or less letter')
-    .matches(/^[A-Za-zА`\s]+$/, 'Only letters')
-    .required('Required'),
+    .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
+  // .required('Required'),
   name: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(16, 'Must be 16 or less letter')
