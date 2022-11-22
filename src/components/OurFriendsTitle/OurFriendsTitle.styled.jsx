@@ -4,6 +4,7 @@ import { theme } from 'helpers';
 const { fonts, screens } = theme;
 
 const Title = styled.h2`
+text-align: center;
   font-family: ${fonts.primary},
   font-weight: 700;
   margin-bottom: 40px;
