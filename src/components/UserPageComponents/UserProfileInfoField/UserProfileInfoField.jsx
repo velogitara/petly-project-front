@@ -62,7 +62,6 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date
           <InfoLabel htmlFor={label}>{label}</InfoLabel>
           {date ? (
             <DatePickerField
-            // className={style.datepicker}
             // onChange={setFieldValue}
             // name="birthdate"
             // value={values.birthdate}

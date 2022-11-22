@@ -50,7 +50,7 @@ const UserPage = () => {
               <HeaderContainer>
                 <UserHeader text="My information:" className="user" />
                 <AddPetButton user>
-                  <ModalAddNotice />
+                  <></>
                 </AddPetButton>
               </HeaderContainer>
             ) : (
