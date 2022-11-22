@@ -8,7 +8,7 @@ const LearnMoreButton = ({ noticeId, favorite, owner }) => {
 
   return (
     <>
-      <LearnButton type="button" title="Learn more" onClick={() => setShowModal(true)}>
+      <LearnButton type="button" title="Learn more" onClick={() => { setShowModal(true); document.body.style.position = 'fixed' }}>
         learn more
       </LearnButton>
       {showModal && (

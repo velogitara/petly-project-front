@@ -6,6 +6,7 @@ function ModalCloseButton({ onClose }) {
     <ButtonClose
       onClick={() => {
         onClose();
+        document.body.style.position = 'unset';
       }}
     >
       <SvgClose>
