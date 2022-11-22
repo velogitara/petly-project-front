@@ -17,6 +17,10 @@ const NoticesCategoriesList = () => {
 
   const isNotices = notices.length !== 0;
 
+  const onPageSelect = ({ currentPage }) => {
+    console.log(currentPage);
+  };
+
   return (
     <>
       {isLoading && <Message>Loading...</Message>}
@@ -53,7 +57,10 @@ const NoticesCategoriesList = () => {
           )}
         </CategoriesList>
       )}
-      <Paginator />
+      <Paginator
+        totalPages={10}
+        onPageSelect={({ currentPage }) => onPageSelect({ currentPage })}
+      />
     </>
   );
 };
