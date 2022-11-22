@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import {
   Button,
-  Text,
   Form,
   CategoryBox,
   Label,
@@ -29,7 +28,6 @@ const categories = [
 
 const FormAddNoticeStepFirst = ({
   values,
-  // errors,
   handleChange,
   handleBlur,
   handleSubmit,
@@ -50,12 +48,12 @@ const FormAddNoticeStepFirst = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Add pet</Title>
-      <Text>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</Text>
       <CategoryBox>
         {categories.map(category => (
           <CategoryItem key={category.id}>
-            <LabelRadio className={values.category === category.name ? 'active' : ''}>
+            <LabelRadio className={values.category === category.value ? 'active' : ''}>
               {category.name}
+
               <Radio type="radio" name="category" value={category.name} />
             </LabelRadio>
           </CategoryItem>
@@ -97,7 +95,8 @@ const FormAddNoticeStepFirst = ({
       <InputBox>
         <Label>
           <BoxLabel>Date of birth</BoxLabel>
-          <DatePickerField onChange={setFieldValue} name="birthdate" value={values.birthdate} />
+
+          <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
         </Label>
       </InputBox>
       <InputBox className="label">
@@ -144,6 +143,7 @@ FormAddNoticeStepFirst.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
+
     birthday: PropTypes.instanceOf(Date),
   }),
   handleChange: PropTypes.func.isRequired,

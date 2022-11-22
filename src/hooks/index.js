@@ -5,5 +5,6 @@ export * from './useRemoveNotice';
 export * from './useNews';
 export * from './useSignIn';
 export * from './useSignUp';
-export * from './useSignOut';
 export * from './useFriends';
+export * from './useGetCurrentUser';
+export * from './useUpdateUserInfo';

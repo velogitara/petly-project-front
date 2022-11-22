@@ -37,8 +37,6 @@ const ageHandle = birthday => {
     return null;
   }
 
-  console.log(months);
-
   const number = years ? years : months;
 
   let append = years === 0 ? 'months' : 'years';

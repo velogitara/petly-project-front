@@ -7,6 +7,7 @@ export const theme = Object.freeze({
     hoverAccent: '#FF6101',
     translucent: '#11111199',
     link: '#3091EB',
+    border: 'rgba(245, 146, 86, 0.5)',
   },
   backgrounds: {
     primary: '#FDF7F2',

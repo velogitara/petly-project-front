@@ -3,7 +3,6 @@ import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
 import { useAddNoticeMutation } from '../../redux/notices';
-
 import ValidationSchema from 'components/FormAddNoticeValidation';
 import FormAddNoticeStepFirst from 'components/FormAddNoticeStepFirst';
 import FormAddNoticeStepSecond from 'components/FormAddNoticeStepSecond';
@@ -16,7 +15,7 @@ function FormAddNotice({ onClose }) {
     <Formik
       initialValues={{
         title: '',
-        name: '',
+        name: 'Noname',
         birthday: null,
         breed: '',
         category: '',
@@ -30,7 +29,6 @@ function FormAddNotice({ onClose }) {
       onSubmit={async values => {
         const { image, ...data } = values;
 
-        console.log(data);
         if (data.birthday) {
           data.birthday = data.birthday.toISOString();
         }
@@ -49,6 +47,7 @@ function FormAddNotice({ onClose }) {
         const payload = new FormData();
         payload.append('image', image);
         payload.append('data', JSON.stringify(data));
+
         onClose();
         await addNotice({ payload });
       }}

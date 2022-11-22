@@ -52,6 +52,7 @@ const FormAddNoticeStepSecond = ({
         <GenderBox>
           <LabelIcon className={values.sex === 'male' ? 'active' : ''}>
             <Radio type="radio" name="sex" value="male" />
+
             <IconBox>
               <IconMale>
                 <use href={icons + '#icon-sex-male'} />
@@ -61,6 +62,7 @@ const FormAddNoticeStepSecond = ({
           </LabelIcon>
           <LabelIcon className={values.sex === 'female' ? 'active' : ''}>
             <Radio type="radio" name="sex" value="female" />
+
             <IconBox>
               <IconFemale>
                 <use className="box" href={icons + '#icon-sex-female'} />

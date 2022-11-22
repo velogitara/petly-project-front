@@ -2,7 +2,7 @@ import { useGetNoticesByIdQuery } from 'redux/notices';
 
 const useGetNoticeById = ({ noticeId }) => {
   // const isLogged = useSelector(selectAuthToken);
-  const { data } = useGetNoticesByIdQuery(
+  const { data, isLoading, isSuccess } = useGetNoticesByIdQuery(
     { noticeId },
     {
       // skip: !isLogged,
@@ -10,7 +10,7 @@ const useGetNoticeById = ({ noticeId }) => {
     }
   );
 
-  return data?.data?.notice ?? null;
+  return { notice: data?.data?.notice ?? null, isLoading, isSuccess };
 };
 
 export { useGetNoticeById };
