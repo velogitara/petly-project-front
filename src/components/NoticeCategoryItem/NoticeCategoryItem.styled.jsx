@@ -1,4 +1,7 @@
 import styled from '@emotion/styled';
+import { constants } from 'constants/constants';
+
+const { fallbackImage } = constants;
 
 export const ItemContainer = styled.li`
   position: relative;
@@ -25,7 +28,6 @@ export const ItemContainer = styled.li`
 export const ItemPicture = styled.picture`
   width: 280px;
   height: 288px;
-  object-fit: cover;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 336px;
@@ -33,6 +35,18 @@ export const ItemPicture = styled.picture`
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     width: 288px;
   }
+`;
+
+export const ItemImage = styled.img`
+  max-width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  background-color: ${({ theme }) => theme.backgrounds.primary};
+  background-image: url(${fallbackImage});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 `;
 
 export const CategoryLabel = styled.p`
@@ -44,6 +58,8 @@ export const CategoryLabel = styled.p`
   width: 158px;
   height: 28px;
   padding-left: 20px;
+
+  z-index: 1;
 
   font-size: 12px;
   font-weight: 500;
@@ -110,4 +126,5 @@ export const UserButtons = styled.div`
   position: absolute;
   top: 12px;
   right: 12px;
+  z-index: 1;
 `;

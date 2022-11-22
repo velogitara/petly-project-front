@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
-import { imageURLBuilder, ageHandle } from 'helpers';
-import { constants } from 'constants/constants';
+import { imageURLBuilder, ageHandle, categoryTitleHandler } from 'helpers';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
+import { constants } from 'constants/constants';
 
 import {
   ItemContainer,
   ItemPicture,
+  ItemImage,
   Info,
   InfoTitle,
   InfoDescription,
@@ -17,11 +18,7 @@ import {
   UserButtons,
 } from './NoticeCategoryItem.styled';
 
-const {
-  categories: { publicCategories },
-} = constants;
-
-const imageDummy = '';
+const { fallbackImage } = constants;
 
 const NoticeCategoryItem = ({
   _id,
@@ -35,13 +32,13 @@ const NoticeCategoryItem = ({
   owner,
   price,
 }) => {
-  const categoryName = publicCategories.find(([item]) => item === category)[1];
+  const categoryTitle = categoryTitleHandler(category);
 
   const age = ageHandle(birthday);
 
   return (
     <ItemContainer>
-      <CategoryLabel>{categoryName}</CategoryLabel>
+      <CategoryLabel>{categoryTitle}</CategoryLabel>
       <UserButtons>
         <FavoriteButton noticeId={_id} favorite={favorite} />
         <DeleteButton translucent noticeId={_id} owner={owner} />
@@ -68,10 +65,14 @@ const NoticeCategoryItem = ({
           media="(min-width: 768px)"
           sizes="336px"
         />
-        <img
-          src={imageURL ? imageURLBuilder(imageURL?.tablet) : imageDummy}
+        <ItemImage
+          src={imageURL ? imageURLBuilder(imageURL?.tablet) : fallbackImage}
           loading="lazy"
           alt={title}
+          // onError={({ currentTarget }) => {
+          //   currentTarget.onerror = null;
+          //   currentTarget.src = fallbackImage;
+          // }}
         />
       </ItemPicture>
       <Info>
@@ -91,7 +92,7 @@ const NoticeCategoryItem = ({
               <InfoText>{age}</InfoText>
             </InfoDescriptionItem>
           )}
-          {price && categoryName === 'sell' && (
+          {categoryTitle === 'sell' && price && (
             <InfoDescriptionItem>
               <InfoText>Price:</InfoText>
               <InfoText>{`${price}$`}</InfoText>
@@ -99,7 +100,7 @@ const NoticeCategoryItem = ({
           )}
         </InfoDescription>
       </Info>
-      <LearnMoreButton noticeId={_id} favorite={favorite} owner={owner} category={categoryName} />
+      <LearnMoreButton noticeId={_id} favorite={favorite} owner={owner} />
     </ItemContainer>
   );
 };

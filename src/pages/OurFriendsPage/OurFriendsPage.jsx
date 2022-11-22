@@ -1,5 +1,6 @@
 import { Container } from 'helpers';
-import OurFriendsTitle from 'components/OurFriendsTitle';
+import TitlePage from 'components/TitlePage';
+import OurFriendSection from 'components/OurFriendSection';
 import OurFriendsCards from 'components/OurFriendsCards';
 import { useFriends } from 'hooks';
 
@@ -20,8 +21,10 @@ const OurFriendsPage = () => {
 
   return (
     <Container>
-      <OurFriendsTitle />
-      <OurFriendsCards showWorkdays={showWorkDays} friends={friends} />
+      <OurFriendSection>
+        <TitlePage title="Our friends" />
+        <OurFriendsCards showWorkdays={showWorkDays} friends={friends} />
+      </OurFriendSection>
     </Container>
   );
 };

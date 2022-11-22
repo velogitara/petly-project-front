@@ -6,13 +6,13 @@ const ValidationSchema = Yup.object().shape({
   title: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(48, 'Must be 48 or less letter')
-    .matches(/^[A-Za-zА`\s]+$/, 'Only letters')
-    .required('Required'),
+    .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
+  // .required('Required'),
   name: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(16, 'Must be 16 or less letter')
     .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
-  birthdate: Yup.date().nullable(),
+  birthday: Yup.date().nullable(),
   breed: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(24, 'Must be 24 or less letter')
@@ -22,9 +22,9 @@ const ValidationSchema = Yup.object().shape({
     .max(120, 'Must be 120 or less characters')
     .matches(/^[A-Za-zА\s]+$/)
     .required('Required'),
-  price: Yup.number('Price must be a number')
-    .positive('Price must be a positive number')
-    .integer('Price must be an integer'),
+  // price: Yup.number('Price must be a number')
+  //   .positive('Price must be a positive number')
+  //   .integer('Price must be an integer'),
   image: Yup.mixed()
     .test(
       'FILE_SIZE',
