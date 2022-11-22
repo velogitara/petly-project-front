@@ -1,20 +1,16 @@
-import { Field, ErrorMessage } from 'formik';
+import { ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 
 import icons from '../../assets/icons/icons.svg';
 import {
-  // Comment,
+  Form,
+  Label,
+  Span,
   Textarea,
   Button,
-  // Text,
-  Form,
-  // CategoryBox,
-  Label,
-  ButtonBox,
-  Span,
-  InputBox,
   BoxLabel,
-  // LabelRadio,
+  ButtonBox,
+  InputBox,
   GenderBox,
   IconBox,
   IconMale,
@@ -23,14 +19,13 @@ import {
   InputFile,
   IconFile,
   Figure,
-  // CategoryItem,
   ErrorMessageInput,
   BoxFlex,
+  Radio,
 } from '../FormAddNotice/FormAddNotice.styled';
 
 import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
 import Input from 'components/Input';
-import style from '../FormAddNotice/FormAddNotice.module.css';
 import PreviewImage from 'components/PreviewImage/PreviewImage';
 
 const FormAddNoticeStepSecond = ({
@@ -55,23 +50,23 @@ const FormAddNoticeStepSecond = ({
           The sex<Span>*</Span>:
         </Label>
         <GenderBox>
-          <LabelIcon className={values.gender === 'male' ? 'active' : ''}>
-            <Field className={style.radio} type="radio" name="gender" value="male" />
+          <LabelIcon className={values.sex === 'male' ? 'active' : ''}>
+            <Radio type="radio" name="sex" value="male" />
             <IconBox>
               <IconMale>
                 <use href={icons + '#icon-sex-male'} />
               </IconMale>
             </IconBox>
-            <span> Male</span>
+            <span>Male</span>
           </LabelIcon>
-          <LabelIcon className={values.gender === 'female' ? 'active' : ''}>
-            <Field className={style.radio} type="radio" name="gender" value="female" />
+          <LabelIcon className={values.sex === 'female' ? 'active' : ''}>
+            <Radio type="radio" name="sex" value="female" />
             <IconBox>
               <IconFemale>
                 <use className="box" href={icons + '#icon-sex-female'} />
               </IconFemale>
             </IconBox>
-            <span> Female</span>
+            <span>Female</span>
           </LabelIcon>
         </GenderBox>
         <InputBox>
@@ -109,15 +104,14 @@ const FormAddNoticeStepSecond = ({
             <ErrorMessage name="price" component={ErrorMessageInput} />
           </InputBox>
         )}
-        <InputBox>
+        <InputBox className="file">
           <BoxLabel>Load the pet’s image:</BoxLabel>
           <Label>
             <InputFile type="file" name="image" onChange={image} />
             <BoxFlex>
               <Figure>
                 <IconFile>
-                  <use href={icons + '#icon-plus'} />
-                  {/* {values.image && <use href={icons + '#icon-check'} />} */}
+                  <use href={icons + '#icon-plus-big'} />
                 </IconFile>
               </Figure>
               {values.image && <PreviewImage image={values.image} />}
@@ -158,10 +152,9 @@ const FormAddNoticeStepSecond = ({
 
 FormAddNoticeStepSecond.propTypes = {
   values: PropTypes.shape({
-    gender: PropTypes.string.isRequired,
+    sex: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
-    // image: PropTypes.string.isRequired,
   }),
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,

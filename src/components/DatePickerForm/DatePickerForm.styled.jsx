@@ -1,10 +1,6 @@
 import styled from '@emotion/styled';
 
 export const Calendar = styled.div`
-  // padding: 10px;
-  // background-color: #fdf7f2;
-  // color: #fff;
-
   & .react-datepicker {
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 12px;
@@ -32,6 +28,8 @@ export const Calendar = styled.div`
 
     & .react-datepicker__day:hover {
       background-color: ${({ theme }) => theme.backgrounds.primary};
+      transition: ${({ theme }) => theme.animations.transition};
+      transform: ${({ theme }) => theme.animations.transform};
     }
   }
 `;

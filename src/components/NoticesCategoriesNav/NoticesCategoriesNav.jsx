@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { selectAuthToken } from 'redux/authState';
 import { useParams } from 'react-router-dom';
 import AddPetButton from 'components/AddPetButton';
@@ -15,6 +16,9 @@ const {
 
 const NoticesCategoriesNav = () => {
   const { categoryName } = useParams();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   const isLogged = useSelector(selectAuthToken);
 
@@ -45,7 +49,7 @@ const NoticesCategoriesNav = () => {
         )}
       </NavLinksContainer>
       <AddPetButton>
-        <ModalAddNotice />
+        <ModalAddNotice onClose={toggleModal} />
       </AddPetButton>
     </NavContainer>
   );
