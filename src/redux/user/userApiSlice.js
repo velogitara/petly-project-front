@@ -12,55 +12,37 @@ export const userApi = createApi({
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
       }
-
       return headers;
     },
   }),
-  tagTypes: ['User', 'Pets', 'Notices', 'Notice'],
+  tagTypes: ['User'],
   endpoints: builder => ({
     getCurrentUser: builder.query({
       query: () => '/',
       providesTags: ['User'],
     }),
     updateUserInfo: builder.mutation({
-      query: ({ file = null, data = {} }) => ({
+      query: ({ payload }) => ({
         url: `/updateUserInfo`,
         method: 'PATCH',
-        file: file,
-        body: {
-          data,
-        },
+        body: payload,
       }),
       invalidatesTags: ['User'],
     }),
-    // updateUserInfo: builder.mutation({
-    //   query: data => ({
-    //     url: `/updateUserInfo`,
-    //     method: 'PATCH',
-    //     body: {
-    //       data,
-    //     },
-    //   }),
-    //   invalidatesTags: ['User'],
-    // }),
     addPet: builder.mutation({
-      query: ({ file = null, data }) => ({
+      query: ({ payload }) => ({
         url: `/addPet`,
-        headers: { 'Content-Type': 'multipart/form-data' },
-        method: 'POST',
-        file,
-        body: {
-          data,
-        },
+        method: 'PUT',
+        body: payload,
       }),
-      invalidatesTags: ['Pets'],
+      invalidatesTags: ['User'],
     }),
     removePet: builder.mutation({
       query: ({ petId }) => ({
         url: `/removePet/${petId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Pets'],
+      invalidatesTags: ['User'],
     }),
   }),
 });
