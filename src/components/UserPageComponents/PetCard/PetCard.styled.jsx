@@ -29,6 +29,7 @@ export const PetImageContainer = styled.div`
   background-color: grey;
   border-radius: 20px;
   margin-bottom: 16px;
+  overflow: hidden;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     border-radius: 40px;
@@ -43,6 +44,12 @@ export const PetImageContainer = styled.div`
     margin: 0;
     padding: 0;
   }
+`;
+
+export const PetPicture = styled.picture`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const PetInfo = styled.div`

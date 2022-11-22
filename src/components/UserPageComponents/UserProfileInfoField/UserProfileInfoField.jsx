@@ -41,7 +41,7 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
     try {
       await updateUserInfo({ payload }).then(response => {
         if (response?.status !== 200) {
-          toast.error(response.error.data.message);
+          toast.error(response.error?.data?.message);
         }
       });
     } catch (error) {
@@ -85,6 +85,7 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
             className={'non-edit'}
             value={value}
           />
+
           <InfoButton
             type="button"
             onClick={onEditButtonClick}

@@ -1,4 +1,12 @@
-import { PetContainer, PetImageContainer, PetField, PetInfo, PetDelete } from './PetCard.styled';
+import {
+  PetContainer,
+  PetImageContainer,
+  PetField,
+  PetInfo,
+  PetDelete,
+  PetPicture,
+} from './PetCard.styled';
+import { imageURLBuilder } from 'helpers';
 import { parseBirthday } from 'helpers';
 import DeleteButton from 'components/DeleteButton';
 
@@ -6,7 +14,23 @@ const PetCard = ({ _id, name, birthday, breed, imageURL, comments, owner, screen
   return (
     <PetContainer>
       <PetImageContainer>
-        <img src={imageURL ? imageURL.mobile : ''} alt={name} />
+        <PetPicture>
+          <source
+            srcSet={`${imageURL ? imageURLBuilder(imageURL?.mobile) : ''} 240w, ${
+              imageURL ? imageURLBuilder(imageURL?.mobile_retina) : ''
+            } 480w`}
+            media="(max-width: 767px)"
+            sizes="240px"
+          />
+          <source
+            srcSet={`${imageURL ? imageURLBuilder(imageURL?.tablet) : ''} 161w, ${
+              imageURL ? imageURLBuilder(imageURL?.tablet_retina) : ''
+            } 322w`}
+            media="(min-width: 768px)"
+            sizes="161px"
+          />
+          <img src={imageURL ? imageURLBuilder(imageURL?.tablet) : ''} loading="lazy" alt={name} />
+        </PetPicture>
       </PetImageContainer>
       <PetInfo>
         <PetDelete>

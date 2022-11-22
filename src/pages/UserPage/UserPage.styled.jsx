@@ -25,16 +25,16 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 26px;
+  justify-content: space-between;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-bottom: 25px;
-    width: 705px;
     padding-left: 32px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-    width: 805px;
     padding-left: 0;
+    padding-right: 16px;
   }
 `;
 
@@ -49,11 +49,11 @@ export const PetsContainer = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    width: 704px;
-    margin-left: auto;
+    width: 100%;
+    padding: 0 0 0 32px;
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-    width: 821px;
+    padding: 0;
     margin-left: 32px;
   }
 `;

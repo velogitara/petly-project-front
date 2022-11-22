@@ -1,8 +1,8 @@
 import UserProfile from 'components/UserPageComponents/UserProfile';
 import UserHeader from 'components/UserPageComponents/UserHeader';
 import PetGallery from 'components/UserPageComponents/PetGallery';
-import AddPet from 'components/UserPageComponents/AddPet';
 import AddPetButton from 'components/AddPetButton';
+import ModalAddNotice from 'components/ModalAddNotice';
 import { HeaderContainer, UserContainer, PetsContainer, Container } from './UserPage.styled';
 import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
@@ -49,7 +49,9 @@ const UserPage = () => {
             {screen === screens.tablet ? (
               <HeaderContainer>
                 <UserHeader text="My information:" className="user" />
-                <AddPetButton user></AddPetButton>
+                <AddPetButton user>
+                  <ModalAddNotice />
+                </AddPetButton>
               </HeaderContainer>
             ) : (
               <UserHeader text="My information:" className="user information" />
@@ -60,7 +62,9 @@ const UserPage = () => {
             {screen !== screens.tablet ? (
               <HeaderContainer>
                 <UserHeader text="My pets:" />
-                <AddPet />
+                <AddPetButton user>
+                  <ModalAddNotice />
+                </AddPetButton>
               </HeaderContainer>
             ) : (
               <UserHeader text="My pets:" className="pets" />

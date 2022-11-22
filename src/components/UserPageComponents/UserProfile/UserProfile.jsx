@@ -8,7 +8,7 @@ import { useState } from 'react';
 const UserProfile = ({ user }) => {
   const [isEditing, setIsEditing] = useState(false);
 
-  const { name, email, birthday, phone, location } = user;
+  const { name, email, birthday, phone, location, avatarURL } = user;
 
   const onFieldEddited = value => {
     setIsEditing(value);
@@ -17,7 +17,12 @@ const UserProfile = ({ user }) => {
   return (
     <UserContainer>
       <UserProfileForm>
-        <UserProfileAvatar isEditing={isEditing} onFieldEddited={onFieldEddited} />
+        <UserProfileAvatar
+          name={name}
+          avatarURL={avatarURL}
+          isEditing={isEditing}
+          onFieldEddited={onFieldEddited}
+        />
         <UserProfileInfo>
           <UserProfileInfoField
             id="name"
