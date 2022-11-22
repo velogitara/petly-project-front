@@ -27,12 +27,17 @@ export const AuthLink = styled(NavLink)`
   text-decoration: none;
   &:hover,
   &:focus {
-    opacity: 0.9;
+    color: ${({ theme }) => theme.palette.accent};
     transition: ${({ theme }) => theme.animations.transition};
   }
   &.active {
     color: ${({ theme }) => theme.palette.triadic};
     background: ${({ theme }) => theme.palette.accent};
+  }
+  &.active:hover,
+  &.active:focus {
+    background: ${({ theme }) => theme.palette.hoverAccent};
+    transition: ${({ theme }) => theme.animations.transition};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     display: flex;

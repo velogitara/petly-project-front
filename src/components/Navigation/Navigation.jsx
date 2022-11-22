@@ -6,20 +6,20 @@ import UserNav from '../UserNav';
 import AuthNav from '../AuthNav';
 import { NavigationBox } from './Navigation.styled';
 
-const Navigation = ({ onWidth }) => {
+const Navigation = ({ onWidth, onCloseMenu }) => {
   const isLogged = useSelector(selectAuthToken);
 
   return (
     <NavigationBox>
-      {/* <UserNav /> <AuthNav /> */}
-      {isLogged ? <UserNav /> : <AuthNav />}
-      {onWidth >= 1280 && <Nav />}
+      {isLogged ? <UserNav onCloseMenu={onCloseMenu} /> : <AuthNav onCloseMenu={onCloseMenu} />}
+      {onWidth >= 1280 && <Nav onCloseMenu={onCloseMenu} />}
     </NavigationBox>
   );
 };
 
 Navigation.propTypes = {
   onWidth: PropTypes.number.isRequired,
+  onCloseMenu: PropTypes.func,
 };
 
 export default Navigation;
