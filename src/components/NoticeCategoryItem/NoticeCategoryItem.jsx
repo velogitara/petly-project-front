@@ -3,10 +3,12 @@ import { imageURLBuilder, ageHandle, categoryTitleHandler } from 'helpers';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
+import { constants } from 'constants/constants';
 
 import {
   ItemContainer,
   ItemPicture,
+  ItemImage,
   Info,
   InfoTitle,
   InfoDescription,
@@ -16,7 +18,7 @@ import {
   UserButtons,
 } from './NoticeCategoryItem.styled';
 
-const imageDummy = '';
+const { fallbackImage } = constants;
 
 const NoticeCategoryItem = ({
   _id,
@@ -63,10 +65,14 @@ const NoticeCategoryItem = ({
           media="(min-width: 768px)"
           sizes="336px"
         />
-        <img
-          src={imageURL ? imageURLBuilder(imageURL?.tablet) : imageDummy}
+        <ItemImage
+          src={imageURL ? imageURLBuilder(imageURL?.tablet) : fallbackImage}
           loading="lazy"
           alt={title}
+          // onError={({ currentTarget }) => {
+          //   currentTarget.onerror = null;
+          //   currentTarget.src = fallbackImage;
+          // }}
         />
       </ItemPicture>
       <Info>
@@ -86,7 +92,7 @@ const NoticeCategoryItem = ({
               <InfoText>{age}</InfoText>
             </InfoDescriptionItem>
           )}
-          {price && categoryTitle === 'sell' && (
+          {categoryTitle === 'sell' && price && (
             <InfoDescriptionItem>
               <InfoText>Price:</InfoText>
               <InfoText>{`${price}$`}</InfoText>

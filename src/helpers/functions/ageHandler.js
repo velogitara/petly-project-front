@@ -43,7 +43,7 @@ const ageHandle = birthday => {
 
   if (number < 0) {
   }
-  append = number % 10 === 1 ? append.slice(0, append.length - 1) : append;
+  append = number % 10 === 1 || number === 0 ? append.slice(0, append.length - 1) : append;
   if (number < 16) {
     return `${numberNames[number]} ${append}`;
   }

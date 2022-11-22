@@ -1,9 +1,10 @@
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectAuthId, selectAuthToken } from 'redux/authState';
 import { useNotices } from 'hooks';
 import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
-import { useSelector } from 'react-redux';
-import { selectAuthId, selectAuthToken } from 'redux/authState';
+import Paginator from 'components/Paginator';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
@@ -52,6 +53,7 @@ const NoticesCategoriesList = () => {
           )}
         </CategoriesList>
       )}
+      <Paginator />
     </>
   );
 };
