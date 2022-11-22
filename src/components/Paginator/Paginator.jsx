@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { PaginatorContainer, PaginatorButton, ArrowIcon } from './Paginator.styled';
 
-const Paginator = ({ totalPages = 10, viewedPages = 5, onPageSelect }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 1 }) => {
+  const [currentPage, setCurrentPage] = useState(startPage);
   const [showNextButton, setShowNextButton] = useState(totalPages > 1);
   const [showPrevButton, setShowPrevButton] = useState(currentPage > 1);
 
@@ -112,9 +112,10 @@ const Paginator = ({ totalPages = 10, viewedPages = 5, onPageSelect }) => {
 };
 
 Paginator.propTypes = {
-  totalPages: PropTypes.number,
+  totalPages: PropTypes.number.isRequired,
   viewedPages: PropTypes.number,
   onPageSelect: PropTypes.func.isRequired,
+  startPage: PropTypes.number,
 };
 
 export default Paginator;

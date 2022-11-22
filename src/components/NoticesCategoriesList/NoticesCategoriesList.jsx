@@ -60,6 +60,7 @@ const NoticesCategoriesList = () => {
       <Paginator
         totalPages={10}
         onPageSelect={({ currentPage }) => onPageSelect({ currentPage })}
+        startPage={1}
       />
     </>
   );
