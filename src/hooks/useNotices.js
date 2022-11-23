@@ -9,27 +9,27 @@ const useNotices = ({ categoryName, page = 1, limit = 8 }) => {
   const isFavorite = categoryName === 'favorite';
   const isByCategory = !isOwn && !isFavorite;
 
-  const byCategoryNotices = useListNoticesByCategoryQuery(
+  const { data: byCategoryNotices, isLoading: isLoadByCategory } = useListNoticesByCategoryQuery(
     { category: categoryName, page, limit },
     {
       skip: isOwn || isFavorite,
       refetchOnMountOrArgChange: true,
     }
-  )?.data?.data?.notices;
-  const ownNotices = useListUserNoticesQuery(
+  );
+  const { data: ownNotices, isLoading: isLoadOwn } = useListUserNoticesQuery(
     { category: categoryName, page, limit },
     {
       skip: !isLogged || isFavorite || isByCategory,
       refetchOnMountOrArgChange: true,
     }
-  )?.data?.data?.notices;
-  const favoriteNotices = useListUserNoticesQuery(
+  );
+  const { data: favoriteNotices, isLoading: isLoadFavorite } = useListUserNoticesQuery(
     { category: categoryName, page, limit, favorite: true },
     {
       skip: !isLogged || isOwn || isByCategory,
       refetchOnMountOrArgChange: true,
     }
-  )?.data?.data?.notices;
+  );
 
   let result;
   switch (categoryName) {
@@ -42,7 +42,10 @@ const useNotices = ({ categoryName, page = 1, limit = 8 }) => {
     default:
       result = byCategoryNotices;
   }
-  return result ?? [];
+  return {
+    notices: result?.data?.notices ?? [],
+    isLoading: isLoadByCategory || isLoadOwn || isLoadFavorite,
+  };
 };
 
 export { useNotices };

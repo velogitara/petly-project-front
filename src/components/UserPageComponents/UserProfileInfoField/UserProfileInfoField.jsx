@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 import {
   InfoContainer,
   InfoForm,
@@ -7,15 +10,14 @@ import {
   SvgCheck,
   SvgEdit,
 } from './UserProfileInfoField.styled';
+import DatePickerField from 'components/DatePickerForm/DatePikerForm';
 import { useUpdateUserInfoMutation } from 'redux/user';
-import PropTypes from 'prop-types';
 import icons from '../../../assets/icons/icons.svg';
-import { useEffect, useState } from 'react';
 
-const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) => {
+const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date = false }) => {
   const [isInEditMode, setIsInEditMode] = useState(false);
   const [value, setValue] = useState('');
-  const [updateUserInfo, { isLoading, isError }] = useUpdateUserInfoMutation();
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     setValue(text);
@@ -26,21 +28,26 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
     onFieldEddited(true);
   };
 
-  const handleFormSubmit = e => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
     const user = { [id]: value };
-    const parsedData = JSON.stringify(user);
-
-    updateUserInfo({ data: parsedData });
 
     onFieldEddited(false);
     setIsInEditMode(false);
 
-    // const parsedData = JSON.stringify(user);
-    // const fd = new FormData();
-    // fd.append('data', parsedData);
+    const parsedData = JSON.stringify(user);
+    const payload = new FormData();
+    payload.append('data', parsedData);
 
-    // updateUserInfo(fd);
+    try {
+      await updateUserInfo({ payload }).then(response => {
+        if (response?.status !== 200) {
+          toast.error(response.error?.data?.message);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleInputChange = e => {
@@ -53,15 +60,23 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
       {isInEditMode ? (
         <InfoForm onSubmit={handleFormSubmit}>
           <InfoLabel htmlFor={label}>{label}</InfoLabel>
-          <InfoInput
-            type="text"
-            id={label}
-            name={label}
-            readOnly={!isInEditMode}
-            className={'edit'}
-            value={value}
-            onChange={handleInputChange}
-          />
+          {date ? (
+            <DatePickerField
+            // onChange={setFieldValue}
+            // name="birthdate"
+            // value={values.birthdate}
+            />
+          ) : (
+            <InfoInput
+              type="text"
+              id={label}
+              name={label}
+              readOnly={!isInEditMode}
+              className={'edit'}
+              value={value}
+              onChange={handleInputChange}
+            />
+          )}
           <InfoButton type="submit">
             <SvgCheck>
               <use href={`${icons}#icon-check`}></use>
@@ -79,6 +94,7 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited }) =>
             className={'non-edit'}
             value={value}
           />
+
           <InfoButton
             type="button"
             onClick={onEditButtonClick}

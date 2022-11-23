@@ -1,36 +1,12 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
+import PropTypes from 'prop-types';
+
 import { useAddNoticeMutation } from '../../redux/notices';
-
-// import {
-//   // Comment,
-//   Textarea,
-//   Button,
-//   Text,
-//   Form,
-//   CategoryBox,
-//   Label,
-//   ButtonBox,
-//   Span,
-//   InputBox,
-//   BoxLabel,
-//   LabelRadio,
-//   GenderBox,
-//   IconBox,
-//   IconMale,
-//   IconFemale,
-//   LabelIcon,
-//   InputFile,
-//   IconFile,
-//   Figure,
-//   CategoryItem,
-//   ErrorMessageInput,
-//   BoxFlex,
-// } from './FormAddNotice.styled';
-
 import ValidationSchema from 'components/FormAddNoticeValidation';
 import FormAddNoticeStepFirst from 'components/FormAddNoticeStepFirst';
 import FormAddNoticeStepSecond from 'components/FormAddNoticeStepSecond';
+
 function FormAddNotice({ onClose }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [addNotice] = useAddNoticeMutation();
@@ -39,25 +15,41 @@ function FormAddNotice({ onClose }) {
     <Formik
       initialValues={{
         title: '',
-        name: '',
-        birthdate: null,
+        name: 'Noname',
+        birthday: null,
         breed: '',
         category: '',
-        gender: '',
+        sex: '',
         location: '',
-        image: '',
+        image: null,
         price: '',
         comments: '',
       }}
       validationSchema={ValidationSchema}
       onSubmit={async values => {
-        const data = { ...values };
-        if (data.birthdate) {
-          data.birthdate = data.birthdate.toISOString();
+        const { image, ...data } = values;
+
+        if (data.birthday) {
+          data.birthday = data.birthday.toISOString();
         }
-        console.log(data);
+        if (!data.name) {
+          data.name = null;
+        }
+        if (!data.birthday) {
+          data.birthday = '0000';
+        }
+        if (!data.breed) {
+          data.breed = 'outbreed';
+        }
+        if (!data.price) {
+          data.price = 0;
+        }
+        const payload = new FormData();
+        payload.append('image', image);
+        payload.append('data', JSON.stringify(data));
+
         onClose();
-        await addNotice(data);
+        await addNotice({ payload });
       }}
     >
       {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
@@ -94,3 +86,7 @@ function FormAddNotice({ onClose }) {
 }
 
 export default FormAddNotice;
+
+FormAddNotice.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};

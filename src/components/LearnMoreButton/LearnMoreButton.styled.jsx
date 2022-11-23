@@ -4,8 +4,9 @@ export const LearnButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 79px;
+  padding: 8px;
   margin-top: auto;
+  width: 248px;
 
   font-size: 16px;
   font-weight: 500;
@@ -18,8 +19,11 @@ export const LearnButton = styled.button`
   border: 2px solid currentColor;
   border-radius: 40px;
 
+  transition: ${({ theme }) => theme.animations.transition};
+
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.palette.hoverAccent};
+    transform: ${({ theme }) => theme.animations.transform};
   }
 `;

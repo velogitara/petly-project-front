@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Field } from 'formik';
 
 export const Form = styled.form`
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -53,6 +54,10 @@ export const Button = styled.button`
       margin: 0;
     }
   }
+  &:hover {
+    transition: ${({ theme }) => theme.animations.transition};
+    transform: ${({ theme }) => theme.animations.transform};
+  }
 `;
 
 export const Text = styled.p`
@@ -79,6 +84,36 @@ export const CategoryBox = styled.ul`
 `;
 export const InputBox = styled.div`
   margin-bottom: 16px;
+  & input {
+    background-color: #fdf7f2;
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+    line-height: 1.4;
+    outline: none;
+    padding: 11px 14px;
+    width: 100%;
+    font-size: 14px;
+
+    &.file {
+      display: inline-block;
+    }
+
+    &:hover,
+    &:focus {
+      transition: ${({ theme }) => theme.animations.transition};
+      transform: ${({ theme }) => theme.animations.transform};
+    }
+
+    &::placeholder {
+      font-size: 14px;
+      line-height: 1.35;
+
+      color: rgba(27, 27, 27, 0.6);
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+    }
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-bottom: 28px;
@@ -87,6 +122,7 @@ export const InputBox = styled.div`
     }
   }
 `;
+
 export const Label = styled.label`
   font-size: 18px;
   line-height: 1.44;
@@ -124,8 +160,9 @@ export const BoxLabel = styled.div`
   }
 `;
 
-export const Radio = styled.input`
+export const Radio = styled(Field)`
   opacity: 0;
+  position: absolute;
 `;
 
 export const LabelRadio = styled.label`
@@ -138,9 +175,13 @@ export const LabelRadio = styled.label`
 
   padding: 8px 28px;
 
+  cursor: pointer;
+
   &.active,
   &:hover,
   &:focus {
+    transition: ${({ theme }) => theme.animations.transition};
+    transform: ${({ theme }) => theme.animations.transform};
     background-color: ${({ theme }) => theme.palette.accent};
     color: ${({ theme }) => theme.palette.triadic};
   }
@@ -151,7 +192,7 @@ export const LabelRadio = styled.label`
     padding: 10px 28px;
   }
 `;
-export const GenderBox = styled.div`
+export const GenderBox = styled.ul`
   display: flex;
   margin: 16px 0 32px 0;
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -164,6 +205,7 @@ export const IconBox = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-bottom: 20px;
   }
+  cursor: pointer;
 `;
 export const IconFile = styled.svg`
   width: 71px;
@@ -178,7 +220,14 @@ export const Figure = styled.figure`
   background-color: ${({ theme }) => theme.backgrounds.primary};
   display: block;
   padding: 22px 23px 23px 22px;
-  margin: 0;
+  margin: 0 20px 0 0;
+
+  cursor: pointer;
+
+  &:hover {
+    transition: ${({ theme }) => theme.animations.transition};
+    transform: ${({ theme }) => theme.animations.transform};
+  }
 `;
 export const InputFile = styled.input`
   width: 0.1px;
@@ -196,9 +245,13 @@ export const LabelIcon = styled.label`
     margin-right: 40px;
   }
 
+  cursor: pointer;
+
   &.active,
   &:hover {
     color: ${({ theme }) => theme.palette.accent};
+    transition: ${({ theme }) => theme.animations.transition};
+    // transform: ${({ theme }) => theme.animations.transform};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 18px;
@@ -256,6 +309,10 @@ export const Textarea = styled.input`
   padding: 11px 14px;
   width: 100%;
   font-size: 14px;
+  &:hover {
+    transition: ${({ theme }) => theme.animations.transition};
+    transform: ${({ theme }) => theme.animations.transform};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     padding: 16px 0px 70px 18px;

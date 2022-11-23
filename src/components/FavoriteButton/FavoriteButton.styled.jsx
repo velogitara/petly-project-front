@@ -26,7 +26,7 @@ export const FavButton = styled.button`
   backdrop-filter: ${({ modal }) => (modal ? 'none;' : 'blur(2px);')};
   border: ${({ modal, theme }) => (modal ? `2px solid ${theme.palette.accent};` : 'none;')};
   border-radius: ${({ modal }) => (modal ? '40px;' : '50%;')};
-
+  cursor: pointer;
   transition: ${({ theme }) => theme.animations.transition};
 
   &:hover,
