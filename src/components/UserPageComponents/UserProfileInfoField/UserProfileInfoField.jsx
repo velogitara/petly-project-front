@@ -51,6 +51,10 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date
           validationSchema={ValidationSchema}
           onSubmit={async data => {
             if (data.birthday) {
+              if (typeof data.birthday !== 'object') {
+                onFieldEddited(false);
+                setIsInEditMode(false);
+              }
               var x = new Date().getTimezoneOffset() * 60000;
               var localISOTime = new Date(data.birthday - x).toISOString().slice(0, -1);
               data.birthday = localISOTime;
