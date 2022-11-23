@@ -2,7 +2,6 @@ import { UserContainer, UserProfileInfo, UserProfileForm } from './UserProfile.s
 import UserProfileInfoField from 'components/UserPageComponents/UserProfileInfoField';
 import UserProfileAvatar from 'components/UserPageComponents/UserProfileAvatar';
 import UserLogout from 'components/UserPageComponents/UserLogout';
-import { parseBirthday } from 'helpers';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 

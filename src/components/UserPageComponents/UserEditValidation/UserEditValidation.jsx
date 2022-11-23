@@ -4,8 +4,6 @@ const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA
 const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
 const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
 
-const FILE_SIZE = 5242880;
-const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Must be 2 or more letter')

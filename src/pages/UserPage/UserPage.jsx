@@ -2,7 +2,6 @@ import UserProfile from 'components/UserPageComponents/UserProfile';
 import UserHeader from 'components/UserPageComponents/UserHeader';
 import PetGallery from 'components/UserPageComponents/PetGallery';
 import AddPetButton from 'components/AddPetButton';
-import ModalAddNotice from 'components/ModalAddNotice';
 import { HeaderContainer, UserContainer, PetsContainer, Container } from './UserPage.styled';
 import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
