@@ -2,9 +2,16 @@ import UserProfile from 'components/UserPageComponents/UserProfile';
 import UserHeader from 'components/UserPageComponents/UserHeader';
 import PetGallery from 'components/UserPageComponents/PetGallery';
 import AddPetButton from 'components/AddPetButton';
-import { HeaderContainer, UserContainer, PetsContainer, Container } from './UserPage.styled';
+import {
+  HeaderContainer,
+  UserContainer,
+  PetsContainer,
+  Container,
+  LoaderContainer,
+} from './UserPage.styled';
 import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
+import Loader from 'components/Loader';
 
 const sizes = {
   mobile: 320,
@@ -41,7 +48,9 @@ const UserPage = () => {
   return (
     <>
       {isLoading ? (
-        'loading...'
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
       ) : (
         <Container>
           <UserContainer>

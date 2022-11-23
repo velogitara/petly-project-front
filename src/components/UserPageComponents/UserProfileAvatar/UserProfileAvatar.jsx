@@ -11,9 +11,12 @@ import { toast } from 'react-toastify';
 import { useUpdateUserInfoMutation } from 'redux/user';
 import { imageURLBuilder } from 'helpers';
 import icons from '../../../assets/icons/icons.svg';
+import defaultAvatar from '../../../assets/images/defaultAvatar-233.png';
+import defaultAvatarRetina from '../../../assets/images/defaultAvatar-233_retina.png';
+import ImageLoader from '../ImageLoader';
 
 const UserProfileAvatar = ({ name, avatarURL, isEditing }) => {
-  const [updateUserInfo] = useUpdateUserInfoMutation();
+  const [updateUserInfo, { isLoading }] = useUpdateUserInfoMutation();
 
   const MAX_FILE_SIZE = 5242880;
 
@@ -40,17 +43,18 @@ const UserProfileAvatar = ({ name, avatarURL, isEditing }) => {
 
   return (
     <AvatarContainer>
+      {isLoading ?? <ImageLoader />}
       <ImageContainer>
         <UserPicture>
           <source
-            srcSet={`${avatarURL ? imageURLBuilder(avatarURL?.profile) : ''} 233w, ${
-              avatarURL ? imageURLBuilder(avatarURL?.profile_retina) : ''
+            srcSet={`${avatarURL ? imageURLBuilder(avatarURL?.profile) : defaultAvatar} 233w, ${
+              avatarURL ? imageURLBuilder(avatarURL?.profile_retina) : defaultAvatarRetina
             } 466w`}
             media="(min-width: 320px)"
             sizes="233px"
           />
           <img
-            src={avatarURL ? imageURLBuilder(avatarURL?.profile) : ''}
+            src={avatarURL ? imageURLBuilder(avatarURL?.profile) : defaultAvatar}
             loading="lazy"
             alt={name}
           />

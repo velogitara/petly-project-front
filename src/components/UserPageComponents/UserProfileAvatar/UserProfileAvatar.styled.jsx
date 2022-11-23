@@ -25,7 +25,6 @@ export const ImageContainer = styled.div`
   margin-bottom: 12px;
   overflow: hidden;
 
-  background-color: ${({ theme }) => theme.backgrounds.backdrop};
   border-radius: 50%;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
