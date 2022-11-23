@@ -17,7 +17,7 @@ export const UserLink = styled(NavLink)`
   transition: ${({ theme }) => theme.animations.transition};
   &:hover,
   &:focus {
-    opacity: 0.9;
+    color: ${({ theme }) => theme.palette.hoverAccent};
     transition: ${({ theme }) => theme.animations.transition};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {

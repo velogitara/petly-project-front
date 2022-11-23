@@ -3,12 +3,19 @@ import { useState } from 'react';
 import { LearnButton } from './LearnMoreButton.styled';
 import ModalNotice from 'components/ModalNotice';
 
-const LearnMoreButton = ({ noticeId, favorite, owner, category }) => {
+const LearnMoreButton = ({ noticeId, favorite, owner }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <LearnButton type="button" title="Learn more" onClick={() => setShowModal(true)}>
+      <LearnButton
+        type="button"
+        title="Learn more"
+        onClick={() => {
+          setShowModal(true);
+          document.body.style.position = 'fixed'
+        }}
+      >
         learn more
       </LearnButton>
       {showModal && (
@@ -17,7 +24,6 @@ const LearnMoreButton = ({ noticeId, favorite, owner, category }) => {
           favorite={favorite}
           owner={owner}
           onClose={() => setShowModal(false)}
-          category={category}
         />
       )}
     </>
@@ -28,7 +34,6 @@ LearnMoreButton.propTypes = {
   noticeId: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
   owner: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
 };
 
 export default LearnMoreButton;

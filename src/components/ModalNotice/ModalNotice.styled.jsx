@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Backdrop = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -9,39 +14,33 @@ export const Backdrop = styled.div`
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 150;
+  overflow-y: scroll;
 `;
 export const Modal = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
   width: 280px;
   height: fit-content;
   padding: 60px 20px 40px 20px;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
   border-radius: 20px;
+  margin-top: 30px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    top: unset;
     width: 704px;
     border-radius: 40px;
+    padding: 32px 20px;
+    margin-top: 0;
   }
 `;
-// export const ButtonClose = styled.button`
-//   position: absolute;
-//   top: 12px;
-//   right: 20px;
-//   width: 40px;
-//   height: 40px;
-//   border-radius: 50%;
-//   border: none;
-//   background-color: ${({ theme }) => theme.backgrounds.primary};
-// `;
 
 export const DeleteBtnContainer = styled.div`
   position: absolute;
-  top: 100px;
-  right: 24px;
+  top: 12px;
+  right: 0;
   z-index: 1;
+  cursor: pointer;
 `;
 
 export const ModalInfo = styled.div`
@@ -84,9 +83,8 @@ export const PicturePet = styled.picture`
 `;
 
 export const ImgPet = styled.img`
-  max-width: 100%;
+  max-width: 288px;
   height: 240px;
-
   object-fit: cover;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -111,21 +109,21 @@ export const ImgLabel = styled.p`
   height: 28px;
 `;
 export const InfoPet = styled.div`
-  margin-top: 28px;
+  
 `;
 export const InfoPetTitle = styled.h2`
   margin-bottom: 16px;
-
   font-size: 24px;
   line-height: 1.375;
   font-weight: 700;
-
   color: ${({ theme }) => theme.palette.primary};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 28px;
     line-height: 1.357;
     margin-bottom: 20px;
+    margin-right: 50px;
+     padding-right: 50px;
   }
 `;
 export const InfoPetList = styled.ul``;
@@ -174,7 +172,6 @@ export const BtnContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  font-family: ${({ theme }) => theme.fonts.primar};
   font-size: 16px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -193,10 +190,18 @@ export const Contact = styled.a`
   border-radius: 40px;
   color: ${({ theme }) => theme.palette.triadic};
   background-color: ${({ theme }) => theme.palette.accent};
-  margin-right: 20px;
-  margin-left: 12px;
+  margin: 0 0 12px 0;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 160px;
+   margin: 0 20px 0 12px;
+
+     &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.palette.triadic};
+    ${({ modal, theme }) => (modal ? `border-color: ${theme.palette.hoverAccent};` : '')}
+    transform: ${({ theme }) => theme.animations.transform};
+  
+    }
   }
 `;

@@ -1,9 +1,10 @@
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectAuthId, selectAuthToken } from 'redux/authState';
 import { useNotices } from 'hooks';
 import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
-import { useSelector } from 'react-redux';
-import { selectAuthId, selectAuthToken } from 'redux/authState';
+import Paginator from 'components/Paginator';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
@@ -12,12 +13,17 @@ const NoticesCategoriesList = () => {
 
   const categoryName = useLocation().pathname.replace('/notices/', '');
 
-  const notices = useNotices({ categoryName, page: 1, limit: 8 });
+  const { notices, isLoading } = useNotices({ categoryName, page: 1, limit: 8 });
 
   const isNotices = notices.length !== 0;
 
+  const onPageSelect = ({ currentPage }) => {
+    console.log(currentPage);
+  };
+
   return (
     <>
+      {isLoading && <Message>Loading...</Message>}
       {!isNotices && <Message>Looks like there are no Ads here, yet.</Message>}
       {isNotices && (
         <CategoriesList>
@@ -51,6 +57,11 @@ const NoticesCategoriesList = () => {
           )}
         </CategoriesList>
       )}
+      <Paginator
+        totalPages={10}
+        onPageSelect={({ currentPage }) => onPageSelect({ currentPage })}
+        startPage={1}
+      />
     </>
   );
 };

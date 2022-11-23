@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAuthId, selectAuthToken } from 'redux/authState';
 import { useRemoveNoticeMutation } from 'redux/notices';
+import { useRemovePetMutation } from 'redux/user';
 import PopUp from 'components/PopUp';
 import ConfirmButtons from 'components/ConfirmButtons';
 import { DelButtonContainer, DelButton, DelIcon } from './DeleteButton.styled';
@@ -12,9 +13,10 @@ import { toast } from 'react-toastify';
 
 const { icons } = constants;
 
-const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
+const DeleteButton = ({ translucent = false, petId, noticeId, owner, className = '' }) => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [removeNotice] = useRemoveNoticeMutation();
+  const [removePet] = useRemovePetMutation();
 
   const isLogged = useSelector(selectAuthToken);
   const authId = useSelector(selectAuthId);
@@ -37,7 +39,18 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
       }
     }
     if (petId && check) {
-      console.log(petId);
+      try {
+        await removePet({ petId }).then(response => {
+          if (response.error) {
+            toast.error(response.error.data.message);
+          }
+          if (response.data) {
+            toast.success(response?.data?.message ?? 'Success');
+          }
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
     setShowDeleteConfirm(false);
   };
@@ -46,7 +59,7 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner }) => {
   }
 
   return (
-    <DelButtonContainer>
+    <DelButtonContainer className={className}>
       <DelButton
         type="button"
         translucent={translucent}
