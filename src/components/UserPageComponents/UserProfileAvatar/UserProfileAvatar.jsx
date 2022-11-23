@@ -15,8 +15,16 @@ import icons from '../../../assets/icons/icons.svg';
 const UserProfileAvatar = ({ name, avatarURL, isEditing }) => {
   const [updateUserInfo] = useUpdateUserInfoMutation();
 
+  const MAX_FILE_SIZE = 5242880;
+
   const handleInputChange = async e => {
     const file = e.target.files[0];
+
+    if (file.size > MAX_FILE_SIZE) {
+      toast.error('This file is too big, choose something else');
+      return;
+    }
+
     const payload = new FormData();
     payload.append('image', file);
     try {
@@ -54,7 +62,13 @@ const UserProfileAvatar = ({ name, avatarURL, isEditing }) => {
         </SvgIcon>
         <InputText>Edit photo</InputText>
       </ImageLabel>
-      <ImageInput id="avatar" type="file" disabled={isEditing} onChange={handleInputChange} />
+      <ImageInput
+        id="avatar"
+        type="file"
+        disabled={isEditing}
+        onChange={handleInputChange}
+        accept={'.jpg, .jpeg, .png'}
+      />
     </AvatarContainer>
   );
 };

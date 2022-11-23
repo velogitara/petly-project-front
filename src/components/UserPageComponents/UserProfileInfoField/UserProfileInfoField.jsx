@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
+import { Formik, ErrorMessage } from 'formik';
 import {
   InfoContainer,
   InfoForm,
@@ -9,7 +10,11 @@ import {
   InfoButton,
   SvgCheck,
   SvgEdit,
+  DateInput,
+  ErrorMessageInput,
 } from './UserProfileInfoField.styled';
+import ValidationSchema from '../UserEditValidation/UserEditValidation';
+import { parseBirthday } from 'helpers';
 import DatePickerField from 'components/DatePickerForm/DatePikerForm';
 import { useUpdateUserInfoMutation } from 'redux/user';
 import icons from '../../../assets/icons/icons.svg';
@@ -28,61 +33,76 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date
     onFieldEddited(true);
   };
 
-  const handleFormSubmit = async e => {
-    e.preventDefault();
-    const user = { [id]: value };
-
-    onFieldEddited(false);
-    setIsInEditMode(false);
-
-    const parsedData = JSON.stringify(user);
-    const payload = new FormData();
-    payload.append('data', parsedData);
-
-    try {
-      await updateUserInfo({ payload }).then(response => {
-        if (response?.status !== 200) {
-          toast.error(response.error?.data?.message);
-        }
-      });
-    } catch (error) {
-      console.log(error);
+  const checkDate = date => {
+    if (date === '') {
+      return '00.00.0000';
+    } else {
+      return parseBirthday(value);
     }
-  };
-
-  const handleInputChange = e => {
-    const { value } = e.currentTarget;
-    setValue(value);
   };
 
   return (
     <>
       {isInEditMode ? (
-        <InfoForm onSubmit={handleFormSubmit}>
-          <InfoLabel htmlFor={label}>{label}</InfoLabel>
-          {date ? (
-            <DatePickerField
-            // onChange={setFieldValue}
-            // name="birthdate"
-            // value={values.birthdate}
-            />
-          ) : (
-            <InfoInput
-              type="text"
-              id={label}
-              name={label}
-              readOnly={!isInEditMode}
-              className={'edit'}
-              value={value}
-              onChange={handleInputChange}
-            />
+        <Formik
+          initialValues={{
+            [id]: date && text === '' ? null : text,
+          }}
+          validationSchema={ValidationSchema}
+          onSubmit={async data => {
+            if (data.birthday) {
+              var x = new Date().getTimezoneOffset() * 60000;
+              var localISOTime = new Date(data.birthday - x).toISOString().slice(0, -1);
+              data.birthday = localISOTime;
+            }
+            const user = { [id]: data[id] };
+            const parsedData = JSON.stringify(user);
+            const payload = new FormData();
+            payload.append('data', parsedData);
+            try {
+              await updateUserInfo({ payload }).then(response => {
+                if (response?.status !== 200) {
+                  toast.error(response.error?.data?.message);
+                }
+              });
+            } catch (error) {
+              console.log(error);
+            } finally {
+              onFieldEddited(false);
+              setIsInEditMode(false);
+            }
+          }}
+        >
+          {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+            <>
+              <InfoForm onSubmit={handleSubmit}>
+                <InfoLabel htmlFor={label}>{label}</InfoLabel>
+                {date ? (
+                  <DateInput>
+                    <DatePickerField onChange={setFieldValue} name={id} value={values[id]} />
+                  </DateInput>
+                ) : (
+                  <InfoInput
+                    type="text"
+                    id={label}
+                    name={id}
+                    readOnly={!isInEditMode}
+                    className={'edit'}
+                    value={values[id]}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                )}
+                <InfoButton type="submit">
+                  <SvgCheck>
+                    <use href={`${icons}#icon-check`}></use>
+                  </SvgCheck>
+                </InfoButton>
+              </InfoForm>
+              <ErrorMessage name={id} component={ErrorMessageInput} />
+            </>
           )}
-          <InfoButton type="submit">
-            <SvgCheck>
-              <use href={`${icons}#icon-check`}></use>
-            </SvgCheck>
-          </InfoButton>
-        </InfoForm>
+        </Formik>
       ) : (
         <InfoContainer>
           <InfoLabel htmlFor={label}>{label}</InfoLabel>
@@ -92,7 +112,7 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date
             name={label}
             readOnly={!isInEditMode}
             className={'non-edit'}
-            value={value}
+            value={date ? checkDate(value) : value}
           />
 
           <InfoButton

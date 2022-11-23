@@ -69,3 +69,10 @@ export const InputText = styled.p`
   font-size: 12px;
   line-height: 1.83;
 `;
+
+export const ErrorMessageInput = styled.div`
+  color: ${({ theme }) => theme.palette.accent};
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+`;

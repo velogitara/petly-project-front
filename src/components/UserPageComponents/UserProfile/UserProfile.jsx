@@ -2,6 +2,7 @@ import { UserContainer, UserProfileInfo, UserProfileForm } from './UserProfile.s
 import UserProfileInfoField from 'components/UserPageComponents/UserProfileInfoField';
 import UserProfileAvatar from 'components/UserPageComponents/UserProfileAvatar';
 import UserLogout from 'components/UserPageComponents/UserLogout';
+import { parseBirthday } from 'helpers';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -41,7 +42,7 @@ const UserProfile = ({ user }) => {
           <UserProfileInfoField
             id="birthday"
             label="Birthday"
-            text={birthday ?? '00.00.0000'}
+            text={birthday ?? ''}
             isEditing={isEditing}
             date
             onFieldEddited={onFieldEddited}
