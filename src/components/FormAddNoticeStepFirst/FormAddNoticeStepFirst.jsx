@@ -1,11 +1,9 @@
-import { Field, ErrorMessage } from 'formik';
+import { ErrorMessage } from 'formik';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  // Comment,
-  // Textarea,
   Button,
-  // Text,
   Form,
   CategoryBox,
   Label,
@@ -14,22 +12,13 @@ import {
   InputBox,
   BoxLabel,
   LabelRadio,
-  // GenderBox,
-  // IconBox,
-  // IconMale,
-  // IconFemale,
-  // LabelIcon,
-  // InputFile,
-  // IconFile,
-  // Figure,
+  Radio,
   CategoryItem,
   ErrorMessageInput,
-  // BoxFlex,
 } from '../FormAddNotice/FormAddNotice.styled';
 import DatePickerField from 'components/DatePickerForm/DatePikerForm';
 import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
 import Input from 'components/Input';
-import style from '../FormAddNotice/FormAddNotice.module.css';
 const categories = [
   { name: 'lost', value: 'lost', id: '1' },
   { name: 'found', value: 'found', id: '2' },
@@ -37,23 +26,25 @@ const categories = [
   { name: 'sell', value: 'sell', id: '4' },
 ];
 
-// const disabled = () => {
-//   let disabled = true;
-//   if (values.title) {
-//     disabled === false;
-//   }
-// };
 const FormAddNoticeStepFirst = ({
   values,
   handleChange,
   handleBlur,
   handleSubmit,
-  activeStepIndex,
   onClose,
   setActiveStepIndex,
   setFieldValue,
-  errors,
 }) => {
+  const [required, setRequired] = useState(null);
+
+  const next = values => {
+    if (values.title) {
+      setActiveStepIndex(1);
+      setRequired(null);
+    } else {
+      setRequired('Required');
+    }
+  };
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Add pet</Title>
@@ -62,7 +53,8 @@ const FormAddNoticeStepFirst = ({
           <CategoryItem key={category.id}>
             <LabelRadio className={values.category === category.value ? 'active' : ''}>
               {category.name}
-              <Field className={style.radio} type="radio" name="category" value={category.value} />
+
+              <Radio type="radio" name="category" value={category.name} />
             </LabelRadio>
           </CategoryItem>
         ))}
@@ -83,6 +75,7 @@ const FormAddNoticeStepFirst = ({
           />
         </Label>
         <ErrorMessage name="title" component={ErrorMessageInput} />
+        {!values.title && <ErrorMessageInput>{required}</ErrorMessageInput>}
       </InputBox>
       <InputBox>
         <Label>
@@ -99,15 +92,11 @@ const FormAddNoticeStepFirst = ({
         </Label>
         <ErrorMessage name="name" component={ErrorMessageInput} />
       </InputBox>
-      <InputBox className={style.calendar}>
+      <InputBox>
         <Label>
           <BoxLabel>Date of birth</BoxLabel>
-          <DatePickerField
-            className={style.datepicker}
-            onChange={setFieldValue}
-            name="birthday"
-            value={values.birthday}
-          />
+
+          <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
         </Label>
       </InputBox>
       <InputBox className="label">
@@ -127,11 +116,10 @@ const FormAddNoticeStepFirst = ({
       </InputBox>
       <ButtonBox>
         <Button
-          // disabled={disabled}
           className="activeNext"
           type="button"
           onClick={() => {
-            setActiveStepIndex(activeStepIndex + 1);
+            next(values);
           }}
         >
           Next
@@ -155,12 +143,12 @@ FormAddNoticeStepFirst.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
-    // birthday: PropTypes.string.isRequired,
+
+    birthday: PropTypes.instanceOf(Date),
   }),
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  activeStepIndex: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired,
   setActiveStepIndex: PropTypes.func.isRequired,
   setFieldValue: PropTypes.func.isRequired,

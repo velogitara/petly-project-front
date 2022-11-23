@@ -19,8 +19,11 @@ export const LearnButton = styled.button`
   border: 2px solid currentColor;
   border-radius: 40px;
 
+  transition: ${({ theme }) => theme.animations.transition};
+
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.palette.hoverAccent};
+    transform: ${({ theme }) => theme.animations.transform};
   }
 `;

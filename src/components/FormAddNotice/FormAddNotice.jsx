@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
-import { useAddNoticeMutation } from '../../redux/notices';
+import PropTypes from 'prop-types';
 
+import { useAddNoticeMutation } from '../../redux/notices';
 import ValidationSchema from 'components/FormAddNoticeValidation';
 import FormAddNoticeStepFirst from 'components/FormAddNoticeStepFirst';
 import FormAddNoticeStepSecond from 'components/FormAddNoticeStepSecond';
+
 function FormAddNotice({ onClose }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [addNotice] = useAddNoticeMutation();
@@ -13,8 +15,7 @@ function FormAddNotice({ onClose }) {
     <Formik
       initialValues={{
         title: '',
-        // description: 'hello',
-        name: '',
+        name: 'Noname',
         birthday: null,
         breed: '',
         category: '',
@@ -27,7 +28,6 @@ function FormAddNotice({ onClose }) {
       validationSchema={ValidationSchema}
       onSubmit={async values => {
         const { image, ...data } = values;
-        console.log(data);
 
         if (data.birthday) {
           data.birthday = data.birthday.toISOString();
@@ -47,7 +47,7 @@ function FormAddNotice({ onClose }) {
         const payload = new FormData();
         payload.append('image', image);
         payload.append('data', JSON.stringify(data));
-        // const data = { ...values };
+
         onClose();
         await addNotice({ payload });
       }}
@@ -86,3 +86,7 @@ function FormAddNotice({ onClose }) {
 }
 
 export default FormAddNotice;
+
+FormAddNotice.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
