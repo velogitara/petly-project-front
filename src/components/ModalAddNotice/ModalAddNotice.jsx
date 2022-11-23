@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import ModalCloseButton from 'components/ModalCloseButton';
 import FormAddNotice from '../FormAddNotice';
@@ -39,6 +39,6 @@ function ModalAddNotice({ onClose }) {
 }
 export default ModalAddNotice;
 
-ModalAddNotice.propTypes = {
-  onClose: PropTypes.func.isRequired,
-};
+// ModalAddNotice.propTypes = {
+//   onClose: PropTypes.func.isRequired,
+// };
