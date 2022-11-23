@@ -36,12 +36,14 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
     const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
+        
       }
     };
 
     window.addEventListener('keydown', handleEscKeyDown);
     return () => {
       window.removeEventListener('keydown', handleEscKeyDown);
+      
     };
   }, [onClose]);
 
