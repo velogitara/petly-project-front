@@ -8,7 +8,7 @@ const LearnMoreButton = ({ noticeId, favorite, owner }) => {
 
   return (
     <>
-      <LearnButton 
+      <LearnButton
         type="button"
         title="Learn more"
         onClick={() => {
