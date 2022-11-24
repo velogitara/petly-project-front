@@ -54,7 +54,7 @@ const FormAddNoticeStepFirst = ({
             <LabelRadio className={values.category === category.value ? 'active' : ''}>
               {category.name}
 
-              <Radio type="radio" name="category" value={category.name} />
+              <Radio type="radio" name="category" value={category.value} />
             </LabelRadio>
           </CategoryItem>
         ))}
