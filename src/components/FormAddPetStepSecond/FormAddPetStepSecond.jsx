@@ -17,7 +17,7 @@ import {
   BoxFlex,
 } from '../FormAddNotice/FormAddNotice.styled';
 
-import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
+import { Title } from '../FormAddPet/FormAddPet.styled';
 import PreviewImage from 'components/PreviewImage/PreviewImage';
 
 const FormAddPetStepSecond = ({

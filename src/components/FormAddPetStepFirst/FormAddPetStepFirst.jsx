@@ -12,7 +12,7 @@ import {
   ErrorMessageInput,
 } from '../FormAddNotice/FormAddNotice.styled';
 import DatePickerField from 'components/DatePickerForm/DatePikerForm';
-import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
+import { Title } from '../FormAddPet/FormAddPet.styled';
 import Input from 'components/Input';
 
 const FormAddPetStepFirst = ({
