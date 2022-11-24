@@ -7,6 +7,8 @@ export const noticesApi = createApi({
   reducerPath: 'noticesApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_BASE_URL}/notices`,
+    credentials: 'include',
+
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authState.authToken;
       if (token) {

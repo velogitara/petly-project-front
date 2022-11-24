@@ -18,7 +18,7 @@ const NoticesCategoriesList = () => {
   const isNotices = notices.length !== 0;
 
   const onPageSelect = ({ currentPage }) => {
-    console.log(currentPage);
+    // console.log(currentPage);
   };
 
   return (
