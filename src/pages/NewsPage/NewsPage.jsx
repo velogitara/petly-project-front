@@ -13,9 +13,6 @@ const NewsPage = () => {
   const [error, setError] = useState(null);
   const { data, isLoading } = useNews({ page: page.currentPage, query });
 
-  console.log(page.currentPage)
-  console.log()
-
   useEffect(() => {
     if (data.length === 0 && !isLoading && page === 1) {
       setError('error');
@@ -23,7 +20,6 @@ const NewsPage = () => {
       setError(null);
     }
   }, [page, data.length, isLoading]);
-
 
   function onSubmit(e) {
     e.preventDefault();
@@ -40,9 +36,7 @@ const NewsPage = () => {
     <InputSearch onSubmit={e => onSubmit(e)} />
     {isLoading && "Loading..."}
     {error ? <SearchError query={query} /> : <NewsList news={data} />}
-    {!isLoading && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />
-    }
-
+    {(!isLoading && !error) && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />}
   </ContainerWithPadding>
 };
 
