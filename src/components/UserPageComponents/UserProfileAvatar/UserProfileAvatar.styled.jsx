@@ -25,7 +25,6 @@ export const ImageContainer = styled.div`
   margin-bottom: 12px;
   overflow: hidden;
 
-  background-color: ${({ theme }) => theme.backgrounds.backdrop};
   border-radius: 50%;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -68,4 +67,11 @@ export const InputText = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.83;
+`;
+
+export const ErrorMessageInput = styled.div`
+  color: ${({ theme }) => theme.palette.accent};
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
 `;

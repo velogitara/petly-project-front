@@ -28,25 +28,28 @@ export const UserContainer = styled.div`
 
 export const UserProfileForm = styled.div`
   display: flex;
-  align-items: center;
 
   @media screen and (max-width: ${({ theme }) => theme.screens.toDesktop}) {
     margin-left: auto;
+    align-items: flex-start;
     flex-direction: row-reverse;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
     flex-direction: column;
+    align-items: center;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     flex-direction: column;
     margin-left: auto;
+    align-items: center;
   }
 `;
 
 export const UserProfileInfo = styled.div`
   @media screen and (max-width: ${({ theme }) => theme.screens.toDesktop}) {
+    padding-top: 16px;
     margin-right: 52px;
   }
   @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
