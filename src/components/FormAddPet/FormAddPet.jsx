@@ -89,4 +89,5 @@ export default FormAddPet;
 
 FormAddPet.propTypes = {
   onClose: PropTypes.func.isRequired,
+  addPet: PropTypes.func.isRequired,
 };

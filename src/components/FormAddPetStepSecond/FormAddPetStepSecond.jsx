@@ -39,10 +39,10 @@ const FormAddPetStepSecond = ({
       <Form onSubmit={handleSubmit}>
         <Title className="title">Add pet</Title>
         <InputBox className="file">
-          <BoxLabel>Load the pet’s image:</BoxLabel>
+          <BoxLabel className="user">Load the pet’s image:</BoxLabel>
           <Label>
             <InputFile type="file" name="image" onChange={image} />
-            <BoxFlex>
+            <BoxFlex className="user">
               <Figure>
                 <IconFile>
                   <use href={icons + '#icon-plus-big'} />

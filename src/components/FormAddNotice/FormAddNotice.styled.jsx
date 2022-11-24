@@ -155,6 +155,10 @@ export const Span = styled.span`
 export const BoxLabel = styled.div`
   margin-bottom: 8px;
 
+  &.user {
+    text-align: center;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-bottom: 12px;
   }
@@ -335,6 +339,10 @@ export const Textarea = styled.input`
 
 export const BoxFlex = styled.div`
   display: flex;
+  &.user {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const ErrorMessageInput = styled.div`
