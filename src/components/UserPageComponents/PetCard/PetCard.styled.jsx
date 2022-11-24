@@ -26,7 +26,6 @@ export const PetContainer = styled.div`
 export const PetImageContainer = styled.div`
   width: 240px;
   height: 240px;
-  background-color: grey;
   border-radius: 20px;
   margin-bottom: 16px;
   overflow: hidden;

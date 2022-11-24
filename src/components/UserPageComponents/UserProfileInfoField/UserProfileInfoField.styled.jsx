@@ -109,3 +109,55 @@ export const SvgEdit = styled.svg`
     fill: ${({ theme }) => theme.backgrounds.backdrop};
   }
 `;
+
+export const DateInput = styled.div`
+  margin-right: 9px;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    margin-right: 24px;
+  }
+
+  & input {
+    width: 159px;
+    height: 24px;
+    padding: 4px 18px;
+    line-height: 1.33;
+
+    border: 1px solid rgba(245, 146, 86, 0.5);
+    border-radius: 40px;
+
+    font-weight: 500;
+    font-size: 12px;
+    background-color: ${({ theme }) => theme.backgrounds.primary};
+
+    &:hover,
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      font-size: 14px;
+      line-height: 1.35;
+
+      color: rgba(27, 27, 27, 0.6);
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+    }
+
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+      width: 216px;
+      height: 32px;
+      padding: 4px 12px;
+      font-size: 18px;
+      line-height: 1.38;
+    }
+  }
+`;
+
+export const ErrorMessageInput = styled.div`
+  color: ${({ theme }) => theme.palette.accent};
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+`;
