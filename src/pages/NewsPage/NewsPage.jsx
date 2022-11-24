@@ -1,19 +1,20 @@
 import NewsList from 'components/NewsList';
 import TitlePage from 'components/TitlePage';
-import Button from 'components/Button';
 import InputSearch from 'components/InputSearch';
 import SearchError from 'components/SearchError';
+import Paginator from 'components/Paginator';
 import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
-import { ContainerWithPadding, Wrapper } from './NewsPage.styled'
+import { ContainerWithPadding} from './NewsPage.styled'
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const [showNextButton, setNextShowButton] = useState(false);
-  const [showPrevButton, setPrevShowButton] = useState(false);
-  const { data, isLoading } = useNews({ page, query });
+  const { data, isLoading } = useNews({ page: page.currentPage, query });
+
+  console.log(page.currentPage)
+  console.log()
 
   useEffect(() => {
     if (data.length === 0 && !isLoading && page === 1) {
@@ -21,23 +22,8 @@ const NewsPage = () => {
     } else {
       setError(null);
     }
-
-    if (data.length === 6){
-      setNextShowButton(true);
-    } else {
-      setNextShowButton(false);
-    }
-
-    if (page !== 1){
-      setPrevShowButton(true);
-    } else {
-      setPrevShowButton(false);
-    }
   }, [page, data.length, isLoading]);
 
-  function onLoadMoreBtnClick(step) {
-      setPage((prevState) => prevState + step);
-  }
 
   function onSubmit(e) {
     e.preventDefault();
@@ -45,20 +31,18 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      setNextShowButton(false);
-      setPrevShowButton(false);
       document.getElementById("searchForm").reset();
     }
   }
 
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)}/>
-    {error? <SearchError query={query}/> : <NewsList news={data}/>}
-    <Wrapper>
-      {showPrevButton && <Button title="Prev" styled="news" onClick={e=>onLoadMoreBtnClick(-1)}></Button>}
-      {showNextButton && <Button title="Next" styled="news" onClick={e=>onLoadMoreBtnClick(1)}></Button>}
-    </Wrapper>
+    <InputSearch onSubmit={e => onSubmit(e)} />
+    {isLoading && "Loading..."}
+    {error ? <SearchError query={query} /> : <NewsList news={data} />}
+    {!isLoading && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />
+    }
+
   </ContainerWithPadding>
 };
 

@@ -9,14 +9,3 @@ export const ContainerWithPadding = styled(Container)`
         padding-bottom: 200px;
     }
 `
-
-export const Wrapper = styled.div`
-  @media screen and (min-width: ${theme.screens.tablet}){
-    display: grid;
-    grid-column-gap: 60px;
-    justify-content: space-between;
-    align-content: center;
-    grid-auto-flow: column;
-  }
-
-`
