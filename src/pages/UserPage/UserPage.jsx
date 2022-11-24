@@ -11,6 +11,7 @@ import {
 } from './UserPage.styled';
 import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
+import ModalAddPet from 'components/ModalAddPet';
 import Loader from 'components/Loader';
 
 const sizes = {
@@ -22,6 +23,8 @@ const sizes = {
 const screens = { mobile: 'mobile', tablet: 'tablet', desktop: 'desktop' };
 
 const UserPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
   const { user, pets, isLoading } = useGetCurrentUser();
 
   const updateMedia = () => {
@@ -58,7 +61,7 @@ const UserPage = () => {
               <HeaderContainer>
                 <UserHeader text="My information:" className="user" />
                 <AddPetButton user>
-                  <></>
+                  <ModalAddPet onClose={toggleModal} />
                 </AddPetButton>
               </HeaderContainer>
             ) : (
@@ -71,7 +74,7 @@ const UserPage = () => {
               <HeaderContainer>
                 <UserHeader text="My pets:" />
                 <AddPetButton user>
-                  <></>
+                  <ModalAddPet onClose={toggleModal} />
                 </AddPetButton>
               </HeaderContainer>
             ) : (

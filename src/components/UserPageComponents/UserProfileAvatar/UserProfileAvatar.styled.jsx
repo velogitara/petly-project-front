@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import defaultAvatar from '../../../assets/images/defaultAvatar-233.png';
 
 export const AvatarContainer = styled.div`
   display: flex;
@@ -24,6 +25,7 @@ export const ImageContainer = styled.div`
   height: 233px;
   margin-bottom: 12px;
   overflow: hidden;
+  background-image: url(${defaultAvatar});
 
   border-radius: 50%;
 
