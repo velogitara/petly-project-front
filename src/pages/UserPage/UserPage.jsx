@@ -12,6 +12,7 @@ import {
 import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader';
+import ModalAddPet from 'components/ModalAddPet';
 
 const sizes = {
   mobile: 320,
@@ -71,7 +72,7 @@ const UserPage = () => {
               <HeaderContainer>
                 <UserHeader text="My pets:" />
                 <AddPetButton user>
-                  <></>
+                  <ModalAddPet />
                 </AddPetButton>
               </HeaderContainer>
             ) : (
