@@ -2,6 +2,7 @@ import UserProfile from 'components/UserPageComponents/UserProfile';
 import UserHeader from 'components/UserPageComponents/UserHeader';
 import PetGallery from 'components/UserPageComponents/PetGallery';
 import AddPetButton from 'components/AddPetButton';
+import { Overlay } from '../../components/ModalAddNotice/ModalAddNotice.styled';
 import {
   HeaderContainer,
   UserContainer,
@@ -13,6 +14,7 @@ import { useGetCurrentUser } from 'hooks';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader';
 import ModalAddPet from 'components/ModalAddPet';
+import { useAddPetMutation } from 'redux/user';
 
 const sizes = {
   mobile: 320,
@@ -23,6 +25,7 @@ const sizes = {
 const screens = { mobile: 'mobile', tablet: 'tablet', desktop: 'desktop' };
 
 const UserPage = () => {
+  const [addPet, { isLoading: isPetLoading }] = useAddPetMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
   const { user, pets, isLoading } = useGetCurrentUser();
@@ -56,12 +59,17 @@ const UserPage = () => {
         </LoaderContainer>
       ) : (
         <Container>
+          {isPetLoading && (
+            <Overlay>
+              <Loader />
+            </Overlay>
+          )}
           <UserContainer>
             {screen === screens.tablet ? (
               <HeaderContainer>
                 <UserHeader text="My information:" className="user" />
                 <AddPetButton user>
-                  <ModalAddPet onClose={toggleModal} />
+                  <ModalAddPet onClose={toggleModal} addPet={addPet} />
                 </AddPetButton>
               </HeaderContainer>
             ) : (
@@ -74,7 +82,7 @@ const UserPage = () => {
               <HeaderContainer>
                 <UserHeader text="My pets:" />
                 <AddPetButton user>
-                  <ModalAddPet onClose={toggleModal} />
+                  <ModalAddPet onClose={toggleModal} addPet={addPet} />
                 </AddPetButton>
               </HeaderContainer>
             ) : (

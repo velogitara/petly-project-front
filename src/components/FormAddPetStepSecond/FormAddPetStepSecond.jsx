@@ -15,9 +15,9 @@ import {
   Figure,
   ErrorMessageInput,
   BoxFlex,
-} from '../FormAddPet/FormAddPet.styled';
+} from '../FormAddNotice/FormAddNotice.styled';
 
-import { Title } from '../ModalAddPet/ModalAddPet.styled';
+import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
 import PreviewImage from 'components/PreviewImage/PreviewImage';
 
 const FormAddPetStepSecond = ({

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 
-import { useAddPetMutation } from 'redux/user';
 import ValidationSchema from 'components/FormAddPetValidation';
 import FormAddPetStepFirst from 'components/FormAddPetStepFirst';
 import FormAddPetStepSecond from 'components/FormAddPetStepSecond';
 
-function FormAddPet({ onClose }) {
+function FormAddPet({ onClose, addPet }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
-  const [addPet] = useAddPetMutation();
 
   return (
     <Formik
@@ -41,7 +40,16 @@ function FormAddPet({ onClose }) {
         payload.append('data', JSON.stringify(data));
 
         onClose();
-        await addPet({ payload });
+
+        try {
+          await addPet({ payload }).then(response => {
+            if (response?.status !== 201) {
+              toast.error(response.error?.data?.message);
+            }
+          });
+        } catch (error) {
+          console.log(error);
+        }
       }}
     >
       {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
