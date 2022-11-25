@@ -43,7 +43,7 @@ const UserProfileAvatar = ({ name, avatarURL, isEditing }) => {
 
   return (
     <AvatarContainer>
-      {isLoading ?? <ImageLoader />}
+      {isLoading && <ImageLoader />}
       <ImageContainer>
         <UserPicture>
           <source

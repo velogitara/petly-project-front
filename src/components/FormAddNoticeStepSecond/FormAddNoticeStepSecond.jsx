@@ -33,7 +33,6 @@ const FormAddNoticeStepSecond = ({
   handleChange,
   handleBlur,
   handleSubmit,
-  activeStepIndex,
   setActiveStepIndex,
   setFieldValue,
 }) => {
@@ -52,7 +51,6 @@ const FormAddNoticeStepSecond = ({
         <GenderBox>
           <LabelIcon className={values.sex === 'male' ? 'active' : ''}>
             <Radio type="radio" name="sex" value="male" />
-
             <IconBox>
               <IconMale>
                 <use href={icons + '#icon-sex-male'} />
@@ -62,7 +60,6 @@ const FormAddNoticeStepSecond = ({
           </LabelIcon>
           <LabelIcon className={values.sex === 'female' ? 'active' : ''}>
             <Radio type="radio" name="sex" value="female" />
-
             <IconBox>
               <IconFemale>
                 <use className="box" href={icons + '#icon-sex-female'} />
@@ -98,7 +95,6 @@ const FormAddNoticeStepSecond = ({
                 name="price"
                 type="text"
                 placeholder="Type price"
-                defaultValue={values.price}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -141,7 +137,7 @@ const FormAddNoticeStepSecond = ({
             className="formAddPet"
             type="button"
             onClick={() => {
-              setActiveStepIndex(activeStepIndex - 1);
+              setActiveStepIndex(0);
             }}
           >
             Back
@@ -156,12 +152,11 @@ FormAddNoticeStepSecond.propTypes = {
   values: PropTypes.shape({
     sex: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    // price: PropTypes.string.isRequired,
   }),
   handleChange: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  activeStepIndex: PropTypes.number.isRequired,
   onClose: PropTypes.func.isRequired,
   setActiveStepIndex: PropTypes.func.isRequired,
   setFieldValue: PropTypes.func.isRequired,

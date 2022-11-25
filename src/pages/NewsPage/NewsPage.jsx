@@ -1,47 +1,42 @@
 import NewsList from 'components/NewsList';
 import TitlePage from 'components/TitlePage';
-import Button from '../../components/Button';
 import InputSearch from 'components/InputSearch';
-import { useNews } from '../../hooks';
+import SearchError from 'components/SearchError';
+import Paginator from 'components/Paginator';
+import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
-import { ContainerWithPadding } from './NewsPage.styled';
-
+import { ContainerWithPadding} from './NewsPage.styled'
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
-  const [allNews, setAllNews] = useState([]);
   const [page, setPage] = useState(1);
-  const { data, isLoading } = useNews({ page, query });
-  
+  const [error, setError] = useState(null);
+  const { data, isLoading } = useNews({ page: page.currentPage, query });
+
   useEffect(() => {
-    setAllNews((prevState) => ([...prevState, ...data]));  
-  }, [data]);
-
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: document.body.offsetHeight,
-  //     behavior: 'smooth',
-  //   })
-  // }, [data]);
-
-  function onLoadMoreBtnClick() {
-    setPage((prevState) => prevState + 1);
-  }
+    if (data.length === 0 && !isLoading && page === 1) {
+      setError('error');
+    } else {
+      setError(null);
+    }
+  }, [page, data.length, isLoading]);
 
   function onSubmit(e) {
     e.preventDefault();
     const searchedValue = e.currentTarget.parentElement.elements['search'].value;
-    setQuery(searchedValue);
-    setPage(1);
-    setAllNews([]);
-    // document.getElementById("searchForm").reset();
+    if (query !== searchedValue) {
+      setQuery(searchedValue);
+      setPage(1);
+      document.getElementById("searchForm").reset();
+    }
   }
 
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)}/>
-    {isLoading ? 'loading...': <NewsList news={allNews}/>}
-    {data.length > 0 && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
+    <InputSearch onSubmit={e => onSubmit(e)} />
+    {isLoading && "Loading..."}
+    {error ? <SearchError query={query} /> : <NewsList news={data} />}
+    {(!isLoading && !error) && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />}
   </ContainerWithPadding>
 };
 

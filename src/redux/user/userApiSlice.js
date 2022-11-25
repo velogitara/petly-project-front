@@ -35,8 +35,8 @@ export const userApi = apiSlice.injectEndpoints({
     }),
     addPet: builder.mutation({
       query: ({ payload }) => ({
-        url: `users/addPet`,
-        method: 'PUT',
+        url: `/addPet`,
+        method: 'POST',
         body: payload,
       }),
       invalidatesTags: ['User'],

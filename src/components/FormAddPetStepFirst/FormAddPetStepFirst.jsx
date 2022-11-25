@@ -5,28 +5,17 @@ import PropTypes from 'prop-types';
 import {
   Button,
   Form,
-  CategoryBox,
   Label,
   ButtonBox,
-  Span,
   InputBox,
   BoxLabel,
-  LabelRadio,
-  Radio,
-  CategoryItem,
   ErrorMessageInput,
 } from '../FormAddNotice/FormAddNotice.styled';
 import DatePickerField from 'components/DatePickerForm/DatePikerForm';
-import { Title } from '../ModalAddNotice/ModalAddNotice.styled';
+import { Title } from '../FormAddPet/FormAddPet.styled';
 import Input from 'components/Input';
-const categories = [
-  { name: 'lost', value: 'lost', id: '1' },
-  { name: 'found', value: 'found', id: '2' },
-  { name: 'In good hands', value: 'for-free', id: '3' },
-  { name: 'sell', value: 'sell', id: '4' },
-];
 
-const FormAddNoticeStepFirst = ({
+const FormAddPetStepFirst = ({
   values,
   handleChange,
   handleBlur,
@@ -38,7 +27,7 @@ const FormAddNoticeStepFirst = ({
   const [required, setRequired] = useState(null);
 
   const next = values => {
-    if (values.title) {
+    if (values.name && values.birthday) {
       setActiveStepIndex(1);
       setRequired(null);
     } else {
@@ -48,35 +37,6 @@ const FormAddNoticeStepFirst = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Add pet</Title>
-      <CategoryBox>
-        {categories.map(category => (
-          <CategoryItem key={category.id}>
-            <LabelRadio className={values.category === category.value ? 'active' : ''}>
-              {category.name}
-
-              <Radio type="radio" name="category" value={category.value} />
-            </LabelRadio>
-          </CategoryItem>
-        ))}
-      </CategoryBox>
-      <InputBox>
-        <Label>
-          <BoxLabel>
-            Tittle of ad<Span>*</Span>
-          </BoxLabel>
-          <Input
-            styled="inputAdd"
-            name="title"
-            type="text"
-            placeholder="Type name"
-            value={values.title}
-            onChange={handleChange}
-            onBlur={handleBlur}
-          />
-        </Label>
-        <ErrorMessage name="title" component={ErrorMessageInput} />
-        {!values.title && <ErrorMessageInput>{required}</ErrorMessageInput>}
-      </InputBox>
       <InputBox>
         <Label>
           <BoxLabel>Name pet</BoxLabel>
@@ -91,10 +51,15 @@ const FormAddNoticeStepFirst = ({
           />
         </Label>
         <ErrorMessage name="name" component={ErrorMessageInput} />
+        {!values.name && <ErrorMessageInput>{required}</ErrorMessageInput>}
       </InputBox>
       <InputBox>
-        <BoxLabel>Date of birth</BoxLabel>
-        <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
+        <Label>
+          <BoxLabel>Date of birth</BoxLabel>
+
+          <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
+        </Label>
+        {!values.birthday && <ErrorMessageInput>{required}</ErrorMessageInput>}
       </InputBox>
       <InputBox className="label">
         <Label>
@@ -135,9 +100,8 @@ const FormAddNoticeStepFirst = ({
   );
 };
 
-FormAddNoticeStepFirst.propTypes = {
+FormAddPetStepFirst.propTypes = {
   values: PropTypes.shape({
-    title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
     birthday: PropTypes.instanceOf(Date),
@@ -150,4 +114,4 @@ FormAddNoticeStepFirst.propTypes = {
   setFieldValue: PropTypes.func.isRequired,
 };
 
-export default FormAddNoticeStepFirst;
+export default FormAddPetStepFirst;

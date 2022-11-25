@@ -44,6 +44,7 @@ const useNotices = ({ categoryName, page = 1, limit = 8 }) => {
   }
   return {
     notices: result?.data?.notices ?? [],
+    totalPages: result?.data?.totalPages ?? 1,
     isLoading: isLoadByCategory || isLoadOwn || isLoadFavorite,
   };
 };

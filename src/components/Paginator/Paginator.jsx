@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { PaginatorContainer, PaginatorButton, ArrowIcon } from './Paginator.styled';
+import { PaginatorContainer, PaginatorButton, ArrowIcon, Ellipsis } from './Paginator.styled';
 
 const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 1 }) => {
   const [currentPage, setCurrentPage] = useState(startPage);
   const [showNextButton, setShowNextButton] = useState(totalPages > 1);
   const [showPrevButton, setShowPrevButton] = useState(currentPage > 1);
+  const [showForwardEllipsis, setShowForwardEllipsis] = useState(false);
+  const [showBackwardEllipsis, setShowBackwardEllipsis] = useState(false);
+  const [difference] = useState(() => totalPages - viewedPages);
 
   useEffect(() => {
     if (currentPage === 1) {
@@ -21,29 +24,49 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
     onPageSelect({ currentPage });
   }, [currentPage, totalPages, onPageSelect]);
 
+  useEffect(() => {
+    if (difference > 2 && currentPage > 2) {
+      setShowBackwardEllipsis(true);
+    } else {
+      setShowBackwardEllipsis(false);
+    }
+  }, [showBackwardEllipsis, difference, currentPage]);
+
+  useEffect(() => {
+    if (difference > 2 && currentPage < totalPages - 1) {
+      setShowForwardEllipsis(true);
+    } else {
+      setShowForwardEllipsis(false);
+    }
+  }, [showForwardEllipsis, difference, currentPage, totalPages]);
+
   if (totalPages === 1) {
-    return <></>;
+    return null;
   }
 
-  const diff = totalPages - viewedPages;
-
   let viewField = viewedPages;
-  if (diff < 0) {
-    viewField = viewedPages - 2 + diff;
-  } else if (diff === 0) {
+  if (difference < 0) {
+    viewField = viewedPages - 2 + difference;
+  } else if (difference === 0) {
     viewField = viewedPages - 2;
-  } else if (diff === 1) {
+  } else if (difference === 1) {
     viewField = viewedPages - 1;
   }
 
   let shift;
-  if (currentPage === 1 || diff <= 0) {
+  if (currentPage === 1 || difference <= 0) {
     shift = 2;
-  } else if (diff > 0 && currentPage >= diff) {
-    shift = diff === 1 ? diff + 1 : diff;
+  } else if (difference > 0 && currentPage >= difference) {
+    shift = difference === 1 ? difference + 1 : difference;
   } else {
     shift = currentPage;
   }
+
+  const stepBackward = currentPage > viewedPages ? viewedPages : Math.floor(currentPage / 2);
+  const stepForward =
+    currentPage < totalPages - viewedPages
+      ? viewedPages
+      : Math.floor((totalPages - currentPage + 1) / 2);
 
   const pages = [
     ...Array(viewField)
@@ -61,8 +84,8 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
 
   return (
     <PaginatorContainer>
-      {showPrevButton && diff <= 0 && (
-        <PaginatorButton title="Previous page" onClick={() => onArrowClick(-1)}>
+      {showPrevButton && (
+        <PaginatorButton title="Previous page" onClick={() => onArrowClick(-1)} secondary>
           <ArrowIcon />
         </PaginatorButton>
       )}
@@ -73,10 +96,13 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
       >
         {1}
       </PaginatorButton>
-
-      {showPrevButton && diff > 0 && (
-        <PaginatorButton title="Previous page" onClick={() => onArrowClick(-1)}>
-          <ArrowIcon />
+      {showBackwardEllipsis && (
+        <PaginatorButton
+          title={`${stepBackward} pages backward`}
+          onClick={() => onArrowClick(stepBackward * -1)}
+          secondary
+        >
+          <Ellipsis>...</Ellipsis>
         </PaginatorButton>
       )}
       {pages.map(page => (
@@ -89,9 +115,13 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
           {page}
         </PaginatorButton>
       ))}
-      {showNextButton && diff > 0 && (
-        <PaginatorButton title="Next page" onClick={() => onArrowClick(1)}>
-          <ArrowIcon next />
+      {showForwardEllipsis && (
+        <PaginatorButton
+          title={`${stepForward} pages forward`}
+          onClick={() => onArrowClick(stepForward)}
+          secondary
+        >
+          <Ellipsis>...</Ellipsis>
         </PaginatorButton>
       )}
 
@@ -102,8 +132,8 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
       >
         {totalPages}
       </PaginatorButton>
-      {showNextButton && diff <= 0 && (
-        <PaginatorButton title="Next page" onClick={() => onArrowClick(1)}>
+      {showNextButton && (
+        <PaginatorButton title="Next page" onClick={() => onArrowClick(1)} secondary>
           <ArrowIcon next />
         </PaginatorButton>
       )}
