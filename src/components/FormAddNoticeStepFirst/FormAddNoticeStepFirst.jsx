@@ -93,11 +93,8 @@ const FormAddNoticeStepFirst = ({
         <ErrorMessage name="name" component={ErrorMessageInput} />
       </InputBox>
       <InputBox>
-        <Label>
-          <BoxLabel>Date of birth</BoxLabel>
-
-          <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
-        </Label>
+        <BoxLabel>Date of birth</BoxLabel>
+        <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
       </InputBox>
       <InputBox className="label">
         <Label>
@@ -143,7 +140,6 @@ FormAddNoticeStepFirst.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
-
     birthday: PropTypes.instanceOf(Date),
   }),
   handleChange: PropTypes.func.isRequired,
