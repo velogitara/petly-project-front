@@ -1,7 +1,7 @@
 import { GalleryContainer } from './PetGallery.styled';
 import PetCard from 'components/UserPageComponents/PetCard';
 
-const PetGallery = ({ pets }) => {
+const PetGallery = ({ pets, screen }) => {
   const isPets = pets.length !== 0;
 
   return (
@@ -18,10 +18,9 @@ const PetGallery = ({ pets }) => {
               imageURL={imageURL}
               comments={comments}
               owner={owner}
+              screen={screen}
             />
           ))}
-          {/* <PetCard />
-      <PetCard screen={screen} /> */}
         </GalleryContainer>
       )}
     </>

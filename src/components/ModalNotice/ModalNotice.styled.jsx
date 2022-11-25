@@ -1,6 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Backdrop = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -9,22 +14,24 @@ export const Backdrop = styled.div`
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   z-index: 150;
+  overflow-y: scroll;
 `;
 export const Modal = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
   width: 280px;
   height: fit-content;
   padding: 60px 20px 40px 20px;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
   border-radius: 20px;
+  margin-top: 30px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    top: unset;
     width: 704px;
     border-radius: 40px;
     padding: 32px 20px;
+    margin-top: 0;
   }
 `;
 
@@ -33,6 +40,7 @@ export const DeleteBtnContainer = styled.div`
   top: 12px;
   right: 0;
   z-index: 1;
+  cursor: pointer;
 `;
 
 export const ModalInfo = styled.div`

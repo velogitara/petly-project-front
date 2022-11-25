@@ -23,8 +23,8 @@ export const ImageContainer = styled.div`
   width: 233px;
   height: 233px;
   margin-bottom: 12px;
+  overflow: hidden;
 
-  background-color: ${({ theme }) => theme.backgrounds.backdrop};
   border-radius: 50%;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -34,6 +34,12 @@ export const ImageContainer = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     margin-bottom: 0;
   }
+`;
+
+export const UserPicture = styled.picture`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const ImageLabel = styled.label`
@@ -61,4 +67,11 @@ export const InputText = styled.p`
   font-weight: 400;
   font-size: 12px;
   line-height: 1.83;
+`;
+
+export const ErrorMessageInput = styled.div`
+  color: ${({ theme }) => theme.palette.accent};
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
 `;

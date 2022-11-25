@@ -17,38 +17,39 @@ export const UserContainer = styled.div`
     position: relative;
     margin-bottom: 20px;
     padding: 24px 40px 24px 0;
-    min-width: calc((100vw - 704px) / 2 + 704px);
     border-radius: 0px 40px 40px 0px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     margin-bottom: 0;
-    padding: 20px 16px 103px 0;
-    min-width: calc(100vw - (100vw - 1247px) / 2 - 853px);
+    padding: 20px 16px 103px 16px;
   }
 `;
 
 export const UserProfileForm = styled.div`
   display: flex;
-  align-items: center;
 
   @media screen and (max-width: ${({ theme }) => theme.screens.toDesktop}) {
     margin-left: auto;
+    align-items: flex-start;
     flex-direction: row-reverse;
   }
 
   @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {
     flex-direction: column;
+    align-items: center;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     flex-direction: column;
     margin-left: auto;
+    align-items: center;
   }
 `;
 
 export const UserProfileInfo = styled.div`
   @media screen and (max-width: ${({ theme }) => theme.screens.toDesktop}) {
+    padding-top: 16px;
     margin-right: 52px;
   }
   @media screen and (max-width: ${({ theme }) => theme.screens.toTablet}) {

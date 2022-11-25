@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import StyledComponents from './OurFriendsCards.styled';
+import noImage from '../../assets/images/No image-288.png';
 
 const {
   Card,
@@ -35,7 +36,11 @@ const OurFriendsCards = ({ showWorkdays, friends }) => {
               </NameLink>
             </Name>
             <BoxContent>
-              {imageUrl ? <CardPic src={imageUrl} alt={title + ' logo'} /> : false}
+              {imageUrl ? (
+                <CardPic src={imageUrl} alt={title + ' logo'} />
+              ) : (
+                <CardPic src={noImage} alt={title + ' logo'} />
+              )}
               <div>
                 <InfoBox onClick={showWorkdays}>
                   <InfoTitle>

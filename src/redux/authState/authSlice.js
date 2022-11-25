@@ -7,6 +7,7 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `${API_BASE_URL}/auth`,
+    // credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authState.authToken;
 
@@ -46,7 +47,7 @@ export const authApi = createApi({
     signOut: builder.mutation({
       query: () => ({
         url: 'logout',
-        method: 'GET',
+        method: 'POST',
       }),
       invalidatesTags: ['Auth'],
     }),
