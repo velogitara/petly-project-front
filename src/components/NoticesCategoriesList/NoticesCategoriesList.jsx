@@ -6,6 +6,7 @@ import { useNotices } from 'hooks';
 import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
 import Paginator from 'components/Paginator';
+import Loader from 'components/Loader';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
@@ -20,7 +21,7 @@ const NoticesCategoriesList = () => {
   const isNotices = notices.length !== 0;
   return (
     <>
-      {isLoading && <Message>Loading...</Message>}
+      {isLoading && <Loader />}
       {!isNotices && <Message>Looks like there are no Ads here, yet.</Message>}
       {isNotices && (
         <CategoriesList>
