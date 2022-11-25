@@ -32,7 +32,7 @@ export const userApi = createApi({
     addPet: builder.mutation({
       query: ({ payload }) => ({
         url: `/addPet`,
-        method: 'PUT',
+        method: 'POST',
         body: payload,
       }),
       invalidatesTags: ['User'],
