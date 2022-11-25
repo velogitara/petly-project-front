@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputForm } from './Input.styled';
 
-const Input = ({ placeholder, styled, value, margin, type, name }) => {
+const Input = ({ placeholder, styled, value, margin, type, name, as, rows, resize }) => {
   return (
     <InputForm
       className={styled}
@@ -10,6 +10,9 @@ const Input = ({ placeholder, styled, value, margin, type, name }) => {
       style={{ margin: margin }}
       type={type}
       name={name}
+      as={as}
+      rows={rows}
+      resize={resize}
     />
   );
 };

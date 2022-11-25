@@ -14,6 +14,7 @@ export const InputForm = styled(Field)`
     padding: 11px 14px;
     width: 280px;
     font-size: 14px;
+    resize: none;
     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
       padding: 14px 32px;
       width: 448px;
@@ -34,4 +35,6 @@ export const InputForm = styled(Field)`
       font-size: 16px;
     }
   }
+
+
 `;
