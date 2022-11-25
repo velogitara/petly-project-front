@@ -83,7 +83,12 @@ const UserProfileInfoField = ({ id, label, text, isEditing, onFieldEddited, date
                 <InfoLabel htmlFor={label}>{label}</InfoLabel>
                 {date ? (
                   <DateInput>
-                    <DatePickerField onChange={setFieldValue} name={id} value={values[id]} />
+                    {console.log(typeof values[id])}
+                    <DatePickerField
+                      onChange={setFieldValue}
+                      name={id}
+                      value={Date.parse(values[id])}
+                    />
                   </DateInput>
                 ) : (
                   <InfoInput
