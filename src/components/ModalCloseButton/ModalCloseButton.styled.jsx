@@ -11,6 +11,7 @@ export const ButtonClose = styled.button`
   backdrop-filter: blur(2px);
   border: none;
   cursor: pointer;
+  z-index: 151;
 
   background-color: ${({ theme }) => theme.backgrounds.primary};
 
@@ -44,6 +45,7 @@ export const ButtonClose = styled.button`
 export const SvgClose = styled.svg`
   width: 15px;
   height: 15px;
+
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 20px;
     height: 20px;

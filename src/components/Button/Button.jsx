@@ -30,3 +30,5 @@ export default Button;
 // formAuth back - кнопка "назад" в формі авторизації
 // formAddPet - кнопка в формі "Add pet"
 // active - активна кнопка
+// news - кнопка вперед/назад для пагінації новин
+

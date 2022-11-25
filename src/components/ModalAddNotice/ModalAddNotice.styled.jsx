@@ -22,11 +22,12 @@ export const Modal = styled.div`
   width: 280px;
   padding: 40px 20px 40px 20px;
 
-  border-radius: 40px;
+  border-radius: 20px;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     padding: 40px 80px;
+    border-radius: 40px;
     width: 608px;
   }
 `;
