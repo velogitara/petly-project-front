@@ -58,7 +58,7 @@ export const noticesApi = createApi({
     updateFavorites: builder.mutation({
       query: ({ noticeId, favorite }) => ({
         url: `/favorites/${noticeId}`,
-        method: 'POST',
+        method: 'PATCH',
         body: {
           favorite,
         },

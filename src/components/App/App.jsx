@@ -7,6 +7,7 @@ import PrivateRoutes from 'components/PrivateRoutes';
 import PublicRoutes from 'components/PublicRoutes.jsx';
 import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'components/Loader';
 
 const SharedLayout = lazy(() => import('components/SharedLayout'));
 const HomePage = lazy(() => import('pages/HomePage/'));
@@ -33,7 +34,7 @@ const App = () => {
         pauseOnHover
         theme="colored"
       />
-      <Suspense fallback={<p>loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<PrivateRoutes />}>
