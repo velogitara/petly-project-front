@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthId, selectAuthToken } from 'redux/authState';
@@ -6,30 +5,25 @@ import { useNotices } from 'hooks';
 import { favoriteCheck } from 'helpers';
 import NoticeCategoryItem from 'components/NoticeCategoryItem';
 import Paginator from 'components/Paginator';
-import Loader from 'components/Loader';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
-  const [page, setPage] = useState(1);
   const isLogged = useSelector(selectAuthToken);
   const authId = useSelector(selectAuthId);
 
   const categoryName = useLocation().pathname.replace('/notices/', '');
 
-  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 2 });
+  const { notices, isLoading } = useNotices({ categoryName, page: 1, limit: 8 });
 
   const isNotices = notices.length !== 0;
-<<<<<<< HEAD
 
   const onPageSelect = ({ currentPage }) => {
-    // console.log(currentPage);
+    console.log(currentPage);
   };
 
-=======
->>>>>>> dev
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading && <Message>Loading...</Message>}
       {!isNotices && <Message>Looks like there are no Ads here, yet.</Message>}
       {isNotices && (
         <CategoriesList>
@@ -64,9 +58,9 @@ const NoticesCategoriesList = () => {
         </CategoriesList>
       )}
       <Paginator
-        totalPages={totalPages}
-        onPageSelect={({ currentPage }) => setPage(currentPage)}
-        startPage={page}
+        totalPages={10}
+        onPageSelect={({ currentPage }) => onPageSelect({ currentPage })}
+        startPage={1}
       />
     </>
   );
