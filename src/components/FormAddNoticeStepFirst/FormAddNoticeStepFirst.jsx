@@ -53,8 +53,7 @@ const FormAddNoticeStepFirst = ({
           <CategoryItem key={category.id}>
             <LabelRadio className={values.category === category.value ? 'active' : ''}>
               {category.name}
-
-              <Radio type="radio" name="category" value={category.name} />
+              <Radio type="radio" name="category" value={category.value} />
             </LabelRadio>
           </CategoryItem>
         ))}
@@ -93,11 +92,8 @@ const FormAddNoticeStepFirst = ({
         <ErrorMessage name="name" component={ErrorMessageInput} />
       </InputBox>
       <InputBox>
-        <Label>
-          <BoxLabel>Date of birth</BoxLabel>
-
-          <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
-        </Label>
+        <BoxLabel>Date of birth</BoxLabel>
+        <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
       </InputBox>
       <InputBox className="label">
         <Label>
@@ -143,7 +139,6 @@ FormAddNoticeStepFirst.propTypes = {
     title: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     breed: PropTypes.string.isRequired,
-
     birthday: PropTypes.instanceOf(Date),
   }),
   handleChange: PropTypes.func.isRequired,

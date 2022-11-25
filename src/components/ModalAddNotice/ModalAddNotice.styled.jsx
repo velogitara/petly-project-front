@@ -6,12 +6,11 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+
   overflow-y: scroll;
-  justify-content: center;
-  align-items: center;
+  
   background-color: rgba(17, 17, 17, 0.6);
-  filter: blur(20);
+  backdrop-filter: blur(10px);
 
   z-index: 25;
 `;
