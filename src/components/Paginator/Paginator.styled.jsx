@@ -3,17 +3,17 @@ import paw from '../../assets/icons/paw.svg';
 
 export const PaginatorContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-content: center;
+  justify-content: center;
+  align-items: center;
   margin-top: 40px;
-  padding: 6px;
+  /* padding: 6px; */
 
-  border: 2px solid ${({ theme }) => theme.palette.accent};
-  border-radius: 40px;
+  /* border: 2px solid ${({ theme }) => theme.palette.accent}; */
+  /* border-radius: 40px; */
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-top: 60px;
-    padding: 12px;
+    /* padding: 12px; */
   }
 `;
 
@@ -22,8 +22,8 @@ export const PaginatorButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: ${({ secondary }) => (secondary ? '20px' : '22px')};
+  height: ${({ secondary }) => (secondary ? '20px' : '22px')};
 
   font-size: 12px;
   font-weight: 500;
@@ -37,12 +37,12 @@ export const PaginatorButton = styled.button`
   border-radius: 50%;
 
   &:not(:last-of-type) {
-    margin-right: 6px;
+    margin-right: 4px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    width: 44px;
-    height: 44px;
+    width: ${({ secondary }) => (secondary ? '36px' : '44px')};
+    height: ${({ secondary }) => (secondary ? '36px' : '44px')};
 
     font-size: 16px;
 
@@ -56,7 +56,22 @@ export const PaginatorButton = styled.button`
   &:hover,
   &:focus {
     background-color: ${({ theme }) => theme.palette.hoverAccent};
+    border-color: ${({ theme }) => theme.palette.hoverAccent};
+    color: ${({ theme }) => theme.palette.triadic};
     transform: ${({ theme }) => theme.animations.transform};
+  }
+`;
+
+export const Ellipsis = styled.span`
+  display: flex;
+  align-self: flex-start;
+
+  font-size: 14px;
+  line-height: 0.7;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    font-size: 20px;
+    line-height: 1.1;
   }
 `;
 
@@ -76,5 +91,9 @@ export const ArrowIcon = styled.span`
     font-size: 16px;
   }
 
-  transform: ${({ next }) => (next ? 'rotateZ(-90deg)' : 'rotateZ(90deg)')};
+  transform: ${({ next }) => (next ? 'rotateZ(90deg)' : 'rotateZ(-90deg)')};
+
+  button:hover & {
+    filter: grayscale(100%) brightness(200%);
+  }
 `;
