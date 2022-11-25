@@ -15,7 +15,7 @@ const NoticesCategoriesList = () => {
 
   const categoryName = useLocation().pathname.replace('/notices/', '');
 
-  const { notices, isLoading } = useNotices({ categoryName, page, limit: 2 });
+  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 2 });
 
   const isNotices = notices.length !== 0;
   return (
@@ -55,7 +55,7 @@ const NoticesCategoriesList = () => {
         </CategoriesList>
       )}
       <Paginator
-        totalPages={8}
+        totalPages={totalPages}
         onPageSelect={({ currentPage }) => setPage(currentPage)}
         startPage={page}
       />
