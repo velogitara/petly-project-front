@@ -23,7 +23,7 @@ export const userApi = apiSlice.injectEndpoints({
     // }),
     getCurrentUser: builder.query({
       query: () => 'users/',
-      providesTags: ['User', 'Auth'],
+      providesTags: ['User'],
     }),
     updateUserInfo: builder.mutation({
       query: ({ payload }) => ({
@@ -35,7 +35,7 @@ export const userApi = apiSlice.injectEndpoints({
     }),
     addPet: builder.mutation({
       query: ({ payload }) => ({
-        url: `/addPet`,
+        url: `users/addPet`,
         method: 'POST',
         body: payload,
       }),
