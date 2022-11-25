@@ -5,7 +5,7 @@ import { setCredentials } from '../authState/authStateSlice';
 const { API_BASE_URL } = constants;
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: `${API_BASE_URL}/auth`,
+  baseUrl: `${API_BASE_URL}/`,
   credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
     const token = getState().authState.authToken;
@@ -18,9 +18,9 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithReAuth = async (args, api, extraOptions) => {
-  console.log(args); // request url, method, body
-  console.log(api); // signal, dispatch, getState()
-  console.log(extraOptions); //custom like {shout: true}
+  //   console.log(args); // request url, method, body
+  //   console.log(api); // signal, dispatch, getState()
+  //   console.log(extraOptions); //custom like {shout: true}
 
   let result = await baseQuery(args, api, extraOptions);
 
@@ -31,10 +31,11 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
     // send refresh token to get new access token
     const refreshResult = await baseQuery('auth/refresh', api, extraOptions);
 
+    console.log(refreshResult);
     if (refreshResult?.data) {
       // store the new token
-      console.log('DISPATCH REFRESH TOKEN IN AUTH SLICE');
 
+      console.log('DISPATCH REFRESH TOKEN IN USER SLICE');
       api.dispatch(setCredentials({ ...refreshResult.data }));
 
       // retry original query with new access token
@@ -51,8 +52,8 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
 };
 
 export const apiSlice = createApi({
-  reducerPath: 'authApi',
+  reducerPath: 'userApi',
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ['Auth'],
+  tagTypes: ['User'],
   endpoints: builder => ({}),
 });

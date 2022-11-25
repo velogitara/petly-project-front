@@ -38,15 +38,7 @@ export const authApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Auth'],
     }),
-    getCurrentUser: builder.query({
-      query: () => ({
-        url: 'current',
-        method: 'GET',
-      }),
-      invalidatesTags: ['Auth'],
-    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useSignOutMutation, useGetCurrentUserQuery } =
-  authApi;
+export const { useSignUpMutation, useSignInMutation, useSignOutMutation } = authApi;
