@@ -53,7 +53,7 @@ export const apiSlice = createApi({
   refetchOnFocus: true,
   refetchOnReconnect: true,
 
-  tagTypes: ['Notices', 'Notice'],
+  tagTypes: ['Notices'],
 
   endpoints: builder => ({}),
 });
