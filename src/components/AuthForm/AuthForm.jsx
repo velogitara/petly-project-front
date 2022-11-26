@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
 import { useSignInMutation, useSignUpMutation } from '../../redux/authState/authSlice';
 
@@ -19,7 +20,8 @@ const AuthForm = ({ url }) => {
   // console.log(res);
 
   const passwordRegEx = /^\S*$/;
-  const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
+  // const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;/
+  const nameRegEx = /^[а-яА-ЯёЁa-zA-Z`\s]+$/;
   const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
   const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
 
@@ -86,7 +88,24 @@ const AuthForm = ({ url }) => {
           }
         }
         // console.log(data);
-        url === '/login' ? await signIn(data) : await signUp(data);
+
+        try {
+          if (url === '/login') {
+            await signIn(data).then(response => {
+              if (response.error) {
+                toast.error(response.error.data.message);
+              }
+            });
+          } else {
+            await signUp(data).then(response => {
+              if (response.error) {
+                toast.error(response.error.data.message);
+              }
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (
