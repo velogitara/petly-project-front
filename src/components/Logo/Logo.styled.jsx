@@ -1,4 +1,9 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
+
+export const LogoNavLink = styled(NavLink)`
+  z-index: 10;
+`;
 
 export const LogoText = styled.p`
   font-family: ${({ theme }) => theme.fonts.logo};
@@ -8,7 +13,6 @@ export const LogoText = styled.p`
   line-height: 48px;
   letter-spacing: 0.07em;
   color: ${({ theme }) => theme.palette.primary};
-  z-index: 10;
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     margin-right: 80px;
   }

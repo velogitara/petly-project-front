@@ -8,7 +8,8 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
   const [showPrevButton, setShowPrevButton] = useState(currentPage > 1);
   const [showForwardEllipsis, setShowForwardEllipsis] = useState(false);
   const [showBackwardEllipsis, setShowBackwardEllipsis] = useState(false);
-  const [difference] = useState(() => totalPages - viewedPages);
+
+  const difference = totalPages - viewedPages;
 
   useEffect(() => {
     if (currentPage === 1) {
@@ -40,7 +41,9 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
     }
   }, [showForwardEllipsis, difference, currentPage, totalPages]);
 
-  if (totalPages === 1) {
+  console.log(totalPages);
+
+  if (totalPages <= 1) {
     return null;
   }
 

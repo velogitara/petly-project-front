@@ -1,6 +1,7 @@
 import DatePicker, { CalendarContainer } from 'react-datepicker';
 import { Calendar } from './DatePickerForm.styled';
 import 'react-datepicker/dist/react-datepicker.css';
+import React from 'react';
 
 const MyContainer = ({ className, children }) => {
   return (
@@ -24,6 +25,9 @@ const DatePickerField = ({ name, value, onChange, user }) => {
       dateFormat="dd.MM.yyyy"
       calendarContainer={MyContainer}
       maxDate={new Date()}
+      showYearDropdown
+      yearDropdownItemNumber={80}
+      scrollableYearDropdown
     />
   );
 };

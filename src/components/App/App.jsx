@@ -8,6 +8,7 @@ import PublicRoutes from 'components/PublicRoutes.jsx';
 import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader';
+import BackScrollButton from 'components/BackScrollButton';
 
 const SharedLayout = lazy(() => import('components/SharedLayout'));
 const HomePage = lazy(() => import('pages/HomePage/'));
@@ -48,12 +49,7 @@ const App = () => {
               <Route index element={<HomePage />} />
 
               <Route path="news" element={<NewsPage />} />
-              <Route path="notices/:categoryName" element={<NoticesPage />}>
-                {/* <Route path="sell" element={<NoticesCategoryList sell />} /> */}
-                {/* <Route path="lost" element={<NoticesCategoryList lost />} /> */}
-                {/* <Route path="found" element={<NoticesCategoryList found />} /> */}
-                {/* <Route path="for-free" element={<NoticesCategoryList for-free />} /> */}
-              </Route>
+              <Route path="notices/:categoryName" element={<NoticesPage />}></Route>
               <Route path="friends" element={<OurFriendsPage />} />
             </Route>
             <Route path="/" element={<PublicRoutes redirectTo="user" restricted />}>
@@ -64,6 +60,7 @@ const App = () => {
           </Route>
         </Routes>
       </Suspense>
+      <BackScrollButton />
     </Application>
   );
 };
