@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import { constants } from 'constants/constants';
 
-const { fallbackImage } = constants;
+const {
+  noImage: { tablet },
+} = constants;
+
+console.log(tablet);
 
 export const ItemContainer = styled.li`
   position: relative;
@@ -43,7 +47,7 @@ export const ItemImage = styled.img`
 
   object-fit: cover;
   background-color: ${({ theme }) => theme.backgrounds.primary};
-  background-image: url(${fallbackImage});
+  background-image: url(${tablet});
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;

@@ -16,7 +16,7 @@ const NoticesCategoriesList = () => {
 
   const categoryName = useLocation().pathname.replace('/notices/', '');
 
-  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 2 });
+  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 2 }); // TODO: change limit to 8
 
   const isNotices = notices.length !== 0;
   return (
