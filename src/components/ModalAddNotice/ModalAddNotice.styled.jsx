@@ -6,12 +6,11 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+
   overflow-y: scroll;
-  justify-content: center;
-  align-items: center;
+  
   background-color: rgba(17, 17, 17, 0.6);
-  filter: blur(20);
+  backdrop-filter: blur(10px);
 
   z-index: 25;
 `;
@@ -23,11 +22,12 @@ export const Modal = styled.div`
   width: 280px;
   padding: 40px 20px 40px 20px;
 
-  border-radius: 40px;
+  border-radius: 20px;
   background-color: ${({ theme }) => theme.backgrounds.secondary};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     padding: 40px 80px;
+    border-radius: 40px;
     width: 608px;
   }
 `;

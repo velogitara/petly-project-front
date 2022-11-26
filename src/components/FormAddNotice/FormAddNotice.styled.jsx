@@ -123,24 +123,6 @@ export const InputBox = styled.div`
   }
 `;
 
-export const Label = styled.label`
-  font-size: 18px;
-  line-height: 1.44;
-  margin-bottom: 8px;
-
-  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.1;
-    margin-bottom: 12px;
-
-    &.second-step-margin-title {
-      margin-top: 40px;
-    }
-  }
-`;
-
 export const ButtonBox = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-top: 40px;
@@ -152,11 +134,31 @@ export const ButtonBox = styled.div`
 export const Span = styled.span`
   color: ${({ theme }) => theme.palette.accent};
 `;
-export const BoxLabel = styled.div`
+export const Label = styled.label`
   margin-bottom: 8px;
+
+  &.user {
+    text-align: center;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-bottom: 12px;
+
+    &.second-step-margin-title {
+      margin-top: 40px;
+    }
+  }
+`;
+
+export const BoxLabel = styled.div`
+  margin-bottom: 8px;
+  font-size: 18px;
+  line-height: 1.44;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    margin-bottom: 12px;
+    font-size: 24px;
+    line-height: 1.1;
   }
 `;
 
@@ -219,7 +221,9 @@ export const Figure = styled.figure`
   border-radius: 20px;
   background-color: ${({ theme }) => theme.backgrounds.primary};
   display: block;
-  padding: 22px 23px 23px 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 20px 0 0;
 
   cursor: pointer;
@@ -227,6 +231,10 @@ export const Figure = styled.figure`
   &:hover {
     transition: ${({ theme }) => theme.animations.transition};
     transform: ${({ theme }) => theme.animations.transform};
+  }
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 140px;
+    height: 140px;
   }
 `;
 export const InputFile = styled.input`
@@ -251,7 +259,6 @@ export const LabelIcon = styled.label`
   &:hover {
     color: ${({ theme }) => theme.palette.accent};
     transition: ${({ theme }) => theme.animations.transition};
-    // transform: ${({ theme }) => theme.animations.transform};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 18px;
@@ -303,7 +310,7 @@ export const Textarea = styled.input`
   background: ${({ theme }) => theme.backgrounds.primary};
   border: 1px solid rgba(245, 146, 86, 0.5);
   // ${({ theme }) => theme.palette.accent};
-  border-radius: 40px;
+  border-radius: 20px;
   line-height: 1.35;
   outline: none;
   padding: 11px 14px;
@@ -335,6 +342,10 @@ export const Textarea = styled.input`
 
 export const BoxFlex = styled.div`
   display: flex;
+  &.user {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const ErrorMessageInput = styled.div`

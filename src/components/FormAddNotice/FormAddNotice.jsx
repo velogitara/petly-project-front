@@ -6,16 +6,55 @@ import { useAddNoticeMutation } from '../../redux/notices';
 import ValidationSchema from 'components/FormAddNoticeValidation';
 import FormAddNoticeStepFirst from 'components/FormAddNoticeStepFirst';
 import FormAddNoticeStepSecond from 'components/FormAddNoticeStepSecond';
+import { toast } from 'react-toastify';
 
 function FormAddNotice({ onClose }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
-  const [addNotice] = useAddNoticeMutation();
+  const [addNotice /*isLoading*/] = useAddNoticeMutation();
+
+  const submitAddNoticeForm = async values => {
+    const { image, ...data } = values;
+
+    if (data.birthday) {
+      data.birthday = data.birthday.toISOString();
+    }
+    if (!data.name) {
+      data.name = 'No name';
+    }
+    if (!data.birthday) {
+      data.birthday = '0000';
+    }
+    if (!data.breed) {
+      data.breed = 'outbreed';
+    }
+    if (!data.price) {
+      data.price = 0;
+    }
+
+    const payload = new FormData();
+    payload.append('image', image);
+    payload.append('data', JSON.stringify(data));
+    console.log(values);
+    onClose();
+    try {
+      await addNotice({ payload }).then(response => {
+        if (response.error) {
+          toast.error(response.error.data.message);
+        }
+        if (response.data) {
+          toast.success(response?.data?.message ?? 'Success');
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Formik
       initialValues={{
         title: '',
-        name: 'Noname',
+        name: '',
         birthday: null,
         breed: '',
         category: '',
@@ -26,33 +65,9 @@ function FormAddNotice({ onClose }) {
         comments: '',
       }}
       validationSchema={ValidationSchema}
-      onSubmit={async values => {
-        const { image, ...data } = values;
-
-        if (data.birthday) {
-          data.birthday = data.birthday.toISOString();
-        }
-        if (!data.name) {
-          data.name = null;
-        }
-        if (!data.birthday) {
-          data.birthday = '0000';
-        }
-        if (!data.breed) {
-          data.breed = 'outbreed';
-        }
-        if (!data.price) {
-          data.price = 0;
-        }
-        const payload = new FormData();
-        payload.append('image', image);
-        payload.append('data', JSON.stringify(data));
-
-        onClose();
-        await addNotice({ payload });
-      }}
+      onSubmit={values => submitAddNoticeForm(values)}
     >
-      {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+      {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
         <>
           {activeStepIndex === 0 && (
             <FormAddNoticeStepFirst
@@ -60,11 +75,9 @@ function FormAddNotice({ onClose }) {
               handleChange={handleChange}
               handleBlur={handleBlur}
               handleSubmit={handleSubmit}
-              activeStepIndex={activeStepIndex}
               onClose={onClose}
               setActiveStepIndex={setActiveStepIndex}
               setFieldValue={setFieldValue}
-              errors={errors}
             />
           )}
           {activeStepIndex === 1 && (
@@ -73,7 +86,6 @@ function FormAddNotice({ onClose }) {
               handleChange={handleChange}
               handleBlur={handleBlur}
               handleSubmit={handleSubmit}
-              activeStepIndex={activeStepIndex}
               onClose={onClose}
               setActiveStepIndex={setActiveStepIndex}
               setFieldValue={setFieldValue}

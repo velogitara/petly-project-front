@@ -9,10 +9,10 @@ import {
 import { imageURLBuilder } from 'helpers';
 import { parseBirthday } from 'helpers';
 import DeleteButton from 'components/DeleteButton';
-import defaultImageMobile from '../../../assets/images/defaultPet-160.png';
-import defaultImageMobileRetina from '../../../assets/images/defaultPet-160_retina.png';
-import defaultImageTablet from '../../../assets/images/defaultPet-240.png';
-import defaultImageTabletRetina from '../../../assets/images/defaultPet-240_retina.png';
+import defaultImageMobile from '../../../assets/images/defaultPet-240.png';
+import defaultImageMobileRetina from '../../../assets/images/defaultPet-240_retina.png';
+import defaultImageTablet from '../../../assets/images/defaultPet-160.png';
+import defaultImageTabletRetina from '../../../assets/images/defaultPet-160_retina.png';
 
 const PetCard = ({ _id, name, birthday, breed, imageURL, comments, owner, screen }) => {
   return (
