@@ -47,13 +47,20 @@ export const Link = styled(NavLink)`
 
   transition: ${({ theme }) => theme.animations.transition};
 
+  &:not(:last-of-type) {
+    margin-right: 12px;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 20px;
     line-height: 1.35;
   }
 
-  &:not(:last-child) {
-    margin-right: 12px;
+  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+    &:last-of-type {
+      order: -1;
+      margin-right: 12px;
+    }
   }
 
   &.active,
