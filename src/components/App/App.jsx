@@ -38,7 +38,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<PrivateRoutes />}>
-              <Route path="user" element={<UserPage />} />
+              <Route path="user/" element={<UserPage />} />
               <Route path="notices/" element={<NoticesPage />}>
                 <Route path="favorite" exact element={<NoticesPage />} />
                 <Route path="own" exact element={<NoticesPage own />} />

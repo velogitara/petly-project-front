@@ -1,6 +1,6 @@
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // import { constants } from 'constants/constants';
-import { apiSlice } from './apiSlice';
+import { apiSlice } from './apiAuthQuery';
 
 // const { API_BASE_URL } = constants;
 

@@ -1,28 +1,26 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { constants } from 'constants/constants';
+import { apiSlice } from './apiNoticeQuery';
 
-const { API_BASE_URL } = constants;
+export const noticesApi = apiSlice.injectEndpoints({
+  // createApi({
+  // reducerPath: 'noticesApi',
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: `${API_BASE_URL}/`,
+  //   credentials: 'include',
 
-export const noticesApi = createApi({
-  reducerPath: 'noticesApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${API_BASE_URL}/notices`,
-    credentials: 'include',
+  //   prepareHeaders: (headers, { getState }) => {
+  //     const token = getState().authState.authToken;
+  //     if (token) {
+  //       headers.set('Authorization', `Bearer ${token}`);
+  //     }
 
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().authState.authToken;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-
-      return headers;
-    },
-  }),
-  tagTypes: ['Notices', 'Notice'],
+  //     return headers;
+  //   },
+  // }),
+  // tagTypes: ['Notices', 'Notice'],
   endpoints: builder => ({
     listNoticesByCategory: builder.query({
       query: ({ category, page = 1, limit = 8 }) => ({
-        url: `/categories/${category}?page=${page}&limit=${limit}`,
+        url: `notices/categories/${category}?page=${page}&limit=${limit}`,
         method: 'GET',
       }),
       providesTags: ['Notices'],
@@ -30,21 +28,21 @@ export const noticesApi = createApi({
     }),
     listNoticesByQuery: builder.query({
       query: ({ category, searchQuery = '', page = 1, limit = 8 }) => ({
-        url: `/?category=${category}&query=${searchQuery}&page=${page}&limit=${limit}`,
+        url: `notices/?category=${category}&query=${searchQuery}&page=${page}&limit=${limit}`,
         method: 'GET',
       }),
       invalidatesTags: ['Notices'],
     }),
     listUserNotices: builder.query({
       query: ({ page = 1, limit = 8, favorite = false }) => ({
-        url: `/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}`,
+        url: `notices/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}`,
         method: 'GET',
       }),
-      invalidatesTags: ['Notices'],
+      invalidatesTags: ['Notices', 'Notice'],
     }),
     getNoticesById: builder.query({
       query: ({ noticeId }) => ({
-        url: `/${noticeId}`,
+        url: `notices/${noticeId}`,
         method: 'GET',
       }),
       providesTags: ['Notice'],
@@ -52,6 +50,7 @@ export const noticesApi = createApi({
     }),
     addNotice: builder.mutation({
       query: ({ payload }) => ({
+        url: 'notices/',
         method: 'POST',
         body: payload,
       }),
@@ -59,17 +58,17 @@ export const noticesApi = createApi({
     }),
     updateFavorites: builder.mutation({
       query: ({ noticeId, favorite }) => ({
-        url: `/favorites/${noticeId}`,
+        url: `notices/favorites/${noticeId}`,
         method: 'PATCH',
         body: {
           favorite,
         },
       }),
-      invalidatesTags: ['Notices'],
+      invalidatesTags: ['Notices', 'Notice'],
     }),
     removeNotice: builder.mutation({
       query: ({ noticeId }) => ({
-        url: `/${noticeId}`,
+        url: `notices/${noticeId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Notices', 'Notice'],

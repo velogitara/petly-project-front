@@ -1,6 +1,6 @@
 // import { setCredentials } from '../authState/authStateSlice';
 
-import { apiSlice } from './apiSlice';
+import { apiSlice } from './apiUserQuery';
 
 export const userApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -24,6 +24,7 @@ export const userApi = apiSlice.injectEndpoints({
     getCurrentUser: builder.query({
       query: () => 'users/',
       providesTags: ['User'],
+      invalidatesTags: ['User'],
     }),
     updateUserInfo: builder.mutation({
       query: ({ payload }) => ({

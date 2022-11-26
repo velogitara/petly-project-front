@@ -18,31 +18,25 @@ const baseQuery = fetchBaseQuery({
 });
 
 const baseQueryWithReAuth = async (args, api, extraOptions) => {
-  //   console.log(args); // request url, method, body
-  //   console.log(api); // signal, dispatch, getState()
-  //   console.log(extraOptions); //custom like {shout: true}
-
   let result = await baseQuery(args, api, extraOptions);
 
-  // If you want, handle other status codes, too
   if (result?.error?.status === 401) {
+    // console.log(result.error);
     console.log('sending refresh token');
 
-    // send refresh token to get new access token
     const refreshResult = await baseQuery('auth/refresh', api, extraOptions);
 
     console.log(refreshResult);
     if (refreshResult?.data) {
-      // store the new token
-
       console.log('DISPATCH REFRESH TOKEN IN USER SLICE');
       api.dispatch(setCredentials({ ...refreshResult.data }));
 
       // retry original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
-      if (refreshResult?.error?.status === 403) {
+      if (refreshResult?.error?.status === 403 || refreshResult?.error?.status === 404) {
         refreshResult.error.data.message = 'Your login has expired. ';
+
         api.dispatch(unsetAuthState());
       }
       return refreshResult;
@@ -53,8 +47,13 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
 };
 
 export const apiSlice = createApi({
-  reducerPath: 'userApi',
+  reducerPath: 'noticesApi',
   baseQuery: baseQueryWithReAuth,
-  tagTypes: ['User'],
+  refetchOnMountOrArgChange: 1,
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
+
+  tagTypes: ['Notices', 'Notice'],
+
   endpoints: builder => ({}),
 });
