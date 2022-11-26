@@ -11,16 +11,16 @@ const ValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(16, 'Must be 16 or less letter')
-    .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
+    .matches(/^[а-яА-ЯёЁa-zA-Z`\s]+$/, 'Only letters'),
   birthday: Yup.date().nullable(),
   breed: Yup.string()
     .min(2, 'Must be 2 or more letter')
     .max(24, 'Must be 24 or less letter')
-    .matches(/^[A-Za-zА`\s]+$/, 'Only letters'),
+    .matches(/^[а-яА-ЯёЁa-zA-Z`\s]+$/, 'Only letters'),
   comments: Yup.string()
     .min(8, 'Must be 8 or more characters')
     .max(120, 'Must be 120 or less characters')
-    .matches(/^[A-Za-zА\s]+$/)
+    .matches(/^[а-яА-ЯёЁa-zA-Z1-9`,-_^<>%*$#{}()&:;'"!?\s]+$/)
     .required('Required'),
   price: Yup.number('Price must be a number')
     .positive('Price must be a positive number')

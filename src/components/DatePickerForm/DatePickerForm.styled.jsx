@@ -31,5 +31,13 @@ export const Calendar = styled.div`
       transition: ${({ theme }) => theme.animations.transition};
       transform: ${({ theme }) => theme.animations.transform};
     }
+    & .react-datepicker__year-dropdown {
+      background-color: #fff;
+      border: 1px solid ${({ theme }) => theme.palette.accent};
+    }
+
+    & .react-datepicker__year-option:hover {
+      background-color: ${({ theme }) => theme.backgrounds.primary};
+    }
   }
 `;

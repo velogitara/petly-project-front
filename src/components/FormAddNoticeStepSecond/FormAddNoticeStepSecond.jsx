@@ -21,6 +21,7 @@ import {
   Figure,
   ErrorMessageInput,
   BoxFlex,
+  Box,
   Radio,
 } from '../FormAddNotice/FormAddNotice.styled';
 
@@ -104,17 +105,20 @@ const FormAddNoticeStepSecond = ({
         )}
         <InputBox className="file">
           <BoxLabel>Load the pet’s image:</BoxLabel>
-          <Label>
-            <InputFile type="file" name="image" onChange={image} />
-            <BoxFlex>
-              <Figure>
-                <IconFile>
-                  <use href={icons + '#icon-plus-big'} />
-                </IconFile>
-              </Figure>
-              {values.image && <PreviewImage image={values.image} />}
-            </BoxFlex>
-          </Label>
+          <Box>
+            <Label>
+              <InputFile type="file" name="image" onChange={image} />
+
+              <BoxFlex>
+                <Figure>
+                  <IconFile>
+                    <use href={icons + '#icon-plus-big'} />
+                  </IconFile>
+                </Figure>
+                {values.image && <PreviewImage image={values.image} />}
+              </BoxFlex>
+            </Label>
+          </Box>
           <ErrorMessage name="image" component={ErrorMessageInput} />
         </InputBox>
         <Label>
