@@ -85,7 +85,7 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <ModalCloseButton onClose={onClose} />
+        <ModalCloseButton   styled='small' onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
             <PicturePet>
