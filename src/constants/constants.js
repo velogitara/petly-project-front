@@ -14,8 +14,8 @@ export const constants = {
     publicCategories: [
       ['lost', 'lost'],
       ['found', 'found'],
-      ['sell', 'sell'],
       ['for-free', 'in good hands'],
+      ['sell', 'sell'],
     ],
     privateCategories: [
       ['favorite', 'Favorite ads'],
