@@ -1,23 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { constants } from 'constants/constants';
+// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+// import { constants } from 'constants/constants';
+import { apiSlice } from './apiAuthQuery';
 
-const { API_BASE_URL } = constants;
+// const { API_BASE_URL } = constants;
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${API_BASE_URL}/auth`,
-    // credentials: 'include',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().authState.authToken;
-
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
-  tagTypes: ['Auth'],
+export const authApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
     signUp: builder.mutation({
       query: ({ name, email, password, phone, location }) => ({
@@ -51,15 +38,7 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
-    getCurrentUser: builder.query({
-      query: () => ({
-        url: 'current',
-        method: 'GET',
-      }),
-      invalidatesTags: ['Auth'],
-    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useSignOutMutation, useGetCurrentUserQuery } =
-  authApi;
+export const { useSignUpMutation, useSignInMutation, useSignOutMutation } = authApi;

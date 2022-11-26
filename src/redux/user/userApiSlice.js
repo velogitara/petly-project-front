@@ -1,29 +1,34 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { constants } from 'constants/constants';
+// import { setCredentials } from '../authState/authStateSlice';
 
-const { API_BASE_URL } = constants;
+import { apiSlice } from './apiUserQuery';
 
-export const userApi = createApi({
-  reducerPath: 'userApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${API_BASE_URL}/users`,
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().authState.authToken;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
-  tagTypes: ['User'],
+export const userApi = apiSlice.injectEndpoints({
   endpoints: builder => ({
+    // refresh: builder.mutation({
+    //   query: () => ({
+    //     url: '/',
+    //     method: 'GET',
+    //   }),
+    //   async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+    //     try {
+    //       const { data } = await queryFulfilled;
+    //       console.log('DATA IN USER API SLICE', data);
+    //       const { accessToken } = data;
+    //       dispatch(setCredentials({ accessToken }));
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   },
+    //   invalidatesTags: ['User', 'Auth'],
+    // }),
     getCurrentUser: builder.query({
-      query: () => '/',
+      query: () => 'users/',
       providesTags: ['User'],
+      invalidatesTags: ['User'],
     }),
     updateUserInfo: builder.mutation({
       query: ({ payload }) => ({
-        url: `/updateUserInfo`,
+        url: `users/updateUserInfo`,
         method: 'PATCH',
         body: payload,
       }),
@@ -31,7 +36,7 @@ export const userApi = createApi({
     }),
     addPet: builder.mutation({
       query: ({ payload }) => ({
-        url: `/addPet`,
+        url: `users/addPet`,
         method: 'POST',
         body: payload,
       }),
@@ -39,7 +44,7 @@ export const userApi = createApi({
     }),
     removePet: builder.mutation({
       query: ({ petId }) => ({
-        url: `/removePet/${petId}`,
+        url: `users/removePet/${petId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['User'],
