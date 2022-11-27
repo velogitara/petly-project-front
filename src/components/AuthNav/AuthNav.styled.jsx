@@ -17,7 +17,7 @@ export const AuthLink = styled(NavLink)`
   align-items: center;
   font-size: 14px;
   line-height: 1.6;
-  padding: 0 28px;
+  padding: 0 25px;
   border-radius: 40px;
   height: 35px;
   color: inherit;
@@ -37,6 +37,7 @@ export const AuthLink = styled(NavLink)`
   &.active:hover,
   &.active:focus {
     background: ${({ theme }) => theme.palette.hoverAccent};
+		transform: ${({ theme }) => theme.animations.transform};
     transition: ${({ theme }) => theme.animations.transition};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -49,5 +50,6 @@ export const AuthLink = styled(NavLink)`
     font-size: inherit;
     line-height: inherit;
     height: 47px;
+		padding: 0 28px;
   }
 `;

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const HeaderBox = styled.div`
+export const HeaderBox = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;

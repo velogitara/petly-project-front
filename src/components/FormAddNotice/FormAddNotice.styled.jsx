@@ -339,6 +339,9 @@ export const Textarea = styled.input`
     }
   }
 `;
+export const Box = styled.div`
+  display: inline-block;
+`;
 
 export const BoxFlex = styled.div`
   display: flex;

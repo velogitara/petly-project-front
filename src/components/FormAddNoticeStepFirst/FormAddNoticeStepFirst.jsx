@@ -38,11 +38,13 @@ const FormAddNoticeStepFirst = ({
   const [required, setRequired] = useState(null);
 
   const next = values => {
-    if (values.title) {
+    if (!values.title || !values.category) {
+      setRequired('Required');
+    } else if (values.title.length < 2) {
+      setRequired('Must contain only letters, at least 2 letters, not more then 48 letters');
+    } else {
       setActiveStepIndex(1);
       setRequired(null);
-    } else {
-      setRequired('Required');
     }
   };
   return (
@@ -59,6 +61,7 @@ const FormAddNoticeStepFirst = ({
           </CategoryItem>
         ))}
       </CategoryBox>
+      {!values.category && <ErrorMessageInput>{required}</ErrorMessageInput>}
       <InputBox>
         <Label>
           <BoxLabel>
@@ -75,7 +78,9 @@ const FormAddNoticeStepFirst = ({
           />
         </Label>
         <ErrorMessage name="title" component={ErrorMessageInput} />
-        {!values.title && <ErrorMessageInput>{required}</ErrorMessageInput>}
+        {!values.title && values.title.length < 2 && (
+          <ErrorMessageInput>{required}</ErrorMessageInput>
+        )}
       </InputBox>
       <InputBox>
         <Label>

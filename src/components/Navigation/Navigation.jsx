@@ -11,6 +11,7 @@ const Navigation = ({ onWidth, onCloseMenu }) => {
 
   return (
     <NavigationBox>
+			{/* <UserNav onCloseMenu={onCloseMenu} /> <AuthNav onCloseMenu={onCloseMenu} /> */}
       {isLogged ? <UserNav onCloseMenu={onCloseMenu} /> : <AuthNav onCloseMenu={onCloseMenu} />}
       {onWidth >= 1280 && <Nav onCloseMenu={onCloseMenu} />}
     </NavigationBox>
