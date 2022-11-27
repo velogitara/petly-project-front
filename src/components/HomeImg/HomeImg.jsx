@@ -10,10 +10,22 @@ import imageMobileR from '../../assets/images/hero-320@2x.png';
 const HomeImg = () => {
   return (
     <Image>
-      <source srcSet={(imageMobileR, imageMobile)} media="(max-width: 767px)" type="image/png" />
-      <source srcSet={(imageTabletR, imageTablet)} media="(max-width: 1279px)" type="image/png" />
-      <source srcSet={(imageDesktopR, imageDesktop)} media="(min-width: 1280px)" type="image/png" />
-      <img src={imageDesktop} alt="hero" />
+      <source
+        srcSet={`${imageMobile} 1x, ${imageMobileR} 2x`}
+        media="(max-width: 767px)"
+        type="image/png"
+      />
+      <source
+        srcSet={`${imageTablet} 1x, ${imageTabletR} 2x`}
+        media="(max-width: 1279px)"
+        type="image/png"
+      />
+      <source
+        srcSet={`${imageDesktop} 1x, ${imageDesktopR} 2x`}
+        media="(min-width: 1280px)"
+        type="image/png"
+      />
+      <img max-width={100} className="image" src={imageDesktop} alt="hero" />
     </Image>
   );
 };
