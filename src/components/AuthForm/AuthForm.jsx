@@ -23,7 +23,7 @@ const AuthForm = ({ url }) => {
   // const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;/
   const nameRegEx = /^[а-яА-ЯёЁa-zA-Z-`\s]+$/;
   const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
-  const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+  const phoneRegEx = /^(\+\d{2}[- ]?)?\d{10}$/;
 
   const checkFields = values => {
     if (values.email && values.password) {
