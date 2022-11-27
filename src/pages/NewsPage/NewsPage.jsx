@@ -5,7 +5,8 @@ import SearchError from 'components/SearchError';
 import Paginator from 'components/Paginator';
 import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
-import { ContainerWithPadding} from './NewsPage.styled'
+import { ContainerWithPadding } from './NewsPage.styled';
+import Loader from 'components/Loader';
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
@@ -13,13 +14,26 @@ const NewsPage = () => {
   const [error, setError] = useState(null);
   const { data, isLoading } = useNews({ page: page.currentPage, query });
 
+  let news = [];
+  let totalNews = 0;
+  let totalPages = 1;
+
+  if (data.length !== 0) {
+    news = data.news;
+    totalNews = data.total;
+  }
+  
+  if (totalNews > 0) {
+    totalPages = Math.ceil(totalNews / 6);
+  }
+
   useEffect(() => {
-    if (data.length === 0 && !isLoading && page === 1) {
+    if (news.length === 0 && !isLoading) {
       setError('error');
     } else {
       setError(null);
     }
-  }, [page, data.length, isLoading]);
+  }, [page, news.length, isLoading, query]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -34,9 +48,9 @@ const NewsPage = () => {
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
     <InputSearch onSubmit={e => onSubmit(e)} />
-    {isLoading && "Loading..."}
-    {error ? <SearchError query={query} /> : <NewsList news={data} />}
-    {(!isLoading && !error) && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />}
+    {isLoading && <Loader />}
+    {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
+    {(!isLoading && !error) && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
   </ContainerWithPadding>
 };
 
