@@ -38,12 +38,12 @@ const List = styled.ul`
   margin: 0;
   padding: 0;
   @media (min-width: ${screens.tablet}) {
-    grid-template-columns: repeat(2, calc(100% / 2));
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
 
   @media (min-width: ${screens.desktop}) {
-    grid-template-columns: repeat(3, calc(100% / 3));
+    grid-template-columns: repeat(3, 1fr);
   } ;
 `;
 

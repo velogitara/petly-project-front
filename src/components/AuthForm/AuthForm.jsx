@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
 
 import { useSignInMutation, useSignUpMutation } from '../../redux/authState/authSlice';
 
@@ -19,14 +20,19 @@ const AuthForm = ({ url }) => {
   // console.log(res);
 
   const passwordRegEx = /^\S*$/;
-  const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;
+  // const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;/
+  const nameRegEx = /^[а-яА-ЯёЁa-zA-Z-`\s]+$/;
   const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
-  const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+  const phoneRegEx = /^(\+\d{2}[- ]?)?\d{10}$/;
 
   const checkFields = values => {
     if (values.email && values.password) {
       if (values.password !== values.confirmPassword) {
         setMatchError('Passwords must be the same');
+      } else if (values.email.length < 2) {
+        return;
+      } else if (values.password.length < 7 && values.confirmPassword.length < 7) {
+        return;
       } else {
         setPart(2);
         setMatchError(null);
@@ -35,14 +41,13 @@ const AuthForm = ({ url }) => {
       setMatchError('All fields are required');
     }
   };
-
   const loginSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Required'),
     password: yup
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
       .min(7, 'Must contain at least 7 symbols')
-      .max(70, 'Must contain at max 32 symbols!')
+      .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
   });
   const registerSchema = yup.object().shape({
@@ -51,7 +56,7 @@ const AuthForm = ({ url }) => {
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
       .min(7, 'Must contain at least 7 symbols')
-      .max(70, 'Must contain at max 32 symbols!')
+      .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
     confirmPassword: yup.string().required('Required'),
     name: yup
@@ -86,7 +91,24 @@ const AuthForm = ({ url }) => {
           }
         }
         // console.log(data);
-        url === '/login' ? await signIn(data) : await signUp(data);
+
+        try {
+          if (url === '/login') {
+            await signIn(data).then(response => {
+              if (response.error) {
+                toast.error(response.error.data.message);
+              }
+            });
+          } else {
+            await signUp(data).then(response => {
+              if (response.error) {
+                toast.error(response.error.data.message);
+              }
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (

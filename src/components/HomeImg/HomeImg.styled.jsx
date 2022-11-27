@@ -6,14 +6,15 @@ export const Image = styled.picture`
   animation-name: opacityAnimation;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-    position: absolute;
-    bottom: 0;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
-    right: 0;
+    position: relative;
+    margin-top: auto;
     animation-duration: 3s;
     animation-name: slideinImg;
+    &img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+
     &::before {
       content: '';
       display: block;
