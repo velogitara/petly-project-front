@@ -28,12 +28,12 @@ const NewsPage = () => {
   }
 
   useEffect(() => {
-    if (news.length === 0 && !isLoading && page === 1) {
+    if (news.length === 0 && !isLoading) {
       setError('error');
     } else {
       setError(null);
     }
-  }, [page, news.length, isLoading]);
+  }, [page, news.length, isLoading, query]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -48,8 +48,8 @@ const NewsPage = () => {
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
     <InputSearch onSubmit={e => onSubmit(e)} />
-    {isLoading && <Loader/>}
-    {error ? <SearchError query={query} /> : <NewsList news={news} />}
+    {isLoading && <Loader />}
+    {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
     {(!isLoading && !error) && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
   </ContainerWithPadding>
 };
