@@ -74,7 +74,7 @@ const OurFriendsCards = ({ showWorkdays, friends }) => {
                 <InfoTitle>
                   Adress: <br />
                   {address ? (
-                    <InfoAddress href={addressUrl || '#'} target="_blank">
+                    <InfoAddress href={addressUrl || '#!'} target="_blank">
                       {address}
                     </InfoAddress>
                   ) : (
@@ -84,16 +84,24 @@ const OurFriendsCards = ({ showWorkdays, friends }) => {
 
                 <InfoTitle>
                   Email: <br />
-                  <InfoLinks href={email ? 'mailto:' + email : '#'} target="_blank">
-                    {email || '-----------------------------------'}
-                  </InfoLinks>
+                  {email ? (
+                    <InfoLinks href={'mailto:' + email} target="_blank">
+                      {email}
+                    </InfoLinks>
+                  ) : (
+                    '-----------------------------------'
+                  )}
                 </InfoTitle>
 
                 <InfoTitle>
                   Phone: <br />
-                  <InfoLinks href={phone ? 'tel:' + phone : '#'} target="_blank">
-                    {phone || '-----------------------------------'}
-                  </InfoLinks>
+                  {phone ? (
+                    <InfoLinks href={'tel:' + phone} target="_blank">
+                      {phone}
+                    </InfoLinks>
+                  ) : (
+                    '-----------------------------------'
+                  )}
                 </InfoTitle>
               </div>
             </BoxContent>
