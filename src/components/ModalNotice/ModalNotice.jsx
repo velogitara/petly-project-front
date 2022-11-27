@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useGetNoticeById } from 'hooks';
-import { imageURLBuilder, categoryTitleHandler } from 'helpers';
+import { categoryTitleHandler } from 'helpers';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
+import { constants } from 'constants/constants';
 import {
   Backdrop,
   Modal,
@@ -27,7 +28,7 @@ import {
 } from './ModalNotice.styled';
 
 const modalRoot = document.querySelector('#modal-root');
-const imageDummy = '';
+const { noImage } = constants;
 
 const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   const { notice, isSuccess } = useGetNoticeById({ noticeId });
@@ -83,26 +84,26 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <ModalCloseButton   styled='small' onClose={onClose} />
+        <ModalCloseButton styled="small" onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
             <PicturePet>
               <source
-                srcSet={`${imageURL ? imageURLBuilder(imageURL?.profileMobile) : ''} 240w, ${
-                  imageURL ? imageURLBuilder(imageURL?.profileMobileRetina) : ''
+                srcSet={`${imageURL ? imageURL?.profileMobile : noImage.profileMobile} 240w, ${
+                  imageURL ? imageURL?.profileMobileRetina : noImage.profileMobileRetina
                 } 480w`}
                 media="(max-width: 767px)"
                 sizes="240px"
               />
               <source
-                srcSet={`${imageURL ? imageURLBuilder(imageURL?.profile) : ''} 288w, ${
-                  imageURL ? imageURLBuilder(imageURL?.profileRetina) : ''
+                srcSet={`${imageURL ? imageURL?.profile : noImage.profile} 288w, ${
+                  imageURL ? imageURL?.profileRetina : noImage.profileRetina
                 } 576w`}
                 media="(min-width: 768px)"
                 sizes="288px"
               />
               <ImgPet
-                src={imageURL ? imageURLBuilder(imageURL?.profile) : imageDummy}
+                src={imageURL ? imageURL?.profile : noImage.profile}
                 loading="lazy"
                 alt={notice?.title}
               />
