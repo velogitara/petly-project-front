@@ -12,6 +12,12 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
   const difference = totalPages - viewedPages;
 
   useEffect(() => {
+    if (startPage === 1) {
+      setCurrentPage(1);
+    }
+  }, [startPage]);
+
+  useEffect(() => {
     if (currentPage === 1) {
       setShowPrevButton(false);
     } else if (totalPages > 1) {
@@ -23,7 +29,7 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
       setShowNextButton(true);
     }
     onPageSelect({ currentPage });
-  }, [currentPage, totalPages, onPageSelect]);
+  }, [currentPage, totalPages, onPageSelect, startPage]);
 
   useEffect(() => {
     if (difference > 2 && currentPage > 2) {
@@ -40,8 +46,6 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
       setShowForwardEllipsis(false);
     }
   }, [showForwardEllipsis, difference, currentPage, totalPages]);
-
-  console.log(totalPages);
 
   if (totalPages <= 1) {
     return null;

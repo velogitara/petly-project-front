@@ -36,7 +36,6 @@ export const AddButtonSpan = styled.span`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.35;
-  text-transform: capitalize;
 
   color: ${({ theme }) => theme.palette.triadic};
 
