@@ -27,8 +27,8 @@ export const noticesApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Notices'],
     }),
     listNoticesByQuery: builder.query({
-      query: ({ category, searchQuery = '', page = 1, limit = 8 }) => ({
-        url: `notices/?category=${category}&query=${searchQuery}&page=${page}&limit=${limit}`,
+      query: ({ category, query = '' /* changed from searchQuery */, page = 1, limit = 8 }) => ({
+        url: `notices/?category=${category}&query=${query}&page=${page}&limit=${limit}`,
         method: 'GET',
       }),
       invalidatesTags: ['Notices'],

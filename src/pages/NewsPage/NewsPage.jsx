@@ -1,11 +1,11 @@
 import NewsList from 'components/NewsList';
 import TitlePage from 'components/TitlePage';
-import InputSearch from 'components/InputSearch';
+import InputSearch from 'components/InputSearch/InputSearch'; /* switch too*/
 import SearchError from 'components/SearchError';
 import Paginator from 'components/Paginator';
 import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
-import { ContainerWithPadding} from './NewsPage.styled'
+import { ContainerWithPadding } from './NewsPage.styled'; /* switch too*/
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
@@ -27,17 +27,19 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      document.getElementById("searchForm").reset();
+      document.getElementById('searchForm').reset();
     }
   }
 
-  return <ContainerWithPadding>
-    <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)} />
-    {isLoading && "Loading..."}
-    {error ? <SearchError query={query} /> : <NewsList news={data} />}
-    {(!isLoading && !error) && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />}
-  </ContainerWithPadding>
+  return (
+    <ContainerWithPadding>
+      <TitlePage title={'News'} />
+      <InputSearch onSubmit={e => onSubmit(e)} />
+      {isLoading && 'Loading...'}
+      {error ? <SearchError query={query} /> : <NewsList news={data} />}
+      {!isLoading && !error && <Paginator totalPages={10} onPageSelect={setPage} startPage={1} />}
+    </ContainerWithPadding>
+  );
 };
 
 export default NewsPage;

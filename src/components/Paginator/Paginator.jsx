@@ -41,7 +41,7 @@ const Paginator = ({ totalPages = 1, viewedPages = 5, onPageSelect, startPage = 
     }
   }, [showForwardEllipsis, difference, currentPage, totalPages]);
 
-  console.log(totalPages);
+  // console.log(totalPages);
 
   if (totalPages <= 1) {
     return null;

@@ -1,7 +1,7 @@
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import TitlePage from 'components/TitlePage';
-import InputSearch from 'components/InputSearch';
+import InputSearch from 'components/InputNoticeSearch'; /* switch inputSearch */
 import { NoticesContainer } from './NoticesPage.styled';
 
 const NoticesPage = () => {
