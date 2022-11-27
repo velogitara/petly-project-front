@@ -15,7 +15,7 @@ const Nav = ({ onCloseMenu }) => {
           News
         </LinkNav>
         <LinkNav
-          to="notices/for-free"
+          to="notices/sell"
           className={'header-link'}
           onClick={() => {
             onCloseMenu();
