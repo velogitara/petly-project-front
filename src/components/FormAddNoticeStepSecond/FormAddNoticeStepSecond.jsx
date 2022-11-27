@@ -69,6 +69,7 @@ const FormAddNoticeStepSecond = ({
             <span>Female</span>
           </LabelIcon>
         </GenderBox>
+        <ErrorMessage name="sex" component={ErrorMessageInput} />
         <InputBox>
           <Label>
             <BoxLabel>
