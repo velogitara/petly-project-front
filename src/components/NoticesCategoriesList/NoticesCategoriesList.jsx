@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAuthId, selectAuthToken } from 'redux/authState';
@@ -10,13 +10,18 @@ import Loader from 'components/Loader';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
 const NoticesCategoriesList = () => {
+  const location = useLocation().pathname.replace('/notices/', '');
   const [page, setPage] = useState(1);
+  const [categoryName, setCategoryName] = useState(location);
   const isLogged = useSelector(selectAuthToken);
   const authId = useSelector(selectAuthId);
 
-  const categoryName = useLocation().pathname.replace('/notices/', '');
+  useEffect(() => {
+    setCategoryName(location);
+    setPage(1);
+  }, [location]);
 
-  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 2 }); // TODO: change limit to 8
+  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 8 });
 
   const isNotices = notices.length !== 0;
   return (
@@ -55,6 +60,7 @@ const NoticesCategoriesList = () => {
           )}
         </CategoriesList>
       )}
+
       <Paginator
         totalPages={totalPages}
         onPageSelect={({ currentPage }) => setPage(currentPage)}

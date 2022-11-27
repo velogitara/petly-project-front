@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { imageURLBuilder, ageHandle, categoryTitleHandler } from 'helpers';
+import { ageHandle, categoryTitleHandler } from 'helpers';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
@@ -45,28 +45,28 @@ const NoticeCategoryItem = ({
       </UserButtons>
       <ItemPicture>
         <source
-          srcSet={`${imageURL ? imageURLBuilder(imageURL?.mobile) : noImage.mobile} 280w, ${
-            imageURL ? imageURLBuilder(imageURL?.mobileRetina) : noImage.mobile
+          srcSet={`${imageURL ? imageURL?.mobile : noImage.mobile} 280w, ${
+            imageURL ? imageURL?.mobileRetina : noImage.mobileRetina
           } 560w`}
           media="(max-width: 767px)"
           sizes="280px"
         />
         <source
-          srcSet={`${imageURL ? imageURLBuilder(imageURL?.desktop) : noImage.desktop} 288w, ${
-            imageURL ? imageURLBuilder(imageURL?.mobileRetina) : noImage.desktop
+          srcSet={`${imageURL ? imageURL?.desktop : noImage.desktop} 288w, ${
+            imageURL ? imageURL?.mobileRetina : noImage.desktopRetina
           } 576w`}
           media="(min-width: 1280px)"
           sizes="288px"
         />
         <source
-          srcSet={`${imageURL ? imageURLBuilder(imageURL?.tablet) : noImage.tablet} 336w, ${
-            imageURL ? imageURLBuilder(imageURL?.tabletRetina) : noImage.tablet
+          srcSet={`${imageURL ? imageURL?.tablet : noImage.tablet} 336w, ${
+            imageURL ? imageURL?.tabletRetina : noImage.tabletRetina
           } 672w`}
           media="(min-width: 768px)"
           sizes="336px"
         />
         <ItemImage
-          src={imageURL ? imageURLBuilder(imageURL?.tablet) : noImage.tablet}
+          src={imageURL ? imageURL?.tablet : noImage.tablet}
           loading="lazy"
           alt={title}
           // onError={({ currentTarget }) => {

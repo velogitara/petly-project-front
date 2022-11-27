@@ -1,17 +1,12 @@
 import { useSelector } from 'react-redux';
 import { selectAuthToken } from 'redux/authState';
-import {
-  useListNoticesByCategoryQuery,
-  useListUserNoticesQuery,
-  // useListNoticesByQueryQuery,
-} from 'redux/notices';
+import { useListNoticesByCategoryQuery, useListUserNoticesQuery } from 'redux/notices';
 
-const useNotices = ({ categoryName, query = '', page = 1, limit = 8 }) => {
+const useNotices = ({ categoryName, page = 1, limit = 8, query }) => {
   const isLogged = useSelector(selectAuthToken);
 
   const isOwn = categoryName === 'own';
   const isFavorite = categoryName === 'favorite';
-  // const isCategoryQuery = categoryName === 'categoryQuery';
   const isByCategory = !isOwn && !isFavorite;
 
   const { data: byCategoryNotices, isLoading: isLoadByCategory } = useListNoticesByCategoryQuery(
@@ -35,18 +30,6 @@ const useNotices = ({ categoryName, query = '', page = 1, limit = 8 }) => {
       refetchOnMountOrArgChange: true,
     }
   );
-  // const { data: categoryQuery, isLoading: isLoadCategoryQuery } = useListNoticesByQueryQuery(
-  //   {
-  //     category: categoryName,
-  //     query: query,
-  //     page,
-  //     limit,
-  //   },
-  //   {
-  //     skip: !isLogged || isFavorite || isByCategory || isCategoryQuery,
-  //     refetchOnMountOrArgChange: true,
-  //   }
-  // );
 
   let result;
   switch (categoryName) {
@@ -56,9 +39,7 @@ const useNotices = ({ categoryName, query = '', page = 1, limit = 8 }) => {
     case 'favorite':
       result = favoriteNotices;
       break;
-    // case 'categoryQuery':
-    //   result = categoryQuery;
-    //   break;
+
     default:
       result = byCategoryNotices;
   }
