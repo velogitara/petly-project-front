@@ -51,7 +51,6 @@ export const Btn = styled.button`
     width: 280px;
     height: 44px;
     font-size: 20px;
-    letter-spacing: 0.4em;
 
     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
       width: 448px;

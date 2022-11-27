@@ -1,4 +1,3 @@
-import React from 'react';
 import DatePicker, { CalendarContainer } from 'react-datepicker';
 import { Calendar } from './DatePickerForm.styled';
 import 'react-datepicker/dist/react-datepicker.css';

@@ -30,6 +30,43 @@ export const Calendar = styled.div`
       background-color: ${({ theme }) => theme.backgrounds.primary};
       transition: ${({ theme }) => theme.animations.transition};
       transform: ${({ theme }) => theme.animations.transform};
+      color: ${({ theme }) => theme.palette.accent};
+    }
+
+    & .react-datepicker__year-read-view--down-arrow {
+      border-color: ${({ theme }) => theme.palette.accent};
+
+      &:hover {
+        border-color: ${({ theme }) => theme.palette.accent};
+      }
+    }
+
+    & .react-datepicker__year-read-view--down-arrow:hover {
+      border-color: ${({ theme }) => theme.palette.accent};
+    }
+
+    & .react-datepicker__year-read-view--selected-year {
+      font-size: 13px;
+      color: #11111199;
+    }
+
+    & .react-datepicker__header__dropdown {
+      margin-top: 2px;
+    }
+
+    & .react-datepicker__year-dropdown {
+      background-color: #fdfbfa;
+      border-color: #f59356bb;
+    }
+
+    & .react-datepicker__year-option:hover {
+      background-color: #f59356bb;
+      color: #fff;
+    }
+
+    & .react-datepicker__year-option--selected {
+      color: ${({ theme }) => theme.palette.accent};
+      font-weight: 700;
     }
     & .react-datepicker__year-dropdown {
       background-color: #fff;

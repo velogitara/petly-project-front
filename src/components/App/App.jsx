@@ -52,7 +52,7 @@ const App = () => {
               <Route path="notices/:categoryName" element={<NoticesPage />}></Route>
               <Route path="friends" element={<OurFriendsPage />} />
             </Route>
-            <Route path="/" element={<PublicRoutes redirectTo="/" restricted />}>
+            <Route path="/" element={<PublicRoutes redirectTo="user" restricted />}>
               <Route path="login" element={<AuthPage />} />
               <Route path="register" element={<AuthPage />} />
             </Route>
