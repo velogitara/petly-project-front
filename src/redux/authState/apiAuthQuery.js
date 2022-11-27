@@ -43,7 +43,7 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
     } else {
       if (refreshResult?.error?.status === 403 || refreshResult?.error?.status === 404) {
         refreshResult.error.data.message = 'Your login has expired. ';
-        console.log(refreshResult?.error?.status, refreshResult.error.data.message);
+        // console.log(refreshResult?.error?.status, refreshResult.error.data.message);
         api.dispatch(unsetAuthState());
       }
       return refreshResult;
