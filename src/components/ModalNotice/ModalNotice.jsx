@@ -36,14 +36,12 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
     const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
-        
       }
     };
 
     window.addEventListener('keydown', handleEscKeyDown);
     return () => {
       window.removeEventListener('keydown', handleEscKeyDown);
-      
     };
   }, [onClose]);
 
@@ -163,7 +161,9 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
         </Comments>
         <BtnContainer>
           <FavoriteButton favorite={favorite} noticeId={noticeId} modal label />
-          <Contact type="button" href={`tel:${phone}`}>Contact</Contact>
+          <Contact type="button" href={`tel:${phone}`}>
+            Contact
+          </Contact>
         </BtnContainer>
       </Modal>
     </Backdrop>,
