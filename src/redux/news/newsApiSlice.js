@@ -27,15 +27,6 @@ export const newsApi = createApi({
       invalidatesTags: ['News'],
       transformResponse: (res) => res.data
     }),
-    totalNews: builder.query({
-      query: ({ query = '' }) => ({
-        url: `/?query=${query}`,
-        method: 'GET',
-      }),
-      providesTags: ['News'],
-      invalidatesTags: ['News'],
-      transformResponse: (res) => res.data
-    }),
     addNews: builder.mutation({
       query: payload => ({
         method: 'POST',
@@ -46,4 +37,4 @@ export const newsApi = createApi({
   }),
 });
 
-export const { useListNewsQuery, useTotalNewsQuery } = newsApi;
+export const { useListNewsQuery } = newsApi;
