@@ -38,7 +38,18 @@ export const authApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Auth'],
     }),
+    refresh: builder.mutation({
+      query: ({ refreshToken }) => ({
+        url: 'refresh',
+        method: 'POST',
+        body: {
+          refreshToken: refreshToken,
+        },
+      }),
+      invalidatesTags: ['Auth'],
+    }),
   }),
 });
 
-export const { useSignUpMutation, useSignInMutation, useSignOutMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useSignOutMutation, useRefreshMutation } =
+  authApi;
