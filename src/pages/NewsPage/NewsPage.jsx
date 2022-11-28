@@ -40,9 +40,11 @@ const NewsPage = () => {
   }
 
   function onClick(e) {
-    document.getElementById("searchForm").reset();
-    setQuery('');
-    setPage(1); 
+    if (query !== "") {
+      document.getElementById("searchForm").reset();
+      setQuery('');
+      setPage(1); 
+    }
   }
 
   return <ContainerWithPadding>
