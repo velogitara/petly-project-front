@@ -35,25 +35,29 @@ const NewsPage = () => {
     const searchedValue = e.currentTarget.parentElement.elements['search'].value;
     if (query !== searchedValue) {
       setQuery(searchedValue);
-      setPage(1); 
+      setPage(1);
     }
   }
 
   function onClick(e) {
-    if (query !== "") {
-      document.getElementById("searchForm").reset();
+    if (query !== '') {
+      document.getElementById('searchForm').reset();
       setQuery('');
-      setPage(1); 
+      setPage(1);
     }
   }
 
-  return <ContainerWithPadding>
-    <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} />
-    {isLoading && <Loader />}
-    {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
-    {!isLoading && !error && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
-  </ContainerWithPadding>
+  return (
+    <ContainerWithPadding>
+      <TitlePage title={'News'} />
+      <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} />
+      {isLoading && <Loader />}
+      {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
+      {!isLoading && !error && (
+        <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />
+      )}
+    </ContainerWithPadding>
+  );
 };
 
 export default NewsPage;

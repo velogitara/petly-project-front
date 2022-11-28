@@ -59,7 +59,7 @@ const UserPage = () => {
         </LoaderContainer>
       ) : (
         <Container>
-          {isPetLoading && (
+          {isPetLoading && user && (
             <Overlay>
               <Loader />
             </Overlay>

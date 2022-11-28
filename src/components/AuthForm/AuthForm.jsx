@@ -101,9 +101,7 @@ const AuthForm = ({ url }) => {
               }
             });
           }
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (

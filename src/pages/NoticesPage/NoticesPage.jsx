@@ -11,7 +11,6 @@ const NoticesPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(location);
     if (!location) {
       navigate('/notices/sell', { replace: true });
     }
