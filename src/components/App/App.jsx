@@ -9,7 +9,6 @@ import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader';
 import BackScrollButton from 'components/BackScrollButton';
-
 const SharedLayout = lazy(() => import('components/SharedLayout'));
 const HomePage = lazy(() => import('pages/HomePage/'));
 const AuthPage = lazy(() => import('pages/AuthPage/'));
@@ -17,10 +16,8 @@ const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
-
 const App = () => {
   // const isLogged = useSelector(selectAuthToken);
-
   return (
     <Application>
       <ToastContainer
@@ -40,14 +37,12 @@ const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<PrivateRoutes />}>
               <Route path="user" element={<UserPage />} />
-              <Route path="notices/" element={<NoticesPage />}>
-                <Route path="favorite" exact element={<NoticesPage />} />
-                <Route path="own" exact element={<NoticesPage own />} />
-              </Route>
+              <Route path="notices/favorite" exact element={<NoticesPage />} />
+              <Route path="notices/own" exact element={<NoticesPage />} />
             </Route>
             <Route path="/" element={<PublicRoutes />}>
               <Route index element={<HomePage />} />
-
+              <Route path="notices" element={<Navigate replace to="/notices/sell" />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="notices/:categoryName" element={<NoticesPage />}></Route>
               <Route path="friends" element={<OurFriendsPage />} />
@@ -64,5 +59,4 @@ const App = () => {
     </Application>
   );
 };
-
 export default App;
