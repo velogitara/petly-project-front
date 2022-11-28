@@ -12,13 +12,10 @@ import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
 const AuthForm = ({ url }) => {
   const [part, setPart] = useState(1);
   const [matchError, setMatchError] = useState(null);
-  const [signIn /*result*/] = useSignInMutation();
-  const [signUp /*res*/] = useSignUpMutation();
+  const [signIn] = useSignInMutation();
+  const [signUp] = useSignUpMutation();
 
   const button = url === '/login' ? 'Login' : 'Register';
-  // console.log(result);
-  // console.log(res);
-
   const passwordRegEx = /^\S*$/;
   // const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;/
   const nameRegEx = /^[а-яА-ЯёЁa-zA-Z-`\s]+$/;
@@ -46,7 +43,7 @@ const AuthForm = ({ url }) => {
     password: yup
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
-      .min(4, 'Must contain at least 7 symbols')
+      .min(4, 'Must contain at least 4 symbols')
       .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
   });
@@ -55,7 +52,7 @@ const AuthForm = ({ url }) => {
     password: yup
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
-      .min(7, 'Must contain at least 7 symbols')
+      .min(4, 'Must contain at least 4 symbols')
       .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
     confirmPassword: yup.string().required('Required'),
@@ -90,8 +87,6 @@ const AuthForm = ({ url }) => {
             data[key] = fields[key];
           }
         }
-        // console.log(data);
-
         try {
           if (url === '/login') {
             await signIn(data).then(response => {
@@ -106,9 +101,7 @@ const AuthForm = ({ url }) => {
               }
             });
           }
-        } catch (error) {
-          console.log(error);
-        }
+        } catch (error) {}
       }}
     >
       {({ values, handleChange, handleBlur, handleSubmit }) => (

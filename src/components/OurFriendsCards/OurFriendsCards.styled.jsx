@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { theme } from 'helpers';
 
-const { backgrounds, shadows, fonts, screens, palette } = theme;
+const { backgrounds, shadows, fonts, screens, palette, animations } = theme;
 
 const Card = styled.li`
   background-color: ${backgrounds.secondary};
@@ -74,6 +74,13 @@ const NameLink = styled.a`
   font-size: inherit;
   line-height: inherit;
   color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  transition: ${animations.transition};
+  &:hover,
+  &:focus {
+    color: ${palette.hoverAccent};
+  }
 `;
 
 const WorkDaysList = styled.ul`
@@ -99,7 +106,7 @@ const InfoTitle = styled.p`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.37;
-  transition: color 250ms;
+  transition: ${animations.transition};
   &:hover {
     color: ${palette.accent};
     cursor: pointer;

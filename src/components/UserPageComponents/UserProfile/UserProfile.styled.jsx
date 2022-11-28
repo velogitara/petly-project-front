@@ -22,7 +22,7 @@ export const UserContainer = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
     margin-bottom: 0;
-    padding: 20px 16px 103px 16px;
+    padding: 20px 16px 40px 16px;
   }
 `;
 

@@ -30,6 +30,14 @@ export const InputForm = styled(Field)`
     padding: 11px 14px;
     width: 280px;
     font-size: 14px;
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.backgrounds.primary} inset;
+    -webkit-text-fill-color: ${({ theme }) => theme.palette.primary};
+  }
     @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
         padding: 14px 32px;
         width: 448px;

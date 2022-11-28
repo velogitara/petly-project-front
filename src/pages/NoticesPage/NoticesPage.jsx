@@ -22,5 +22,4 @@ const NoticesPage = () => {
     </NoticesContainer>
   );
 };
-
 export default NoticesPage;

@@ -5,6 +5,9 @@ import { selectAuthToken } from 'redux/authState';
 import { useParams } from 'react-router-dom';
 import AddPetButton from 'components/AddPetButton';
 import ModalAddNotice from 'components/ModalAddNotice';
+import { useAddNoticeMutation } from '../../redux/notices';
+import Loader from 'components/Loader';
+import { Overlay } from 'components/ModalAddNotice/ModalAddNotice.styled';
 
 import { constants } from 'constants/constants';
 
@@ -19,6 +22,7 @@ const NoticesCategoriesNav = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(!isModalOpen);
+  const [addNotice, { isLoading }] = useAddNoticeMutation();
 
   const isLogged = useSelector(selectAuthToken);
 
@@ -48,8 +52,13 @@ const NoticesCategoriesNav = () => {
           </NavLinks>
         )}
       </NavLinksContainer>
+      {isLoading && (
+        <Overlay>
+          <Loader />
+        </Overlay>
+      )}
       <AddPetButton>
-        <ModalAddNotice onClose={toggleModal} />
+        <ModalAddNotice onClose={toggleModal} addNotice={addNotice} />
       </AddPetButton>
     </NavContainer>
   );

@@ -11,7 +11,6 @@ const baseQuery = fetchBaseQuery({
     const token = getState().authState.authToken;
     if (token) {
       headers.set('authorization', `Bearer ${token}`);
-      // headers.set('Access-Control-Allow-Origin', '*');
     }
     return headers;
   },
@@ -21,17 +20,12 @@ const baseQueryWithReAuth = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
   if (result?.error?.status === 401) {
-    // console.log(result.error);
-    console.log('sending refresh token');
-
     const refreshResult = await baseQuery('auth/refresh', api, extraOptions);
 
     console.log(refreshResult);
     if (refreshResult?.data) {
-      console.log('DISPATCH REFRESH TOKEN IN USER SLICE');
       api.dispatch(setCredentials({ ...refreshResult.data }));
 
-      // retry original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
       if (refreshResult?.error?.status === 403 || refreshResult?.error?.status === 404) {

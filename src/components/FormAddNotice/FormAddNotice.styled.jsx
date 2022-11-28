@@ -316,6 +316,13 @@ export const Textarea = styled.input`
   padding: 11px 14px;
   width: 100%;
   font-size: 14px;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 70px ${({ theme }) => theme.backgrounds.primary} inset;
+    -webkit-text-fill-color: ${({ theme }) => theme.palette.primary};
+  }
   &:hover {
     transition: ${({ theme }) => theme.animations.transition};
     transform: ${({ theme }) => theme.animations.transform};
