@@ -9,7 +9,6 @@ position: absolute;
   height: 20px;
   margin-left: auto;
   margin-bottom: 12px;
-  z-index: 20;
   color: ${({ theme }) => theme.palette.primary};
   background: transparent;
   border: none;
