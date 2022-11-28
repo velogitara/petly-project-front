@@ -1,6 +1,6 @@
 import NewsList from 'components/NewsList';
 import TitlePage from 'components/TitlePage';
-import InputSearch from 'components/InputSearch';
+import InputSearch from 'components/InputSearch/InputSearch'; /* switch too*/
 import SearchError from 'components/SearchError';
 import Paginator from 'components/Paginator';
 import { useNews } from 'hooks';
@@ -22,7 +22,7 @@ const NewsPage = () => {
     news = data.news;
     totalNews = data.total;
   }
-  
+
   if (totalNews > 0) {
     totalPages = Math.ceil(totalNews / 6);
   }
@@ -41,17 +41,21 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      document.getElementById("searchForm").reset();
+      document.getElementById('searchForm').reset();
     }
   }
 
-  return <ContainerWithPadding>
-    <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)} />
-    {isLoading && <Loader />}
-    {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
-    {(!isLoading && !error) && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
-  </ContainerWithPadding>
+  return (
+    <ContainerWithPadding>
+      <TitlePage title={'News'} />
+      <InputSearch onSubmit={e => onSubmit(e)} />
+      {isLoading && <Loader />}
+      {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
+      {!isLoading && !error && (
+        <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />
+      )}
+    </ContainerWithPadding>
+  );
 };
 
 export default NewsPage;
