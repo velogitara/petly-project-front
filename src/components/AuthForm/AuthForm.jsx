@@ -12,13 +12,10 @@ import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
 const AuthForm = ({ url }) => {
   const [part, setPart] = useState(1);
   const [matchError, setMatchError] = useState(null);
-  const [signIn /*result*/] = useSignInMutation();
-  const [signUp /*res*/] = useSignUpMutation();
+  const [signIn] = useSignInMutation();
+  const [signUp] = useSignUpMutation();
 
   const button = url === '/login' ? 'Login' : 'Register';
-  // console.log(result);
-  // console.log(res);
-
   const passwordRegEx = /^\S*$/;
   // const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;/
   const nameRegEx = /^[а-яА-ЯёЁa-zA-Z-`\s]+$/;
@@ -90,8 +87,6 @@ const AuthForm = ({ url }) => {
             data[key] = fields[key];
           }
         }
-        // console.log(data);
-
         try {
           if (url === '/login') {
             await signIn(data).then(response => {
