@@ -54,7 +54,13 @@ const Date = styled.span`
 
 const ReadMore = styled.a`
   color: ${theme.palette.accent};
+
+  &:hover {
+    text-decoration-line: underline;
+    transition: ${({ theme }) => theme.animations.transition};
+  }
 `;
+
 const Wrapper = styled.div`
   display: grid;
   justify-content: space-between;
