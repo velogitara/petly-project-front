@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { selectAuthToken } from 'redux/authState';
 import { useListNoticesByCategoryQuery, useListUserNoticesQuery } from 'redux/notices';
 
-const useNotices = ({ categoryName, page = 1, limit = 8 }) => {
+const useNotices = ({ categoryName, page = 1, limit = 8, query }) => {
   const isLogged = useSelector(selectAuthToken);
 
   const isOwn = categoryName === 'own';
@@ -39,11 +39,13 @@ const useNotices = ({ categoryName, page = 1, limit = 8 }) => {
     case 'favorite':
       result = favoriteNotices;
       break;
+
     default:
       result = byCategoryNotices;
   }
   return {
     notices: result?.data?.notices ?? [],
+    totalPages: result?.data?.totalPages ?? 1,
     isLoading: isLoadByCategory || isLoadOwn || isLoadFavorite,
   };
 };

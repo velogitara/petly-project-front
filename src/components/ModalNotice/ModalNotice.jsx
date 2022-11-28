@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useGetNoticeById } from 'hooks';
-import { imageURLBuilder, categoryTitleHandler } from 'helpers';
+import { categoryTitleHandler } from 'helpers';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
+import { constants } from 'constants/constants';
 import {
   Backdrop,
   Modal,
@@ -27,7 +28,7 @@ import {
 } from './ModalNotice.styled';
 
 const modalRoot = document.querySelector('#modal-root');
-const imageDummy = '';
+const { noImage } = constants;
 
 const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   const { notice, isSuccess } = useGetNoticeById({ noticeId });
@@ -36,20 +37,20 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
     const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
-        
+        document.body.style.position = 'unset';
       }
     };
 
     window.addEventListener('keydown', handleEscKeyDown);
     return () => {
       window.removeEventListener('keydown', handleEscKeyDown);
-      
     };
   }, [onClose]);
 
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       onClose();
+      document.body.style.position = 'unset';
     }
   };
 
@@ -85,26 +86,26 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <ModalCloseButton onClose={onClose} />
+        <ModalCloseButton styled="small" onClose={onClose} />
         <ModalInfo>
           <ModalInfoImg>
             <PicturePet>
               <source
-                srcSet={`${imageURL ? imageURLBuilder(imageURL?.profileMobile) : ''} 240w, ${
-                  imageURL ? imageURLBuilder(imageURL?.profileMobileRetina) : ''
+                srcSet={`${imageURL ? imageURL?.profileMobile : noImage.profileMobile} 240w, ${
+                  imageURL ? imageURL?.profileMobileRetina : noImage.profileMobileRetina
                 } 480w`}
                 media="(max-width: 767px)"
                 sizes="240px"
               />
               <source
-                srcSet={`${imageURL ? imageURLBuilder(imageURL?.profile) : ''} 288w, ${
-                  imageURL ? imageURLBuilder(imageURL?.profileRetina) : ''
+                srcSet={`${imageURL ? imageURL?.profile : noImage.profile} 288w, ${
+                  imageURL ? imageURL?.profileRetina : noImage.profileRetina
                 } 576w`}
                 media="(min-width: 768px)"
                 sizes="288px"
               />
               <ImgPet
-                src={imageURL ? imageURLBuilder(imageURL?.profile) : imageDummy}
+                src={imageURL ? imageURL?.profile : noImage.profile}
                 loading="lazy"
                 alt={notice?.title}
               />
@@ -163,7 +164,9 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
         </Comments>
         <BtnContainer>
           <FavoriteButton favorite={favorite} noticeId={noticeId} modal label />
-          <Contact type="button" href={`tel:${phone}`}>Contact</Contact>
+          <Contact type="button" href={`tel:${phone}`}>
+            Contact
+          </Contact>
         </BtnContainer>
       </Modal>
     </Backdrop>,

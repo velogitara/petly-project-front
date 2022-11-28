@@ -7,6 +7,8 @@ import PrivateRoutes from 'components/PrivateRoutes';
 import PublicRoutes from 'components/PublicRoutes.jsx';
 import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from 'components/Loader';
+import BackScrollButton from 'components/BackScrollButton';
 
 const SharedLayout = lazy(() => import('components/SharedLayout'));
 const HomePage = lazy(() => import('pages/HomePage/'));
@@ -33,7 +35,7 @@ const App = () => {
         pauseOnHover
         theme="colored"
       />
-      <Suspense fallback={<p>loading...</p>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<PrivateRoutes />}>
@@ -47,15 +49,10 @@ const App = () => {
               <Route index element={<HomePage />} />
 
               <Route path="news" element={<NewsPage />} />
-              <Route path="notices/:categoryName" element={<NoticesPage />}>
-                {/* <Route path="sell" element={<NoticesCategoryList sell />} /> */}
-                {/* <Route path="lost" element={<NoticesCategoryList lost />} /> */}
-                {/* <Route path="found" element={<NoticesCategoryList found />} /> */}
-                {/* <Route path="for-free" element={<NoticesCategoryList for-free />} /> */}
-              </Route>
+              <Route path="notices/:categoryName" element={<NoticesPage />}></Route>
               <Route path="friends" element={<OurFriendsPage />} />
             </Route>
-            <Route path="/" element={<PublicRoutes redirectTo="/" restricted />}>
+            <Route path="/" element={<PublicRoutes redirectTo="user" restricted />}>
               <Route path="login" element={<AuthPage />} />
               <Route path="register" element={<AuthPage />} />
             </Route>
@@ -63,6 +60,7 @@ const App = () => {
           </Route>
         </Routes>
       </Suspense>
+      <BackScrollButton />
     </Application>
   );
 };

@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 45px;
+  padding-bottom: 80px;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     padding-top: 20px;

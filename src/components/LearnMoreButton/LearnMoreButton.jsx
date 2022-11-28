@@ -13,7 +13,7 @@ const LearnMoreButton = ({ noticeId, favorite, owner }) => {
         title="Learn more"
         onClick={() => {
           setShowModal(true);
-          document.body.style.position = 'fixed'
+          document.body.style.position = 'fixed';
         }}
       >
         learn more

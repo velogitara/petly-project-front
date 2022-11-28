@@ -55,7 +55,7 @@ const DeleteButton = ({ translucent = false, petId, noticeId, owner, className =
     setShowDeleteConfirm(false);
   };
   if (!isLogged || !check) {
-    return <></>;
+    return null;
   }
 
   return (

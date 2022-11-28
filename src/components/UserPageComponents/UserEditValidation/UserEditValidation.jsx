@@ -7,7 +7,6 @@ const phoneRegEx = /^(\+\d{1,3}[- ]?)?\d{10}$/;
 const ValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, 'Must be 2 or more letter')
-    .max(16, 'Must be 70 or less letter')
     .matches(nameRegEx, 'Input valid Name and Surname'),
   email: Yup.string().email('Invalid email'),
   birthday: Yup.date().nullable(),
