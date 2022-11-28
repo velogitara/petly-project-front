@@ -35,14 +35,19 @@ const NewsPage = () => {
     const searchedValue = e.currentTarget.parentElement.elements['search'].value;
     if (query !== searchedValue) {
       setQuery(searchedValue);
-      setPage(1);
-      document.getElementById("searchForm").reset();
+      setPage(1); 
     }
+  }
+
+  function onClick(e) {
+    document.getElementById("searchForm").reset();
+    setQuery('');
+    setPage(1); 
   }
 
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)} />
+    <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} />
     {isLoading && <Loader />}
     {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
     {!isLoading && !error && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
