@@ -9,6 +9,7 @@ export const LogoutButton = styled.button`
   padding: 0;
 
   transition: ${({ theme }) => theme.animations.transition};
+  cursor: pointer;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin: 0;
@@ -20,6 +21,11 @@ export const LogoutButton = styled.button`
   &:hover p,
   &:focus p {
     color: ${({ theme }) => theme.palette.accent};
+  }
+
+  &:hover,
+  &:focus {
+    transform: ${({ theme }) => theme.animations.transform};
   }
 `;
 
