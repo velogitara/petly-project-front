@@ -46,7 +46,7 @@ const AuthForm = ({ url }) => {
     password: yup
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
-      .min(7, 'Must contain at least 7 symbols')
+      .min(4, 'Must contain at least 7 symbols')
       .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
   });

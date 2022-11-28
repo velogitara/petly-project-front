@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
 export const Backdrop = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -108,9 +108,7 @@ export const ImgLabel = styled.p`
   width: 158px;
   height: 28px;
 `;
-export const InfoPet = styled.div`
-  
-`;
+export const InfoPet = styled.div``;
 export const InfoPetTitle = styled.h2`
   margin-bottom: 16px;
   font-size: 24px;
@@ -123,7 +121,7 @@ export const InfoPetTitle = styled.h2`
     line-height: 1.357;
     margin-bottom: 20px;
     margin-right: 50px;
-     padding-right: 50px;
+    padding-right: 50px;
   }
 `;
 export const InfoPetList = styled.ul``;
@@ -194,14 +192,13 @@ export const Contact = styled.a`
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 160px;
-   margin: 0 20px 0 12px;
+    margin: 0 20px 0 12px;
 
-     &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.palette.triadic};
-    ${({ modal, theme }) => (modal ? `border-color: ${theme.palette.hoverAccent};` : '')}
-    transform: ${({ theme }) => theme.animations.transform};
-  
+    &:hover,
+    &:focus {
+      color: ${({ theme }) => theme.palette.triadic};
+      ${({ modal, theme }) => (modal ? `border-color: ${theme.palette.hoverAccent};` : '')}
+      transform: ${({ theme }) => theme.animations.transform};
     }
   }
 `;
