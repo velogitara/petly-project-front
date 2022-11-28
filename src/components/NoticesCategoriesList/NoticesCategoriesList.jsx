@@ -9,9 +9,10 @@ import Paginator from 'components/Paginator';
 import Loader from 'components/Loader';
 import { CategoriesList, Message } from './NoticesCategoriesList.styled';
 
-const NoticesCategoriesList = () => {
+const NoticesCategoriesList = ({ query }) => {
   const location = useLocation().pathname.replace('/notices/', '');
   const [page, setPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState(query);
   const [categoryName, setCategoryName] = useState(location);
   const isLogged = useSelector(selectAuthToken);
   const authId = useSelector(selectAuthId);
@@ -21,7 +22,16 @@ const NoticesCategoriesList = () => {
     setPage(1);
   }, [location]);
 
-  const { notices, totalPages, isLoading } = useNotices({ categoryName, page, limit: 8 });
+  useEffect(() => {
+    setSearchQuery(query);
+  }, [query]);
+
+  const { notices, totalPages, isLoading } = useNotices({
+    categoryName,
+    page,
+    limit: 8,
+    query: searchQuery,
+  });
 
   const isNotices = notices.length !== 0;
   return (
