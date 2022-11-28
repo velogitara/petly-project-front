@@ -36,7 +36,6 @@ const FormAddNoticeStepFirst = ({
   setFieldValue,
 }) => {
   const [required, setRequired] = useState(null);
-
   const next = values => {
     if (!values.title || !values.category) {
       setRequired('Required');

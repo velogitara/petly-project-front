@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import {Field} from 'formik'
+import { Field } from 'formik';
 
 export const InputForm = styled(Field)`
   display: block;
@@ -10,7 +10,14 @@ export const InputForm = styled(Field)`
   line-height: 1.4;
   outline: none;
 
-  &.inputAuth {
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.backgrounds.primary} inset;
+    -webkit-text-fill-color: ${({ theme }) => theme.palette.primary};
+  }
+  &-web.inputAuth {
     padding: 11px 14px;
     width: 280px;
     font-size: 14px;
