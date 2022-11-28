@@ -15,16 +15,11 @@ const NewsPage = () => {
   const { data, isLoading } = useNews({ page: page.currentPage, query });
 
   let news = [];
-  let totalNews = 0;
   let totalPages = 1;
 
   if (data.length !== 0) {
     news = data.news;
-    totalNews = data.total;
-  }
-  
-  if (totalNews > 0) {
-    totalPages = Math.ceil(totalNews / 6);
+    totalPages = data.totalPages;
   }
 
   useEffect(() => {
@@ -50,7 +45,7 @@ const NewsPage = () => {
     <InputSearch onSubmit={e => onSubmit(e)} />
     {isLoading && <Loader />}
     {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
-    {(!isLoading && !error) && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
+    {!isLoading && !error && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
   </ContainerWithPadding>
 };
 
