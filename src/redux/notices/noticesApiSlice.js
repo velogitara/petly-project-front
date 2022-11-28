@@ -42,6 +42,7 @@ export const noticesApi = apiSlice.injectEndpoints({
         url: `notices/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}`,
         method: 'GET',
       }),
+      providesTags: ['UserNotices'],
       invalidatesTags: ['Notices'],
     }),
     getNoticesById: builder.query({
@@ -58,7 +59,7 @@ export const noticesApi = apiSlice.injectEndpoints({
         method: 'POST',
         body: payload,
       }),
-      invalidatesTags: ['Notices', 'Notice'],
+      invalidatesTags: ['Notices', 'Notice', 'UserNotices'],
     }),
     updateFavorites: builder.mutation({
       query: ({ noticeId, favorite }) => ({
@@ -68,14 +69,14 @@ export const noticesApi = apiSlice.injectEndpoints({
           favorite,
         },
       }),
-      invalidatesTags: ['Notices'],
+      invalidatesTags: ['Notices', 'UserNotices'],
     }),
     removeNotice: builder.mutation({
       query: ({ noticeId }) => ({
         url: `notices/${noticeId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Notices', 'Notice'],
+      invalidatesTags: ['Notices', 'Notice', 'UserNotices'],
     }),
   }),
 });
