@@ -8,11 +8,18 @@ export const LogoutButton = styled.button`
   background: none;
   padding: 0;
 
+  transition: ${({ theme }) => theme.animations.transition};
+
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin: 0;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.desktop}) {
+  }
+
+  &:hover p,
+  &:focus p {
+    color: ${({ theme }) => theme.palette.accent};
   }
 `;
 
