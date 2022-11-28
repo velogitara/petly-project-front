@@ -1,54 +1,39 @@
 import NewsList from 'components/NewsList';
 import TitlePage from 'components/TitlePage';
-import Button from 'components/Button';
 import InputSearch from 'components/InputSearch';
 import SearchError from 'components/SearchError';
+import Paginator from 'components/Paginator';
 import { useNews } from 'hooks';
 import { useEffect, useState } from 'react';
-import { ContainerWithPadding } from './NewsPage.styled'
-
+import { ContainerWithPadding } from './NewsPage.styled';
+import Loader from 'components/Loader';
 
 const NewsPage = () => {
   const [query, setQuery] = useState('');
-  const [allNews, setAllNews] = useState([]);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(null);
-  const [showButton, setShowButton] = useState(false);
-  const { data, isLoading } = useNews({ page, query });
+  const { data, isLoading } = useNews({ page: page.currentPage, query });
+
+  let news = [];
+  let totalNews = 0;
+  let totalPages = 1;
+
+  if (data.length !== 0) {
+    news = data.news;
+    totalNews = data.total;
+  }
+  
+  if (totalNews > 0) {
+    totalPages = Math.ceil(totalNews / 6);
+  }
 
   useEffect(() => {
-   setAllNews((prevState) => ([...prevState, ...data]));
-
-
-  }, [data]);
-
-
-  useEffect(() => {
-    if (data.length === 0 && !isLoading && page === 1) {
+    if (news.length === 0 && !isLoading) {
       setError('error');
     } else {
       setError(null);
     }
-
-    if (data.length === 6){
-      setShowButton(true);
-    } else {
-      setShowButton(false);
-    }
-  }, [page, data.length, isLoading]);
-
-
-
-  // useEffect(() => {
-  //   window.scrollTo({
-  //     top: document.body.offsetHeight,
-  //     behavior: 'smooth',
-  //   })
-  // }, [data]);
-
-  function onLoadMoreBtnClick() {
-    setPage((prevState) => prevState + 1);
-  }
+  }, [page, news.length, isLoading, query]);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -56,17 +41,16 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      setAllNews([]);
-      setShowButton(false);
       document.getElementById("searchForm").reset();
     }
   }
 
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)}/>
-    {error? <SearchError query={query}/> : <NewsList news={allNews}/>}
-    {showButton && <Button title="Load more" margin="60px 0 0 0" styled="formAuth on" onClick={e=>onLoadMoreBtnClick(e)}></Button>}
+    <InputSearch onSubmit={e => onSubmit(e)} />
+    {isLoading && <Loader />}
+    {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
+    {(!isLoading && !error) && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
   </ContainerWithPadding>
 };
 
