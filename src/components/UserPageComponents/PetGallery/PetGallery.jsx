@@ -1,4 +1,4 @@
-import { GalleryContainer } from './PetGallery.styled';
+import { GalleryContainer, NoPets } from './PetGallery.styled';
 import PetCard from 'components/UserPageComponents/PetCard';
 
 const PetGallery = ({ pets, screen }) => {
@@ -6,7 +6,7 @@ const PetGallery = ({ pets, screen }) => {
 
   return (
     <>
-      {isPets && (
+      {isPets ? (
         <GalleryContainer>
           {pets.map(({ _id, name, birthday, breed, imageURL, comments, owner }) => (
             <PetCard
@@ -22,6 +22,8 @@ const PetGallery = ({ pets, screen }) => {
             />
           ))}
         </GalleryContainer>
+      ) : (
+        <NoPets>You haven't added pets yet.</NoPets>
       )}
     </>
   );
