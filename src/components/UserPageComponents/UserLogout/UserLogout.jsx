@@ -3,7 +3,7 @@ import icons from '../../../assets/icons/icons.svg';
 import { useSelector } from 'react-redux';
 import { selectAuthId } from 'redux/authState';
 import { toast } from 'react-toastify';
-import { DelButtonContainer } from 'components/DeleteButton/DeleteButton.styled';
+// import { DelButtonContainer } from 'components/DeleteButton/DeleteButton.styled';
 import PopUp from 'components/PopUp';
 import ConfirmButtons from 'components/ConfirmButtons';
 
