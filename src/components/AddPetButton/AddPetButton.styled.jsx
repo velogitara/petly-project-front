@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const AddButtonContainer = styled.div`
   ${({ user }) => (user === true ? 'relative' : 'position: absolute; right: 0; bottom: -220px;')};
   display: flex;
+  flex-direction: row-reverse;
   flex-wrap: nowrap;
   align-items: center;
   align-self: flex-start;
@@ -28,6 +29,8 @@ export const AddButtonLabel = styled.p`
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     display: inline-block;
   }
+
+  transition: ${({ theme }) => theme.animations.transition};
 `;
 
 export const AddButtonSpan = styled.span`
@@ -71,6 +74,10 @@ export const AddButton = styled.button`
   &:hover,
   &:focus {
     transform: ${({ theme }) => theme.animations.transform};
+
+    & + p {
+      transform: ${({ theme }) => theme.animations.transform};
+    }
   }
 `;
 

@@ -26,7 +26,6 @@ const AddPetButton = ({ user, children }) => {
   return (
     <>
       <AddButtonContainer user={user}>
-        <AddButtonLabel user={user}>{label}</AddButtonLabel>
         <AddButton
           user={user}
           type="button"
@@ -38,6 +37,7 @@ const AddPetButton = ({ user, children }) => {
           </AddButtonIcon>
           {!user && <AddButtonSpan>{label}</AddButtonSpan>}
         </AddButton>
+        <AddButtonLabel user={user}>{label}</AddButtonLabel>
         {showNotLogged && (
           <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)} />
         )}
