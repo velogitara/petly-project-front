@@ -49,7 +49,7 @@ const NewsPage = () => {
 
   return <ContainerWithPadding>
     <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} />
+    <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} query={query} />
     {isLoading && <Loader />}
     {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
     {!isLoading && !error && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
