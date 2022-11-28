@@ -40,14 +40,12 @@ const App = () => {
           <Route path="/" element={<SharedLayout />}>
             <Route path="/" element={<PrivateRoutes />}>
               <Route path="user" element={<UserPage />} />
-              <Route path="notices/" element={<NoticesPage />}>
-                <Route path="favorite" exact element={<NoticesPage />} />
-                <Route path="own" exact element={<NoticesPage own />} />
-              </Route>
+              <Route path="notices/favorite" exact element={<NoticesPage />} />
+              <Route path="notices/own" exact element={<NoticesPage />} />
             </Route>
             <Route path="/" element={<PublicRoutes />}>
               <Route index element={<HomePage />} />
-
+              <Route path="notices" element={<Navigate replace to="/notices/sell" />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="notices/:categoryName" element={<NoticesPage />}></Route>
               <Route path="friends" element={<OurFriendsPage />} />

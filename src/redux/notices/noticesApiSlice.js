@@ -19,8 +19,10 @@ export const noticesApi = apiSlice.injectEndpoints({
   // tagTypes: ['Notices', 'Notice'],
   endpoints: builder => ({
     listNoticesByCategory: builder.query({
-      query: ({ category, page = 1, limit = 8 }) => ({
-        url: `notices/categories/${category}?page=${page}&limit=${limit}`,
+      query: ({ category, page = 1, limit = 8, query }) => ({
+        url: `notices/categories/${category}?page=${page}&limit=${limit}${
+          query ? `&query=${query}` : ''
+        }`,
         method: 'GET',
       }),
       providesTags: ['Notices'],
@@ -38,8 +40,10 @@ export const noticesApi = apiSlice.injectEndpoints({
       invalidatesTags: ['Notices'],
     }),
     listUserNotices: builder.query({
-      query: ({ page = 1, limit = 8, favorite = false }) => ({
-        url: `notices/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}`,
+      query: ({ page = 1, limit = 8, favorite = false, query }) => ({
+        url: `notices/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}${
+          query ? `&query=${query}` : ''
+        }`,
         method: 'GET',
       }),
       invalidatesTags: ['Notices'],

@@ -1,28 +1,24 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import NoticesCategoriesNav from 'components/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/NoticesCategoriesList';
 import TitlePage from 'components/TitlePage';
 import InputSearch from 'components/InputSearch';
 import { NoticesContainer } from './NoticesPage.styled';
-import { useEffect } from 'react';
 
 const NoticesPage = () => {
-  const location = useLocation().pathname.replace('/notices', '');
-  const navigate = useNavigate();
+  const [query, setQuery] = useState(null);
 
-  useEffect(() => {
-    console.log(location);
-    if (!location) {
-      navigate('/notices/sell', { replace: true });
-    }
-  }, [location, navigate]);
+  const handleQuery = e => {
+    e.preventDefault();
+    setQuery(e.currentTarget.parentElement.elements['search'].value);
+  };
 
   return (
     <NoticesContainer>
       <TitlePage title="Find your favorite pet"></TitlePage>
-      <InputSearch />
+      <InputSearch onSubmit={e => handleQuery(e)} />
       <NoticesCategoriesNav />
-      <NoticesCategoriesList />
+      <NoticesCategoriesList query={query} />
     </NoticesContainer>
   );
 };

@@ -10,21 +10,21 @@ const useNotices = ({ categoryName, page = 1, limit = 8, query }) => {
   const isByCategory = !isOwn && !isFavorite;
 
   const { data: byCategoryNotices, isLoading: isLoadByCategory } = useListNoticesByCategoryQuery(
-    { category: categoryName, page, limit },
+    { category: categoryName, page, limit, query },
     {
       skip: isOwn || isFavorite,
       refetchOnMountOrArgChange: true,
     }
   );
   const { data: ownNotices, isLoading: isLoadOwn } = useListUserNoticesQuery(
-    { category: categoryName, page, limit },
+    { category: categoryName, page, limit, query },
     {
       skip: !isLogged || isFavorite || isByCategory,
       refetchOnMountOrArgChange: true,
     }
   );
   const { data: favoriteNotices, isLoading: isLoadFavorite } = useListUserNoticesQuery(
-    { category: categoryName, page, limit, favorite: true },
+    { category: categoryName, page, limit, favorite: true, query },
     {
       skip: !isLogged || isOwn || isByCategory,
       refetchOnMountOrArgChange: true,

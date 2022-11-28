@@ -29,7 +29,7 @@ export const BtnSearch = styled.button`
   right: 10px;
   width: 25px;
   height: 25px;
-  background: ${({ theme }) => theme.palette.triadic};
+  background-color: transparent;
   border: none;
   cursor: pointer;
   transition: ${({ theme }) => theme.animations.transition};

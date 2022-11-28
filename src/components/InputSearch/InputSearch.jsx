@@ -6,7 +6,7 @@ const InputSearch = ({ onSubmit }) => {
   return (
     <InputContainer id="searchForm">
       <InputStyled placeholder="Search" type="text" name="search" />
-      <BtnSearch onClick={(e) => onSubmit(e)} >
+      <BtnSearch onClick={e => onSubmit(e)}>
         <svg width={17.5} height={17.5}>
           <use href={`${icons}#icon-search`}></use>
         </svg>
