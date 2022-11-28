@@ -39,6 +39,7 @@ const useNotices = ({ categoryName, page = 1, limit = 8, query }) => {
     case 'favorite':
       result = favoriteNotices;
       break;
+
     default:
       result = byCategoryNotices;
   }

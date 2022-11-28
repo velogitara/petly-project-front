@@ -9,7 +9,7 @@ const useUpdateUserInfo = async ({ payload }) => {
       if (response?.status !== 200) {
         toast.error(response.error.data.message);
       }
-      toast.success('Successfuly registered.');
+      toast.success('Successfully registered.');
     });
   } catch (error) {
     console.log(error);

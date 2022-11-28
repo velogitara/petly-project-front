@@ -9,7 +9,7 @@ const useSignUp = async ({ name, email, password, phone }) => {
       if (response?.status !== 201) {
         toast.error(response.error.data.message);
       }
-      toast.success('Successfuly registered.');
+      toast.success('Successfully registered.');
     });
   } catch (error) {
     console.log(error);
