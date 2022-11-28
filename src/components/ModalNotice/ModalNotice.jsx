@@ -37,6 +37,7 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
     const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
+        document.body.style.position = 'unset';
       }
     };
 
@@ -49,6 +50,7 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       onClose();
+      document.body.style.position = 'unset';
     }
   };
 
