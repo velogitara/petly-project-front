@@ -1,7 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-// import { useSelector } from 'react-redux';
-// import { selectAuthToken } from 'redux/authState';
 import { ToastContainer } from 'react-toastify';
 import PrivateRoutes from 'components/PrivateRoutes';
 import PublicRoutes from 'components/PublicRoutes.jsx';
@@ -17,7 +15,6 @@ const NoticesPage = lazy(() => import('pages/NoticesPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
 const App = () => {
-  // const isLogged = useSelector(selectAuthToken);
   return (
     <Application>
       <ToastContainer
