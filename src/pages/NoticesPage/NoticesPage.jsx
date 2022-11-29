@@ -10,7 +10,9 @@ const NoticesPage = () => {
 
   const handleQuery = e => {
     e.preventDefault();
-    setQuery(e.currentTarget.parentElement.elements['search'].value);
+    const searchedValue = e.currentTarget.parentElement.elements['search'].value;
+
+    setQuery(searchedValue);
   };
 
   return (
