@@ -22,6 +22,18 @@ export const PopUpContainer = styled.div`
   box-shadow: 0 0 20px ${({ theme }) => theme.palette.hoverAccent};
 
   z-index: 20;
+
+  &.user {
+    right: 70px;
+    top: 10px;
+
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+      border-top-right-radius: 40px;
+      border-top-left-radius: 0px;
+      right: -205px;
+      top: 5px;
+    }
+  }
 `;
 
 export const Message = styled.p`

@@ -5,7 +5,7 @@ const {
   noImage: { tablet },
 } = constants;
 
-console.log(tablet);
+//console.log(tablet);
 
 export const ItemContainer = styled.li`
   position: relative;

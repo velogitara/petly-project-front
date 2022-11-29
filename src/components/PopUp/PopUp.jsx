@@ -6,7 +6,7 @@ import { PopUpContainer, Message, CloseButton, CloseIcon } from './PopUp.styled'
 
 const { icons } = constants;
 
-const PopUp = ({ message = '', onClose, children }) => {
+const PopUp = ({ message = '', onClose, children, className = '' }) => {
   useEffect(() => {
     const handleEscKeyDown = e => {
       if (e.code === 'Escape') {
@@ -20,7 +20,7 @@ const PopUp = ({ message = '', onClose, children }) => {
     };
   }, [onClose]);
   return (
-    <PopUpContainer>
+    <PopUpContainer className={className}>
       <CloseButton type="button" title="Close" onClick={onClose}>
         <CloseIcon aria-label="Close icon">
           <use href={`${icons}#icon-close`} />

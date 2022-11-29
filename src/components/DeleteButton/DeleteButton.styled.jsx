@@ -22,6 +22,7 @@ export const DelButtonContainer = styled.div`
 `;
 
 export const DelButton = styled.button`
+  cursor: pointer;
   padding: 0;
   display: flex;
   justify-content: center;

@@ -9,7 +9,6 @@ import { Application } from './App.styled';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from 'components/Loader';
 import BackScrollButton from 'components/BackScrollButton';
-
 const SharedLayout = lazy(() => import('components/SharedLayout'));
 const HomePage = lazy(() => import('pages/HomePage/'));
 const AuthPage = lazy(() => import('pages/AuthPage/'));
@@ -17,10 +16,8 @@ const UserPage = lazy(() => import('pages/UserPage'));
 const NoticesPage = lazy(() => import('pages/NoticesPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/'));
 const OurFriendsPage = lazy(() => import('pages/OurFriendsPage'));
-
 const App = () => {
   // const isLogged = useSelector(selectAuthToken);
-
   return (
     <Application>
       <ToastContainer
@@ -62,5 +59,4 @@ const App = () => {
     </Application>
   );
 };
-
 export default App;

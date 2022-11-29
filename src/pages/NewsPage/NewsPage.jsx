@@ -15,16 +15,11 @@ const NewsPage = () => {
   const { data, isLoading } = useNews({ page: page.currentPage, query });
 
   let news = [];
-  let totalNews = 0;
   let totalPages = 1;
 
   if (data.length !== 0) {
     news = data.news;
-    totalNews = data.total;
-  }
-  
-  if (totalNews > 0) {
-    totalPages = Math.ceil(totalNews / 6);
+    totalPages = data.totalPages;
   }
 
   useEffect(() => {
@@ -41,17 +36,28 @@ const NewsPage = () => {
     if (query !== searchedValue) {
       setQuery(searchedValue);
       setPage(1);
-      document.getElementById("searchForm").reset();
     }
   }
 
-  return <ContainerWithPadding>
-    <TitlePage title={"News"} />
-    <InputSearch onSubmit={e => onSubmit(e)} />
-    {isLoading && <Loader />}
-    {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
-    {(!isLoading && !error) && <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />}
-  </ContainerWithPadding>
+  function onClick(e) {
+    if (query !== '') {
+      document.getElementById('searchForm').reset();
+      setQuery('');
+      setPage(1);
+    }
+  }
+
+  return (
+    <ContainerWithPadding>
+      <TitlePage title={'News'} />
+      <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} query={query} />
+      {isLoading && <Loader />}
+      {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
+      {!isLoading && !error && (
+        <Paginator totalPages={totalPages} onPageSelect={setPage} startPage={1} />
+      )}
+    </ContainerWithPadding>
+  );
 };
 
 export default NewsPage;

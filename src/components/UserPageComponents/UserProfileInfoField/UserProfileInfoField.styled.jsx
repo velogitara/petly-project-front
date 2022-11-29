@@ -21,6 +21,9 @@ export const InfoContainer = styled.div`
 
 export const InfoForm = styled.form`
   ${Container}
+  & .react-datepicker-popper {
+    z-index: 10 !important;
+  }
 `;
 
 export const InfoLabel = styled.label`

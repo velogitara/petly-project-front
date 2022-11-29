@@ -43,6 +43,7 @@ export const UserPicture = styled.picture`
 `;
 
 export const ImageLabel = styled.label`
+  cursor: pointer;
   display: flex;
   align-items: center;
 
