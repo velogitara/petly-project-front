@@ -6,6 +6,7 @@ import { categoryTitleHandler } from 'helpers';
 import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
+import Loader from 'components/Loader';
 import { constants } from 'constants/constants';
 import {
   Backdrop,
@@ -55,7 +56,7 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
   };
 
   if (!isSuccess) {
-    return 'Loading...';
+    return <Loader />;
   }
 
   const {
@@ -92,14 +93,14 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
             <PicturePet>
               <source
                 srcSet={`${imageURL ? imageURL?.profileMobile : noImage.profileMobile} 240w, ${
-                  imageURL ? imageURL?.profileMobileRetina : noImage.profileMobileRetina
+                  imageURL ? imageURL?.profileMobile_retina : noImage.profileMobileRetina
                 } 480w`}
                 media="(max-width: 767px)"
                 sizes="240px"
               />
               <source
                 srcSet={`${imageURL ? imageURL?.profile : noImage.profile} 288w, ${
-                  imageURL ? imageURL?.profileRetina : noImage.profileRetina
+                  imageURL ? imageURL?.profile_retina : noImage.profileRetina
                 } 576w`}
                 media="(min-width: 768px)"
                 sizes="288px"

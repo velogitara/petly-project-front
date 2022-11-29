@@ -1,7 +1,9 @@
 import React from 'react';
 import { InputStyled, BtnSearch, InputContainer } from './InputSearch.styled';
 import ClearInputSearchButton from 'components/ClearInputSearchButton';
-import icons from '../../assets/icons/icons.svg';
+import { constants } from 'constants/constants';
+
+const { icons } = constants;
 
 const InputSearch = ({ onSubmit, onClick, query }) => {
   return (
