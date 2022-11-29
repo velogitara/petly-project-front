@@ -5,6 +5,7 @@ import { selectAuthToken } from 'redux/authState';
 import { useUpdateFavoritesMutation } from 'redux/notices';
 import { toast } from 'react-toastify';
 import PopUp from 'components/PopUp';
+import PopUpNavButtons from 'components/PopUpNavButtons';
 import { constants } from 'constants/constants';
 import { FavButtonContainer, FavButton, FavIcon, FavLabel } from './FavoriteButton.styled';
 
@@ -51,7 +52,15 @@ const FavoriteButton = ({ noticeId, favorite, modal, label }) => {
           <use href={`${icons}#icon-heart-outlined`} />
         </FavIcon>
       </FavButton>
-      {showNotLogged && <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)} />}
+      {showNotLogged && (
+        <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)}>
+          <PopUpNavButtons
+            navigateTo="/login"
+            title="login"
+            onNavigate={() => setShowNotLogged(false)}
+          />
+        </PopUp>
+      )}
     </FavButtonContainer>
   );
 };

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAuthToken } from 'redux/authState';
 import PopUp from 'components/PopUp';
+import PopUpNavButtons from 'components/PopUpNavButtons';
 import {
   AddButtonContainer,
   AddButtonLabel,
@@ -39,7 +40,13 @@ const AddPetButton = ({ user, children }) => {
         </AddButton>
         <AddButtonLabel user={user}>{label}</AddButtonLabel>
         {showNotLogged && (
-          <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)} />
+          <PopUp message="Please, log in." onClose={() => setShowNotLogged(false)}>
+            <PopUpNavButtons
+              navigateTo="/login"
+              title="login"
+              onNavigate={() => setShowNotLogged(false)}
+            />
+          </PopUp>
         )}
       </AddButtonContainer>
       {showModal && !showNotLogged && (
