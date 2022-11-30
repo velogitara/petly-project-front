@@ -8,13 +8,14 @@ export const theme = Object.freeze({
     translucent: '#11111199',
     link: '#3091EB',
     border: 'rgba(245, 146, 86, 0.5)',
+    blackTranslucent: 'rgba(17, 17, 17, 0.6)',
   },
   backgrounds: {
     primary: '#FDF7F2',
     secondary: '#FFFFFF',
     gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
     backdrop: 'rgba(17, 17, 17, 0.6)',
-    whiteTranslucent: 'rgba(255, 255, 255, 0.6);',
+    whiteTranslucent: 'rgba(255, 255, 255, 0.6)',
   },
   fonts: {
     primary: "'Manrope', sans-serif",
@@ -47,13 +48,14 @@ export const themeDark = Object.freeze({
     translucent: '#11111199',
     link: '#3091EB',
     border: 'rgba(245, 146, 86, 0.5)',
+    blackTranslucent: 'rgba(238, 238, 238, 0.6)',
   },
   backgrounds: {
     primary: '#111111',
     secondary: '#333333',
     gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
     backdrop: 'rgba(17, 17, 17, 0.6)',
-    whiteTranslucent: 'rgba(0, 0, 0, 0.3);',
+    whiteTranslucent: 'rgba(0, 0, 0, 0.3)',
   },
   fonts: {
     primary: "'Manrope', sans-serif",
