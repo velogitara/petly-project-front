@@ -5,10 +5,9 @@ export const theme = Object.freeze({
     triadic: '#ffffff',
     accent: '#F59256',
     hoverAccent: '#FF6101',
-    translucent: '#11111199',
+    translucent: 'rgba(17, 17, 17, 0.6)',
     link: '#3091EB',
     border: 'rgba(245, 146, 86, 0.5)',
-    blackTranslucent: 'rgba(17, 17, 17, 0.6)',
   },
   backgrounds: {
     primary: '#FDF7F2',
@@ -45,10 +44,9 @@ export const themeDark = Object.freeze({
     triadic: '#ffffff',
     accent: '#F59256',
     hoverAccent: '#FF6101',
-    translucent: '#11111199',
+    translucent: 'rgba(238, 238, 238, 0.6)',
     link: '#3091EB',
     border: 'rgba(245, 146, 86, 0.5)',
-    blackTranslucent: 'rgba(238, 238, 238, 0.6)',
   },
   backgrounds: {
     primary: '#111111',
