@@ -21,14 +21,14 @@ export const AuthLink = styled(NavLink)`
   border-radius: 40px;
   height: 35px;
   color: inherit;
-  background: ${({ theme }) => theme.palette.triadic};
+  background: ${({ theme }) => theme.backgrounds.secondary};
   border: 2px solid ${({ theme }) => theme.palette.accent};
   transition: ${({ theme }) => theme.animations.transition};
   text-decoration: none;
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.palette.accent};
-    transition: ${({ theme }) => theme.animations.transition};
+    transform: ${({ theme }) => theme.animations.transform};
   }
   &.active {
     color: ${({ theme }) => theme.palette.triadic};
@@ -37,7 +37,7 @@ export const AuthLink = styled(NavLink)`
   &.active:hover,
   &.active:focus {
     background: ${({ theme }) => theme.palette.hoverAccent};
-		transform: ${({ theme }) => theme.animations.transform};
+    transform: ${({ theme }) => theme.animations.transform};
     transition: ${({ theme }) => theme.animations.transition};
   }
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
@@ -50,6 +50,6 @@ export const AuthLink = styled(NavLink)`
     font-size: inherit;
     line-height: inherit;
     height: 47px;
-		padding: 0 28px;
+    padding: 0 28px;
   }
 `;

@@ -31,7 +31,7 @@ export const PaginatorButton = styled.button`
 
   color: ${({ theme, current }) => (current ? theme.palette.triadic : theme.palette.accent)};
   background-color: ${({ theme, current }) =>
-    current ? theme.palette.accent : theme.palette.triadic};
+    current ? theme.palette.accent : theme.backgrounds.secondary};
 
   border: 2px solid ${({ theme }) => theme.palette.accent};
   border-radius: 50%;

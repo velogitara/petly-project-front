@@ -36,3 +36,31 @@ export const theme = Object.freeze({
     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   },
 });
+
+export const themeDark = Object.freeze({
+  palette: {
+    primary: '#ffffff',
+    secondary: '#111321',
+    triadic: '#ffffff',
+    accent: '#F59256',
+    hoverAccent: '#FF6101',
+    translucent: '#11111199',
+    link: '#3091EB',
+    border: 'rgba(245, 146, 86, 0.5)',
+  },
+  backgrounds: {
+    primary: '#111111',
+    secondary: '#333333',
+    gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
+    backdrop: 'rgba(17, 17, 17, 0.6)',
+    whiteTranslucent: 'rgba(0, 0, 0, 0.3);',
+  },
+  fonts: {
+    primary: "'Manrope', sans-serif",
+    logo: "'Poppins', sans-serif",
+  },
+  shadows: {
+    primary: '7px 4px 14px rgba(255, 255, 255, 0.11)',
+    card: '7px 4px 14px rgba(255, 255, 255, 0.1)',
+  },
+});

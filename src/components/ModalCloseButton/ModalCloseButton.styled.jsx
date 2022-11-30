@@ -13,11 +13,12 @@ export const ButtonClose = styled.button`
   cursor: pointer;
   z-index: 151;
 
+  color: ${({ theme }) => theme.palette.primary};
+
   background-color: ${({ theme }) => theme.backgrounds.primary};
 
   &:hover {
-    background-color: rgba(245, 146, 86, 0.5);
-    // ${({ theme }) => theme.palette.accent};
+    color: ${({ theme }) => theme.palette.accent};
     transition: ${({ theme }) => theme.animations.transition};
     transform: ${({ theme }) => theme.animations.transform};
   }
@@ -45,6 +46,7 @@ export const ButtonClose = styled.button`
 export const SvgClose = styled.svg`
   width: 15px;
   height: 15px;
+  fill: currentColor;
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 20px;

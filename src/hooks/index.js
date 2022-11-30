@@ -1,6 +1,5 @@
 export * from './useNotices';
 export * from './useNoticeById';
-export * from './useNoticesByQuery';
 export * from './useRemoveNotice';
 export * from './useNews';
 export * from './useSignIn';
