@@ -28,17 +28,17 @@ export const noticesApi = apiSlice.injectEndpoints({
       providesTags: ['Notices'],
       invalidatesTags: ['Notices'],
     }),
-    listNoticesByQuery: builder.query({
-      query: ({ category, query = '', favorite, owner, page = 1, limit = 8 }) => ({
-        url: `notices/?${
-          category ? `category=${category}&` : ''
-        }}query=${query}&page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}${
-          owner ? '&owner=true' : ''
-        }`,
-        method: 'GET',
-      }),
-      invalidatesTags: ['Notices'],
-    }),
+    // listNoticesByQuery: builder.query({
+    //   query: ({ category, query = '', favorite, owner, page = 1, limit = 8 }) => ({
+    //     url: `notices/?${
+    //       category ? `category=${category}&` : ''
+    //     }}query=${query}&page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}${
+    //       owner ? '&owner=true' : ''
+    //     }`,
+    //     method: 'GET',
+    //   }),
+    //   invalidatesTags: ['Notices'],
+    // }),
     listUserNotices: builder.query({
       query: ({ page = 1, limit = 8, favorite = false, query }) => ({
         url: `notices/own?page=${page}&limit=${limit}${favorite ? '&favorite=true' : ''}${
@@ -87,7 +87,7 @@ export const noticesApi = apiSlice.injectEndpoints({
 
 export const {
   useListNoticesByCategoryQuery,
-  useListNoticesByQueryQuery,
+  // useListNoticesByQueryQuery,
   useListUserNoticesQuery,
   useGetNoticesByIdQuery,
   useAddNoticeMutation,

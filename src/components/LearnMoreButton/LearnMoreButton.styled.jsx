@@ -13,7 +13,8 @@ export const LearnButton = styled.button`
   line-height: 1.366;
   text-transform: capitalize;
 
-  background-color: ${({ theme }) => theme.palette.triadic};
+  /* background-color: ${({ theme }) => theme.palette.triadic}; */
+  background-color: transparent;
   color: ${({ theme }) => theme.palette.accent};
 
   border: 2px solid currentColor;

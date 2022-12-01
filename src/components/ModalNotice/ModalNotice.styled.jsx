@@ -107,6 +107,8 @@ export const ImgLabel = styled.p`
   top: 20px;
   width: 158px;
   height: 28px;
+
+  color: ${({ theme }) => theme.palette.primary};
 `;
 export const InfoPet = styled.div``;
 export const InfoPetTitle = styled.h2`
@@ -156,6 +158,8 @@ export const Comments = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.366;
+
+  color: ${({ theme }) => theme.palette.primary};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-bottom: 32px;

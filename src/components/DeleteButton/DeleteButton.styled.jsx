@@ -31,7 +31,7 @@ export const DelButton = styled.button`
   width: 100%;
   height: 100%;
 
-  color: rgba(17, 17, 17, 0.6);
+  color: ${({ theme }) => theme.palette.translucent};
 
   background-color: ${({ translucent, theme }) =>
     translucent === true ? theme.backgrounds.whiteTranslucent : theme.backgrounds.primary};

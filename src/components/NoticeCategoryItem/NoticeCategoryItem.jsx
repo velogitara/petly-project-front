@@ -46,34 +46,26 @@ const NoticeCategoryItem = ({
       <ItemPicture>
         <source
           srcSet={`${imageURL ? imageURL?.mobile : noImage.mobile} 280w, ${
-            imageURL ? imageURL?.mobileRetina : noImage.mobileRetina
+            imageURL ? imageURL?.mobile_retina : noImage.mobileRetina
           } 560w`}
           media="(max-width: 767px)"
           sizes="280px"
         />
         <source
           srcSet={`${imageURL ? imageURL?.desktop : noImage.desktop} 288w, ${
-            imageURL ? imageURL?.mobileRetina : noImage.desktopRetina
+            imageURL ? imageURL?.desktop_retina : noImage.desktopRetina.replace('%40', '@')
           } 576w`}
           media="(min-width: 1280px)"
           sizes="288px"
         />
         <source
           srcSet={`${imageURL ? imageURL?.tablet : noImage.tablet} 336w, ${
-            imageURL ? imageURL?.tabletRetina : noImage.tabletRetina
+            imageURL ? imageURL?.tablet_retina : noImage.tabletRetina.replace('%40', '@')
           } 672w`}
           media="(min-width: 768px)"
           sizes="336px"
         />
-        <ItemImage
-          src={imageURL ? imageURL?.tablet : noImage.tablet}
-          loading="lazy"
-          alt={title}
-          // onError={({ currentTarget }) => {
-          //   currentTarget.onerror = null;
-          //   currentTarget.src = noImage.tablet;
-          // }}
-        />
+        <ItemImage src={imageURL ? imageURL?.tablet : noImage.tablet} loading="lazy" alt={title} />
       </ItemPicture>
       <Info>
         <InfoTitle>{title}</InfoTitle>
