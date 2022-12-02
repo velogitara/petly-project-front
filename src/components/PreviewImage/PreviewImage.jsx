@@ -1,19 +1,24 @@
-// import Loader from 'components/Loader';
 import { useState } from 'react';
-import { Image } from './PreviewImage.styled';
+import { Image, Container } from './PreviewImage.styled';
+import ImageLoader from './ImageLoader/ImageLoader';
+
 const PreviewImage = ({ image, className }) => {
   const [imagePreview, setImagePreview] = useState();
 
   const reader = new FileReader();
   reader.readAsDataURL(image);
   reader.onload = () => {
-    setImagePreview(reader.result);
+    setTimeout(() => {
+      setImagePreview(reader.result);
+    }, 1000);
   };
 
   return (
     <>
-      {/* {isLoading && <Loader />} */}
-      {FileReader.DONE && <Image src={imagePreview} alt="preview" className={className} />}
+      <Container>
+        {!imagePreview && <ImageLoader />}
+        <Image src={imagePreview} className={className} />
+      </Container>
     </>
   );
 };

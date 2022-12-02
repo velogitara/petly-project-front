@@ -47,3 +47,27 @@ export const InputForm = styled(Field)`
         width: 458px;
     }
 `;
+
+export  const Svg = styled.svg` 
+  width: 20px;
+  height: 20px;
+ 
+  fill: ${({ theme }) => theme.palette.accent};
+
+  transition: ${({ theme }) => theme.animations.transition};
+  transform: ${({ theme }) => theme.animations.transform};
+
+    @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 25px;
+    height: 25px;
+  }
+  
+`
+export const Span = styled.span`
+ position: absolute;
+  top: 30%;
+  right: 7%;
+`
+export const Label = styled.label`
+position: relative;
+`
