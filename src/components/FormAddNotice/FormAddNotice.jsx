@@ -8,11 +8,15 @@ import { toast } from 'react-toastify';
 
 function FormAddNotice({ onClose, addNotice }) {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
+
   const submitAddNoticeForm = async values => {
     const { image, ...data } = values;
 
     if (data.birthday) {
-      data.birthday = data.birthday.toISOString();
+      data.birthday = new Date(
+        data.birthday.getTime() - data.birthday.getTimezoneOffset() * 60000
+      ).toISOString();
+      console.log(data.birthday);
     }
     if (!data.name) {
       data.name = 'No name';
@@ -31,6 +35,8 @@ function FormAddNotice({ onClose, addNotice }) {
     payload.append('image', image);
     payload.append('data', JSON.stringify(data));
     onClose();
+
+    console.log(values);
     try {
       await addNotice({ payload }).then(response => {
         if (response.error) {
@@ -50,7 +56,7 @@ function FormAddNotice({ onClose, addNotice }) {
       initialValues={{
         title: '',
         name: '',
-        birthday: null,
+        birthday: '',
         breed: '',
         category: '',
         sex: '',

@@ -16,8 +16,9 @@ const DatePickerField = ({ name, value, onChange }) => {
   return (
     <DatePicker
       selected={value || null}
-      onChange={val => {
-        onChange(name, val);
+      // selected={new Date(value)}
+      onChange={value => {
+        onChange(name, value);
       }}
       placeholderText="Type date of birth"
       shouldCloseOnSelect={true}
@@ -26,7 +27,7 @@ const DatePickerField = ({ name, value, onChange }) => {
       maxDate={new Date()}
       showYearDropdown
       dateFormatCalendar="MMMM"
-      yearDropdownItemNumber={30}
+      yearDropdownItemNumber={100}
       scrollableYearDropdown
     />
   );
