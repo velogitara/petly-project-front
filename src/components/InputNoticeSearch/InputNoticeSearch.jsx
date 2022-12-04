@@ -6,7 +6,7 @@ import { InputStyled, BtnSearch, InputContainer } from './InputNoticeSearch.styl
 import icons from '../../assets/icons/icons.svg';
 import { useListNoticesByQueryQuery } from '../../redux/notices';
 
-const InputSearch = ({ onSubmit }) => {
+const InputNoticeSearch = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
   // const [page, setPage] = useState(1);
   // const [error, setError] = useState(null);
@@ -57,4 +57,4 @@ const InputSearch = ({ onSubmit }) => {
   );
 };
 
-export default InputSearch;
+export default InputNoticeSearch;
