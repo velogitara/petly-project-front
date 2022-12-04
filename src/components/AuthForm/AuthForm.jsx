@@ -4,20 +4,23 @@ import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
 
+import icons from '../../assets/icons/icons.svg';
+
 import { useSignInMutation, useSignUpMutation } from '../../redux/authState/authSlice';
 
 import Button from 'components/Button';
-import { StyledForm, InputWrapper, InputForm } from './AuthForm.styled';
+import { StyledForm, InputWrapper, InputForm, Svg, Label, Span } from './AuthForm.styled';
 
 const AuthForm = ({ url }) => {
   const [part, setPart] = useState(1);
   const [matchError, setMatchError] = useState(null);
+  const [password, setPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState(false);
   const [signIn] = useSignInMutation();
   const [signUp] = useSignUpMutation();
 
   const button = url === '/login' ? 'Login' : 'Register';
   const passwordRegEx = /^\S*$/;
-  // const nameRegEx = /^([a-zA-Z]{2,}\s*(-*){2}[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)/;/
   const nameRegEx = /^[а-яА-ЯёЁa-zA-Z-`\s]+$/;
   const locationRegEx = /^(\w+(-*)(\s*)\w+(,)\s*)+\w+$/;
   const phoneRegEx = /^(\+\d{2}[- ]?)?\d{10}$/;
@@ -104,7 +107,7 @@ const AuthForm = ({ url }) => {
         } catch (error) {}
       }}
     >
-      {({ values, handleChange, handleBlur, handleSubmit }) => (
+      {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
         <StyledForm onSubmit={handleSubmit}>
           {url === '/login' && (
             <>
@@ -118,16 +121,35 @@ const AuthForm = ({ url }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <ErrorMessage name="email">{msg => <div>{msg}</div>}</ErrorMessage>
-                <InputForm
-                  styled="inputAuth"
-                  name="password"
-                  value={values.password}
-                  placeholder="Password"
-                  type="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+                {errors.email && touched.email && (
+                  <ErrorMessage name="email">{msg => <div>{msg}</div>}</ErrorMessage>
+                )}
+
+                <Label>
+                  <InputForm
+                    styled="inputAuth"
+                    name="password"
+                    value={values.password}
+                    placeholder="Password"
+                    type={password ? 'text' : 'password'}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {!password && (
+                    <Span onClick={() => setPassword(!password)}>
+                      <Svg>
+                        <use href={icons + '#eye'} />
+                      </Svg>
+                    </Span>
+                  )}
+                  {password && (
+                    <Span onClick={() => setPassword(!password)}>
+                      <Svg>
+                        <use href={icons + '#eye-blocked'} />
+                      </Svg>
+                    </Span>
+                  )}
+                </Label>
                 <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
               </InputWrapper>
               <Button type="submit" styled="formAuth on" title={button} />
@@ -146,25 +168,57 @@ const AuthForm = ({ url }) => {
                   onBlur={handleBlur}
                 />
                 <ErrorMessage name="email">{msg => <div>{msg}</div>}</ErrorMessage>
-                <InputForm
-                  styled="inputAuth"
-                  name="password"
-                  value={values.password}
-                  placeholder="Password"
-                  type="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+                <Label>
+                  <InputForm
+                    styled="inputAuth"
+                    name="password"
+                    value={values.password}
+                    placeholder="Password"
+                    type={password ? 'text' : 'password'}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {!password && (
+                    <Span onClick={() => setPassword(!password)}>
+                      <Svg>
+                        <use href={icons + '#eye'} />
+                      </Svg>
+                    </Span>
+                  )}
+                  {password && (
+                    <Span onClick={() => setPassword(!password)}>
+                      <Svg>
+                        <use href={icons + '#eye-blocked'} />
+                      </Svg>
+                    </Span>
+                  )}
+                </Label>
                 <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
-                <InputForm
-                  styled="inputAuth"
-                  name="confirmPassword"
-                  value={values.confirmPassword}
-                  placeholder="Confirm Password"
-                  type="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+                <Label>
+                  <InputForm
+                    styled="inputAuth"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    placeholder="Confirm Password"
+                    type={confirmPassword ? 'text' : 'password'}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {!confirmPassword && (
+                    <Span onClick={() => setConfirmPassword(!confirmPassword)}>
+                      <Svg>
+                        <use href={icons + '#eye'} />
+                      </Svg>
+                    </Span>
+                  )}
+                  {confirmPassword && (
+                    <Span onClick={() => setConfirmPassword(!confirmPassword)}>
+                      <Svg>
+                        <use href={icons + '#eye-blocked'} />
+                      </Svg>
+                    </Span>
+                  )}
+                </Label>
                 <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
                 <div>{matchError}</div>
               </InputWrapper>

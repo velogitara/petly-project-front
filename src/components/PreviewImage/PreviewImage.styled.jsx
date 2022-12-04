@@ -12,3 +12,13 @@ export const Image = styled.img`
     height: 140px;
   }
 `;
+
+export const Container = styled.div`
+  width: 116px;
+  height: 116px;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    width: 140px;
+    height: 140px;
+  }
+`;
