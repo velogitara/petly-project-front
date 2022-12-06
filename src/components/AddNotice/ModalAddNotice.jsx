@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
 import ModalCloseButton from 'components/ModalCloseButton';
-import FormAddNotice from '../FormAddNotice';
-import { Modal, Overlay } from './ModalAddNotice.styled';
+import FormAddNotice from './FormAddNotice';
+import { Modal, Overlay } from '../ModalAddNotice/ModalAddNotice.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 

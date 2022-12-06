@@ -16,7 +16,6 @@ const DatePickerField = ({ name, value, onChange }) => {
   return (
     <DatePicker
       selected={value || null}
-      // selected={new Date(value)}
       onChange={value => {
         onChange(name, value);
       }}

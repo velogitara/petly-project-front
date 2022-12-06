@@ -10,7 +10,7 @@ import {
   InputBox,
   BoxLabel,
   ErrorMessageInput,
-} from '../FormAddNotice/FormAddNotice.styled';
+} from '../AddNotice/FormAddNotice/FormAddNotice.styled';
 import DatePickerField from 'components/DatePickerForm/DatePikerForm';
 import { Title } from '../FormAddPet/FormAddPet.styled';
 import Input from 'components/Input';

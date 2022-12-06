@@ -15,10 +15,10 @@ import {
   Figure,
   ErrorMessageInput,
   BoxFlex,
-} from '../FormAddNotice/FormAddNotice.styled';
+} from '../AddNotice/FormAddNotice/FormAddNotice.styled';
 
 import { Title } from '../FormAddPet/FormAddPet.styled';
-import PreviewImage from 'components/PreviewImage/PreviewImage';
+import PreviewImage from 'components/AddNotice/PreviewImage/PreviewImage';
 
 const FormAddPetStepSecond = ({
   values,

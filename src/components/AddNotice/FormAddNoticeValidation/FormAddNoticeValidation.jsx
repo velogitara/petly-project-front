@@ -2,14 +2,13 @@ import * as Yup from 'yup';
 
 const FILE_SIZE = 5242880;
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
-const ValidationSchema = Yup.object().shape({
+export const ValidationSchemaFirstStep = Yup.object().shape({
   category: Yup.string().required('Required'),
-  sex: Yup.string().required('Required'),
   title: Yup.string()
     .min(2, 'Must contain only letters, at least 2 letters, not more then 48 letters')
     .max(48, 'Must contain only letters, at least 2 letters, not more then 48 letters')
-    .matches(/^[а-яА-ЯёЁa-zA-Z`\s]+$/, 'Only letters'),
-  // .required('Required'),
+    .matches(/^[а-яА-ЯёЁa-zA-Z`\s]+$/, 'Only letters')
+    .required('Required'),
   name: Yup.string()
     .min(2, 'Must contain only letters, at least 2 letters, not more then 16 letters')
     .max(16, 'Must contain only letters, at least 2 letters, not more then 16 letters')
@@ -19,6 +18,11 @@ const ValidationSchema = Yup.object().shape({
     .min(2, 'Must contain only letters, at least 2 letters, not more then 24 letters')
     .max(24, 'Must contain only letters, at least 2 letters, not more then 24 letters')
     .matches(/^[а-яА-ЯёЁa-zA-Z`\s]+$/, 'Only letters'),
+});
+
+export const ValidationSchemaSecondStep = Yup.object().shape({
+  sex: Yup.string().required('Required'),
+  location: Yup.string().required('Required'),
   comments: Yup.string()
     .min(8, 'Must be at least 8 characters, not more then 120 characters')
     .max(120, 'Must be at least 8 characters, not more then 120 characters')
@@ -27,6 +31,7 @@ const ValidationSchema = Yup.object().shape({
   price: Yup.number('Price must be a number')
     .positive('Price must be a positive number')
     .integer('Price must be an integer'),
+  // .required('Required'),
   image: Yup.mixed()
     .test(
       'FILE_SIZE',
@@ -39,4 +44,3 @@ const ValidationSchema = Yup.object().shape({
       value => !value || (value && SUPPORTED_FORMATS.includes(value?.type))
     ),
 });
-export default ValidationSchema;
