@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import ModalCloseButton from 'components/ModalCloseButton';
 import FormAddPet from 'components/FormAddPet';
-import { Modal, Overlay } from '../../components/ModalAddNotice/ModalAddNotice.styled';
+import { Modal, Overlay } from '../AddNotice/ModalAddNotice/ModalAddNotice.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 

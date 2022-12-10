@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useGetNoticeById } from 'hooks';
 import { categoryTitleHandler } from 'helpers';
-import ModalCloseButton from '../ModalCloseButton/ModalCloseButton';
+import ModalCloseButton from '../ModalCloseButton';
 import FavoriteButton from 'components/FavoriteButton';
+import ImageModal from 'components/ImagesModal';
 import DeleteButton from 'components/DeleteButton';
 import Loader from 'components/Loader';
 import { constants } from 'constants/constants';
@@ -32,6 +33,10 @@ const modalRoot = document.querySelector('#modal-root');
 const { noImage } = constants;
 
 const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   const { notice, isSuccess } = useGetNoticeById({ noticeId });
 
   useEffect(() => {
@@ -109,7 +114,9 @@ const ModalNotice = ({ onClose, noticeId, favorite, owner }) => {
                 src={imageURL ? imageURL?.profile : noImage.profile}
                 loading="lazy"
                 alt={notice?.title}
+                onClick={toggleModal}
               />
+              {showModal && <ImageModal onClose={toggleModal} image={imageURL} />}
             </PicturePet>
             <ImgLabel>{categoryTitle}</ImgLabel>
             <DeleteBtnContainer>

@@ -2,7 +2,7 @@ import UserProfile from 'components/UserPageComponents/UserProfile';
 import UserHeader from 'components/UserPageComponents/UserHeader';
 import PetGallery from 'components/UserPageComponents/PetGallery';
 import AddPetButton from 'components/AddPetButton';
-import { Overlay } from '../../components/ModalAddNotice/ModalAddNotice.styled';
+import { Overlay } from '../../components/AddNotice/ModalAddNotice/ModalAddNotice.styled';
 import {
   HeaderContainer,
   UserContainer,

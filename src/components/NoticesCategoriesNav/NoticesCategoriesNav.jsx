@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { selectAuthToken } from 'redux/authState';
 import { useParams } from 'react-router-dom';
 import AddPetButton from 'components/AddPetButton';
-import ModalAddNotice from 'components/ModalAddNotice';
+import ModalAddNotice from 'components/AddNotice/ModalAddNotice';
 import { useAddNoticeMutation } from '../../redux/notices';
 import Loader from 'components/Loader';
-import { Overlay } from 'components/ModalAddNotice/ModalAddNotice.styled';
+import { Overlay } from 'components/AddNotice/ModalAddNotice/ModalAddNotice.styled';
 
 import { constants } from 'constants/constants';
 
