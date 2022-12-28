@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { ageHandle, categoryTitleHandler } from 'helpers';
 import FavoriteButton from 'components/FavoriteButton';
 import DeleteButton from 'components/DeleteButton';
 import LearnMoreButton from 'components/LearnMoreButton';
 import { constants } from 'constants/constants';
+import ImageModal from 'components/ImagesModal';
 
 import {
   ItemContainer,
@@ -33,8 +35,11 @@ const NoticeCategoryItem = ({
   price,
 }) => {
   const categoryTitle = categoryTitleHandler(category);
-
+  const [showModal, setShowModal] = useState(false);
   const age = ageHandle(birthday);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <ItemContainer>
@@ -65,7 +70,13 @@ const NoticeCategoryItem = ({
           media="(min-width: 768px)"
           sizes="336px"
         />
-        <ItemImage src={imageURL ? imageURL?.tablet : noImage.tablet} loading="lazy" alt={title} />
+        <ItemImage
+          src={imageURL ? imageURL?.tablet : noImage.tablet}
+          loading="lazy"
+          alt={title}
+          onClick={toggleModal}
+        />
+        {showModal && <ImageModal onClose={toggleModal} image={imageURL} />}
       </ItemPicture>
       <Info>
         <InfoTitle>{title}</InfoTitle>

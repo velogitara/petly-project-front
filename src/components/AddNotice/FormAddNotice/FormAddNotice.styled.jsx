@@ -364,3 +364,23 @@ export const ErrorMessageInput = styled.div`
   text-align: center;
   font-size: 16px;
 `;
+export const Title = styled.h1`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  // font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.36;
+
+  text-align: center;
+  color: #000000;
+  margin: 0 0 20px 0;
+
+  @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
+    font-weight: 600;
+    font-size: 36px;
+
+    &.title {
+      margin-bottom: 40px;
+    }
+  }
+`;

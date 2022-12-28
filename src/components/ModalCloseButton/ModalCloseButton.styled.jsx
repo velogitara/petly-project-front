@@ -41,6 +41,16 @@ export const ButtonClose = styled.button`
       height: 40px;
     }
   }
+
+  &.imageModal {
+    width: 30px;
+    height: 30px;
+
+    top: 8px;
+    right: 8px;
+
+    background-color: unset;
+  }
 `;
 
 export const SvgClose = styled.svg`
