@@ -10,6 +10,7 @@ import {
   InputBox,
   BoxLabel,
   ErrorMessageInput,
+  Span,
 } from '../AddNotice/FormAddNotice/FormAddNotice.styled';
 import DatePickerField from 'components/DatePickerForm/DatePikerForm';
 import { Title } from '../FormAddPet/FormAddPet.styled';
@@ -23,8 +24,13 @@ const FormAddPetStepFirst = ({
   onClose,
   setActiveStepIndex,
   setFieldValue,
+  isValid,
+  dirty,
 }) => {
   const [required, setRequired] = useState(null);
+
+  console.log(isValid);
+  console.log(dirty);
 
   const next = values => {
     if (values.name && values.birthday) {
@@ -34,12 +40,15 @@ const FormAddPetStepFirst = ({
       setRequired('Required');
     }
   };
+
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Add pet</Title>
       <InputBox>
         <Label>
-          <BoxLabel>Name pet</BoxLabel>
+          <BoxLabel>
+            Name pet<Span>*</Span>:
+          </BoxLabel>
           <Input
             styled="inputAdd"
             name="name"
@@ -55,7 +64,9 @@ const FormAddPetStepFirst = ({
       </InputBox>
       <InputBox>
         <Label>
-          <BoxLabel>Date of birth</BoxLabel>
+          <BoxLabel>
+            Date of birth<Span>*</Span>:
+          </BoxLabel>
 
           <DatePickerField onChange={setFieldValue} name="birthday" value={values.birthday} />
         </Label>
@@ -77,15 +88,21 @@ const FormAddPetStepFirst = ({
         <ErrorMessage name="breed" component={ErrorMessageInput} />
       </InputBox>
       <ButtonBox>
-        <Button
-          className="activeNext"
-          type="button"
-          onClick={() => {
-            next(values);
-          }}
-        >
-          Next
-        </Button>
+        {dirty && isValid ? (
+          <Button
+            className="activeNext"
+            type="button"
+            onClick={() => {
+              next(values);
+            }}
+          >
+            Next
+          </Button>
+        ) : (
+          <Button className="inactiveNext" type="button" disabled={true}>
+            Next
+          </Button>
+        )}
         <Button
           className="formAddPet"
           type="button"

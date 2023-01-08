@@ -52,7 +52,16 @@ function FormAddPet({ onClose, addPet }) {
         }
       }}
     >
-      {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+      {({
+        values,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        setFieldValue,
+        isValid,
+        dirty,
+      }) => (
         <>
           {activeStepIndex === 0 && (
             <FormAddPetStepFirst
@@ -65,6 +74,8 @@ function FormAddPet({ onClose, addPet }) {
               setActiveStepIndex={setActiveStepIndex}
               setFieldValue={setFieldValue}
               errors={errors}
+              isValid={isValid}
+              dirty={dirty}
             />
           )}
           {activeStepIndex === 1 && (
@@ -77,6 +88,8 @@ function FormAddPet({ onClose, addPet }) {
               onClose={onClose}
               setActiveStepIndex={setActiveStepIndex}
               setFieldValue={setFieldValue}
+              isValid={isValid}
+              dirty={dirty}
             />
           )}
         </>

@@ -28,6 +28,8 @@ const FormAddPetStepSecond = ({
   activeStepIndex,
   setActiveStepIndex,
   setFieldValue,
+  isValid,
+  dirty,
 }) => {
   const image = event => {
     const file = event.currentTarget.files[0];
@@ -66,9 +68,15 @@ const FormAddPetStepSecond = ({
         </Label>
         <ErrorMessage name="comments" component={ErrorMessageInput} />
         <ButtonBox>
-          <Button className="activeDone" type="submit">
-            Done
-          </Button>
+          {dirty && isValid ? (
+            <Button className="activeDone" type="submit">
+              Done
+            </Button>
+          ) : (
+            <Button className="inactiveDone" disabled={true}>
+              Done
+            </Button>
+          )}
           <Button
             className="formAddPet"
             type="button"
