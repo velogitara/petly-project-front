@@ -25,6 +25,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   &.formAddPet {
+    color: ${({ theme }) => theme.palette.secondary};
     background-color: ${({ theme }) => theme.palette.triadic};
     border: 2px solid ${({ theme }) => theme.palette.accent};
   }
@@ -34,6 +35,7 @@ export const Button = styled.button`
     background: ${({ theme }) => theme.palette.accent};
     color: ${({ theme }) => theme.palette.triadic};
   }
+  &.inactiveDone,
   &.inactiveNext {
     color: ${({ theme }) => theme.backgrounds.whiteTranslucent};
     background-color: ${({ theme }) => theme.palette.inactive};
@@ -57,6 +59,7 @@ export const Button = styled.button`
       right: 114px;
       margin: 0;
     }
+    &.inactiveDone,
     &.inactiveNext {
       position: absolute;
       bottom: 40px;

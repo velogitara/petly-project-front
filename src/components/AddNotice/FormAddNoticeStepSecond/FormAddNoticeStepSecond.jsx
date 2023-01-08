@@ -89,7 +89,16 @@ const FormAddNoticeStepSecond = ({ setActiveStepIndex, addNotice, onClose, formD
         console.log(values);
       }}
     >
-      {({ values, errors, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+      {({
+        values,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        setFieldValue,
+        isValid,
+        dirty,
+      }) => (
         <Form onSubmit={handleSubmit}>
           <Title className="title">Add pet</Title>
           <Label className="second-step-margin-title">
@@ -176,7 +185,9 @@ const FormAddNoticeStepSecond = ({ setActiveStepIndex, addNotice, onClose, formD
             <ErrorMessageInput>{errors.image}</ErrorMessageInput>
           </InputBox>
           <Label>
-            <BoxLabel>Comments</BoxLabel>
+            <BoxLabel>
+              Comments<Span>*</Span>
+            </BoxLabel>
             <Textarea
               type="text"
               name="comments"
@@ -188,9 +199,15 @@ const FormAddNoticeStepSecond = ({ setActiveStepIndex, addNotice, onClose, formD
           </Label>
           <ErrorMessageInput>{errors.comments}</ErrorMessageInput>
           <ButtonBox>
-            <Button className="activeDone" type="submit">
-              Done
-            </Button>
+            {dirty && isValid ? (
+              <Button className="activeDone" type="submit">
+                Done
+              </Button>
+            ) : (
+              <Button className="inactiveDone" disabled={true}>
+                Done
+              </Button>
+            )}
             <Button
               className="formAddPet"
               type="button"
