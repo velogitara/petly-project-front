@@ -29,9 +29,6 @@ const FormAddPetStepFirst = ({
 }) => {
   const [required, setRequired] = useState(null);
 
-  console.log(isValid);
-  console.log(dirty);
-
   const next = values => {
     if (values.name && values.birthday) {
       setActiveStepIndex(1);
