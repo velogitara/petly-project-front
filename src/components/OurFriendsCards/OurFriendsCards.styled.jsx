@@ -1,18 +1,15 @@
 import styled from '@emotion/styled';
-import { theme } from 'helpers';
-
-const { backgrounds, shadows, fonts, screens, palette, animations } = theme;
 
 const Card = styled.li`
-  background-color: ${backgrounds.secondary};
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
   text-align: center;
   border-radius: 40px;
   padding: 12px 4px;
-  box-shadow: ${shadows.card};
-  @media (min-width: ${screens.tablet}) {
+  box-shadow: ${({ theme }) => theme.shadows.card};
+  @media (min-width: ${({ theme }) => theme.screens.tablet}) {
     padding: 16px 17px;
   }
-  @media (min-width: ${screens.desktop}) {
+  @media (min-width: ${({ theme }) => theme.screens.desktop}) {
     flex-basis: calc(100% / 3 - 32px);
   } ;
 `;
@@ -20,11 +17,11 @@ const Card = styled.li`
 const CardPic = styled.img`
   margin-right: 12px;
   width: 110px;
-  @media (min-width: ${screens.tablet}) {
+  @media (min-width: ${({ theme }) => theme.screens.tablet}) {
     margin-right: 14px;
     width: 120px;
   }
-  @media (min-width: ${screens.desktop}) {
+  @media (min-width: ${({ theme }) => theme.screens.desktop}) {
     margin-right: 12px;
     width: 158px;
   } ;
@@ -37,12 +34,12 @@ const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  @media (min-width: ${screens.tablet}) {
+  @media (min-width: ${({ theme }) => theme.screens.tablet}) {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
   }
 
-  @media (min-width: ${screens.desktop}) {
+  @media (min-width: ${({ theme }) => theme.screens.desktop}) {
     grid-template-columns: repeat(3, 1fr);
   } ;
 `;
@@ -55,13 +52,13 @@ const BoxContent = styled.div`
 `;
 
 const Name = styled.h3`
-  font-family: ${fonts.primary};
+  font-family: ${({ theme }) => theme.fonts.primary};
   font-weight: 700;
   margin-bottom: 12px;
   font-size: 12px;
   line-height: 1.33;
-  color: ${palette.accent};
-  @media (min-width: ${screens.tablet}) {
+  color: ${({ theme }) => theme.palette.accent};
+  @media (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 20px;
     line-height: 1.35;
   } ;
@@ -76,10 +73,10 @@ const NameLink = styled.a`
   color: inherit;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  transition: ${animations.transition};
+  transition: ${({ theme }) => theme.animations.transition};
   &:hover,
   &:focus {
-    color: ${palette.hoverAccent};
+    color: ${({ theme }) => theme.palette.hoverAccent};
   }
 `;
 
@@ -90,10 +87,10 @@ const WorkDaysList = styled.ul`
   bottom: 0;
   transform: translate(0, 100%);
 
-  background-color: ${backgrounds.secondary};
-  border: 1px solid ${palette.accent};
+  background-color: ${({ theme }) => theme.backgrounds.secondary};
+  border: 1px solid ${({ theme }) => theme.palette.accent};
   border-radius: 8px;
-  box-shadow: ${shadows.card};
+  box-shadow: ${({ theme }) => theme.shadows.card};
   padding: 12px;
 `;
 
@@ -102,21 +99,21 @@ const InfoBox = styled.div`
 `;
 
 const InfoTitle = styled.p`
-  font-family: ${fonts.primary};
+  font-family: ${({ theme }) => theme.fonts.primary};
   font-weight: 500;
   font-size: 12px;
   line-height: 1.37;
-  transition: ${animations.transition};
+  transition: ${({ theme }) => theme.animations.transition};
   &:hover {
-    color: ${palette.accent};
+    color: ${({ theme }) => theme.palette.accent};
     cursor: pointer;
   }
 
-  @media (min-width: ${screens.tablet}) {
+  @media (min-width: ${({ theme }) => theme.screens.tablet}) {
     font-size: 14px;
     line-height: 1.36;
   }
-  @media (min-width: ${screens.desktop}) {
+  @media (min-width: ${({ theme }) => theme.screens.desktop}) {
     font-size: 16px;
     line-height: 1.38;
   }
@@ -137,7 +134,7 @@ const InfoAddress = styled.a`
 `;
 
 const WorkDaysItem = styled.li`
-  font-family: ${fonts.primary};
+  font-family: ${({ theme }) => theme.fonts.primary};
   font-size: 12px;
   font-weight: 500;
   line-height: 1.33;
