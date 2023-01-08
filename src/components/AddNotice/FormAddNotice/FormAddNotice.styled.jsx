@@ -25,6 +25,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   &.formAddPet {
+    color: ${({ theme }) => theme.palette.secondary};
     background-color: ${({ theme }) => theme.palette.triadic};
     border: 2px solid ${({ theme }) => theme.palette.accent};
   }
