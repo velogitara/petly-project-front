@@ -17,6 +17,7 @@ import {
   Label,
   Span,
   ErrorMessageInput,
+  MatchError
 } from './AuthForm.styled';
 
 const AuthForm = ({ url }) => {
@@ -238,7 +239,7 @@ const AuthForm = ({ url }) => {
                 <ErrorMessage name="password">
                   {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
                 </ErrorMessage>
-                <div>{matchError}</div>
+                <MatchError>{matchError}</MatchError>
               </InputWrapper>
               <Button
                 type="button"

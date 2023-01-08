@@ -78,3 +78,6 @@ export const Span = styled.span`
 export const Label = styled.label`
   position: relative;
 `;
+
+export const MatchError = styled.div`
+color: ${({ theme }) => theme.palette.accent} `
