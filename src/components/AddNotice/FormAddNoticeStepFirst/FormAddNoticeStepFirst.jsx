@@ -42,7 +42,17 @@ const FormAddNoticeStepFirst = ({ onClose, setActiveStepIndex, setFormData, form
         setActiveStepIndex(1);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+      {({
+        values,
+        errors,
+        touched,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        setFieldValue,
+        isValid,
+        dirty,
+      }) => (
         <Form onSubmit={handleSubmit}>
           <Title>Add pet</Title>
           <CategoryBox>
@@ -108,9 +118,15 @@ const FormAddNoticeStepFirst = ({ onClose, setActiveStepIndex, setFormData, form
             <ErrorMessageInput>{errors.breed && touched.breed}</ErrorMessageInput>
           </InputBox>
           <ButtonBox>
-            <Button className="activeNext" type="submit">
-              Next
-            </Button>
+            {dirty && isValid ? (
+              <Button className="activeNext" type="submit">
+                Next
+              </Button>
+            ) : (
+              <Button className="inactiveNext" disabled={true}>
+                Next
+              </Button>
+            )}
             <Button
               className="formAddPet"
               type="button"

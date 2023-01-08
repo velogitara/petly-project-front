@@ -9,7 +9,15 @@ import icons from '../../assets/icons/icons.svg';
 import { useSignInMutation, useSignUpMutation } from '../../redux/authState/authSlice';
 
 import Button from 'components/Button';
-import { StyledForm, InputWrapper, InputForm, Svg, Label, Span } from './AuthForm.styled';
+import {
+  StyledForm,
+  InputWrapper,
+  InputForm,
+  Svg,
+  Label,
+  Span,
+  ErrorMessageInput,
+} from './AuthForm.styled';
 
 const AuthForm = ({ url }) => {
   const [part, setPart] = useState(1);
@@ -46,7 +54,7 @@ const AuthForm = ({ url }) => {
     password: yup
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
-      .min(4, 'Must contain at least 4 symbols')
+      .min(7, 'Must contain at least 7 symbols')
       .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
   });
@@ -55,7 +63,7 @@ const AuthForm = ({ url }) => {
     password: yup
       .string()
       .matches(passwordRegEx, 'Password must contain letters or digits, without spaces')
-      .min(4, 'Must contain at least 4 symbols')
+      .min(7, 'Must contain at least 7 symbols')
       .max(32, 'Must contain at max 32 symbols!')
       .required('Required'),
     confirmPassword: yup.string().required('Required'),
@@ -122,7 +130,9 @@ const AuthForm = ({ url }) => {
                   onBlur={handleBlur}
                 />
                 {errors.email && touched.email && (
-                  <ErrorMessage name="email">{msg => <div>{msg}</div>}</ErrorMessage>
+                  <ErrorMessage name="email">
+                    {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                  </ErrorMessage>
                 )}
 
                 <Label>
@@ -150,7 +160,9 @@ const AuthForm = ({ url }) => {
                     </Span>
                   )}
                 </Label>
-                <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="password">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
               </InputWrapper>
               <Button type="submit" styled="formAuth on" title={button} />
             </>
@@ -167,7 +179,9 @@ const AuthForm = ({ url }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <ErrorMessage name="email">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="email">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
                 <Label>
                   <InputForm
                     styled="inputAuth"
@@ -193,7 +207,9 @@ const AuthForm = ({ url }) => {
                     </Span>
                   )}
                 </Label>
-                <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="password">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
                 <Label>
                   <InputForm
                     styled="inputAuth"
@@ -219,7 +235,9 @@ const AuthForm = ({ url }) => {
                     </Span>
                   )}
                 </Label>
-                <ErrorMessage name="password">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="password">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
                 <div>{matchError}</div>
               </InputWrapper>
               <Button
@@ -244,7 +262,9 @@ const AuthForm = ({ url }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <ErrorMessage name="name">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="name">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
                 <InputForm
                   styled="inputAuth"
                   name="location"
@@ -254,7 +274,9 @@ const AuthForm = ({ url }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <ErrorMessage name="location">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="location">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
                 <InputForm
                   styled="inputAuth"
                   name="mobilePhone"
@@ -264,7 +286,9 @@ const AuthForm = ({ url }) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <ErrorMessage name="mobilePhone">{msg => <div>{msg}</div>}</ErrorMessage>
+                <ErrorMessage name="mobilePhone">
+                  {msg => <ErrorMessageInput>{msg}</ErrorMessageInput>}
+                </ErrorMessage>
               </InputWrapper>
               <InputWrapper>
                 <Button styled="formAuth on" title={button} type="submit" />

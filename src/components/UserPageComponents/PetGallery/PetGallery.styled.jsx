@@ -9,7 +9,7 @@ export const GalleryContainer = styled.div`
 export const NoPets = styled.div`
   font-size: 20px;
   font-weight: 700;
-  color: #1111116b;
+  color: ${({ theme }) => theme.palette.primary};
   text-align: center;
   margin-left: auto;
   margin-right: auto;

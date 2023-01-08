@@ -41,7 +41,7 @@ export const SvgIcon = styled.svg`
 export const LogoutText = styled.p`
   font-weight: 500;
   font-size: 16px;
-  color: ${({ theme }) => theme.backgrounds.backdrop};
+  color: ${({ theme }) => theme.palette.logout};
 `;
 
 export const Container = styled.div`

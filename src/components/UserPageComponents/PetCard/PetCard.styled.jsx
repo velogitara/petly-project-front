@@ -9,7 +9,7 @@ export const PetContainer = styled.div`
   padding: 20px;
   border-radius: 20px;
   color: inherit;
-  background: ${({ theme }) => theme.palette.triadic};
+  background: ${({ theme }) => theme.backgrounds.secondary};
   box-shadow: ${({ theme }) => theme.shadows.primary};
 
   &:not(:last-child) {
@@ -56,6 +56,8 @@ export const PetInfo = styled.div`
 `;
 
 export const PetField = styled.p`
+  color: ${({ theme }) => theme.palette.primary};
+
   font-weight: 400;
   font-size: 14px;
   line-height: 1.57;

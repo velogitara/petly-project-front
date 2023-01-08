@@ -9,7 +9,6 @@ import {
 } from './UserProfileAvatar.styled';
 import { toast } from 'react-toastify';
 import { useUpdateUserInfoMutation } from 'redux/user';
-import { imageURLBuilder } from 'helpers';
 import icons from '../../../assets/icons/icons.svg';
 import defaultAvatar from '../../../assets/images/defaultAvatar-233.png';
 import defaultAvatarRetina from '../../../assets/images/defaultAvatar-233_retina.png';
@@ -47,17 +46,13 @@ const UserProfileAvatar = ({ name, avatarURL, isEditing }) => {
       <ImageContainer>
         <UserPicture>
           <source
-            srcSet={`${avatarURL ? imageURLBuilder(avatarURL?.profile) : defaultAvatar} 233w, ${
-              avatarURL ? imageURLBuilder(avatarURL?.profile_retina) : defaultAvatarRetina
+            srcSet={`${avatarURL ? avatarURL?.profile : defaultAvatar} 233w, ${
+              avatarURL ? avatarURL?.profile_retina : defaultAvatarRetina
             } 466w`}
             media="(min-width: 320px)"
             sizes="233px"
           />
-          <img
-            src={avatarURL ? imageURLBuilder(avatarURL?.profile) : defaultAvatar}
-            loading="lazy"
-            alt={name}
-          />
+          <img src={avatarURL ? avatarURL?.profile : defaultAvatar} loading="lazy" alt={name} />
         </UserPicture>
       </ImageContainer>
       <ImageLabel htmlFor="avatar">

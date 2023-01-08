@@ -8,6 +8,8 @@ export const theme = Object.freeze({
     translucent: 'rgba(17, 17, 17, 0.6)',
     link: '#3091EB',
     border: 'rgba(245, 146, 86, 0.5)',
+    inactive: 'rgba(128, 128, 128, 0.5)',
+    logout: 'rgba(17, 17, 17, 0.6)',
   },
   backgrounds: {
     primary: '#FDF7F2',
@@ -47,6 +49,8 @@ export const themeDark = Object.freeze({
     translucent: 'rgba(238, 238, 238, 0.6)',
     link: '#3091EB',
     border: 'rgba(245, 146, 86, 0.5)',
+    inactive: 'rgba(128, 128, 128, 0.5)',
+    logout: '#FDF7F2',
   },
   backgrounds: {
     primary: '#111111',

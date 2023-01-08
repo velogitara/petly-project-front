@@ -34,6 +34,10 @@ export const Button = styled.button`
     background: ${({ theme }) => theme.palette.accent};
     color: ${({ theme }) => theme.palette.triadic};
   }
+  &.inactiveNext {
+    color: ${({ theme }) => theme.backgrounds.whiteTranslucent};
+    background-color: ${({ theme }) => theme.palette.inactive};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
     width: 180px;
@@ -53,6 +57,14 @@ export const Button = styled.button`
       right: 114px;
       margin: 0;
     }
+    &.inactiveNext {
+      position: absolute;
+      bottom: 40px;
+      right: 114px;
+      margin: 0;
+      color: ${({ theme }) => theme.backgrounds.whiteTranslucent};
+      background-color: ${({ theme }) => theme.palette.inactive};
+    }
   }
   &:hover {
     transition: ${({ theme }) => theme.animations.transition};
@@ -61,7 +73,6 @@ export const Button = styled.button`
 `;
 
 export const Text = styled.p`
-  // font-size: 16px;
   letter-spacing: -0.01em;
   line-height: 1.38;
   text-align: center;

@@ -9,15 +9,15 @@ const modalRoot = document.querySelector('#modal-root');
 
 function ModalAddPet({ onClose, addPet }) {
   useEffect(() => {
-    const hendleKeyDown = e => {
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', hendleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', hendleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 

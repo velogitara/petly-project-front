@@ -10,7 +10,7 @@ export const UserContainer = styled.div`
   margin-bottom: 40px;
   border-radius: 20px;
   color: inherit;
-  background: ${({ theme }) => theme.palette.triadic};
+  background: ${({ theme }) => theme.backgrounds.secondary};
   box-shadow: ${({ theme }) => theme.shadows.primary};
 
   @media screen and (min-width: ${({ theme }) => theme.screens.tablet}) {
