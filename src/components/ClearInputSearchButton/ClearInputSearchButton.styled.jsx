@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ClearButton = styled.button`
-position: absolute;
+  position: absolute;
   top: 10px;
   right: 40px;
   padding: 4px;
@@ -9,7 +9,7 @@ position: absolute;
   height: 20px;
   margin-left: auto;
   margin-bottom: 12px;
-  color: ${({ theme }) => theme.palette.primary};
+  color: #111111;
   background: transparent;
   border: none;
   transition: ${({ theme }) => theme.animations.transition};
