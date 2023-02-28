@@ -1,33 +1,35 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useState } from 'react';
 import { InputStyled, BtnSearch, InputContainer } from './InputSearch.styled';
 import ClearInputSearchButton from 'components/ClearInputSearchButton';
 import { constants } from 'constants/constants';
 
 const { icons } = constants;
 
-const InputSearch = ({ onSubmit, query }) => {
-  const searchInputRef = useRef();
+const InputSearch = ({ onSubmit }) => {
+  const [value, setValue] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    const searchedValue = e.currentTarget.parentElement.elements['search'].value.trim();
-    onSubmit(searchedValue);
+
+    onSubmit(value.trim());
   };
 
-  const inputReset = () => {
-    if (query !== '') {
-      searchInputRef.current.reset();
-      onSubmit('');
-    }
+  const handleReset = () => {
+    setValue('');
+    onSubmit('');
   };
 
   return (
-    <InputContainer ref={searchInputRef}>
-      <InputStyled placeholder="Search" type="text" name="search" />
-      {query && (
-        <ClearInputSearchButton onClick={inputReset} query={query}></ClearInputSearchButton>
-      )}
+    <InputContainer>
+      <InputStyled
+        placeholder="Search"
+        type="text"
+        name="search"
+        value={value}
+        onChange={event => setValue(event.target.value)}
+      />
+      {value && <ClearInputSearchButton onClick={handleReset}></ClearInputSearchButton>}
       <BtnSearch title="Search" onClick={handleSubmit}>
         <svg width={17.5} height={17.5}>
           <use href={`${icons}#icon-search`}></use>
@@ -39,7 +41,6 @@ const InputSearch = ({ onSubmit, query }) => {
 
 InputSearch.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  query: PropTypes.string,
 };
 
 export default InputSearch;
