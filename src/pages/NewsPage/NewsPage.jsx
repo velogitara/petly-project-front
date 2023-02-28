@@ -30,19 +30,9 @@ const NewsPage = () => {
     }
   }, [page, news.length, isLoading, query]);
 
-  function onSubmit(e) {
-    e.preventDefault();
-    const searchedValue = e.currentTarget.parentElement.elements['search'].value;
+  function handleQuery(searchedValue) {
     if (query !== searchedValue) {
       setQuery(searchedValue);
-      setPage(1);
-    }
-  }
-
-  function onClick(e) {
-    if (query !== '') {
-      document.getElementById('searchForm').reset();
-      setQuery('');
       setPage(1);
     }
   }
@@ -50,7 +40,7 @@ const NewsPage = () => {
   return (
     <ContainerWithPadding>
       <TitlePage title={'News'} />
-      <InputSearch onSubmit={e => onSubmit(e)} onClick={e => onClick(e)} query={query} />
+      <InputSearch onSubmit={searchedValue => handleQuery(searchedValue)} query={query} />
       {isLoading && <Loader />}
       {error && !isLoading ? <SearchError query={query} /> : <NewsList news={news} />}
       {!isLoading && !error && (
